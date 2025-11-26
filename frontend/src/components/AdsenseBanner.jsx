@@ -16,7 +16,6 @@ export default function AdsenseBanner({ slot = "3737459241" }) {
         style={{ display: "inline-block", width: 728, height: 90 }}
         data-ad-client="ca-pub-3638606818264256"
         data-ad-slot={slot}
-        data-adtest="on"
       ></ins>
     </div>
   );
