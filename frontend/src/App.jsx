@@ -2,10 +2,11 @@ import React, { useState, useRef } from "react";
 import AdsenseBanner from "./components/AdsenseBanner";
 import CompressCard from "./CompressCard";
 
-const MAX_FILES = 10;        // Max number of files
-const MAX_TOTAL_MB = 50;     // Max total size (MB)
+const MAX_FILES = 10; // Max number of files
+const MAX_TOTAL_MB = 50; // Max total size (MB)
 
 function App() {
+  const [activeTab, setActiveTab] = useState("merge");
   const [files, setFiles] = useState([]);
   const [isMerging, setIsMerging] = useState(false);
   const [error, setError] = useState("");
@@ -61,12 +62,12 @@ function App() {
         formData.append("files", file);
       });
 
-	const API_URL = import.meta.env.VITE_API_URL || "http://localhost:4000";
+      const API_URL = import.meta.env.VITE_API_URL || "http://localhost:4000";
 
-	const res = await fetch(`${API_URL}/merge`, {
-    method: "POST",
-    body: formData,
-  });
+      const res = await fetch(`${API_URL}/merge`, {
+        method: "POST",
+        body: formData,
+      });
 
       if (!res.ok) {
         const data = await res.json().catch(() => ({}));
@@ -172,7 +173,7 @@ function App() {
               color: "#0f172a",
             }}
           >
-            Online PDF Merge Tool – Free & Secure PDF Merger
+            Free Online PDF Tools – Merge & Compress PDFs
           </h1>
           <p
             style={{
@@ -183,9 +184,9 @@ function App() {
               marginBottom: "10px",
             }}
           >
-            Combine multiple PDF files into a single high-quality document in
-            just a few clicks. Our browser-based PDF merger is fast, secure,
-            and completely free to use.
+            Combine multiple PDF files into a single document or compress large
+            PDFs into smaller files. Fast, secure, and completely free PDF tools
+            in your browser.
           </p>
           <ul
             style={{
@@ -236,574 +237,628 @@ function App() {
           </ul>
         </section>
 
-        {/* Tool Card */}
-        <section
-          aria-label="PDF merge tool"
+        {/* TAB NAVIGATION */}
+        <div
           style={{
-            marginBottom: "28px",
+            display: "flex",
+            gap: "12px",
+            marginBottom: "20px",
+            justifyContent: "center",
           }}
         >
-          <div
+          <button
+            onClick={() => setActiveTab("merge")}
             style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
+              padding: "10px 20px",
+              borderRadius: "999px",
+              border: "1px solid #e5e7eb",
+              background: activeTab === "merge" ? "#4f46e5" : "white",
+              color: activeTab === "merge" ? "white" : "#374151",
+              cursor: "pointer",
+              fontSize: "14px",
+              fontWeight: 500,
+              boxShadow:
+                activeTab === "merge"
+                  ? "0 4px 12px rgba(79,70,229,0.3)"
+                  : "0 1px 4px rgba(0,0,0,0.06)",
+            }}
+          >
+            Merge PDF
+          </button>
+
+          <button
+            onClick={() => setActiveTab("compress")}
+            style={{
+              padding: "10px 20px",
+              borderRadius: "999px",
+              border: "1px solid #e5e7eb",
+              background: activeTab === "compress" ? "#4f46e5" : "white",
+              color: activeTab === "compress" ? "white" : "#374151",
+              cursor: "pointer",
+              fontSize: "14px",
+              fontWeight: 500,
+              boxShadow:
+                activeTab === "compress"
+                  ? "0 4px 12px rgba(79,70,229,0.3)"
+                  : "0 1px 4px rgba(0,0,0,0.06)",
+            }}
+          >
+            Compress PDF
+          </button>
+        </div>
+
+        {/* ACTIVE TOOL CONTENT */}
+        {activeTab === "merge" && (
+          <section
+            aria-label="PDF merge tool"
+            style={{
+              marginBottom: "28px",
             }}
           >
             <div
               style={{
-                maxWidth: "540px",
-                width: "100%",
-                background: "white",
-                padding: "24px 24px 20px",
-                borderRadius: "18px",
-                boxShadow:
-                  "0 24px 60px rgba(15,23,42,0.16), 0 0 0 1px rgba(148,163,184,0.18)",
-                border: "1px solid rgba(226,232,240,0.9)",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
               }}
             >
-              {/* Card Header */}
               <div
                 style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  gap: "12px",
-                  alignItems: "center",
-                  marginBottom: "14px",
+                  maxWidth: "540px",
+                  width: "100%",
+                  background: "white",
+                  padding: "24px 24px 20px",
+                  borderRadius: "18px",
+                  boxShadow:
+                    "0 24px 60px rgba(15,23,42,0.16), 0 0 0 1px rgba(148,163,184,0.18)",
+                  border: "1px solid rgba(226,232,240,0.9)",
                 }}
               >
-                <div>
+                {/* Card Header */}
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    gap: "12px",
+                    alignItems: "center",
+                    marginBottom: "14px",
+                  }}
+                >
+                  <div>
+                    <div
+                      style={{
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: "6px",
+                        padding: "2px 8px",
+                        borderRadius: "999px",
+                        background: "#eff6ff",
+                        fontSize: "11px",
+                        color: "#1d4ed8",
+                        marginBottom: "6px",
+                        fontWeight: 500,
+                      }}
+                    >
+                      <span
+                        style={{
+                          display: "inline-block",
+                          width: "6px",
+                          height: "6px",
+                          borderRadius: "999px",
+                          background: "#22c55e",
+                        }}
+                      ></span>
+                      Merge PDFs in your browser
+                    </div>
+                    <h2
+                      style={{
+                        fontSize: "18px",
+                        margin: 0,
+                        marginBottom: "4px",
+                        color: "#0f172a",
+                      }}
+                    >
+                      Merge PDF files in seconds
+                    </h2>
+                    <p
+                      style={{
+                        color: "#6b7280",
+                        margin: 0,
+                        fontSize: "13px",
+                      }}
+                    >
+                      Upload, reorder, and download a single merged PDF. Nothing
+                      is stored on our servers.
+                    </p>
+                  </div>
                   <div
+                    style={{
+                      textAlign: "right",
+                      fontSize: "11px",
+                      color: "#6b7280",
+                    }}
+                  >
+                    <div
+                      style={{
+                        padding: "4px 8px",
+                        borderRadius: "999px",
+                        background: "#f4f4ff",
+                        color: "#4f46e5",
+                        fontWeight: 500,
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: "4px",
+                      }}
+                    >
+                      <span
+                        style={{
+                          display: "inline-block",
+                          width: "7px",
+                          height: "7px",
+                          borderRadius: "999px",
+                          background: "#4ade80",
+                        }}
+                      ></span>
+                      Simple & secure
+                    </div>
+                  </div>
+                </div>
+
+                {/* Upload area */}
+                <div
+                  style={{
+                    border: "1.5px dashed #d1d5db",
+                    borderRadius: "12px",
+                    padding: "16px",
+                    textAlign: "center",
+                    marginBottom: "14px",
+                    background:
+                      "linear-gradient(135deg, #f9fafb 0%, #f1f5f9 50%, #e5f0ff 100%)",
+                  }}
+                >
+                  <div
+                    style={{
+                      fontSize: "13px",
+                      marginBottom: "8px",
+                      color: "#111827",
+                      fontWeight: 500,
+                    }}
+                  >
+                    Choose PDF files
+                  </div>
+                  <label
                     style={{
                       display: "inline-flex",
                       alignItems: "center",
                       gap: "6px",
-                      padding: "2px 8px",
+                      padding: "8px 14px",
                       borderRadius: "999px",
-                      background: "#eff6ff",
-                      fontSize: "11px",
-                      color: "#1d4ed8",
-                      marginBottom: "6px",
-                      fontWeight: 500,
+                      background: "#111827",
+                      color: "white",
+                      fontSize: "12px",
+                      cursor: "pointer",
+                      boxShadow: "0 8px 20px rgba(15,23,42,0.35)",
                     }}
                   >
                     <span
                       style={{
-                        display: "inline-block",
-                        width: "6px",
-                        height: "6px",
-                        borderRadius: "999px",
-                        background: "#22c55e",
+                        fontSize: "14px",
                       }}
-                    ></span>
-                    Merge PDFs in your browser
-                  </div>
-                  <h2
-                    style={{
-                      fontSize: "18px",
-                      margin: 0,
-                      marginBottom: "4px",
-                      color: "#0f172a",
-                    }}
-                  >
-                    Merge PDF files in seconds
-                  </h2>
+                    >
+                      📄
+                    </span>
+                    <span>Select PDFs</span>
+                    <input
+                      ref={fileInputRef}
+                      type="file"
+                      accept="application/pdf"
+                      multiple
+                      onChange={handleFileChange}
+                      style={{ display: "none" }}
+                    />
+                  </label>
                   <p
                     style={{
+                      fontSize: "11px",
                       color: "#6b7280",
-                      margin: 0,
-                      fontSize: "13px",
+                      marginTop: "8px",
+                      marginBottom: 0,
                     }}
                   >
-                    Upload, reorder, and download a single merged PDF. Nothing is
-                    stored on our servers.
+                    Up to {MAX_FILES} files • Total size ≤ {MAX_TOTAL_MB} MB
                   </p>
                 </div>
-                <div
-                  style={{
-                    textAlign: "right",
-                    fontSize: "11px",
-                    color: "#6b7280",
-                  }}
-                >
+
+                {/* File stats */}
+                {files.length > 0 && (
                   <div
                     style={{
-                      padding: "4px 8px",
-                      borderRadius: "999px",
-                      background: "#f4f4ff",
-                      color: "#4f46e5",
-                      fontWeight: 500,
-                      display: "inline-flex",
-                      alignItems: "center",
-                      gap: "4px",
-                    }}
-                  >
-                    <span
-                      style={{
-                        display: "inline-block",
-                        width: "7px",
-                        height: "7px",
-                        borderRadius: "999px",
-                        background: "#4ade80",
-                      }}
-                    ></span>
-                    Simple & secure
-                  </div>
-                </div>
-              </div>
-
-              {/* Upload area */}
-              <div
-                style={{
-                  border: "1.5px dashed #d1d5db",
-                  borderRadius: "12px",
-                  padding: "16px",
-                  textAlign: "center",
-                  marginBottom: "14px",
-                  background:
-                    "linear-gradient(135deg, #f9fafb 0%, #f1f5f9 50%, #e5f0ff 100%)",
-                }}
-              >
-                <div
-                  style={{
-                    fontSize: "13px",
-                    marginBottom: "8px",
-                    color: "#111827",
-                    fontWeight: 500,
-                  }}
-                >
-                  Choose PDF files
-                </div>
-                <label
-                  style={{
-                    display: "inline-flex",
-                    alignItems: "center",
-                    gap: "6px",
-                    padding: "8px 14px",
-                    borderRadius: "999px",
-                    background: "#111827",
-                    color: "white",
-                    fontSize: "12px",
-                    cursor: "pointer",
-                    boxShadow: "0 8px 20px rgba(15,23,42,0.35)",
-                  }}
-                >
-                  <span
-                    style={{
-                      fontSize: "14px",
-                    }}
-                  >
-                    📄
-                  </span>
-                  <span>Select PDFs</span>
-                  <input
-                    ref={fileInputRef}
-                    type="file"
-                    accept="application/pdf"
-                    multiple
-                    onChange={handleFileChange}
-                    style={{ display: "none" }}
-                  />
-                </label>
-                <p
-                  style={{
-                    fontSize: "11px",
-                    color: "#6b7280",
-                    marginTop: "8px",
-                    marginBottom: 0,
-                  }}
-                >
-                  Up to {MAX_FILES} files • Total size ≤ {MAX_TOTAL_MB} MB
-                </p>
-              </div>
-
-              {/* File stats */}
-              {files.length > 0 && (
-                <div
-                  style={{
-                    marginBottom: "8px",
-                    fontSize: "11px",
-                    color: "#4b5563",
-                    display: "flex",
-                    justifyContent: "space-between",
-                    gap: "8px",
-                  }}
-                >
-                  <div>
-                    Files selected:{" "}
-                    <strong style={{ color: "#111827" }}>
-                      {files.length}
-                    </strong>
-                  </div>
-                  <div>
-                    Total size:{" "}
-                    <strong style={{ color: "#111827" }}>
-                      {totalMB.toFixed(2)} MB
-                    </strong>
-                  </div>
-                </div>
-              )}
-
-              {/* File list with drag & drop */}
-              {files.length > 0 && (
-                <div
-                  style={{
-                    marginBottom: "14px",
-                    maxHeight: "220px",
-                    overflowY: "auto",
-                    border: "1px solid #e5e7eb",
-                    borderRadius: "10px",
-                    padding: "8px",
-                    background: "#f9fafb",
-                  }}
-                >
-                  <div
-                    style={{
-                      fontSize: "12px",
-                      color: "#6b7280",
-                      marginBottom: "6px",
+                      marginBottom: "8px",
+                      fontSize: "11px",
+                      color: "#4b5563",
                       display: "flex",
                       justifyContent: "space-between",
+                      gap: "8px",
                     }}
                   >
-                    <span style={{ fontWeight: 500, color: "#111827" }}>
-                      Reorder files
-                    </span>
-                    <span>Drag to change merge order</span>
+                    <div>
+                      Files selected:{" "}
+                      <strong style={{ color: "#111827" }}>
+                        {files.length}
+                      </strong>
+                    </div>
+                    <div>
+                      Total size:{" "}
+                      <strong style={{ color: "#111827" }}>
+                        {totalMB.toFixed(2)} MB
+                      </strong>
+                    </div>
                   </div>
-                  <ul
+                )}
+
+                {/* File list with drag & drop */}
+                {files.length > 0 && (
+                  <div
                     style={{
-                      paddingLeft: 0,
-                      margin: 0,
-                      listStyleType: "none",
-                      fontSize: "13px",
+                      marginBottom: "14px",
+                      maxHeight: "220px",
+                      overflowY: "auto",
+                      border: "1px solid #e5e7eb",
+                      borderRadius: "10px",
+                      padding: "8px",
+                      background: "#f9fafb",
                     }}
                   >
-                    {files.map((file, idx) => (
-                      <li
-                        key={idx}
-                        draggable
-                        onDragStart={() => handleDragStart(idx)}
-                        onDragOver={(e) => handleDragOver(e, idx)}
-                        onDrop={handleDrop}
-                        onDragEnd={handleDragEnd}
-                        style={{
-                          display: "flex",
-                          alignItems: "center",
-                          padding: "8px 10px",
-                          marginBottom: "6px",
-                          borderRadius: "8px",
-                          border:
-                            dragIndex === idx
-                              ? "1px dashed #4f46e5"
-                              : "1px solid #e5e7eb",
-                          background:
-                            dragIndex === idx
-                              ? "#eef2ff"
-                              : "rgba(255,255,255,0.9)",
-                          cursor: "grab",
-                          gap: "8px",
-                          boxShadow:
-                            dragIndex === idx
-                              ? "0 6px 16px rgba(79,70,229,0.25)"
-                              : "0 1px 3px rgba(15,23,42,0.06)",
-                          transition:
-                            "background 0.15s ease, box-shadow 0.15s ease",
-                        }}
-                      >
-                        <span
+                    <div
+                      style={{
+                        fontSize: "12px",
+                        color: "#6b7280",
+                        marginBottom: "6px",
+                        display: "flex",
+                        justifyContent: "space-between",
+                      }}
+                    >
+                      <span style={{ fontWeight: 500, color: "#111827" }}>
+                        Reorder files
+                      </span>
+                      <span>Drag to change merge order</span>
+                    </div>
+                    <ul
+                      style={{
+                        paddingLeft: 0,
+                        margin: 0,
+                        listStyleType: "none",
+                        fontSize: "13px",
+                      }}
+                    >
+                      {files.map((file, idx) => (
+                        <li
+                          key={idx}
+                          draggable
+                          onDragStart={() => handleDragStart(idx)}
+                          onDragOver={(e) => handleDragOver(e, idx)}
+                          onDrop={handleDrop}
+                          onDragEnd={handleDragEnd}
                           style={{
-                            fontSize: "16px",
-                            width: "22px",
-                            textAlign: "center",
-                            color: "#9ca3af",
-                          }}
-                          title="Drag to reorder"
-                        >
-                          ☰
-                        </span>
-                        <span
-                          style={{
-                            fontSize: "11px",
-                            color: "#6b7280",
-                            width: "30px",
-                            textAlign: "center",
-                          }}
-                        >
-                          #{idx + 1}
-                        </span>
-                        <div
-                          style={{
-                            flex: 1,
-                            wordBreak: "break-all",
+                            display: "flex",
+                            alignItems: "center",
+                            padding: "8px 10px",
+                            marginBottom: "6px",
+                            borderRadius: "8px",
+                            border:
+                              dragIndex === idx
+                                ? "1px dashed #4f46e5"
+                                : "1px solid #e5e7eb",
+                            background:
+                              dragIndex === idx
+                                ? "#eef2ff"
+                                : "rgba(255,255,255,0.9)",
+                            cursor: "grab",
+                            gap: "8px",
+                            boxShadow:
+                              dragIndex === idx
+                                ? "0 6px 16px rgba(79,70,229,0.25)"
+                                : "0 1px 3px rgba(15,23,42,0.06)",
+                            transition:
+                              "background 0.15s ease, box-shadow 0.15s ease",
                           }}
                         >
                           <span
                             style={{
-                              fontWeight: 500,
-                              color: "#111827",
-                            }}
-                          >
-                            {file.name}
-                          </span>
-                          <span
-                            style={{
+                              fontSize: "16px",
+                              width: "22px",
+                              textAlign: "center",
                               color: "#9ca3af",
-                              fontSize: "12px",
+                            }}
+                            title="Drag to reorder"
+                          >
+                            ☰
+                          </span>
+                          <span
+                            style={{
+                              fontSize: "11px",
+                              color: "#6b7280",
+                              width: "30px",
+                              textAlign: "center",
                             }}
                           >
-                            {" "}
-                            ({(file.size / 1024 / 1024).toFixed(2)} MB)
+                            #{idx + 1}
                           </span>
-                        </div>
-                        <button
-                          type="button"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            handleRemoveFile(idx);
-                          }}
-                          style={{
-                            border: "none",
-                            background: "transparent",
-                            color: "#b91c1c",
-                            fontWeight: "bold",
-                            fontSize: "16px",
-                            cursor: "pointer",
-                            padding: "0 6px",
-                          }}
-                          title="Remove this file"
-                        >
-                          ✕
-                        </button>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
+                          <div
+                            style={{
+                              flex: 1,
+                              wordBreak: "break-all",
+                            }}
+                          >
+                            <span
+                              style={{
+                                fontWeight: 500,
+                                color: "#111827",
+                              }}
+                            >
+                              {file.name}
+                            </span>
+                            <span
+                              style={{
+                                color: "#9ca3af",
+                                fontSize: "12px",
+                              }}
+                            >
+                              {" "}
+                              ({(file.size / 1024 / 1024).toFixed(2)} MB)
+                            </span>
+                          </div>
+                          <button
+                            type="button"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleRemoveFile(idx);
+                            }}
+                            style={{
+                              border: "none",
+                              background: "transparent",
+                              color: "#b91c1c",
+                              fontWeight: "bold",
+                              fontSize: "16px",
+                              cursor: "pointer",
+                              padding: "0 6px",
+                            }}
+                            title="Remove this file"
+                          >
+                            ✕
+                          </button>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
 
-              {/* Error box */}
-              {error && (
-                <div
-                  style={{
-                    marginBottom: "10px",
-                    padding: "8px 10px",
-                    background: "#fef2f2",
-                    color: "#b91c1c",
-                    borderRadius: "8px",
-                    fontSize: "12px",
-                    border: "1px solid #fecaca",
-                  }}
-                >
-                  {error}
-                </div>
-              )}
+                {/* Error box */}
+                {error && (
+                  <div
+                    style={{
+                      marginBottom: "10px",
+                      padding: "8px 10px",
+                      background: "#fef2f2",
+                      color: "#b91c1c",
+                      borderRadius: "8px",
+                      fontSize: "12px",
+                      border: "1px solid #fecaca",
+                    }}
+                  >
+                    {error}
+                  </div>
+                )}
 
-              {/* Bottom actions + usage info */}
-              <div
-                style={{
-                  display: "flex",
-                  gap: "8px",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  marginTop: "8px",
-                }}
-              >
-                <div
-                  style={{
-                    fontSize: "11px",
-                    color: "#6b7280",
-                  }}
-                >
-                  Merges this session:{" "}
-                  <strong style={{ color: "#111827" }}>{usageCount}</strong>
-                </div>
+                {/* Bottom actions + usage info */}
                 <div
                   style={{
                     display: "flex",
                     gap: "8px",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    marginTop: "8px",
                   }}
                 >
-                  <button
-                    onClick={handleClear}
-                    disabled={isMerging || files.length === 0}
+                  <div
                     style={{
-                      padding: "8px 12px",
-                      borderRadius: "999px",
-                      border: "1px solid #e5e7eb",
-                      background: "white",
-                      cursor:
-                        isMerging || files.length === 0
-                          ? "not-allowed"
-                          : "pointer",
-                      fontSize: "12px",
-                      color: "#374151",
-                      minWidth: "80px",
+                      fontSize: "11px",
+                      color: "#6b7280",
                     }}
                   >
-                    Clear
-                  </button>
-                  <button
-                    onClick={handleMerge}
-                    disabled={isMerging || files.length === 0}
+                    Merges this session:{" "}
+                    <strong style={{ color: "#111827" }}>
+                      {usageCount}
+                    </strong>
+                  </div>
+                  <div
                     style={{
-                      padding: "8px 16px",
-                      borderRadius: "999px",
-                      border: "none",
-                      background:
-                        isMerging || files.length === 0 ? "#9ca3af" : "#4f46e5",
-                      color: "white",
-                      cursor:
-                        isMerging || files.length === 0
-                          ? "not-allowed"
-                          : "pointer",
-                      fontSize: "12px",
-                      fontWeight: 500,
-                      minWidth: "120px",
-                      boxShadow:
-                        isMerging || files.length === 0
-                          ? "none"
-                          : "0 10px 25px rgba(79,70,229,0.4)",
+                      display: "flex",
+                      gap: "8px",
                     }}
                   >
-                    {isMerging ? "Merging..." : "Merge PDFs"}
-                  </button>
-
+                    <button
+                      onClick={handleClear}
+                      disabled={isMerging || files.length === 0}
+                      style={{
+                        padding: "8px 12px",
+                        borderRadius: "999px",
+                        border: "1px solid #e5e7eb",
+                        background: "white",
+                        cursor:
+                          isMerging || files.length === 0
+                            ? "not-allowed"
+                            : "pointer",
+                        fontSize: "12px",
+                        color: "#374151",
+                        minWidth: "80px",
+                      }}
+                    >
+                      Clear
+                    </button>
+                    <button
+                      onClick={handleMerge}
+                      disabled={isMerging || files.length === 0}
+                      style={{
+                        padding: "8px 16px",
+                        borderRadius: "999px",
+                        border: "none",
+                        background:
+                          isMerging || files.length === 0
+                            ? "#9ca3af"
+                            : "#4f46e5",
+                        color: "white",
+                        cursor:
+                          isMerging || files.length === 0
+                            ? "not-allowed"
+                            : "pointer",
+                        fontSize: "12px",
+                        fontWeight: 500,
+                        minWidth: "120px",
+                        boxShadow:
+                          isMerging || files.length === 0
+                            ? "none"
+                            : "0 10px 25px rgba(79,70,229,0.4)",
+                      }}
+                    >
+                      {isMerging ? "Merging..." : "Merge PDFs"}
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          </section>
+        )}
 
-          <AdsenseBanner slot="3737459241" />
-        </section>
+        {activeTab === "compress" && <CompressCard />}
 
-        {/* NEW: Compress PDF card */}
-        <CompressCard />
+        {/* Ads under tools */}
+        <AdsenseBanner slot="3737459241" />
 
         {/* SEO text sections */}
         <section
-  aria-label="Free PDF tools – merge and compress"
-  style={{
-    marginTop: "24px",
-    marginBottom: "24px",
-  }}
->
-  <h2
-    style={{
-      fontSize: "18px",
-      marginBottom: "6px",
-      color: "#111827",
-    }}
-  >
-    Free Online PDF Tools – Merge & Compress PDFs Easily
-  </h2>
+          aria-label="Free PDF tools – merge and compress"
+          style={{
+            marginTop: "24px",
+            marginBottom: "24px",
+          }}
+        >
+          <h2
+            style={{
+              fontSize: "18px",
+              marginBottom: "6px",
+              color: "#111827",
+            }}
+          >
+            Free Online PDF Tools – Merge & Compress PDFs Easily
+          </h2>
 
-  <p
-    style={{
-      fontSize: "13px",
-      color: "#4b5563",
-      marginBottom: "10px",
-    }}
-  >
-    PDFFreeTool offers two of the most essential PDF utilities:{" "}
-    <strong>Merge PDF</strong> and <strong>Compress PDF</strong>. Both tools
-    work directly in your browser, require no account, and are completely
-    free to use.
-  </p>
+          <p
+            style={{
+              fontSize: "13px",
+              color: "#4b5563",
+              marginBottom: "10px",
+            }}
+          >
+            PDFFreeTool offers two of the most essential PDF utilities:{" "}
+            <strong>Merge PDF</strong> and <strong>Compress PDF</strong>. Both
+            tools work directly in your browser, require no account, and are
+            completely free to use.
+          </p>
 
-  <h3
-    style={{
-      fontSize: "16px",
-      marginBottom: "6px",
-      marginTop: "14px",
-      color: "#111827",
-    }}
-  >
-    Merge PDF online
-  </h3>
-  <ul
-    style={{
-      paddingLeft: "20px",
-      margin: 0,
-      fontSize: "13px",
-      color: "#4b5563",
-    }}
-  >
-    <li>Combine multiple PDF files into one document.</li>
-    <li>Reorder pages easily using drag &amp; drop.</li>
-    <li>Download a single optimized merged PDF.</li>
-    <li>Secure processing entirely in memory.</li>
-  </ul>
+          <h3
+            style={{
+              fontSize: "16px",
+              marginBottom: "6px",
+              marginTop: "14px",
+              color: "#111827",
+            }}
+          >
+            Merge PDF online
+          </h3>
+          <ul
+            style={{
+              paddingLeft: "20px",
+              margin: 0,
+              fontSize: "13px",
+              color: "#4b5563",
+            }}
+          >
+            <li>Combine multiple PDF files into one document.</li>
+            <li>Reorder pages easily using drag &amp; drop.</li>
+            <li>Download a single optimized merged PDF.</li>
+            <li>Secure processing entirely in memory.</li>
+          </ul>
 
-  <p
-    style={{
-      fontSize: "13px",
-      color: "#4b5563",
-      marginTop: "8px",
-      marginBottom: "10px",
-    }}
-  >
-    Perfect for students, professionals, or anyone who needs to organize
-    documents quickly and efficiently.
-  </p>
+          <p
+            style={{
+              fontSize: "13px",
+              color: "#4b5563",
+              marginTop: "8px",
+              marginBottom: "10px",
+            }}
+          >
+            Perfect for students, professionals, or anyone who needs to organize
+            documents quickly and efficiently.
+          </p>
 
-  <h3
-    style={{
-      fontSize: "16px",
-      marginBottom: "6px",
-      marginTop: "14px",
-      color: "#111827",
-    }}
-  >
-    Compress PDF online
-  </h3>
-  <ul
-    style={{
-      paddingLeft: "20px",
-      margin: 0,
-      fontSize: "13px",
-      color: "#4b5563",
-    }}
-  >
-    <li>Reduce large PDF file sizes instantly.</li>
-    <li>Make files easier to upload to websites and portals.</li>
-    <li>Send PDFs via email without size limits.</li>
-    <li>Optimize scanned documents and save storage space.</li>
-  </ul>
+          <h3
+            style={{
+              fontSize: "16px",
+              marginBottom: "6px",
+              marginTop: "14px",
+              color: "#111827",
+            }}
+          >
+            Compress PDF online
+          </h3>
+          <ul
+            style={{
+              paddingLeft: "20px",
+              margin: 0,
+              fontSize: "13px",
+              color: "#4b5563",
+            }}
+          >
+            <li>Reduce large PDF file sizes instantly.</li>
+            <li>Make files easier to upload to websites and portals.</li>
+            <li>Send PDFs via email without size limits.</li>
+            <li>Optimize scanned documents and save storage space.</li>
+          </ul>
 
-  <p
-    style={{
-      fontSize: "13px",
-      color: "#4b5563",
-      marginTop: "8px",
-      marginBottom: "10px",
-    }}
-  >
-    Compression keeps your document readable while drastically reducing its
-    file size.
-  </p>
+          <p
+            style={{
+              fontSize: "13px",
+              color: "#4b5563",
+              marginTop: "8px",
+              marginBottom: "10px",
+            }}
+          >
+            Compression keeps your document readable while drastically reducing
+            its file size.
+          </p>
 
-  <h3
-    style={{
-      fontSize: "16px",
-      marginBottom: "6px",
-      marginTop: "14px",
-      color: "#111827",
-    }}
-  >
-    Secure, private, and fast
-  </h3>
-  <p
-    style={{
-      fontSize: "13px",
-      color: "#4b5563",
-    }}
-  >
-    Your PDFs are processed securely and deleted immediately after
-    download. No files are stored on our servers, ensuring complete
-    privacy.
-  </p>
-</section>
-
+          <h3
+            style={{
+              fontSize: "16px",
+              marginBottom: "6px",
+              marginTop: "14px",
+              color: "#111827",
+            }}
+          >
+            Secure, private, and fast
+          </h3>
+          <p
+            style={{
+              fontSize: "13px",
+              color: "#4b5563",
+            }}
+          >
+            Your PDFs are processed securely and deleted immediately after
+            download. No files are stored on our servers, ensuring complete
+            privacy.
+          </p>
+        </section>
 
         <section
           aria-label="Why choose this free PDF merger"
@@ -897,7 +952,7 @@ function App() {
             textAlign: "center",
           }}
         >
-          © {new Date().getFullYear()} Online PDF Merge Tool. All rights reserved.
+          © {new Date().getFullYear()} Online PDF Tools. All rights reserved.
         </footer>
       </main>
     </div>
