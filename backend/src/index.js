@@ -13,19 +13,8 @@ const allowedOrigins = [
   "https://*.vercel.app"
 ];
 
-app.use(
-  cors({
-    origin: function (origin, callback) {
-      if (!origin) return callback(null, true);
-      if (allowedOrigins.some(o =>
-        o.startsWith("https://*") ? origin.endsWith("vercel.app") : o === origin
-      )) {
-        return callback(null, true);
-      }
-      return callback(new Error("CORS blocked"));
-    },
-  })
-);
+app.use(cors());
+
 // Dosyaları memory'de tutacağız
 const upload = multer({ storage: multer.memoryStorage() });
 
