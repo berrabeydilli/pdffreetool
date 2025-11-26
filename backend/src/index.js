@@ -7,12 +7,25 @@ const app = express();
 const PORT = process.env.PORT || 4000;
 
 // CORS ayarları – geliştirmede frontend için:
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://pdffreetool.com",
+  "https://*.vercel.app"
+];
+
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: function (origin, callback) {
+      if (!origin) return callback(null, true);
+      if (allowedOrigins.some(o =>
+        o.startsWith("https://*") ? origin.endsWith("vercel.app") : o === origin
+      )) {
+        return callback(null, true);
+      }
+      return callback(new Error("CORS blocked"));
+    },
   })
 );
-
 // Dosyaları memory'de tutacağız
 const upload = multer({ storage: multer.memoryStorage() });
 
