@@ -6,61 +6,76 @@ import { PDFDocument } from "pdf-lib";
 const app = express();
 const PORT = process.env.PORT || 4000;
 
-// CORS ayarları – geliştirmede frontend için:
-const allowedOrigins = [
-  "http://localhost:5173",
-  "https://pdffreetool.com",
-  "https://*.vercel.app"
-];
-
+// CORS - şimdilik herkese açık
 app.use(cors());
 
-// Dosyaları memory'de tutacağız
+// Multer - memory storage
 const upload = multer({ storage: multer.memoryStorage() });
 
-// Sağlık kontrolü
 app.get("/health", (req, res) => {
   res.json({ status: "ok" });
 });
 
-// PDF merge endpoint'i
+// --- EXISTING: MERGE ---
 app.post("/merge", upload.array("files"), async (req, res) => {
   try {
-    const files = req.files;
-
-    if (!files || files.length === 0) {
-      return res.status(400).json({ error: "En az bir PDF yüklemelisin." });
+    if (!req.files || req.files.length === 0) {
+      return res.status(400).json({ error: "No files uploaded" });
     }
 
-    // Yeni bir PDF dokümanı oluştur
     const mergedPdf = await PDFDocument.create();
 
-    for (const file of files) {
-      // Her PDF'yi al
+    for (const file of req.files) {
       const pdf = await PDFDocument.load(file.buffer);
-      const copiedPages = await mergedPdf.copyPages(pdf, pdf.getPageIndices());
-
+      const copiedPages = await mergedPdf.copyPages(
+        pdf,
+        pdf.getPageIndices()
+      );
       copiedPages.forEach((page) => mergedPdf.addPage(page));
     }
 
-    const mergedPdfBytes = await mergedPdf.save();
+    const mergedPdfBytes = await mergedPdf.save({ useObjectStreams: true });
 
-    // Response header
     res.setHeader("Content-Type", "application/pdf");
     res.setHeader(
       "Content-Disposition",
-      'attachment; filename="merged.pdf"'
+      "attachment; filename=merged.pdf"
     );
-
-    return res.send(Buffer.from(mergedPdfBytes));
+    res.send(Buffer.from(mergedPdfBytes));
   } catch (err) {
     console.error("Merge error:", err);
-    return res
-      .status(500)
-      .json({ error: "PDF birleştirme sırasında hata oluştu." });
+    res.status(500).json({ error: "Failed to merge PDFs" });
+  }
+});
+
+// --- NEW: COMPRESS ---
+app.post("/compress", upload.single("file"), async (req, res) => {
+  try {
+    if (!req.file) {
+      return res.status(400).json({ error: "No file uploaded" });
+    }
+
+    // pdf-lib ile “optimize edilmiş” yeniden kaydetme
+    const pdfDoc = await PDFDocument.load(req.file.buffer);
+
+    // Bu gerçek bir "heavy" sıkıştırma değil,
+    // ama çoğu durumda boyutu biraz düşürür (object stream vb.)
+    const compressedPdfBytes = await pdfDoc.save({
+      useObjectStreams: true,
+    });
+
+    res.setHeader("Content-Type", "application/pdf");
+    res.setHeader(
+      "Content-Disposition",
+      "attachment; filename=compressed.pdf"
+    );
+    res.send(Buffer.from(compressedPdfBytes));
+  } catch (err) {
+    console.error("Compress error:", err);
+    res.status(500).json({ error: "Failed to compress PDF" });
   }
 });
 
 app.listen(PORT, () => {
-  console.log(`PDF merge backend ${PORT} portunda çalışıyor`);
+  console.log(`Server running on port ${PORT}`);
 });

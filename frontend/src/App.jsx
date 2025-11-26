@@ -1,5 +1,6 @@
 import React, { useState, useRef } from "react";
 import AdsenseBanner from "./components/AdsenseBanner";
+import CompressCard from "./CompressCard";
 
 const MAX_FILES = 10;        // Max number of files
 const MAX_TOTAL_MB = 50;     // Max total size (MB)
