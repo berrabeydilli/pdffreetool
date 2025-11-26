@@ -676,6 +676,9 @@ function App() {
           <AdsenseBanner slot="3737459241" />
         </section>
 
+        {/* NEW: Compress PDF card */}
+        <CompressCard />
+
         {/* SEO text sections */}
         <section
           aria-label="How to merge PDF files online"
