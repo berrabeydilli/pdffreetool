@@ -681,35 +681,129 @@ function App() {
 
         {/* SEO text sections */}
         <section
-          aria-label="How to merge PDF files online"
-          style={{
-            marginTop: "16px",
-            marginBottom: "16px",
-          }}
-        >
-          <h2
-            style={{
-              fontSize: "18px",
-              marginBottom: "6px",
-              color: "#111827",
-            }}
-          >
-            How to merge PDF files online
-          </h2>
-          <ol
-            style={{
-              paddingLeft: "20px",
-              margin: 0,
-              fontSize: "13px",
-              color: "#4b5563",
-            }}
-          >
-            <li>Select all PDF files you want to combine.</li>
-            <li>Reorder the documents using drag &amp; drop, if needed.</li>
-            <li>Click the “Merge PDFs” button.</li>
-            <li>Download your new merged PDF file.</li>
-          </ol>
-        </section>
+  aria-label="Free PDF tools – merge and compress"
+  style={{
+    marginTop: "24px",
+    marginBottom: "24px",
+  }}
+>
+  <h2
+    style={{
+      fontSize: "18px",
+      marginBottom: "6px",
+      color: "#111827",
+    }}
+  >
+    Free Online PDF Tools – Merge & Compress PDFs Easily
+  </h2>
+
+  <p
+    style={{
+      fontSize: "13px",
+      color: "#4b5563",
+      marginBottom: "10px",
+    }}
+  >
+    PDFFreeTool offers two of the most essential PDF utilities:{" "}
+    <strong>Merge PDF</strong> and <strong>Compress PDF</strong>. Both tools
+    work directly in your browser, require no account, and are completely
+    free to use.
+  </p>
+
+  <h3
+    style={{
+      fontSize: "16px",
+      marginBottom: "6px",
+      marginTop: "14px",
+      color: "#111827",
+    }}
+  >
+    Merge PDF online
+  </h3>
+  <ul
+    style={{
+      paddingLeft: "20px",
+      margin: 0,
+      fontSize: "13px",
+      color: "#4b5563",
+    }}
+  >
+    <li>Combine multiple PDF files into one document.</li>
+    <li>Reorder pages easily using drag &amp; drop.</li>
+    <li>Download a single optimized merged PDF.</li>
+    <li>Secure processing entirely in memory.</li>
+  </ul>
+
+  <p
+    style={{
+      fontSize: "13px",
+      color: "#4b5563",
+      marginTop: "8px",
+      marginBottom: "10px",
+    }}
+  >
+    Perfect for students, professionals, or anyone who needs to organize
+    documents quickly and efficiently.
+  </p>
+
+  <h3
+    style={{
+      fontSize: "16px",
+      marginBottom: "6px",
+      marginTop: "14px",
+      color: "#111827",
+    }}
+  >
+    Compress PDF online
+  </h3>
+  <ul
+    style={{
+      paddingLeft: "20px",
+      margin: 0,
+      fontSize: "13px",
+      color: "#4b5563",
+    }}
+  >
+    <li>Reduce large PDF file sizes instantly.</li>
+    <li>Make files easier to upload to websites and portals.</li>
+    <li>Send PDFs via email without size limits.</li>
+    <li>Optimize scanned documents and save storage space.</li>
+  </ul>
+
+  <p
+    style={{
+      fontSize: "13px",
+      color: "#4b5563",
+      marginTop: "8px",
+      marginBottom: "10px",
+    }}
+  >
+    Compression keeps your document readable while drastically reducing its
+    file size.
+  </p>
+
+  <h3
+    style={{
+      fontSize: "16px",
+      marginBottom: "6px",
+      marginTop: "14px",
+      color: "#111827",
+    }}
+  >
+    Secure, private, and fast
+  </h3>
+  <p
+    style={{
+      fontSize: "13px",
+      color: "#4b5563",
+    }}
+  >
+    Your PDFs are processed securely and deleted immediately after
+    download. No files are stored on our servers, ensuring complete
+    privacy.
+  </p>
+</section>
+
 
         <section
           aria-label="Why choose this free PDF merger"
