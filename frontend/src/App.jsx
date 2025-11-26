@@ -59,10 +59,12 @@ function App() {
         formData.append("files", file);
       });
 
-      const res = await fetch("http://localhost:4000/merge", {
-        method: "POST",
-        body: formData,
-      });
+	const API_URL = import.meta.env.VITE_API_URL;
+
+	const res = await fetch(`${API_URL}/merge`, {
+			method: "POST",
+			body: formData,
+		});
 
       if (!res.ok) {
         const data = await res.json().catch(() => ({}));
