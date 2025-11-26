@@ -667,11 +667,12 @@ function App() {
                     {isMerging ? "Merging..." : "Merge PDFs"}
                   </button>
 
-                  <AdsenseBanner slot="3737459241" />
                 </div>
               </div>
             </div>
           </div>
+
+          <AdsenseBanner slot="3737459241" />
         </section>
 
         {/* SEO text sections */}
