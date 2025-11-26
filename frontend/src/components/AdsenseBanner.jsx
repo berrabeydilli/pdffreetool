@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 
-export default function AdsenseBanner({ slot }) {
+export default function AdsenseBanner({ slot = "3737459241" }) {
   useEffect(() => {
     try {
       (window.adsbygoogle = window.adsbygoogle || []).push({});
@@ -10,14 +10,13 @@ export default function AdsenseBanner({ slot }) {
   }, []);
 
   return (
-    <div style={{ margin: "20px 0", textAlign: "center" }}>
+    <div style={{ margin: "16px 0", textAlign: "center" }}>
       <ins
         className="adsbygoogle"
-        style={{ display: "block" }}
+        style={{ display: "inline-block", width: 728, height: 90 }}
         data-ad-client="ca-pub-3638606818264256"
         data-ad-slot={slot}
-        data-ad-format="auto"
-        data-full-width-responsive="true"
+        data-adtest="on"
       ></ins>
     </div>
   );
