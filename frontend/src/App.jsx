@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import AdsenseBanner from "./components/AdsenseBanner";
 import CompressCard from "./CompressCard";
+import JpgToPdfCard from "./JpgToPdfCard";
 
 const MAX_FILES = 10; // Max number of files
 const MAX_TOTAL_MB = 50; // Max total size (MB)
@@ -173,7 +174,7 @@ function App() {
               color: "#0f172a",
             }}
           >
-            Free Online PDF Tools – Merge & Compress PDFs
+            Free Online PDF Tools – Merge, Compress & JPG to PDF
           </h1>
           <p
             style={{
@@ -184,9 +185,9 @@ function App() {
               marginBottom: "10px",
             }}
           >
-            Combine multiple PDF files into a single document or compress large
-            PDFs into smaller files. Fast, secure, and completely free PDF tools
-            in your browser.
+            Combine multiple PDF files, compress large documents, or convert
+            JPG images into a polished PDF. Fast, secure, and completely free
+            tools in your browser.
           </p>
           <ul
             style={{
@@ -284,6 +285,26 @@ function App() {
             }}
           >
             Compress PDF
+          </button>
+
+          <button
+            onClick={() => setActiveTab("jpgToPdf")}
+            style={{
+              padding: "10px 20px",
+              borderRadius: "999px",
+              border: "1px solid #e5e7eb",
+              background: activeTab === "jpgToPdf" ? "#4f46e5" : "white",
+              color: activeTab === "jpgToPdf" ? "white" : "#374151",
+              cursor: "pointer",
+              fontSize: "14px",
+              fontWeight: 500,
+              boxShadow:
+                activeTab === "jpgToPdf"
+                  ? "0 4px 12px rgba(79,70,229,0.3)"
+                  : "0 1px 4px rgba(0,0,0,0.06)",
+            }}
+          >
+            JPG to PDF
           </button>
         </div>
 
@@ -731,13 +752,14 @@ function App() {
         )}
 
         {activeTab === "compress" && <CompressCard />}
+        {activeTab === "jpgToPdf" && <JpgToPdfCard />}
 
         {/* Ads under tools */}
         <AdsenseBanner slot="3737459241" />
 
         {/* SEO text sections */}
         <section
-          aria-label="Free PDF tools – merge and compress"
+          aria-label="Free PDF tools – merge, compress, and convert images"
           style={{
             marginTop: "24px",
             marginBottom: "24px",
@@ -750,7 +772,7 @@ function App() {
               color: "#111827",
             }}
           >
-            Free Online PDF Tools – Merge & Compress PDFs Easily
+            Free Online PDF Tools – Merge, Compress & Convert JPGs
           </h2>
 
           <p
@@ -760,10 +782,10 @@ function App() {
               marginBottom: "10px",
             }}
           >
-            PDFFreeTool offers two of the most essential PDF utilities:{" "}
-            <strong>Merge PDF</strong> and <strong>Compress PDF</strong>. Both
-            tools work directly in your browser, require no account, and are
-            completely free to use.
+            PDFFreeTool offers three essential utilities:{" "}
+            <strong>Merge PDF</strong>, <strong>Compress PDF</strong>, and
+            <strong>JPG to PDF</strong>. All tools work directly in your
+            browser, require no account, and are completely free to use.
           </p>
 
           <h3
@@ -837,6 +859,30 @@ function App() {
             Compression keeps your document readable while drastically reducing
             its file size.
           </p>
+
+          <h3
+            style={{
+              fontSize: "16px",
+              marginBottom: "6px",
+              marginTop: "14px",
+              color: "#111827",
+            }}
+          >
+            JPG to PDF online
+          </h3>
+          <ul
+            style={{
+              paddingLeft: "20px",
+              margin: 0,
+              fontSize: "13px",
+              color: "#4b5563",
+            }}
+          >
+            <li>Upload multiple JPG photos and combine them into one PDF.</li>
+            <li>Keep image quality intact for printing or sharing.</li>
+            <li>Create a tidy document from scans, receipts, or photos.</li>
+            <li>Download instantly with no sign-up required.</li>
+          </ul>
 
           <h3
             style={{
