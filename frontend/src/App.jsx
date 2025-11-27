@@ -553,6 +553,7 @@ const TRANSLATIONS = {
       about: "About",
       contact: "Contact",
     },
+    footerCopyright: "© 2025 PDFFreeTool. All rights reserved.",
     onlineToolsHeading: "Online PDF and image tools",
     adFriendly: "Ad-friendly content",
     onlineToolsDescription:
@@ -606,6 +607,7 @@ const TRANSLATIONS = {
       about: "Hakkında",
       contact: "İletişim",
     },
+    footerCopyright: "© 2025 PDFFreeTool. Tüm hakları saklıdır.",
     onlineToolsHeading: "Çevrimiçi PDF ve görsel araçları",
     adFriendly: "Reklam dostu içerik",
     onlineToolsDescription:
@@ -2880,34 +2882,34 @@ function App() {
               onClick={() => handleNavigate("privacy")}
               style={{ border: "none", background: "none", color: "#2563eb", cursor: "pointer" }}
             >
-              Privacy Policy
+              {t.nav.privacy}
             </button>
             <button
               onClick={() => handleNavigate("faq")}
               style={{ border: "none", background: "none", color: "#2563eb", cursor: "pointer" }}
             >
-              FAQ
+              {t.nav.faq}
             </button>
             <button
               onClick={() => handleNavigate("terms")}
               style={{ border: "none", background: "none", color: "#2563eb", cursor: "pointer" }}
             >
-              Terms of Service
+              {t.nav.terms}
             </button>
             <button
               onClick={() => handleNavigate("about")}
               style={{ border: "none", background: "none", color: "#2563eb", cursor: "pointer" }}
             >
-              About
+              {t.nav.about}
             </button>
             <button
               onClick={() => handleNavigate("contact")}
               style={{ border: "none", background: "none", color: "#2563eb", cursor: "pointer" }}
             >
-              Contact
+              {t.nav.contact}
             </button>
           </div>
-          <div>© 2025 PDFFreeTool. All rights reserved.</div>
+          <div>{t.footerCopyright || TRANSLATIONS.en.footerCopyright}</div>
         </footer>
 
         {showCookieBanner && (
