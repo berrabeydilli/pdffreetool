@@ -86,7 +86,7 @@ export default function DeletePdfPagesCard() {
     <ToolCardShell
       pillLabel="Delete PDF pages"
       title="Remove unwanted pages"
-      description="Pick a PDF, choose page numbers (e.g., 2,4,6), and download a cleaner file."
+      description="Pick a PDF, list the page numbers to drop (e.g., 2,4,6), and instantly download a cleaner file. Use it to strip out blank inserts, duplicates, or sensitive sections while keeping everything processed locally in your browser."
       accentColor="#7c3aed"
       pillBackground="#f5f3ff"
     >
