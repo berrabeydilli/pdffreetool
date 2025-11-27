@@ -13,86 +13,168 @@ import RotatePdfPagesCard from "./RotatePdfPagesCard";
 import PdfReaderCard from "./PdfReaderCard";
 import ExtractPdfPagesCard from "./ExtractPdfPagesCard";
 
-const TOOL_MENU = [
-  {
-    id: "merge",
-    title: "Merge PDF",
-    summary: "Combine multiple PDFs into one organized document.",
-    accent: "#4f46e5",
-  },
-  {
-    id: "compress",
-    title: "Compress PDF",
-    summary: "Shrink large PDFs while keeping them readable.",
-    accent: "#0ea5e9",
-  },
-  {
-    id: "compressImage",
-    title: "Compress Image",
-    summary: "Optimize JPG and PNG files for the web in seconds.",
-    accent: "#10b981",
-  },
-  {
-    id: "jpgToPdf",
-    title: "Images to PDF",
-    summary: "Arrange photos or scans into a clean PDF.",
-    accent: "#f59e0b",
-  },
-  {
-    id: "pdfToJpg",
-    title: "PDF to JPG",
-    summary: "Export every page as a high-quality JPG.",
-    accent: "#f97316",
-  },
-  {
-    id: "pdfToPng",
-    title: "PDF to PNG",
-    summary: "Save pages as sharp, transparency-friendly PNGs.",
-    accent: "#7c3aed",
-  },
-  {
-    id: "split",
-    title: "Split PDF",
-    summary: "Extract page ranges into separate files.",
-    accent: "#ef4444",
-  },
-  {
-    id: "deletePages",
-    title: "Delete Pages",
-    summary: "Remove unwanted pages to tidy your document.",
-    accent: "#14b8a6",
-  },
-  {
-    id: "rotatePages",
-    title: "Rotate Pages",
-    summary: "Fix sideways pages in bulk with one click.",
-    accent: "#a855f7",
-  },
-  {
-    id: "extractPages",
-    title: "Extract Pages",
-    summary: "Pull specific pages into a new PDF.",
-    accent: "#0ea5e9",
-  },
-  {
-    id: "pdfReader",
-    title: "PDF Reader",
-    summary: "Preview PDFs without leaving your browser.",
-    accent: "#2563eb",
-  },
-  {
-    id: "pdfToWord",
-    title: "PDF to Word",
-    summary: "Create editable DOCX files from PDFs.",
-    accent: "#c026d3",
-  },
-  {
-    id: "wordToPdf",
-    title: "Word to PDF",
-    summary: "Convert DOCX files into fixed, shareable PDFs.",
-    accent: "#22c55e",
-  },
-];
+const TOOL_MENU = {
+  en: [
+    {
+      id: "merge",
+      title: "Merge PDF",
+      summary: "Combine multiple PDFs into one organized document.",
+      accent: "#4f46e5",
+    },
+    {
+      id: "compress",
+      title: "Compress PDF",
+      summary: "Shrink large PDFs while keeping them readable.",
+      accent: "#0ea5e9",
+    },
+    {
+      id: "compressImage",
+      title: "Compress Image",
+      summary: "Optimize JPG and PNG files for the web in seconds.",
+      accent: "#10b981",
+    },
+    {
+      id: "jpgToPdf",
+      title: "Images to PDF",
+      summary: "Arrange photos or scans into a clean PDF.",
+      accent: "#f59e0b",
+    },
+    {
+      id: "pdfToJpg",
+      title: "PDF to JPG",
+      summary: "Export every page as a high-quality JPG.",
+      accent: "#f97316",
+    },
+    {
+      id: "pdfToPng",
+      title: "PDF to PNG",
+      summary: "Save pages as sharp, transparency-friendly PNGs.",
+      accent: "#7c3aed",
+    },
+    {
+      id: "split",
+      title: "Split PDF",
+      summary: "Extract page ranges into separate files.",
+      accent: "#ef4444",
+    },
+    {
+      id: "deletePages",
+      title: "Delete Pages",
+      summary: "Remove unwanted pages to tidy your document.",
+      accent: "#14b8a6",
+    },
+    {
+      id: "rotatePages",
+      title: "Rotate Pages",
+      summary: "Fix sideways pages in bulk with one click.",
+      accent: "#a855f7",
+    },
+    {
+      id: "extractPages",
+      title: "Extract Pages",
+      summary: "Pull specific pages into a new PDF.",
+      accent: "#0ea5e9",
+    },
+    {
+      id: "pdfReader",
+      title: "PDF Reader",
+      summary: "Preview PDFs without leaving your browser.",
+      accent: "#2563eb",
+    },
+    {
+      id: "pdfToWord",
+      title: "PDF to Word",
+      summary: "Create editable DOCX files from PDFs.",
+      accent: "#c026d3",
+    },
+    {
+      id: "wordToPdf",
+      title: "Word to PDF",
+      summary: "Convert DOCX files into fixed, shareable PDFs.",
+      accent: "#22c55e",
+    },
+  ],
+  tr: [
+    {
+      id: "merge",
+      title: "PDF Birleştir",
+      summary: "Birden fazla PDF'yi tek ve düzenli bir dosyada toplayın.",
+      accent: "#4f46e5",
+    },
+    {
+      id: "compress",
+      title: "PDF Sıkıştır",
+      summary: "Büyük PDF'leri okunabilirliği koruyarak küçültün.",
+      accent: "#0ea5e9",
+    },
+    {
+      id: "compressImage",
+      title: "Görsel Sıkıştır",
+      summary: "JPG ve PNG dosyalarını saniyeler içinde web için optimize edin.",
+      accent: "#10b981",
+    },
+    {
+      id: "jpgToPdf",
+      title: "Görsellerden PDF",
+      summary: "Fotoğrafları veya taramaları düzenli bir PDF'e yerleştirin.",
+      accent: "#f59e0b",
+    },
+    {
+      id: "pdfToJpg",
+      title: "PDF'den JPG",
+      summary: "Her sayfayı yüksek kaliteli JPG olarak dışa aktarın.",
+      accent: "#f97316",
+    },
+    {
+      id: "pdfToPng",
+      title: "PDF'den PNG",
+      summary: "Sayfaları keskin, şeffaflık dostu PNG'lere kaydedin.",
+      accent: "#7c3aed",
+    },
+    {
+      id: "split",
+      title: "PDF Böl",
+      summary: "Sayfa aralıklarını ayrı dosyalara ayırın.",
+      accent: "#ef4444",
+    },
+    {
+      id: "deletePages",
+      title: "Sayfaları Sil",
+      summary: "Gereksiz sayfaları silerek belgenizi temizleyin.",
+      accent: "#14b8a6",
+    },
+    {
+      id: "rotatePages",
+      title: "Sayfaları Döndür",
+      summary: "Yan duran sayfaları tek seferde düzeltin.",
+      accent: "#a855f7",
+    },
+    {
+      id: "extractPages",
+      title: "Sayfaları Çıkar",
+      summary: "Belirli sayfaları yeni bir PDF'e çıkarın.",
+      accent: "#0ea5e9",
+    },
+    {
+      id: "pdfReader",
+      title: "PDF Okuyucu",
+      summary: "PDF'leri tarayıcıdan ayrılmadan önizleyin.",
+      accent: "#2563eb",
+    },
+    {
+      id: "pdfToWord",
+      title: "PDF'den Word'e",
+      summary: "PDF'lerden düzenlenebilir DOCX dosyaları oluşturun.",
+      accent: "#c026d3",
+    },
+    {
+      id: "wordToPdf",
+      title: "Word'den PDF'ye",
+      summary: "DOCX dosyalarını sabit, paylaşılabilir PDF'lere dönüştürün.",
+      accent: "#22c55e",
+    },
+  ],
+};
 
 const TOOL_DETAILS = {
   merge: {
@@ -1097,7 +1179,9 @@ function App() {
   const totalMB =
     files.reduce((sum, f) => sum + f.size, 0) / 1024 / 1024 || 0;
 
-  const activeTool = TOOL_MENU.find((tool) => tool.id === activeTab);
+  const toolMenu = TOOL_MENU[language] || TOOL_MENU.en;
+
+  const activeTool = toolMenu.find((tool) => tool.id === activeTab);
 
   const renderThemeToggle = () => (
     <div
@@ -1785,7 +1869,7 @@ function App() {
               gap: "12px",
             }}
           >
-            {TOOL_MENU.map((tool) => {
+            {toolMenu.map((tool) => {
               const isActive = tool.id === activeTab;
               return (
                 <button
@@ -1908,19 +1992,11 @@ function App() {
                 outline: "none",
               }}
             >
-              <option value="merge">Merge PDF</option>
-              <option value="compress">Compress PDF</option>
-              <option value="compressImage">Compress Image</option>
-              <option value="jpgToPdf">Images to PDF</option>
-              <option value="pdfToJpg">PDF to JPG</option>
-              <option value="pdfToPng">PDF to PNG</option>
-              <option value="split">Split PDF</option>
-              <option value="deletePages">Delete PDF pages</option>
-              <option value="rotatePages">Rotate PDF pages</option>
-              <option value="extractPages">Extract PDF pages</option>
-              <option value="pdfReader">PDF reader</option>
-              <option value="pdfToWord">PDF to Word</option>
-              <option value="wordToPdf">Word to PDF</option>
+              {toolMenu.map((tool) => (
+                <option key={tool.id} value={tool.id}>
+                  {tool.title}
+                </option>
+              ))}
             </select>
           </label>
         </div>
