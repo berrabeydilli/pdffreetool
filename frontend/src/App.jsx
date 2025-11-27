@@ -425,9 +425,60 @@ const TOOL_DETAILS = {
 const MAX_FILES = 10; // Max number of files
 const MAX_TOTAL_MB = 50; // Max total size (MB)
 const LANGUAGE_OPTIONS = [
-  { value: "en", label: "English", flag: "🇺🇸" },
-  { value: "tr", label: "Türkçe", flag: "🇹🇷" },
+  { value: "en", label: "English", flag: "🇺🇸", code: "US" },
+  { value: "tr", label: "Türkçe", flag: "🇹🇷", code: "TR" },
 ];
+
+const FLAG_ICONS = {
+  en: (
+    <svg
+      aria-hidden
+      width="18"
+      height="12"
+      viewBox="0 0 64 48"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <rect width="64" height="48" fill="#B22234" rx="2" />
+      <g fill="#fff">
+        <rect y="4" width="64" height="4" />
+        <rect y="12" width="64" height="4" />
+        <rect y="20" width="64" height="4" />
+        <rect y="28" width="64" height="4" />
+        <rect y="36" width="64" height="4" />
+        <rect y="44" width="64" height="2" />
+      </g>
+      <rect width="28" height="20" fill="#3C3B6E" rx="1" />
+      <g fill="#fff" transform="translate(3 3)">
+        {[...Array(4)].map((_, row) => (
+          <g key={row} transform={`translate(0 ${row * 4})`}>
+            {[...Array(5)].map((_, col) => (
+              <circle key={`${row}-${col}`} cx={col * 5} cy={0} r="0.8" />
+            ))}
+          </g>
+        ))}
+      </g>
+    </svg>
+  ),
+  tr: (
+    <svg
+      aria-hidden
+      width="18"
+      height="12"
+      viewBox="0 0 64 48"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <rect width="64" height="48" fill="#E30A17" rx="2" />
+      <circle cx="27" cy="24" r="9" fill="#fff" />
+      <circle cx="29" cy="24" r="7" fill="#E30A17" />
+      <path
+        d="M39.5 24.0002L33.5 28.9384L35.8 21.1763L29.5 16.9993H37.2L39.5 9.23706L41.8 16.9993H49.5L43.2 21.1763L45.5 28.9384L39.5 24.0002Z"
+        fill="#fff"
+      />
+    </svg>
+  ),
+};
 
 function App() {
   const [activeTab, setActiveTab] = useState("merge");
@@ -446,9 +497,11 @@ function App() {
     return localStorage.getItem("pdffreetool-language") || "en";
   });
   const [showCookieBanner, setShowCookieBanner] = useState(false);
+  const [languageMenuOpen, setLanguageMenuOpen] = useState(false);
   const fileInputRef = useRef(null);
   const toolContentRef = useRef(null);
   const hasMountedRef = useRef(false);
+  const languageMenuRef = useRef(null);
 
   useEffect(() => {
     if (!hasMountedRef.current) {
@@ -482,6 +535,17 @@ function App() {
     localStorage.setItem("pdffreetool-language", language);
     document.documentElement.lang = language;
   }, [language]);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (languageMenuRef.current && !languageMenuRef.current.contains(event.target)) {
+        setLanguageMenuOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   const handleTabChange = (id) => {
     setActiveTab(id);
@@ -1047,48 +1111,190 @@ function App() {
     </div>
   );
 
-  const renderLanguageSelector = () => (
-    <div
-      style={{
-        display: "flex",
-        alignItems: "center",
-        gap: "6px",
-        padding: "6px 8px",
-        borderRadius: "12px",
-        border: "1px solid #e5e7eb",
-        background: "#ffffff",
-        boxShadow: "0 6px 16px rgba(15,23,42,0.05)",
-      }}
-    >
-      <label
-        htmlFor="language-select"
-        style={{ fontSize: "12px", color: "#374151", fontWeight: 600 }}
-      >
-        Language
-      </label>
-      <select
-        id="language-select"
-        value={language}
-        onChange={(e) => setLanguage(e.target.value)}
+  const renderLanguageSelector = () => {
+    const selectedLanguage =
+      LANGUAGE_OPTIONS.find((option) => option.value === language) || LANGUAGE_OPTIONS[0];
+
+    return (
+      <div
+        ref={languageMenuRef}
         style={{
-          padding: "8px 10px",
-          borderRadius: "10px",
+          display: "flex",
+          alignItems: "center",
+          gap: "6px",
+          padding: "6px 8px",
+          borderRadius: "12px",
           border: "1px solid #e5e7eb",
-          background: "white",
-          color: "#111827",
-          fontWeight: 600,
-          cursor: "pointer",
-          boxShadow: "0 4px 10px rgba(15,23,42,0.05)",
+          background: "#ffffff",
+          boxShadow: "0 6px 16px rgba(15,23,42,0.05)",
+          position: "relative",
         }}
       >
-        {LANGUAGE_OPTIONS.map((option) => (
-          <option key={option.value} value={option.value}>
-            {`${option.flag} ${option.label}`}
-          </option>
-        ))}
-      </select>
-    </div>
-  );
+        <label style={{ fontSize: "12px", color: "#374151", fontWeight: 600 }}>
+          Language
+        </label>
+        <button
+          type="button"
+          onClick={() => setLanguageMenuOpen((prev) => !prev)}
+          aria-haspopup="listbox"
+          aria-expanded={languageMenuOpen}
+          style={{
+            padding: "8px 10px",
+            borderRadius: "10px",
+            border: "1px solid #e5e7eb",
+            background: "white",
+            color: "#111827",
+            fontWeight: 600,
+            cursor: "pointer",
+            boxShadow: "0 4px 10px rgba(15,23,42,0.05)",
+            display: "flex",
+            alignItems: "center",
+            gap: "10px",
+            minWidth: "150px",
+          }}
+        >
+          <span
+            aria-hidden
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              justifyContent: "center",
+              width: "22px",
+              height: "16px",
+              borderRadius: "4px",
+              overflow: "hidden",
+              boxShadow: "inset 0 0 0 1px rgba(15,23,42,0.08)",
+            }}
+          >
+            {FLAG_ICONS[selectedLanguage.value]}
+          </span>
+          <span style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+            <span
+              style={{
+                fontSize: "10px",
+                fontWeight: 700,
+                color: "#6b7280",
+                letterSpacing: "0.5px",
+                textTransform: "uppercase",
+              }}
+            >
+              {selectedLanguage.code}
+            </span>
+            <span style={{ fontWeight: 700, color: "#111827" }}>{selectedLanguage.label}</span>
+          </span>
+          <svg
+            aria-hidden
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            style={{ marginLeft: "auto", transform: languageMenuOpen ? "rotate(180deg)" : "none" }}
+          >
+            <path d="M6 9l6 6 6-6" stroke="#111827" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </button>
+
+        {languageMenuOpen && (
+          <div
+            role="listbox"
+            style={{
+              position: "absolute",
+              top: "100%",
+              right: "0",
+              marginTop: "6px",
+              background: "white",
+              border: "1px solid #e5e7eb",
+              borderRadius: "10px",
+              boxShadow: "0 12px 30px rgba(15,23,42,0.12)",
+              overflow: "hidden",
+              minWidth: "220px",
+              zIndex: 5,
+            }}
+          >
+            {LANGUAGE_OPTIONS.map((option) => {
+              const isActive = option.value === language;
+
+              return (
+                <button
+                  key={option.value}
+                  type="button"
+                  role="option"
+                  aria-selected={isActive}
+                  onClick={() => {
+                    setLanguage(option.value);
+                    setLanguageMenuOpen(false);
+                  }}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "10px",
+                    width: "100%",
+                    padding: "10px 12px",
+                    background: isActive ? "#eef2ff" : "white",
+                    color: "#111827",
+                    border: "none",
+                    textAlign: "left",
+                    cursor: "pointer",
+                    fontWeight: isActive ? 700 : 600,
+                  }}
+                >
+                  <span
+                    aria-hidden
+                    style={{
+                      display: "inline-flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      width: "22px",
+                      height: "16px",
+                      borderRadius: "4px",
+                      overflow: "hidden",
+                      boxShadow: "inset 0 0 0 1px rgba(15,23,42,0.08)",
+                    }}
+                  >
+                    {FLAG_ICONS[option.value]}
+                  </span>
+                  <span style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+                    <span
+                      style={{
+                        fontSize: "10px",
+                        fontWeight: 700,
+                        color: "#6b7280",
+                        letterSpacing: "0.5px",
+                        textTransform: "uppercase",
+                      }}
+                    >
+                      {option.code}
+                    </span>
+                    <span>{option.label}</span>
+                  </span>
+                  {isActive && (
+                    <svg
+                      aria-hidden
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      style={{ marginLeft: "auto" }}
+                    >
+                      <path
+                        d="M20 6L9 17l-5-5"
+                        stroke="#4f46e5"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  )}
+                </button>
+              );
+            })}
+          </div>
+        )}
+      </div>
+    );
+  };
 
   const renderToolDetails = () => {
     const detail = TOOL_DETAILS[activeTab];
