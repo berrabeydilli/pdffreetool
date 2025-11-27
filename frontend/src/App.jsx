@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import AdsenseBanner from "./components/AdsenseBanner";
 import CompressCard from "./CompressCard";
 import CompressImageCard from "./CompressImageCard";
@@ -16,384 +16,381 @@ import ExtractPdfPagesCard from "./ExtractPdfPagesCard";
 const TOOL_MENU = [
   {
     id: "merge",
-    title: "PDF Birleştir",
-    summary:
-      "Birden fazla PDF dosyasını aynı düzeni koruyarak tek bir dosyaya dönüştürün.",
+    title: "Merge PDF",
+    summary: "Combine multiple PDFs into one organized document.",
     accent: "#4f46e5",
   },
   {
     id: "compress",
-    title: "PDF Sıkıştır",
-    summary:
-      "Dosya boyutunu küçültürken metin ve görsel kalitesini dengede tutar.",
+    title: "Compress PDF",
+    summary: "Shrink large PDFs while keeping them readable.",
     accent: "#0ea5e9",
   },
   {
     id: "compressImage",
-    title: "Görsel Sıkıştır",
-    summary: "PNG ve JPG görselleri web için optimize edin ve paylaşmayı hızlandırın.",
+    title: "Compress Image",
+    summary: "Optimize JPG and PNG files for the web in seconds.",
     accent: "#10b981",
   },
   {
     id: "jpgToPdf",
-    title: "JPG'den PDF'e",
-    summary: "Fotoğraf ve taramaları düzgün sıralanmış bir PDF haline getirin.",
+    title: "Images to PDF",
+    summary: "Arrange photos or scans into a clean PDF.",
     accent: "#f59e0b",
   },
   {
     id: "pdfToJpg",
-    title: "PDF'den JPG'ye",
-    summary: "Her sayfayı paylaşılabilir yüksek çözünürlüklü görsellere çevirin.",
+    title: "PDF to JPG",
+    summary: "Export every page as a high-quality JPG.",
     accent: "#f97316",
   },
   {
     id: "pdfToPng",
-    title: "PDF'den PNG'ye",
-    summary: "Sayfaları şeffaf destekli keskin PNG görseller olarak dışa aktarın.",
+    title: "PDF to PNG",
+    summary: "Save pages as sharp, transparency-friendly PNGs.",
     accent: "#7c3aed",
   },
   {
     id: "split",
-    title: "PDF Böl",
-    summary: "Belirli sayfa aralıklarını seçip ayrı dosyalar halinde kaydedin.",
+    title: "Split PDF",
+    summary: "Extract page ranges into separate files.",
     accent: "#ef4444",
   },
   {
     id: "deletePages",
-    title: "Sayfa Sil",
-    summary: "İstenmeyen sayfaları hızlıca kaldırarak dosyanızı hafifletin.",
+    title: "Delete Pages",
+    summary: "Remove unwanted pages to tidy your document.",
     accent: "#14b8a6",
   },
   {
     id: "rotatePages",
-    title: "Sayfa Döndür",
-    summary: "Yanlış yöndeki sayfaları topluca 90° veya 180° döndürün.",
+    title: "Rotate Pages",
+    summary: "Fix sideways pages in bulk with one click.",
     accent: "#a855f7",
   },
   {
     id: "extractPages",
-    title: "Sayfa Çıkar",
-    summary: "Tek tek veya aralık halinde seçtiğiniz sayfaları yeni bir PDF'e alın.",
+    title: "Extract Pages",
+    summary: "Pull specific pages into a new PDF.",
     accent: "#0ea5e9",
   },
   {
     id: "pdfReader",
-    title: "PDF Okuyucu",
-    summary: "Tarayıcıdan çıkmadan PDF önizleyin, yakınlaştırın ve sayfalar arasında gezin.",
+    title: "PDF Reader",
+    summary: "Preview PDFs without leaving your browser.",
     accent: "#2563eb",
   },
   {
     id: "pdfToWord",
-    title: "PDF'den Word'e",
-    summary: "Düzenlenebilir DOCX belgeleri oluşturup metni kolayca güncelleyin.",
+    title: "PDF to Word",
+    summary: "Create editable DOCX files from PDFs.",
     accent: "#c026d3",
   },
   {
     id: "wordToPdf",
-    title: "Word'den PDF'e",
-    summary: "Word dosyalarını paylaşımı kolay sabit PDF formatına çevirin.",
+    title: "Word to PDF",
+    summary: "Convert DOCX files into fixed, shareable PDFs.",
     accent: "#22c55e",
   },
 ];
 
 const TOOL_DETAILS = {
   merge: {
-    title: "PDF birleştirme rehberi",
+    title: "Merge PDF guide",
     intro:
-      "Farklı kaynaklardan gelen sözleşme, fatura veya ders notlarını tek bir dosyada toplamak hem arşivlemeyi hem de paylaşımı kolaylaştırır.",
+      "Bring contracts, invoices, or class notes together in one tidy PDF so it is easier to store and share.",
     paragraphs: [
-      "Sürükle-bırak ile sıralama yapabilir, dosyalarınızı yeniden adlandırmadan tek tıklamayla birleştirebilirsiniz. İşlem tamamlandığında dosya yalnızca tarayıcınızın belleğinde oluşturulur, bu da gizliliğinizi korur.",
-      "Toplu çalışma yapan ekipler için ortak bir çıktı üretmek veya sınav dökümanlarını öğrencilerle paylaşmak gibi senaryolarda dakikalar kazandırır.",
+      "Drag to reorder before merging, then download a single file generated right in your browser for extra privacy.",
+      "Perfect for teams preparing a handoff package or students combining study material into one pack.",
     ],
-    bulletTitle: "Nerelerde işe yarar?",
+    bulletTitle: "Great for",
     bullets: [
-      "Proje sunumlarını, PDF çıktıları ve çizimleri tek raporda toplamak.",
-      "Maaş bordroları gibi aylık dosyaları tek klasör yerine tek PDF'te saklamak.",
-      "E-imza öncesi belgeleri sıralı ve düzenli hale getirmek.",
-      "Çoklu tarayıcı çıktısını kronolojik sıraya koymak.",
+      "Creating one report from slides, drawings, and supporting PDFs.",
+      "Keeping monthly statements or pay slips in one organized file.",
+      "Preparing documents for e-signature with the right order.",
+      "Sharing multiple scans as a single link or attachment.",
     ],
-    checklistTitle: "Daha düzenli çıktılar için kontrol listesi",
+    checklistTitle: "Before you merge",
     checklist: [
-      "Dosya adlarınızı birleştirmeden önce kontrol edin; sıralama adımlarınız daha anlamlı olur.",
-      "Kapağa logo veya özet eklemek istiyorsanız en üstte boş bir sayfa bırakın.",
-      "Reklam veya gereksiz sayfaları silmek için birleştirme öncesi önizleme yapın.",
-      "Son dosyayı paylaşmadan önce toplam boyuta bakarak gerekirse sıkıştırma aracını kullanın.",
+      "Check file names so the order makes sense.",
+      "Add a cover page or summary slide if you need a quick intro.",
+      "Remove ads or blank pages first for a lighter result.",
+      "Review the final size and run compression if needed.",
     ],
   },
   compress: {
-    title: "PDF sıkıştırma kılavuzu",
+    title: "Compress PDF tips",
     intro:
-      "E-posta limitlerine takılmadan hızlı paylaşım yapmak için PDF boyutunu küçültün. Araç, metin ve görseller arasında dengeli bir optimizasyon uygular.",
+      "Reduce PDF size without losing clarity so you can send files quickly and stay under email limits.",
     paragraphs: [
-      "Sunum, katalog veya yüksek çözünürlüklü taramalar genellikle gereğinden büyük olur. Sıkıştırma sonrası okunabilirlik korunurken gereksiz meta veriler temizlenir.",
-      "Dosya boyutunun dramatik biçimde düşmesi yükleme sürelerini azaltır ve mobil veri tüketimini düşürür.",
+      "Presentations, catalogs, and high-resolution scans often get heavy. Compression strips excess metadata while keeping text readable.",
+      "A smaller file uploads faster and saves mobile data for your recipients.",
     ],
-    bulletTitle: "İdeal kullanım senaryoları",
+    bulletTitle: "Use it when",
     bullets: [
-      "İş başvurusu, tender veya resmi başvurularda maksimum dosya sınırını aşmamak.",
-      "Müşterilere gönderilen katalogların e-posta eklerine sığmasını sağlamak.",
-      "Bulut depolama alanı sınırlı ekipler için arşiv boyutunu azaltmak.",
-      "Okul projelerini LMS'lere (Google Classroom vb.) hızlı yüklemek.",
+      "Submitting tenders or applications with strict file limits.",
+      "Emailing brochures or portfolios that must stay sharp.",
+      "Archiving lots of PDFs in limited cloud storage.",
+      "Uploading assignments to LMS platforms without errors.",
     ],
-    checklistTitle: "Temiz bir çıktı için ipuçları",
+    checklistTitle: "Quality checklist",
     checklist: [
-      "Sıkıştırmadan önce içeriği kontrol ederek tekrar eden sayfaları kaldırın.",
-      "Tarama ağırlıklı belgeler için renkli yerine gri tonlamalı sürümleri deneyin.",
-      "Çevrimdışı paylaşım yapacaksanız çıktı boyutunu not edin.",
-      "Sıkıştırma sonrası örnek sayfalarda görsel bozulma olup olmadığını kontrol edin.",
+      "Remove duplicate pages before compressing.",
+      "Try grayscale for scan-heavy documents.",
+      "Note the final size if you plan to share offline.",
+      "Spot-check a few pages to ensure images still look good.",
     ],
   },
   compressImage: {
-    title: "Görsel sıkıştırma açıklaması",
+    title: "Image compression overview",
     intro:
-      "Yüksek megapikselli fotoğrafları internet hızınıza uygun hale getirirken, sosyal medya ve e-posta için dengeli bir dosya boyutu elde edersiniz.",
+      "Resize large photos to web-friendly weights while preserving the colors you expect.",
     paragraphs: [
-      "Araç, görsellerdeki gereksiz meta verileri temizler ve akıllı kalite ayarlarıyla renk doğruluğunu korur.",
-      "Hem JPG hem de PNG dosyalarında çalışır, böylece blog kapak görselleri veya ürün fotoğrafları için tek tıklama ile optimizasyon yapabilirsiniz.",
+      "The tool cleans unnecessary metadata and balances quality automatically for both JPG and PNG files.",
+      "Great for blog covers, product photos, or social posts without juggling design software.",
     ],
-    bulletTitle: "Öne çıkan kullanım alanları",
+    bulletTitle: "Best suited for",
     bullets: [
-      "E-ticaret ürün fotoğraflarını sayfa açılış hızını etkilemeden sunmak.",
-      "Portfolyo sitelerinde yüksek çözünürlüklü görselleri hızlı yüklemek.",
-      "E-posta eklerinde limit aşımını önlemek.",
-      "Sosyal medya gönderileri için platform tavsiye boyutlarını yakalamak.",
+      "E-commerce images that must load quickly.",
+      "Portfolio or blog visuals that still need to look crisp.",
+      "Email attachments that risk hitting size caps.",
+      "Social media graphics that should match platform guidelines.",
     ],
-    checklistTitle: "Hızlı kontrol listesi",
+    checklistTitle: "Quick prep list",
     checklist: [
-      "Özgün dosyanın bir kopyasını saklayın; gerektiğinde geri dönmek kolay olsun.",
-      "PNG görsellerde şeffaflık gerekiyorsa çıktı formatını PNG olarak koruyun.",
-      "Mobilde yüklemeden önce dosyaları yeniden adlandırarak düzenli tutun.",
-      "Blog kapakları için 1200px genişlik üzerini genelde korumak yeterlidir.",
+      "Keep a copy of the original just in case.",
+      "Use PNG output if you need transparency preserved.",
+      "Rename files before uploading to stay organized.",
+      "For headers, keeping widths around 1200px is usually enough.",
     ],
   },
   jpgToPdf: {
-    title: "JPG'den PDF'e dönüşüm rehberi",
+    title: "Images to PDF guide",
     intro:
-      "Fotoğraf, tarama veya ekran görüntülerini düzenli bir dokümanda toplamak profesyonel bir sunum sağlar.",
+      "Turn photos, scans, or screenshots into a polished document ready to share or print.",
     paragraphs: [
-      "Sürüklediğiniz görseller yüklenme sırasına göre PDF'e eklenir; isterseniz yeniden sıralayıp tek tuşla kaydedebilirsiniz.",
-      "Farklı boyutlardaki görüntüler otomatik olarak sayfaya ortalanır, kenar boşlukları temiz tutulur.",
+      "Images are added in the upload order, and you can reorder them before saving.",
+      "Different sizes are centered automatically so every page looks clean.",
     ],
-    bulletTitle: "Kimler için ideal?",
+    bulletTitle: "Ideal for",
     bullets: [
-      "Serbest çalışanlar için makbuz ve fatura fotoğraflarını tek dosya yapmak.",
-      "Öğrenciler için ders notu fotoğraflarını çıktıya hazır hale getirmek.",
-      "Sanatçılar için illüstrasyon taslaklarını müşterilere sunmak.",
-      "Teknik ekipler için saha fotoğraflarını raporlamak.",
+      "Freelancers compiling receipts or invoices.",
+      "Students organizing lecture photos into one PDF.",
+      "Artists presenting sketches to clients.",
+      "Field teams reporting site photos.",
     ],
-    checklistTitle: "Daha iyi PDF'ler için öneriler",
+    checklistTitle: "Better PDFs, faster",
     checklist: [
-      "Görselleri yüklemeden önce yatay/dikey yönlerini düzeltin.",
-      "Tarama hatalarını azaltmak için parlaklığı ayarlayın.",
-      "Sıralamayı tamamladıktan sonra önizleme ile sayfa kenarlarını kontrol edin.",
-      "Aynı proje için birden çok PDF gerekiyorsa adlandırma standardı belirleyin.",
+      "Fix image orientation before uploading.",
+      "Adjust brightness to reduce scanning artifacts.",
+      "Preview edges after ordering to avoid unwanted borders.",
+      "Use consistent file names when creating several PDFs for one project.",
     ],
   },
   pdfToJpg: {
-    title: "PDF'den JPG'ye dönüştürme detayları",
-    intro:
-      "Sunum veya rapor sayfalarını tek tıklamayla yüksek çözünürlüklü görsellere dönüştürün.",
+    title: "PDF to JPG details",
+    intro: "Convert slides or reports into high-resolution JPGs with one click.",
     paragraphs: [
-      "Her sayfa ayrı bir JPG olarak dışa aktarılır ve ZIP içinde indirilir, böylece paylaşım veya sosyal medya yüklemeleri kolaylaşır.",
-      "Özellikle slayt ve infografik içerikler için keskin sonuçlar elde edilir.",
+      "Each page downloads as its own JPG inside a ZIP for easy sharing.",
+      "Great for slideshows, infographics, or quick social posts.",
     ],
-    bulletTitle: "Pratik kullanım fikirleri",
+    bulletTitle: "Practical uses",
     bullets: [
-      "Sunumları LinkedIn veya blog gönderilerinde görsel olarak paylaşmak.",
-      "Raporlardaki grafik ve tabloları tek karede göstermek.",
-      "Eğitim materyallerini sınıf içi ekranlar için JPG'e çevirmek.",
-      "Sosyal medya carousel hazırlamak için sayfaları ayrı ayrı almak.",
+      "Sharing presentation pages on LinkedIn or a blog.",
+      "Posting charts or tables as single images.",
+      "Turning training material into classroom-ready slides.",
+      "Building carousel posts by exporting pages separately.",
     ],
-    checklistTitle: "Temiz JPG'ler için ipuçları",
+    checklistTitle: "Clean JPG checklist",
     checklist: [
-      "Dönüşüm öncesi PDF'teki fazla beyaz kenarları kırpın.",
-      "Renkli sayfalar için ekran/parlaklık modlarını kontrol edin.",
-      "İndirilen ZIP'i paylaşmadan önce dosya adlarını sadeleştirin.",
-      "Küçük ekranlar için gerekirse görselleri yeniden boyutlandırın.",
+      "Trim excess white margins in the PDF first.",
+      "Check brightness modes for colorful pages.",
+      "Simplify file names in the ZIP before sending.",
+      "Resize images if they will be viewed on small screens.",
     ],
   },
   pdfToPng: {
-    title: "PDF'den PNG'ye dönüştürme",
+    title: "PDF to PNG guide",
     intro:
-      "Şeffaflık desteği isteyen tasarımlar veya UI maketleri için PNG çıktıları daha esnektir.",
+      "Export pages as PNG when you need transparency support or crisp UI mockups.",
     paragraphs: [
-      "Araç, sayfa arkaplanlarını temiz tutarak katmanlı tasarımlarınızı sunumlarda veya sunucu yüklemelerinde kullanıma hazır hale getirir.",
-      "Vektör ağırlıklı PDF'lerde bile keskin sonuçlar üretilir.",
+      "Backgrounds stay clean so layered designs are presentation-ready.",
+      "Vector-heavy PDFs still render sharply after export.",
     ],
-    bulletTitle: "Öne çıkan kullanım alanları",
+    bulletTitle: "Great for",
     bullets: [
-      "UI/UX ekipleri için tasarım sayfalarını paylaşmak.",
-      "Şeffaf arkaplanlı görsellerle sunum hazırlamak.",
-      "Video editörleri için overlay grafikler çıkarmak.",
-      "Teknik dökümanlardaki çizimleri PNG olarak arşivlemek.",
+      "Sharing UI/UX design pages.",
+      "Creating slides with transparent backgrounds.",
+      "Making overlays for video editors.",
+      "Archiving technical drawings as images.",
     ],
-    checklistTitle: "Dönüşüm sonrası öneriler",
+    checklistTitle: "After exporting",
     checklist: [
-      "Çıkan PNG'lerin dosya boyutunu görmek için önizleme yapın.",
-      "Şeffaf alanları kontrol edip gerekirse düzenleyin.",
-      "Sunumda kullanacaksanız slayt boyutuna göre yeniden ölçeklendirin.",
-      "Görselleri konu başlığına göre klasörleyerek paylaşın.",
+      "Check PNG file sizes before sharing.",
+      "Confirm transparent areas look correct.",
+      "Resize for your slide dimensions if needed.",
+      "Group images by topic to keep folders tidy.",
     ],
   },
   split: {
-    title: "PDF bölme rehberi",
+    title: "Split PDF guide",
     intro:
-      "Uzun PDF'leri parçalara ayırmak, belirli bölüm veya ekleri ayrı paylaşmak için idealdir.",
+      "Break long PDFs into smaller parts so you can share only the sections people need.",
     paragraphs: [
-      "Sayfa aralıklarını seçtiğinizde araç her birini yeni bir PDF olarak hazırlar. Bu sayede müşteriye sadece ilgili bölümü gönderebilirsiniz.",
-      "Toplu sınav çözümleri veya kitap bölümleri için arşivlemeyi kolaylaştırır.",
+      "Choose page ranges and get each one as its own PDF for targeted sharing.",
+      "Handy for exam packs, book chapters, or review workflows.",
     ],
-    bulletTitle: "Kullanım örnekleri",
+    bulletTitle: "Use cases",
     bullets: [
-      "Kitap veya raporun sadece gerekli bölümünü paylaşmak.",
-      "Sözleşmelerde ekleri ayrı dosya olarak hazırlamak.",
-      "Eğitim materyallerini konu konu ayırmak.",
-      "İnceleme süreçlerinde ilgili bölümleri farklı kişilere atamak.",
+      "Sending only the relevant chapter of a report.",
+      "Preparing contract appendices as separate files.",
+      "Splitting study materials by topic.",
+      "Assigning different sections to teammates for review.",
     ],
-    checklistTitle: "İşlemi hızlandıran tüyolar",
+    checklistTitle: "Faster splits",
     checklist: [
-      "Bölünecek sayfa aralığını önceden not alın.",
-      "Gerekirse bölme sonrası sayfa numaralarını kontrol edin.",
-      "Aynı dosyada birden fazla aralık gerekiyorsa işlemi sırayla tekrarlayın.",
-      "Sonuç dosyalarına açıklayıcı adlar verin (ör. 'Bölüm-2-Analiz.pdf').",
+      "Note page ranges before you start.",
+      "Double-check numbering after export.",
+      "Repeat the tool for multiple ranges in one file.",
+      "Name outputs clearly, e.g., 'Chapter-2-Analysis.pdf'.",
     ],
   },
   deletePages: {
-    title: "Sayfa silme hakkında",
+    title: "Delete pages overview",
     intro:
-      "Taslak veya reklam içeren sayfaları kaldırarak dosyalarınızı temiz ve hafif tutabilirsiniz.",
+      "Remove draft or ad pages so your PDF stays focused and lightweight.",
     paragraphs: [
-      "Silmeyi seçtiğiniz sayfalar anında listeden çıkar ve yeni PDF saniyeler içinde hazırlanır.",
-      "Resmi başvurular için gereksiz sayfaları kaldırmak hataları önler.",
+      "Selected pages disappear instantly and a fresh PDF is ready in moments.",
+      "Cutting unnecessary pages reduces mistakes before formal submissions.",
     ],
-    bulletTitle: "Neden kullanmalısınız?",
+    bulletTitle: "Why use it?",
     bullets: [
-      "Sözleşmelerde güncelliğini yitirmiş ekleri temizlemek.",
-      "Tarama sırasında oluşan boş sayfaları kaldırmak.",
-      "Reklam içeren sayfaları paylaşım öncesi gizlemek.",
-      "Sadece gerekli talimatları içeren hafif dosyalar hazırlamak.",
+      "Clean outdated appendices from contracts.",
+      "Drop blank pages from scanned documents.",
+      "Hide ad-heavy pages before sharing externally.",
+      "Ship shorter guides with only the essentials.",
     ],
-    checklistTitle: "Hızlı doğrulama listesi",
+    checklistTitle: "Quick review list",
     checklist: [
-      "Silinecek sayfa numaralarını iki kez kontrol edin.",
-      "Önemli notlar içeren sayfaları yedekleyin.",
-      "Kalan sayfa numaralarının sıralı olduğundan emin olun.",
-      "İşlem sonrası dosyayı PDF okuyucuda önizleyin.",
+      "Confirm page numbers twice before deleting.",
+      "Back up pages that contain important notes.",
+      "Ensure remaining pages stay in the right order.",
+      "Preview the result in a PDF reader after export.",
     ],
   },
   rotatePages: {
-    title: "Sayfa döndürme rehberi",
+    title: "Rotate pages guide",
     intro:
-      "Yanlış yönde taranan belgeler veya yatay çizimler için sayfa döndürme aracı saniyeler içinde çözüm sunar.",
+      "Fix sideways scans or landscape diagrams in seconds with bulk rotation.",
     paragraphs: [
-      "90° veya 180° seçenekleriyle toplu düzeltme yapabilir, çıktı aldıktan sonra sayfa yönlerinin tutarlı olduğunu garantilersiniz.",
-      "Özellikle teknik çizimler veya yatay fotoğraflar içeren raporlar için kullanışlıdır.",
+      "Apply 90° or 180° turns to keep every page aligned before sharing.",
+      "Especially helpful for technical drawings or photo-heavy reports.",
     ],
-    bulletTitle: "Kullanım alanları",
+    bulletTitle: "Where it helps",
     bullets: [
-      "Tarama cihazından ters gelen bordro veya sözleşmeleri düzeltmek.",
-      "Yatay poster veya grafiklerin okunabilirliğini artırmak.",
-      "Ders notlarında yer alan yatay diyagramları hizalamak.",
-      "Projeksiyon için sayfaları aynı yöne çevirmek.",
+      "Correcting misaligned payroll or contract scans.",
+      "Making wide posters or charts easier to read.",
+      "Aligning landscape diagrams in lecture notes.",
+      "Keeping all pages pointed the same way for presentations.",
     ],
-    checklistTitle: "Doğru açılar için ipuçları",
+    checklistTitle: "Angle checklist",
     checklist: [
-      "Önce örnek bir sayfada dönüş açısını test edin.",
-      "Tüm sayfaları aynı yöne çevirmek gerekiyorsa toplu seçimi kullanın.",
-      "Döndürme sonrası sayfa numaralarının yerleşimini kontrol edin.",
-      "Eğer çıktıda yazı kenara yakınsa kenar boşluklarını gözden geçirin.",
+      "Test the rotation on one page first.",
+      "Use bulk select when every page needs the same angle.",
+      "Check page numbers after rotating.",
+      "If text sits near the edge, review margins before sending.",
     ],
   },
   extractPages: {
-    title: "Sayfa çıkarma açıklamaları",
+    title: "Extract pages guidance",
     intro:
-      "Kalın PDF'lerden sadece ilgili bölümü almak hem paylaşımı hızlandırır hem de gizli bilgileri ayırmanıza yardımcı olur.",
+      "Pull only the relevant section from a large PDF to share faster and protect sensitive info.",
     paragraphs: [
-      "Seçtiğiniz sayfa aralıkları yeni bir dosya olarak hazırlanır, böylece hassas olmayan kısımları güvenle paylaşabilirsiniz.",
-      "Proje ekipleri arasında görev bazlı doküman paylaşımı yaparken zaman kazandırır.",
+      "Selected ranges become a new PDF so you can share non-sensitive parts confidently.",
+      "Speeds up collaboration when teams only need a specific slice of the file.",
     ],
-    bulletTitle: "Hangi durumlarda kullanılır?",
+    bulletTitle: "Best scenarios",
     bullets: [
-      "Raporun sadece özet bölümünü müşteriye göndermek.",
-      "Eğitim içeriklerinde belirli üniteleri paylaşmak.",
-      "Yasal belgelerde gizli ekleri çıkarmak.",
-      "Teknik çizim setlerini alt klasörlere ayırmak.",
+      "Sending just the executive summary to a client.",
+      "Sharing certain units from course materials.",
+      "Omitting confidential appendices in legal docs.",
+      "Breaking technical drawing sets into smaller folders.",
     ],
-    checklistTitle: "Güvenli paylaşım için adımlar",
+    checklistTitle: "Secure sharing steps",
     checklist: [
-      "Hangi sayfaların paylaşılacağını önceden işaretleyin.",
-      "Çıkarılan dosyayı isimlendirirken kapsamı belirtin.",
-      "Gizlilik gerektiren sayfaların dışarıda kaldığını doğrulayın.",
-      "Paylaşım öncesi son dosyayı hızlıca gözden geçirin.",
+      "Mark the exact pages to include ahead of time.",
+      "Name the exported file to reflect its scope.",
+      "Verify sensitive pages are excluded.",
+      "Skim the final PDF before sending.",
     ],
   },
   pdfReader: {
-    title: "PDF okuyucu hakkında",
+    title: "About the PDF reader",
     intro:
-      "Tarayıcı içindeki okuyucu, ek bir program kurmadan sayfalar arasında hızlıca gezinmenizi sağlar.",
+      "Navigate PDFs quickly without installing extra apps.",
     paragraphs: [
-      "Yakınlaştırma, sayfa atlama ve arama özellikleriyle büyük dokümanlarda bile rahatça çalışabilirsiniz.",
-      "Mobil dostu arayüz, küçük ekranlarda bile metinleri net şekilde gösterir.",
+      "Zoom, jump to pages, and search text even in long documents.",
+      "A mobile-friendly layout keeps text legible on small screens.",
     ],
-    bulletTitle: "Kullanım önerileri",
+    bulletTitle: "Tips for use",
     bullets: [
-      "Toplantı sırasında belgeleri ortak ekranda açmak.",
-      "İndirmeden önce doğru dosya olup olmadığını kontrol etmek.",
-      "Uzun raporlarda arama yaparak ilgili bölüme hızlı atlamak.",
-      "Sunumları slayt gibi görüntülemek.",
+      "Open files on a shared screen during meetings.",
+      "Verify a document before downloading the final copy.",
+      "Search long reports to jump straight to the right section.",
+      "View slide decks like a presentation.",
     ],
-    checklistTitle: "Okuma deneyimini iyileştirin",
+    checklistTitle: "Better reading experience",
     checklist: [
-      "Metin çok küçükse tarayıcı yakınlaştırmasını artırın.",
-      "Karanlık ortamlarda cihazınızın gece modunu açmayı deneyin.",
-      "Sayfa numaralarını not alarak önemli kısımlara geri dönün.",
-      "Okuma sonrası dosyayı paylaşmadan önce gerekli araçla düzenleyin.",
+      "Increase browser zoom if text feels small.",
+      "Try night mode in low-light rooms.",
+      "Note page numbers for quick return trips.",
+      "Edit with the right tool after reviewing.",
     ],
   },
   pdfToWord: {
-    title: "PDF'den Word'e çeviri açıklamaları",
+    title: "PDF to Word insights",
     intro:
-      "Düzenlenebilir DOCX çıktıları sayesinde PDF içeriğini hızla güncelleyebilir veya yeniden kullanabilirsiniz.",
+      "Generate editable DOCX files so you can refresh or repurpose PDF content.",
     paragraphs: [
-      "Araç, metin akışını koruyarak tabloları ve başlıkları mümkün olduğunca doğru aktarır.",
-      "Özellikle teklif şablonları veya form metinlerinde tekrar yazma zahmetini azaltır.",
+      "Text flow, tables, and headings are kept as close as possible to the original.",
+      "Reduces retyping for proposals, forms, or long reports.",
     ],
-    bulletTitle: "Kullanım alanları",
+    bulletTitle: "When to use",
     bullets: [
-      "Eski sözleşmeleri güncelleyerek yeni sürümler oluşturmak.",
-      "PDF formatlı makaleleri düzenlenebilir hale getirip not düşmek.",
-      "Müşteri sunumlarını farklı dilde yeniden uyarlamak.",
-      "Formlardaki metin ve tablo düzenini değiştirmek.",
+      "Updating legacy agreements into new versions.",
+      "Adding notes to research papers without rebuilding layouts.",
+      "Adapting client presentations into another language.",
+      "Tweaking form text or table structures quickly.",
     ],
-    checklistTitle: "Temiz DOCX için öneriler",
+    checklistTitle: "Clean DOCX checklist",
     checklist: [
-      "Çeviri öncesi PDF'teki görselleri kontrol edin; yüksek kalite daha iyi sonuç verir.",
-      "Dönüşüm sonrası başlık ve paragrafların hizalamasını gözden geçirin.",
-      "Gerekirse tablo kenarlıklarını Word içinde yeniden biçimlendirin.",
-      "Paylaşmadan önce belgedeki kişisel verileri temizlediğinizden emin olun.",
+      "Ensure source images are high quality for best results.",
+      "Review heading alignment after conversion.",
+      "Adjust table borders directly in Word if needed.",
+      "Remove personal data before sharing the DOCX.",
     ],
   },
   wordToPdf: {
-    title: "Word'den PDF'e dönüştürme",
+    title: "Word to PDF guide",
     intro:
-      "Dökümanlarınızı sabit düzenli, her cihazda aynı görünen PDF formatına tek tıkla çevirin.",
+      "Turn documents into fixed-layout PDFs that look consistent everywhere.",
     paragraphs: [
-      "Arial gibi yaygın yazı tipleri otomatik olarak gömülür, böylece alıcı tarafında bozulma yaşanmaz.",
-      "Formlar, teklif metinleri veya özgeçmişler için güvenilir bir çıktı elde edersiniz.",
+      "Common fonts are embedded automatically to prevent layout issues.",
+      "Reliable for forms, offers, resumes, or any file you need to lock in place.",
     ],
-    bulletTitle: "Pratik kullanımlar",
+    bulletTitle: "Practical uses",
     bullets: [
-      "İş başvurusu veya teklifleri resmi formatta iletmek.",
-      "Fatura ve irsaliye şablonlarını paylaşıma hazır hale getirmek.",
-      "Eğitim materyallerini her cihazda aynı görünümle sunmak.",
-      "İmzaya gönderilen belgelerin düzenini sabitlemek.",
+      "Sending applications or proposals in a professional format.",
+      "Sharing invoice or delivery templates.",
+      "Delivering course material that looks the same on all devices.",
+      "Freezing layout before sending documents for signature.",
     ],
-    checklistTitle: "Pürüzsüz PDF için kontrol listesi",
+    checklistTitle: "Smooth PDF checklist",
     checklist: [
-      "Belgedeki özel yazı tiplerinin yerleşik olduğundan emin olun.",
-      "Sayfa boyutunu (A4, Letter) alıcıya uygun seçin.",
-      "Görsellerin çözünürlüğünü 150-300 DPI aralığında tutun.",
-      "Son PDF'i paylaşmadan önce hızlı bir gözden geçirme yapın.",
+      "Confirm custom fonts are installed in the source file.",
+      "Pick the right page size (A4, Letter) for your audience.",
+      "Keep image resolution around 150-300 DPI.",
+      "Skim the final PDF before you share it.",
     ],
   },
 };
@@ -409,6 +406,26 @@ function App() {
   const [dragIndex, setDragIndex] = useState(null);
   const [usageCount, setUsageCount] = useState(0);
   const fileInputRef = useRef(null);
+  const toolContentRef = useRef(null);
+  const hasMountedRef = useRef(false);
+
+  useEffect(() => {
+    if (!hasMountedRef.current) {
+      hasMountedRef.current = true;
+      return;
+    }
+
+    if (toolContentRef.current) {
+      toolContentRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  }, [activeTab]);
+
+  const handleTabChange = (id) => {
+    setActiveTab(id);
+  };
 
   const handleFileChange = (e) => {
     setError("");
@@ -544,7 +561,7 @@ function App() {
 
     return (
       <section
-        aria-label={`${detail.title} açıklamaları`}
+        aria-label={`${detail.title} details`}
         style={{
           marginTop: "24px",
           marginBottom: "16px",
@@ -753,7 +770,7 @@ function App() {
                 color: "#0f172a",
               }}
             >
-              Çok yönlü PDF & Görsel atölyesi
+              Flexible PDF & Image studio
             </h1>
             <p
               style={{
@@ -765,9 +782,8 @@ function App() {
                 lineHeight: 1.6,
               }}
             >
-              PDF birleştirme, bölme, dönüştürme ve görsel optimizasyon araçlarını tek bir menüden seçin.
-              Her sayfada, aracın nasıl daha verimli kullanılacağına dair ayrıntılı açıklamalar ve ipuçları
-              sizi bekliyor.
+              Pick any PDF or image tool from one menu—merge, split, convert, or optimize. Every tool comes
+              with a clear description and practical tips so you can finish faster.
             </p>
           </div>
         </header>
@@ -800,7 +816,7 @@ function App() {
                 color: "#0f172a",
               }}
             >
-              Online PDF ve Görsel Araçları
+              Online PDF and image tools
             </h2>
             <span
               style={{
@@ -813,7 +829,7 @@ function App() {
                 letterSpacing: "0.02em",
               }}
             >
-              Reklam dostu içerik
+              Ad-friendly content
             </span>
           </div>
 
@@ -828,10 +844,9 @@ function App() {
               lineHeight: 1.6,
             }}
           >
-            PDF birleştirme, sıkıştırma, sayfa döndürme, görsel dönüştürme ve dosya
-            okuma araçlarının tamamı tek çatı altında. İçeriği zengin menü sayesinde
-            Google AdSense politikalarına uygun, bilgi dolu ve kullanıcı dostu
-            ekranlar sunmaya odaklanıyoruz.
+            Merge, compress, rotate, convert, and read PDFs all in one place. Our
+            rich menu keeps every tool informative, user-friendly, and compliant
+            with AdSense guidelines so visitors see helpful content.
           </p>
           <ul
             style={{
@@ -884,7 +899,7 @@ function App() {
 
         {/* Tool navigation menu */}
         <section
-          aria-label="PDF araç menüsü"
+          aria-label="PDF tool menu"
           style={{
             marginBottom: "16px",
             background: "white",
@@ -912,7 +927,7 @@ function App() {
                   fontSize: "18px",
                 }}
               >
-                Araç menüsü
+                Tool menu
               </h2>
               <p
                 style={{
@@ -922,7 +937,7 @@ function App() {
                   fontSize: "13px",
                 }}
               >
-                Hangi araca ihtiyacınız varsa kartlara tıklayarak seçin, açıklamaları ve ipuçlarını okuyun.
+                Click any card to jump to a tool, read the overview, and start using it.
               </p>
             </div>
             <span
@@ -951,7 +966,7 @@ function App() {
               return (
                 <button
                   key={tool.id}
-                  onClick={() => setActiveTab(tool.id)}
+                  onClick={() => handleTabChange(tool.id)}
                   style={{
                     textAlign: "left",
                     padding: "12px",
@@ -1022,6 +1037,7 @@ function App() {
 
         {/* TAB NAVIGATION */}
         <div
+          ref={toolContentRef}
           style={{
             marginBottom: "20px",
             display: "flex",
@@ -1054,7 +1070,7 @@ function App() {
             </span>
             <select
               value={activeTab}
-              onChange={(e) => setActiveTab(e.target.value)}
+              onChange={(e) => handleTabChange(e.target.value)}
               style={{
                 flex: 1,
                 padding: "10px 12px",
@@ -1802,6 +1818,91 @@ function App() {
               browsers on Android and iOS.
             </p>
           </div>
+        </section>
+
+        <section
+          aria-label="Privacy, terms, and about information"
+          style={{
+            marginBottom: "16px",
+            background: "white",
+            borderRadius: "14px",
+            border: "1px solid #e5e7eb",
+            padding: "16px",
+            boxShadow: "0 10px 22px rgba(15,23,42,0.06)",
+          }}
+        >
+          <h2
+            style={{
+              fontSize: "18px",
+              marginTop: 0,
+              marginBottom: "10px",
+              color: "#111827",
+            }}
+          >
+            Privacy Policy
+          </h2>
+          <ul
+            style={{
+              paddingLeft: "18px",
+              marginTop: 0,
+              marginBottom: "12px",
+              color: "#4b5563",
+              fontSize: "13px",
+              lineHeight: 1.6,
+            }}
+          >
+            <li>Cookies are only used where necessary for a smooth experience.</li>
+            <li>User data stays in the browser unless a tool needs processing.</li>
+            <li>No login is needed to use any of the tools.</li>
+          </ul>
+
+          <h2
+            style={{
+              fontSize: "18px",
+              marginTop: 0,
+              marginBottom: "10px",
+              color: "#111827",
+            }}
+          >
+            Terms of Service
+          </h2>
+          <ul
+            style={{
+              paddingLeft: "18px",
+              marginTop: 0,
+              marginBottom: "12px",
+              color: "#4b5563",
+              fontSize: "13px",
+              lineHeight: 1.6,
+            }}
+          >
+            <li>Use the site for lawful file handling only.</li>
+            <li>Users are responsible for the content they upload and share.</li>
+            <li>Follow the upload rules for file size and supported formats.</li>
+          </ul>
+
+          <h2
+            style={{
+              fontSize: "18px",
+              marginTop: 0,
+              marginBottom: "10px",
+              color: "#111827",
+            }}
+          >
+            About
+          </h2>
+          <ul
+            style={{
+              paddingLeft: "18px",
+              margin: 0,
+              color: "#4b5563",
+              fontSize: "13px",
+              lineHeight: 1.6,
+            }}
+          >
+            <li>The goal is to simplify everyday PDF and image tasks in one place.</li>
+            <li>Our mission is to keep these tools fast, private, and easy to use.</li>
+          </ul>
         </section>
 
         <footer
