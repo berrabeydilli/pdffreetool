@@ -429,6 +429,54 @@ const LANGUAGE_OPTIONS = [
   { value: "tr", label: "Türkçe", flag: "🇹🇷", code: "TR" },
 ];
 
+const TRANSLATIONS = {
+  en: {
+    studioLabel: "PDFFreeTool Studio",
+    heroTitle: "Flexible PDF & Image studio",
+    heroSubtitle:
+      "Pick any PDF or image tool from one menu—merge, split, convert, or optimize. Every tool comes with a clear description and practical tips so you can finish faster.",
+    nav: {
+      home: "Home",
+      blog: "Guide & Tips",
+      faq: "FAQ",
+      privacy: "Privacy",
+      terms: "Terms",
+      about: "About",
+      contact: "Contact",
+    },
+    onlineToolsHeading: "Online PDF and image tools",
+    adFriendly: "Ad-friendly content",
+    onlineToolsDescription:
+      "Merge, compress, rotate, convert, and read PDFs all in one place. Our rich menu keeps every tool informative, user-friendly, and compliant with AdSense guidelines so visitors see helpful content.",
+    toolMenuTitle: "Tool menu",
+    toolMenuDescription: "Click any card to jump to a tool, read the overview, and start using it.",
+    languageLabel: "Language",
+  },
+  tr: {
+    studioLabel: "PDFFreeTool Stüdyosu",
+    heroTitle: "Esnek PDF ve Görsel stüdyosu",
+    heroSubtitle:
+      "Tek menüden istediğiniz PDF veya görsel aracını seçin—birleştirin, bölün, dönüştürün ya da optimize edin. Her araç işi daha hızlı bitirmeniz için net bir açıklama ve pratik ipuçlarıyla gelir.",
+    nav: {
+      home: "Ana Sayfa",
+      blog: "Rehber ve İpuçları",
+      faq: "SSS",
+      privacy: "Gizlilik",
+      terms: "Şartlar",
+      about: "Hakkında",
+      contact: "İletişim",
+    },
+    onlineToolsHeading: "Çevrimiçi PDF ve görsel araçları",
+    adFriendly: "Reklam dostu içerik",
+    onlineToolsDescription:
+      "PDF'leri tek bir yerde birleştirin, sıkıştırın, döndürün, dönüştürün ve okuyun. Zengin menümüz her aracı bilgilendirici, kullanıcı dostu ve AdSense yönergeleriyle uyumlu tutarak ziyaretçilere faydalı içerik sunar.",
+    toolMenuTitle: "Araç menüsü",
+    toolMenuDescription:
+      "Bir araca gitmek, özetini okumak ve kullanmaya başlamak için herhangi bir karta tıklayın.",
+    languageLabel: "Dil",
+  },
+};
+
 const FLAG_ICONS = {
   en: (
     <svg
@@ -502,6 +550,7 @@ function App() {
   const toolContentRef = useRef(null);
   const hasMountedRef = useRef(false);
   const languageMenuRef = useRef(null);
+  const t = TRANSLATIONS[language] || TRANSLATIONS.en;
 
   useEffect(() => {
     if (!hasMountedRef.current) {
@@ -1131,7 +1180,7 @@ function App() {
         }}
       >
         <label style={{ fontSize: "12px", color: "#374151", fontWeight: 600 }}>
-          Language
+          {t.languageLabel}
         </label>
         <button
           type="button"
@@ -1517,7 +1566,7 @@ function App() {
                 fontWeight: 700,
               }}
             >
-              PDFFreeTool Studio
+              {t.studioLabel}
             </p>
             <h1
               style={{
@@ -1528,7 +1577,7 @@ function App() {
                 color: "#0f172a",
               }}
             >
-              Flexible PDF & Image studio
+              {t.heroTitle}
             </h1>
             <p
               style={{
@@ -1540,8 +1589,7 @@ function App() {
                 lineHeight: 1.6,
               }}
             >
-              Pick any PDF or image tool from one menu—merge, split, convert, or optimize. Every tool comes
-              with a clear description and practical tips so you can finish faster.
+              {t.heroSubtitle}
             </p>
           </div>
           <nav
@@ -1555,13 +1603,13 @@ function App() {
               minWidth: "240px",
             }}
           >
-            {renderNavLink("home", "Home")}
-            {renderNavLink("blog", "Guide & Tips")}
-            {renderNavLink("faq", "FAQ")}
-            {renderNavLink("privacy", "Privacy")}
-            {renderNavLink("terms", "Terms")}
-            {renderNavLink("about", "About")}
-            {renderNavLink("contact", "Contact")}
+            {renderNavLink("home", t.nav.home)}
+            {renderNavLink("blog", t.nav.blog)}
+            {renderNavLink("faq", t.nav.faq)}
+            {renderNavLink("privacy", t.nav.privacy)}
+            {renderNavLink("terms", t.nav.terms)}
+            {renderNavLink("about", t.nav.about)}
+            {renderNavLink("contact", t.nav.contact)}
           </nav>
         </header>
         {activePage === "home" ? (
@@ -1592,24 +1640,24 @@ function App() {
                     lineHeight: 1.25,
                     margin: 0,
                     color: "#0f172a",
-                  }}
-                >
-                  Online PDF and image tools
-                </h2>
-                <span
-                  style={{
-                    padding: "6px 10px",
-                    background: "#ecfdf3",
-                    color: "#15803d",
-                    borderRadius: "12px",
-                    fontSize: "12px",
-                    fontWeight: 700,
-                    letterSpacing: "0.02em",
-                  }}
-                >
-                  Ad-friendly content
-                </span>
-              </div>
+                }}
+              >
+                {t.onlineToolsHeading}
+              </h2>
+              <span
+                style={{
+                  padding: "6px 10px",
+                  background: "#ecfdf3",
+                  color: "#15803d",
+                  borderRadius: "12px",
+                  fontSize: "12px",
+                  fontWeight: 700,
+                  letterSpacing: "0.02em",
+                }}
+              >
+                {t.adFriendly}
+              </span>
+            </div>
 
               <p
                 style={{
@@ -1622,9 +1670,7 @@ function App() {
                   lineHeight: 1.6,
                 }}
               >
-                Merge, compress, rotate, convert, and read PDFs all in one place. Our
-                rich menu keeps every tool informative, user-friendly, and compliant
-                with AdSense guidelines so visitors see helpful content.
+                {t.onlineToolsDescription}
               </p>
               <ul
                 style={{
@@ -1705,7 +1751,7 @@ function App() {
                   fontSize: "18px",
                 }}
               >
-                Tool menu
+                {t.toolMenuTitle}
               </h2>
               <p
                 style={{
@@ -1715,7 +1761,7 @@ function App() {
                   fontSize: "13px",
                 }}
               >
-                Click any card to jump to a tool, read the overview, and start using it.
+                {t.toolMenuDescription}
               </p>
             </div>
             <span
