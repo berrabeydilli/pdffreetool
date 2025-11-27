@@ -754,6 +754,69 @@ function App() {
             </p>
           </section>
         );
+      case "faq":
+        return (
+          <section style={cardStyle} aria-label="Frequently asked questions page">
+            <h2 style={headingStyle}>Frequently Asked Questions</h2>
+            <p style={paragraphStyle}>
+              Here is a detailed overview of the most common questions people ask about PDFFreeTool. These answers
+              focus on the merge tool but also cover how we handle your data and how the experience works across
+              devices. If you need more help, visit the Contact page and share your scenario so we can expand this
+              guide further.
+            </p>
+            <h3 style={{ ...headingStyle, fontSize: "18px", marginBottom: "8px" }}>
+              Merge PDF specifics
+            </h3>
+            <div style={{ ...paragraphStyle, marginBottom: "0" }}>
+              <p style={{ marginTop: 0, marginBottom: "10px" }}>
+                <strong>Is this PDF merge tool free?</strong>
+                <br />
+                Yes. You can merge your PDF files for free with no account or subscription required. There are no
+                watermarks or hidden limits beyond the standard upload caps shown on the homepage.
+              </p>
+              <p style={{ marginTop: 0, marginBottom: "10px" }}>
+                <strong>Is it safe to upload my documents?</strong>
+                <br />
+                Your files are processed in memory on the server and are not stored permanently. We do not keep a copy
+                of your merged PDF, and temporary processing buffers are cleared automatically after the download is
+                prepared.
+              </p>
+              <p style={{ marginTop: 0, marginBottom: "10px" }}>
+                <strong>Does this work on mobile?</strong>
+                <br />
+                Yes. The tool works in any modern browser, including mobile browsers on Android and iOS. You can drag to
+                reorder on touchscreens, and the interface adapts to small screens so you do not lose visibility of your
+                file list.
+              </p>
+            </div>
+            <h3 style={{ ...headingStyle, fontSize: "18px", marginBottom: "8px" }}>
+              Extra tips and troubleshooting
+            </h3>
+            <ul style={listStyle}>
+              <li>
+                <strong>Upload guidance:</strong> Keep individual files under the size limit shown on the tool and avoid
+                encrypted PDFs when possible; password-protected files may need to be unlocked before merging.
+              </li>
+              <li>
+                <strong>Ordering pages:</strong> Use the drag handle on each file row to set the exact order you want
+                before merging. If you upload more than once, newer files will appear at the end of the list.
+              </li>
+              <li>
+                <strong>Slow connections:</strong> On weaker networks, try compressing large PDFs first to speed up the
+                upload step. You can always merge and then compress again if needed.
+              </li>
+              <li>
+                <strong>Sharing results:</strong> After merging, rename the downloaded file with a clear version number
+                (for example, <em>Project-Proposal-v2.pdf</em>) so teammates know which file to open.
+              </li>
+            </ul>
+            <p style={paragraphStyle}>
+              We continue to expand this FAQ based on feedback. If there is a question we have not covered yet, send us a
+              short note with the tool you used, your device type, and what you were trying to achieve. We will use that
+              information to improve this help page for everyone.
+            </p>
+          </section>
+        );
       case "about":
         return (
           <section style={cardStyle} aria-label="About page">
@@ -1096,6 +1159,7 @@ function App() {
           >
             {renderNavLink("home", "Home")}
             {renderNavLink("blog", "Guide & Tips")}
+            {renderNavLink("faq", "FAQ")}
             {renderNavLink("privacy", "Privacy")}
             {renderNavLink("terms", "Terms")}
             {renderNavLink("about", "About")}
@@ -1999,132 +2063,6 @@ function App() {
           </ul>
         </section>
 
-        <section
-          aria-label="FAQ about merging PDF files"
-          style={{
-            marginBottom: "12px",
-          }}
-        >
-          <h2
-            style={{
-              fontSize: "18px",
-              marginBottom: "6px",
-              color: "#111827",
-            }}
-          >
-            Frequently asked questions about merging PDF files
-          </h2>
-          <div
-            style={{
-              fontSize: "13px",
-              color: "#4b5563",
-            }}
-          >
-            <p style={{ marginBottom: "6px" }}>
-              <strong>Is this PDF merge tool free?</strong>
-              <br />
-              Yes. You can merge your PDF files for free with no account or
-              subscription required.
-            </p>
-            <p style={{ marginBottom: "6px" }}>
-              <strong>Is it safe to upload my documents?</strong>
-              <br />
-              Your files are processed in memory on the server and are not
-              stored permanently. We do not keep a copy of your merged PDF.
-            </p>
-            <p style={{ marginBottom: "0" }}>
-              <strong>Does this work on mobile?</strong>
-              <br />
-              Yes. The tool works in any modern browser, including mobile
-              browsers on Android and iOS.
-            </p>
-          </div>
-        </section>
-
-        <section
-          aria-label="Privacy, terms, and about information"
-          style={{
-            marginBottom: "16px",
-            background: "white",
-            borderRadius: "14px",
-            border: "1px solid #e5e7eb",
-            padding: "16px",
-            boxShadow: "0 10px 22px rgba(15,23,42,0.06)",
-          }}
-        >
-          <h2
-            style={{
-              fontSize: "18px",
-              marginTop: 0,
-              marginBottom: "10px",
-              color: "#111827",
-            }}
-          >
-            Privacy Policy
-          </h2>
-          <ul
-            style={{
-              paddingLeft: "18px",
-              marginTop: 0,
-              marginBottom: "12px",
-              color: "#4b5563",
-              fontSize: "13px",
-              lineHeight: 1.6,
-            }}
-          >
-            <li>Cookies are only used where necessary for a smooth experience.</li>
-            <li>User data stays in the browser unless a tool needs processing.</li>
-            <li>No login is needed to use any of the tools.</li>
-          </ul>
-
-          <h2
-            style={{
-              fontSize: "18px",
-              marginTop: 0,
-              marginBottom: "10px",
-              color: "#111827",
-            }}
-          >
-            Terms of Service
-          </h2>
-          <ul
-            style={{
-              paddingLeft: "18px",
-              marginTop: 0,
-              marginBottom: "12px",
-              color: "#4b5563",
-              fontSize: "13px",
-              lineHeight: 1.6,
-            }}
-          >
-            <li>Use the site for lawful file handling only.</li>
-            <li>Users are responsible for the content they upload and share.</li>
-            <li>Follow the upload rules for file size and supported formats.</li>
-          </ul>
-
-          <h2
-            style={{
-              fontSize: "18px",
-              marginTop: 0,
-              marginBottom: "10px",
-              color: "#111827",
-            }}
-          >
-            About
-          </h2>
-          <ul
-            style={{
-              paddingLeft: "18px",
-              margin: 0,
-              color: "#4b5563",
-              fontSize: "13px",
-              lineHeight: 1.6,
-            }}
-          >
-            <li>The goal is to simplify everyday PDF and image tasks in one place.</li>
-            <li>Our mission is to keep these tools fast, private, and easy to use.</li>
-          </ul>
-        </section>
           </>
         ) : (
           renderStaticPage()
@@ -2160,6 +2098,12 @@ function App() {
               style={{ border: "none", background: "none", color: "#2563eb", cursor: "pointer" }}
             >
               Privacy Policy
+            </button>
+            <button
+              onClick={() => handleNavigate("faq")}
+              style={{ border: "none", background: "none", color: "#2563eb", cursor: "pointer" }}
+            >
+              FAQ
             </button>
             <button
               onClick={() => handleNavigate("terms")}
