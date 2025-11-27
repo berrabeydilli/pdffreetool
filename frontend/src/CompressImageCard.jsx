@@ -2,7 +2,51 @@ import React, { useRef, useState } from "react";
 
 const MAX_MB = 40;
 
-export default function CompressImageCard() {
+const TEXT = {
+  en: {
+    ariaLabel: "Compress image tool",
+    badge: "Compress JPG or PNG",
+    title: "Reduce image file size",
+    description: "Images are compressed right in your browser. Nothing leaves your device.",
+    choosePrompt: "Choose an image to compress",
+    selectLabel: "Select image",
+    selected: "Selected",
+    sizeLabel: "Size",
+    qualityLabel: (quality) => `Quality (${quality}%)`,
+    clear: "Clear",
+    compress: "Compress & Download",
+    compressing: "Compressing...",
+    errors: {
+      type: "Please select a JPG or PNG image.",
+      size: (limit) => `Images up to ${limit} MB are supported.`,
+      noneSelected: "Please upload an image to compress.",
+      generic: "Failed to compress image.",
+    },
+  },
+  tr: {
+    ariaLabel: "Görsel sıkıştırma aracı",
+    badge: "JPG veya PNG sıkıştır",
+    title: "Görsel dosya boyutunu küçült",
+    description: "Görseller tarayıcıda sıkıştırılır, cihazınızdan ayrılmaz.",
+    choosePrompt: "Sıkıştırmak için bir görsel seçin",
+    selectLabel: "Görsel seç",
+    selected: "Seçilen",
+    sizeLabel: "Boyut",
+    qualityLabel: (quality) => `Kalite (${quality}%)`,
+    clear: "Temizle",
+    compress: "Sıkıştır ve indir",
+    compressing: "Sıkıştırılıyor...",
+    errors: {
+      type: "Lütfen JPG veya PNG bir görsel seçin.",
+      size: (limit) => `${limit} MB'a kadar görseller desteklenir.`,
+      noneSelected: "Lütfen sıkıştırmak için bir görsel yükleyin.",
+      generic: "Görsel sıkıştırma başarısız oldu.",
+    },
+  },
+};
+
+export default function CompressImageCard({ language = "en" }) {
+  const t = TEXT[language] || TEXT.en;
   const [file, setFile] = useState(null);
   const [quality, setQuality] = useState(80);
   const [error, setError] = useState("");
@@ -18,14 +62,14 @@ export default function CompressImageCard() {
     }
 
     if (!selected.type.startsWith("image/")) {
-      setError("Please select a JPG or PNG image.");
+      setError(t.errors.type);
       setFile(null);
       return;
     }
 
     const sizeMb = selected.size / 1024 / 1024;
     if (sizeMb > MAX_MB) {
-      setError(`Images up to ${MAX_MB} MB are supported.`);
+      setError(t.errors.size(MAX_MB));
       setFile(null);
       return;
     }
@@ -57,7 +101,7 @@ export default function CompressImageCard() {
   const handleCompress = async () => {
     setError("");
     if (!file) {
-      setError("Please upload an image to compress.");
+      setError(t.errors.noneSelected);
       return;
     }
 
@@ -92,7 +136,7 @@ export default function CompressImageCard() {
       URL.revokeObjectURL(url);
     } catch (err) {
       console.error(err);
-      setError(err.message || "Failed to compress image.");
+      setError(err.message || t.errors.generic);
     } finally {
       setIsProcessing(false);
     }
@@ -102,7 +146,7 @@ export default function CompressImageCard() {
 
   return (
     <section
-      aria-label="Compress image tool"
+      aria-label={t.ariaLabel}
       style={{ marginBottom: "28px", marginTop: "24px" }}
     >
       <div style={{ display: "flex", justifyContent: "center" }}>
@@ -142,15 +186,15 @@ export default function CompressImageCard() {
                   background: "#f59e0b",
                 }}
               ></span>
-              Compress JPG or PNG
+              {t.badge}
             </div>
             <h2
               style={{ fontSize: "18px", margin: 0, marginBottom: "4px", color: "#0f172a" }}
             >
-              Reduce image file size
+              {t.title}
             </h2>
             <p style={{ color: "#6b7280", margin: 0, fontSize: "13px" }}>
-              Images are compressed right in your browser. Nothing leaves your device.
+              {t.description}
             </p>
           </div>
 
@@ -166,7 +210,7 @@ export default function CompressImageCard() {
             }}
           >
             <div style={{ fontSize: "13px", marginBottom: "8px", color: "#111827", fontWeight: 500 }}>
-              Choose an image to compress
+              {t.choosePrompt}
             </div>
             <label
               style={{
@@ -183,7 +227,7 @@ export default function CompressImageCard() {
               }}
             >
               <span style={{ fontSize: "14px" }}>🖼️</span>
-              <span>Select image</span>
+              <span>{t.selectLabel}</span>
               <input
                 ref={fileInputRef}
                 type="file"
@@ -194,7 +238,7 @@ export default function CompressImageCard() {
             </label>
             {file && (
               <div style={{ fontSize: "12px", color: "#4b5563", marginTop: "10px" }}>
-                Selected: {file.name} ({sizeMb} MB)
+                {t.selected}: {file.name} ({sizeMb} MB)
               </div>
             )}
           </div>
@@ -209,7 +253,7 @@ export default function CompressImageCard() {
                 color: "#374151",
               }}
             >
-              <span>Quality ({quality}%)</span>
+              <span>{t.qualityLabel(quality)}</span>
               <input
                 type="range"
                 min="40"
@@ -251,7 +295,7 @@ export default function CompressImageCard() {
                 color: "#111827",
               }}
             >
-              Clear
+              {t.clear}
             </button>
             <button
               type="button"
@@ -269,7 +313,7 @@ export default function CompressImageCard() {
                 opacity: isProcessing ? 0.7 : 1,
               }}
             >
-              {isProcessing ? "Compressing..." : "Compress & Download"}
+              {isProcessing ? t.compressing : t.compress}
             </button>
           </div>
         </div>

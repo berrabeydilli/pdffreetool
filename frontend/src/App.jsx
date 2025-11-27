@@ -2784,8 +2784,10 @@ function App() {
           </section>
         )}
 
-        {activeTab === "compress" && <CompressCard />}
-        {activeTab === "compressImage" && <CompressImageCard />}
+        {activeTab === "compress" && <CompressCard language={language} />}
+        {activeTab === "compressImage" && (
+          <CompressImageCard language={language} />
+        )}
         {activeTab === "jpgToPdf" && <JpgToPdfCard />}
         {activeTab === "pdfToJpg" && <PdfToJpgCard />}
         {activeTab === "pdfToPng" && <PdfToPngCard />}
