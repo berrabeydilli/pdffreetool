@@ -406,6 +406,7 @@ function App() {
   const [dragIndex, setDragIndex] = useState(null);
   const [usageCount, setUsageCount] = useState(0);
   const [activePage, setActivePage] = useState("home");
+  const [showCookieBanner, setShowCookieBanner] = useState(false);
   const fileInputRef = useRef(null);
   const toolContentRef = useRef(null);
   const hasMountedRef = useRef(false);
@@ -424,6 +425,14 @@ function App() {
     }
   }, [activeTab]);
 
+  useEffect(() => {
+    const consent = localStorage.getItem("pdffreetool-cookie-consent");
+
+    if (!consent) {
+      setShowCookieBanner(true);
+    }
+  }, []);
+
   const handleTabChange = (id) => {
     setActiveTab(id);
   };
@@ -431,6 +440,11 @@ function App() {
   const handleNavigate = (page) => {
     setActivePage(page);
     window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const handleAcceptCookies = () => {
+    localStorage.setItem("pdffreetool-cookie-consent", "accepted");
+    setShowCookieBanner(false);
   };
 
   const handleFileChange = (e) => {
@@ -695,6 +709,16 @@ function App() {
                 page-view statistics and never interact with the files you upload.
               </li>
             </ul>
+            <p style={paragraphStyle}>
+              We use third-party vendors, including Google, that use cookies to serve ads
+              based on your prior visits to this and other websites. These partners receive
+              anonymized analytics so they can show relevant messages without touching the
+              documents you process here.
+            </p>
+            <p style={paragraphStyle}>
+              Users may opt out of personalised advertising by visiting Google Ads Settings
+              or updating consent preferences in the cookie notice on this site.
+            </p>
             <h3 style={{ ...headingStyle, fontSize: "18px", marginBottom: "8px" }}>
               File security and retention
             </h3>
@@ -2126,6 +2150,82 @@ function App() {
           </div>
           <div>© 2025 PDFFreeTool. All rights reserved.</div>
         </footer>
+
+        {showCookieBanner && (
+          <div
+            role="alertdialog"
+            aria-live="polite"
+            aria-label="Cookie and consent notice"
+            style={{
+              position: "fixed",
+              bottom: "16px",
+              left: "50%",
+              transform: "translateX(-50%)",
+              background: "#0f172a",
+              color: "#e5e7eb",
+              padding: "14px",
+              borderRadius: "14px",
+              boxShadow: "0 18px 40px rgba(0,0,0,0.24)",
+              width: "calc(100% - 24px)",
+              maxWidth: "960px",
+              display: "flex",
+              alignItems: "center",
+              gap: "12px",
+              flexWrap: "wrap",
+              zIndex: 1000,
+            }}
+          >
+            <p
+              style={{
+                margin: 0,
+                fontSize: "13px",
+                lineHeight: 1.4,
+                flex: 1,
+              }}
+            >
+              We use cookies for analytics and ads. By continuing you accept essential
+              cookies and limited personalised ads. Review details in our Privacy Policy.
+            </p>
+            <div
+              style={{
+                display: "flex",
+                gap: "8px",
+                flexWrap: "wrap",
+                justifyContent: "flex-end",
+              }}
+            >
+              <button
+                onClick={() => handleNavigate("privacy")}
+                style={{
+                  border: "1px solid #334155",
+                  background: "#1f2937",
+                  color: "#e5e7eb",
+                  padding: "8px 12px",
+                  borderRadius: "10px",
+                  fontWeight: 700,
+                  cursor: "pointer",
+                }}
+              >
+                Privacy details
+              </button>
+              <button
+                onClick={handleAcceptCookies}
+                style={{
+                  border: "none",
+                  background: "linear-gradient(135deg, #22c55e, #16a34a)",
+                  color: "white",
+                  padding: "8px 14px",
+                  borderRadius: "10px",
+                  fontWeight: 800,
+                  cursor: "pointer",
+                  boxShadow: "0 10px 24px rgba(34,197,94,0.35)",
+                }}
+              >
+                Accept
+              </button>
+            </div>
+          </div>
+        )}
       </main>
     </div>
   );
