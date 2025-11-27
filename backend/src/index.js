@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
 import multer from "multer";
-import { PDFDocument } from "pdf-lib";
+import { PDFDocument, degrees } from "pdf-lib";
 
 const app = express();
 const PORT = process.env.PORT || 4000;
@@ -155,6 +155,156 @@ app.post("/jpg-to-pdf", upload.array("images"), async (req, res) => {
   } catch (err) {
     console.error("JPG to PDF error:", err);
     res.status(500).json({ error: "Failed to convert images to PDF" });
+  }
+});
+
+// --- NEW: DELETE PAGES ---
+app.post("/delete-pages", upload.single("file"), async (req, res) => {
+  try {
+    if (!req.file) {
+      return res.status(400).json({ error: "No file uploaded" });
+    }
+
+    const pageInput = (req.body.pages || "")
+      .split(",")
+      .map((p) => parseInt(p.trim(), 10))
+      .filter((p) => !isNaN(p));
+
+    if (!pageInput.length) {
+      return res
+        .status(400)
+        .json({ error: "Please provide page numbers to delete." });
+    }
+
+    const pdfDoc = await PDFDocument.load(req.file.buffer);
+    const totalPages = pdfDoc.getPageCount();
+    const deleteSet = new Set(
+      pageInput.filter((n) => n >= 1 && n <= totalPages).map((n) => n - 1)
+    );
+
+    if (!deleteSet.size) {
+      return res.status(400).json({ error: "No valid pages to delete." });
+    }
+
+    const resultDoc = await PDFDocument.create();
+    const keepPages = pdfDoc
+      .getPageIndices()
+      .filter((idx) => !deleteSet.has(idx));
+
+    if (!keepPages.length) {
+      return res
+        .status(400)
+        .json({ error: "Cannot delete all pages from the PDF." });
+    }
+
+    const copiedPages = await resultDoc.copyPages(pdfDoc, keepPages);
+    copiedPages.forEach((page) => resultDoc.addPage(page));
+
+    const bytes = await resultDoc.save({ useObjectStreams: true });
+
+    res.setHeader("Content-Type", "application/pdf");
+    res.setHeader(
+      "Content-Disposition",
+      "attachment; filename=pages-removed.pdf"
+    );
+    res.send(Buffer.from(bytes));
+  } catch (err) {
+    console.error("Delete pages error:", err);
+    res.status(500).json({ error: "Failed to delete pages" });
+  }
+});
+
+// --- NEW: ROTATE PAGES ---
+app.post("/rotate-pages", upload.single("file"), async (req, res) => {
+  try {
+    if (!req.file) {
+      return res.status(400).json({ error: "No file uploaded" });
+    }
+
+    const angle = parseInt(req.body.angle, 10) || 90;
+    const validAngles = new Set([90, 180, 270]);
+    if (!validAngles.has(angle)) {
+      return res
+        .status(400)
+        .json({ error: "Angle must be 90, 180, or 270 degrees." });
+    }
+
+    const pageInput = (req.body.pages || "")
+      .split(",")
+      .map((p) => parseInt(p.trim(), 10))
+      .filter((p) => !isNaN(p));
+
+    const pdfDoc = await PDFDocument.load(req.file.buffer);
+    const totalPages = pdfDoc.getPageCount();
+    const pageSet = new Set(
+      pageInput
+        .filter((n) => n >= 1 && n <= totalPages)
+        .map((n) => n - 1)
+    );
+
+    pdfDoc.getPages().forEach((page, idx) => {
+      if (!pageSet.size || pageSet.has(idx)) {
+        page.setRotation(degrees(angle));
+      }
+    });
+
+    const bytes = await pdfDoc.save({ useObjectStreams: true });
+
+    res.setHeader("Content-Type", "application/pdf");
+    res.setHeader(
+      "Content-Disposition",
+      "attachment; filename=rotated.pdf"
+    );
+    res.send(Buffer.from(bytes));
+  } catch (err) {
+    console.error("Rotate pages error:", err);
+    res.status(500).json({ error: "Failed to rotate pages" });
+  }
+});
+
+// --- NEW: EXTRACT PAGES ---
+app.post("/extract-pages", upload.single("file"), async (req, res) => {
+  try {
+    if (!req.file) {
+      return res.status(400).json({ error: "No file uploaded" });
+    }
+
+    const pageInput = (req.body.pages || "")
+      .split(",")
+      .map((p) => parseInt(p.trim(), 10))
+      .filter((p) => !isNaN(p));
+
+    if (!pageInput.length) {
+      return res
+        .status(400)
+        .json({ error: "Please provide page numbers to extract." });
+    }
+
+    const pdfDoc = await PDFDocument.load(req.file.buffer);
+    const totalPages = pdfDoc.getPageCount();
+    const validPages = pageInput
+      .filter((n) => n >= 1 && n <= totalPages)
+      .map((n) => n - 1);
+
+    if (!validPages.length) {
+      return res.status(400).json({ error: "No valid pages to extract." });
+    }
+
+    const resultDoc = await PDFDocument.create();
+    const copiedPages = await resultDoc.copyPages(pdfDoc, validPages);
+    copiedPages.forEach((page) => resultDoc.addPage(page));
+
+    const bytes = await resultDoc.save({ useObjectStreams: true });
+
+    res.setHeader("Content-Type", "application/pdf");
+    res.setHeader(
+      "Content-Disposition",
+      "attachment; filename=extracted-pages.pdf"
+    );
+    res.send(Buffer.from(bytes));
+  } catch (err) {
+    console.error("Extract pages error:", err);
+    res.status(500).json({ error: "Failed to extract pages" });
   }
 });
 
