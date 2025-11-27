@@ -425,8 +425,8 @@ const TOOL_DETAILS = {
 const MAX_FILES = 10; // Max number of files
 const MAX_TOTAL_MB = 50; // Max total size (MB)
 const LANGUAGE_OPTIONS = [
-  { value: "en", label: "English" },
-  { value: "tr", label: "Türkçe" },
+  { value: "en", label: "English", flag: "🇺🇸" },
+  { value: "tr", label: "Türkçe", flag: "🇹🇷" },
 ];
 
 function App() {
@@ -1083,7 +1083,7 @@ function App() {
       >
         {LANGUAGE_OPTIONS.map((option) => (
           <option key={option.value} value={option.value}>
-            {option.label}
+            {`${option.flag} ${option.label}`}
           </option>
         ))}
       </select>
