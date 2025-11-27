@@ -6,7 +6,7 @@ import { PDFDocument, degrees } from "pdf-lib";
 const app = express();
 const PORT = process.env.PORT || 4000;
 
-// CORS - şimdilik herkese açık
+// CORS - open to everyone for now
 app.use(cors());
 
 // Multer - memory storage
@@ -88,11 +88,11 @@ app.post("/compress", upload.single("file"), async (req, res) => {
       return res.status(400).json({ error: "No file uploaded" });
     }
 
-    // pdf-lib ile “optimize edilmiş” yeniden kaydetme
+    // Re-save with pdf-lib using an "optimized" structure
     const pdfDoc = await PDFDocument.load(req.file.buffer);
 
-    // Bu gerçek bir "heavy" sıkıştırma değil,
-    // ama çoğu durumda boyutu biraz düşürür (object stream vb.)
+    // This is not a true "heavy" compression,
+    // but it usually reduces the size a bit (object streams, etc.)
     const compressedPdfBytes = await pdfDoc.save({
       useObjectStreams: true,
     });

@@ -591,232 +591,223 @@ function App() {
     switch (activePage) {
       case "blog":
         return (
-          <section style={cardStyle} aria-label="Kılavuz ve ipuçları sayfası">
-            <h2 style={headingStyle}>Blog / Kılavuz &amp; İpuçları</h2>
+          <section style={cardStyle} aria-label="Guide and tips page">
+            <h2 style={headingStyle}>Blog / Guide &amp; Tips</h2>
             <p style={paragraphStyle}>
-              PDF ve görsel araçlarımızı en verimli şekilde kullanabilmeniz için uzun soluklu
-              bir rehber hazırladık. İster sözleşme, ister sunum, ister ürün kataloğu yönetin;
-              burada yer alan adımlar PDFFreeTool deneyiminizi hızlandırmak ve hatalardan
-              kaçınmak için tasarlandı. Tarayıcı içi işlem gücü sayesinde dosyalarınız
-              gizli kalır, siz de zaman kazanırsınız.
+              We put together a long-form guide to help you use our PDF and image tools as
+              efficiently as possible. Whether you're managing a contract, a presentation,
+              or a product catalog, the steps here are designed to speed up your PDFFreeTool
+              experience and help you avoid mistakes. Because everything runs in your
+              browser, your files stay private while you save time.
             </p>
             <h3 style={{ ...headingStyle, fontSize: "18px", marginBottom: "8px" }}>
-              Çalışma akışınızı sadeleştirmek için altın kurallar
+              Golden rules to streamline your workflow
             </h3>
             <ul style={listStyle}>
               <li>
-                <strong>Önizleme alışkanlığı:</strong> Birleştirme, bölme ya da sayfa silme
-                işlemi öncesi dosyaları küçük birer notla adlandırın ve sıralamayı kontrol
-                edin. Yanlış sayfa silme veya tekrar eden görsellerin önüne geçersiniz.
+                <strong>Preview habit:</strong> Before merging, splitting, or deleting pages,
+                name files with small notes and double-check the order. You'll avoid deleting
+                the wrong page or repeating images.
               </li>
               <li>
-                <strong>Doğru format seçimi:</strong> Sunum görselleri için PNG çıktısı, sosyal
-                medya paylaşımları için JPG çıktısı tercih ederek kalite ve dosya boyutu
-                dengesini koruyun.
+                <strong>Right format choice:</strong> Prefer PNG output for presentation
+                visuals and JPG output for social posts to balance quality and file size.
               </li>
               <li>
-                <strong>Hafifletme döngüsü:</strong> Büyük bir dosyayı paylaşmadan önce
-                <em>Compress PDF</em> aracını çalıştırın, ardından görüntü kalitesini kontrol
-                edip gerekiyorsa tekrar optimizasyon yapın.
+                <strong>Lightweight compression loop:</strong> Run <em>Compress PDF</em>
+                before sharing a large file, then check image quality and re-optimize if
+                needed.
               </li>
               <li>
-                <strong>Gizlilik notu:</strong> Tarayıcı içinde çalışan işlemler, projelerinizin
-                şirket dışına çıkmamasını sağlar. Ancak önemli sözleşmeleri işlerken yerel
-                bir kopya saklamayı alışkanlık hâline getirin.
+                <strong>Privacy note:</strong> Browser-based processing keeps your projects
+                from leaving the company, but make it a habit to store a local copy when
+                handling important contracts.
               </li>
               <li>
-                <strong>Takım içi paylaşım:</strong> Birleştirilmiş ya da bölünmüş belgeleri
-                isimlendirirken versiyon numarası ekleyin (ör. "Teklif-v3.pdf"), böylece
-                karışıklık yaşamazsınız.
+                <strong>Internal sharing:</strong> When naming merged or split documents, add
+                a version number (e.g., "Proposal-v3.pdf") so nothing gets mixed up.
               </li>
             </ul>
             <h3 style={{ ...headingStyle, fontSize: "18px", marginBottom: "8px" }}>
-              Senaryolara göre önerilen araç kombinasyonları
+              Recommended tool combinations by scenario
             </h3>
             <p style={paragraphStyle}>
-              Her aracın birlikte kullanıldığında sağladığı hız kazancını örneklerle
-              anlattık. Böylece aynı gün içinde birden fazla dosya tipiyle uğraşsanız bile
-              nereden başlayacağınızı bilirsiniz.
+              We illustrated the time savings each tool provides when combined. That way,
+              even if you handle multiple file types in the same day, you'll know where to
+              start.
             </p>
             <ol style={{ ...listStyle, paddingLeft: "20px" }}>
               <li>
-                <strong>Toplantı paketleri:</strong> Önce <em>Merge PDF</em> ile tüm raporları
-                bir araya getirin, ardından <em>Rotate Pages</em> ile yatay çizimleri düzeltip
-                <em>Compress PDF</em> ile paylaşılabilir hâle getirin.
+                <strong>Meeting packets:</strong> First gather all reports with
+                <em> Merge PDF</em>, then straighten landscape diagrams with <em>Rotate Pages</em>
+                and make them share-ready with <em>Compress PDF</em>.
               </li>
               <li>
-                <strong>Eğitim setleri:</strong> Telefon fotoğraflarını <em>Images to PDF</em>
-                içinde sıraya dizin, gerekirse <em>Delete Pages</em> ile boş sayfaları temizleyin
-                ve final dokümanı öğrencilerle paylaşmadan önce <em>PDF Reader</em> içinde
-                hızlıca gözden geçirin.
+                <strong>Training kits:</strong> Line up phone photos in <em>Images to PDF</em>,
+                clear empty pages with <em>Delete Pages</em> if needed, and quickly review the
+                final document in <em>PDF Reader</em> before sharing it with students.
               </li>
               <li>
-                <strong>Ürün kataloğu:</strong> Tasarım sayfalarını PNG olarak dışa aktarın,
-                <em>PDF to PNG</em> ile şeffaf arka planlı görseller elde edin, web için
-                <em>Compress Image</em> ile optimize edin ve satış ekibine tek klasörde teslim
-                edin.
+                <strong>Product catalog:</strong> Export design pages as PNG, get
+                transparent-background assets with <em>PDF to PNG</em>, optimize them for the
+                web using <em>Compress Image</em>, and deliver them to the sales team in one
+                folder.
               </li>
               <li>
-                <strong>Hukuk ve sözleşmeler:</strong> Belgeyi bölmeden paylaşmak için önce
-                <em>Extract Pages</em> ile ilgili maddeleri seçin, ardından <em>Word to PDF</em>
-                ile güncel sürümleri sabitleyin. En sonunda <em>PDF to Word</em> ile gerekli
-                yerleri düzenleyip yeniden PDF'e çevirin.
+                <strong>Legal and contracts:</strong> To share without splitting the document,
+                first select relevant clauses with <em>Extract Pages</em>, lock in the latest
+                versions with <em>Word to PDF</em>, and finally edit needed sections with
+                <em>PDF to Word</em> before converting back to PDF.
               </li>
             </ol>
             <p style={paragraphStyle}>
-              Kılavuzda yer alan öneriler, kullanıcı geri bildirimleriyle sık sık güncellenir.
-              Yeni bir ipucu görmek isterseniz <strong>İletişim</strong> sayfasındaki form
-              ipuçlarını kullanarak bize mesaj bırakabilirsiniz.
+              The recommendations in this guide are frequently updated based on user
+              feedback. If you'd like to see a new tip, use the hints on the
+              <strong> Contact</strong> page to leave us a message.
             </p>
           </section>
         );
       case "privacy":
         return (
-          <section style={cardStyle} aria-label="Gizlilik politikası">
+          <section style={cardStyle} aria-label="Privacy policy">
             <h2 style={headingStyle}>Privacy Policy</h2>
             <p style={paragraphStyle}>
-              PDFFreeTool tarayıcı içi çalışan bir dosya yönetimi deneyimi sunar. Bu sayfa,
-              kullanıcı verilerini nasıl işlediğimizi ve gizliliğinizi korumak için aldığımız
-              önlemleri açıklar. Kullandığınız araçlardan bağımsız olarak dosyalarınız sunucu
-              tarafında saklanmaz; işlemler mümkün olduğunca bellekte tamamlanır.
+              PDFFreeTool offers an in-browser file management experience. This page explains
+              how we process user data and the measures we take to protect your privacy.
+              Regardless of which tool you use, your files are not stored server-side;
+              processing is completed in memory whenever possible.
             </p>
             <h3 style={{ ...headingStyle, fontSize: "18px", marginBottom: "8px" }}>
-              Toplanan veriler ve kullanım amaçları
+              Data we collect and why we use it
             </h3>
             <ul style={listStyle}>
               <li>
-                <strong>Günlük kayıtları:</strong> Trafik seviyesini ölçmek için anonim
-                kullanım metrikleri tutulur; IP adresleri veya dosya adları kaydedilmez.
+                <strong>Log entries:</strong> Anonymous usage metrics are kept to measure
+                traffic levels; IP addresses or file names are not recorded.
               </li>
               <li>
-                <strong>Çerezler:</strong> Zorunlu oturum çerezleri, dil tercihiniz veya
-                tekrar açtığınız araçları hatırlamak için kullanılır. Reklam çerezleri
-                yalnızca sizin onayınızla etkinleşir.
+                <strong>Cookies:</strong> Required session cookies remember your language
+                preference or the tools you reopen. Advertising cookies activate only with
+                your consent.
               </li>
               <li>
-                <strong>Üçüncü taraf entegrasyonları:</strong> Reklam sağlayıcıları yalnızca
-                sayfa görüntüleme istatistikleri alır; yüklediğiniz dosyalarla hiçbir
-                şekilde etkileşime geçmez.
+                <strong>Third-party integrations:</strong> Ad providers receive only
+                page-view statistics and never interact with the files you upload.
               </li>
             </ul>
             <h3 style={{ ...headingStyle, fontSize: "18px", marginBottom: "8px" }}>
-              Dosya güvenliği ve saklama
+              File security and retention
             </h3>
             <p style={paragraphStyle}>
-              Yüklediğiniz PDF veya görseller geçici bellekte işlenir ve indirme bağlantısı
-              oluşturulduktan sonra otomatik olarak temizlenir. Sunucuda tutulan tek veri,
-              kötüye kullanım tespitine yardımcı olan hata günlükleridir; bu günlükler dosya
-              içeriği içermez.
+              Uploaded PDFs or images are processed in temporary memory and are automatically
+              cleared after the download link is created. The only data kept on the server is
+              error logs that help detect abuse; these logs do not include file contents.
             </p>
             <ul style={listStyle}>
-              <li>İşlem tamamlandığında dosya parçaları bellekten silinir.</li>
-              <li>Şifreli veya gizli belgeler için yerel kopyalarınızı yedeklemenizi öneririz.</li>
-              <li>Paylaşılan cihazlarda tarayıcı geçmişini temizleyerek gizliliğinizi koruyun.</li>
+              <li>File fragments are removed from memory when processing finishes.</li>
+              <li>For encrypted or confidential documents, we recommend backing up your local copies.</li>
+              <li>On shared devices, clear your browser history to protect your privacy.</li>
             </ul>
             <h3 style={{ ...headingStyle, fontSize: "18px", marginBottom: "8px" }}>
-              Haklarınız
+              Your rights
             </h3>
             <p style={paragraphStyle}>
-              Kullanım verilerinizin silinmesini veya anonimleştirilmesini talep etmek
-              istediğinizde bizimle iletişime geçebilirsiniz. Reklam tercihleri, tarayıcı
-              ayarları ve çerez yönetimi paneli üzerinden güncellenebilir.
+              You can contact us when you want to request deletion or anonymization of your
+              usage data. Ad preferences can be updated through your browser settings and the
+              cookie management panel.
             </p>
           </section>
         );
       case "terms":
         return (
-          <section style={cardStyle} aria-label="Kullanım koşulları">
+          <section style={cardStyle} aria-label="Terms of service">
             <h2 style={headingStyle}>Terms of Service</h2>
             <p style={paragraphStyle}>
-              PDFFreeTool'ü kullanarak dosyalarınızı yasal düzenlemelere uygun şekilde
-              yönetmeyi kabul etmiş olursunuz. Araçlar, kişisel ve kurumsal kullanım için
-              sunulur; fikri mülkiyet ihlali veya hukuka aykırı içerik yüklenmesinden siz
-              sorumlusunuz.
+              By using PDFFreeTool, you agree to manage your files in compliance with legal
+              regulations. The tools are provided for personal and business use; you are
+              responsible for uploading any content that infringes intellectual property or
+              violates the law.
             </p>
             <ol style={{ ...listStyle, paddingLeft: "20px" }}>
               <li>
-                <strong>Sorumluluk sınırı:</strong> Tarayıcı içi işlenen dosyalarda veri
-                kaybı yaşanmaması için yedekleme yapmanız önerilir. Platformumuz, doğrudan
-                veya dolaylı zararlardan sorumlu tutulamaz.
+                <strong>Limitation of liability:</strong> Back up your data to avoid loss in
+                browser-processed files. Our platform cannot be held liable for direct or
+                indirect damages.
               </li>
               <li>
-                <strong>Adil kullanım:</strong> Hizmeti otomatikleştiren botlar veya aşırı
-                istek gönderen sistemler tespit edildiğinde erişim sınırlanabilir.
+                <strong>Fair use:</strong> Access may be limited if bots or systems sending
+                excessive requests are detected.
               </li>
               <li>
-                <strong>İçerik bütünlüğü:</strong> Telif hakkı ihlali barındıran belgeler
-                yüklemek yasaktır. Şikâyet bildirildiğinde ilgili erişim engellenir.
+                <strong>Content integrity:</strong> Uploading documents that infringe
+                copyright is prohibited. Access to reported items will be blocked.
               </li>
               <li>
-                <strong>Güncellemeler:</strong> Bu koşullar düzenli olarak güncellenir ve
-                duyurular footer'daki bağlantılar üzerinden paylaşılır.
+                <strong>Updates:</strong> These terms are updated regularly and announcements
+                are shared through the links in the footer.
               </li>
             </ol>
             <p style={paragraphStyle}>
-              Hizmet, bakım çalışmaları sırasında kısa süreliğine erişilemez olabilir. Bu
-              durumlarda mevcut dosyalarınız tarayıcıda tutulur, işlem süreciniz bozulmaz;
-              sayfayı yenilediğinizde kaldığınız yerden devam edebilirsiniz.
+              The service may be briefly unavailable during maintenance. In these cases, your
+              current files remain in the browser and your workflow stays intact; refresh the
+              page to pick up where you left off.
             </p>
           </section>
         );
       case "about":
         return (
-          <section style={cardStyle} aria-label="Hakkımızda sayfası">
+          <section style={cardStyle} aria-label="About page">
             <h2 style={headingStyle}>About</h2>
             <p style={paragraphStyle}>
-              PDFFreeTool, PDF ve görsel düzenleme araçlarını tek çatı altında toplayan hafif
-              bir web uygulamasıdır. Tasarım prensibimiz, teknik detayları arka planda
-              tutarken kullanıcıyı anlaşılır adımlarla yönlendirmek üzerine kuruldu.
+              PDFFreeTool is a lightweight web app that unites PDF and image editing tools
+              under one roof. Our design principle is to keep technical details in the
+              background while guiding users with clear steps.
             </p>
             <p style={paragraphStyle}>
-              Ürün; React, Vite ve hızlı önbellek stratejileriyle inşa edildi. Tüm araçlar
-              tek sayfada toplanır ve bilgi kutucukları, hangi aracı neden seçmeniz
-              gerektiğini açıklayacak şekilde yazıldı. İçerik ekibi, SEO uyumlu başlıklar ve
-              AdSense ile uyumlu rehberlik metinleri hazırlayarak ziyaretçilerin her araçtan
-              önce bilgilendirilmesini sağladı.
+              The product is built with React, Vite, and fast caching strategies. All tools
+              live on a single page, and the info boxes explain why you should choose each
+              tool. The content team prepared SEO-friendly headings and AdSense-ready
+              guidance copy to inform visitors before they use every tool.
             </p>
             <ul style={listStyle}>
-              <li>Dosyalarınızı cihazda tutan güvenli işlem akışları.</li>
-              <li>Çoklu dil desteği için hazır içerik yapısı ve rehber metinler.</li>
-              <li>Destek ekibine hızlı ulaşım için sade iletişim bölümü.</li>
+              <li>Secure processing flows that keep your files on your device.</li>
+              <li>Ready-made content structure and guide copy for multilingual support.</li>
+              <li>A simple contact section to reach the support team quickly.</li>
             </ul>
             <p style={paragraphStyle}>
-              Önceliğimiz, herkesin ücretsiz ve erişilebilir araçlarla üretkenliğini
-              artırması. Bu vizyon doğrultusunda, yeni araç fikirlerini toplamak ve mevcut
-              deneyimi iyileştirmek için kullanıcı geri bildirimlerini düzenli olarak
-              inceliyoruz.
+              Our priority is for everyone to boost productivity with free and accessible
+              tools. In line with this vision, we regularly collect new tool ideas and review
+              user feedback to improve the existing experience.
             </p>
           </section>
         );
       case "contact":
         return (
-          <section style={cardStyle} aria-label="İletişim sayfası">
+          <section style={cardStyle} aria-label="Contact page">
             <h2 style={headingStyle}>Contact</h2>
             <p style={paragraphStyle}>
-              Sorularınız, geri bildirimleriniz veya yeni araç önerileriniz için bizimle
-              iletişime geçmekten çekinmeyin. Aşağıdaki rehber, mesajınızı hazırlarken nelere
-              değinebileceğinizi anlatır ve destek sürecimizi hızlandırır.
+              Feel free to reach us with your questions, feedback, or suggestions for new
+              tools. The guide below explains what to mention in your message and helps us
+              speed up support.
             </p>
             <ul style={listStyle}>
               <li>
-                <strong>Teknik destek:</strong> Hangi aracı kullandığınızı, dosya boyutunu ve
-                gördüğünüz hata mesajını ekleyin. Böylece sorunu daha hızlı yeniden
-                oluşturabiliriz.
+                <strong>Technical support:</strong> Include which tool you used, the file
+                size, and any error message you saw so we can reproduce the issue faster.
               </li>
               <li>
-                <strong>Özellik talebi:</strong> Sürecinizi nasıl geliştireceğini düşündüğünüz
-                yeni araçları veya kısayolları anlatın. Kullanım senaryosu eklemek öncelik
-                belirlememize yardımcı olur.
+                <strong>Feature request:</strong> Describe new tools or shortcuts you think
+                would improve your workflow. Adding a use case helps us prioritize.
               </li>
               <li>
-                <strong>İşbirliği:</strong> Entegrasyon veya içerik ortaklığı teklifleri için
-                şirket adınızı, iletişim bilgilerinizi ve beklentilerinizi paylaşın.
+                <strong>Collaboration:</strong> For integration or content partnership
+                proposals, share your company name, contact details, and expectations.
               </li>
             </ul>
             <p style={paragraphStyle}>
-              Ayrıca <strong>destek@pdffreetool.com</strong> adresine e-posta göndererek ya da
-              sosyal medya hesaplarımız üzerinden bize ulaşabilirsiniz. Tüm mesajlara
-              mümkün olan en kısa sürede geri dönmeye çalışıyoruz.
+              You can also email <strong>destek@pdffreetool.com</strong> or reach us through
+              our social media accounts. We try to respond to all messages as quickly as
+              possible.
             </p>
           </section>
         );
@@ -1103,8 +1094,8 @@ function App() {
               minWidth: "240px",
             }}
           >
-            {renderNavLink("home", "Ana Sayfa")}
-            {renderNavLink("blog", "Kılavuz & İpuçları")}
+            {renderNavLink("home", "Home")}
+            {renderNavLink("blog", "Guide & Tips")}
             {renderNavLink("privacy", "Privacy")}
             {renderNavLink("terms", "Terms")}
             {renderNavLink("about", "About")}
