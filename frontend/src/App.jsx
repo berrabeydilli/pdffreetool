@@ -972,6 +972,67 @@ function App() {
 
   const activeTool = TOOL_MENU.find((tool) => tool.id === activeTab);
 
+  const renderThemeToggle = () => (
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: "6px",
+        padding: "6px 8px",
+        borderRadius: "12px",
+        border: "1px solid #e5e7eb",
+        background: "#ffffff",
+        boxShadow: "0 6px 16px rgba(15,23,42,0.05)",
+      }}
+    >
+      <span style={{ fontSize: "12px", color: "#374151", fontWeight: 600 }}>
+        Theme
+      </span>
+      <button
+        type="button"
+        onClick={() => setThemeMode("light")}
+        style={{
+          padding: "6px 10px",
+          borderRadius: "10px",
+          border: themeMode === "light" ? "1px solid #4f46e5" : "1px solid #e5e7eb",
+          background:
+            themeMode === "light" ? "linear-gradient(180deg, #eef2ff, #e0e7ff)" : "white",
+          color: "#111827",
+          fontWeight: 700,
+          cursor: "pointer",
+          boxShadow:
+            themeMode === "light"
+              ? "0 8px 18px rgba(79,70,229,0.18)"
+              : "0 4px 10px rgba(15,23,42,0.05)",
+          transition: "all 0.15s ease",
+        }}
+      >
+        Light
+      </button>
+      <button
+        type="button"
+        onClick={() => setThemeMode("dark")}
+        style={{
+          padding: "6px 10px",
+          borderRadius: "10px",
+          border: themeMode === "dark" ? "1px solid #0f172a" : "1px solid #e5e7eb",
+          background:
+            themeMode === "dark" ? "linear-gradient(180deg, #0f172a, #111827)" : "white",
+          color: themeMode === "dark" ? "#e5e7eb" : "#111827",
+          fontWeight: 700,
+          cursor: "pointer",
+          boxShadow:
+            themeMode === "dark"
+              ? "0 10px 20px rgba(15,23,42,0.4)"
+              : "0 4px 10px rgba(15,23,42,0.05)",
+          transition: "all 0.15s ease",
+        }}
+      >
+        Dark
+      </button>
+    </div>
+  );
+
   const renderToolDetails = () => {
     const detail = TOOL_DETAILS[activeTab];
 
@@ -1128,6 +1189,15 @@ function App() {
           margin: "0 auto",
         }}
       >
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "flex-end",
+            marginBottom: "10px",
+          }}
+        >
+          {renderThemeToggle()}
+        </div>
         <header
           style={{
             marginBottom: "18px",
@@ -1226,68 +1296,6 @@ function App() {
             {renderNavLink("terms", "Terms")}
             {renderNavLink("about", "About")}
             {renderNavLink("contact", "Contact")}
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: "6px",
-                padding: "6px 8px",
-                borderRadius: "12px",
-                border: "1px solid #e5e7eb",
-                background: "#ffffff",
-                boxShadow: "0 6px 16px rgba(15,23,42,0.05)",
-              }}
-            >
-              <span style={{ fontSize: "12px", color: "#374151", fontWeight: 600 }}>
-                Theme
-              </span>
-              <button
-                type="button"
-                onClick={() => setThemeMode("light")}
-                style={{
-                  padding: "6px 10px",
-                  borderRadius: "10px",
-                  border: themeMode === "light" ? "1px solid #4f46e5" : "1px solid #e5e7eb",
-                  background:
-                    themeMode === "light"
-                      ? "linear-gradient(180deg, #eef2ff, #e0e7ff)"
-                      : "white",
-                  color: "#111827",
-                  fontWeight: 700,
-                  cursor: "pointer",
-                  boxShadow:
-                    themeMode === "light"
-                      ? "0 8px 18px rgba(79,70,229,0.18)"
-                      : "0 4px 10px rgba(15,23,42,0.05)",
-                  transition: "all 0.15s ease",
-                }}
-              >
-                Light
-              </button>
-              <button
-                type="button"
-                onClick={() => setThemeMode("dark")}
-                style={{
-                  padding: "6px 10px",
-                  borderRadius: "10px",
-                  border: themeMode === "dark" ? "1px solid #0f172a" : "1px solid #e5e7eb",
-                  background:
-                    themeMode === "dark"
-                      ? "linear-gradient(180deg, #0f172a, #111827)"
-                      : "white",
-                  color: themeMode === "dark" ? "#e5e7eb" : "#111827",
-                  fontWeight: 700,
-                  cursor: "pointer",
-                  boxShadow:
-                    themeMode === "dark"
-                      ? "0 10px 20px rgba(15,23,42,0.4)"
-                      : "0 4px 10px rgba(15,23,42,0.05)",
-                  transition: "all 0.15s ease",
-                }}
-              >
-                Dark
-              </button>
-            </div>
           </nav>
         </header>
         {activePage === "home" ? (
