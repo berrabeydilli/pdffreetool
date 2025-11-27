@@ -242,91 +242,57 @@ function App() {
         {/* TAB NAVIGATION */}
         <div
           style={{
-            display: "flex",
-            gap: "12px",
             marginBottom: "20px",
+            display: "flex",
             justifyContent: "center",
           }}
         >
-          <button
-            onClick={() => setActiveTab("merge")}
+          <label
             style={{
-              padding: "10px 20px",
-              borderRadius: "999px",
+              display: "flex",
+              alignItems: "center",
+              gap: "10px",
+              background: "white",
+              padding: "10px 14px",
+              borderRadius: "12px",
               border: "1px solid #e5e7eb",
-              background: activeTab === "merge" ? "#4f46e5" : "white",
-              color: activeTab === "merge" ? "white" : "#374151",
-              cursor: "pointer",
-              fontSize: "14px",
-              fontWeight: 500,
-              boxShadow:
-                activeTab === "merge"
-                  ? "0 4px 12px rgba(79,70,229,0.3)"
-                  : "0 1px 4px rgba(0,0,0,0.06)",
+              boxShadow: "0 6px 16px rgba(15,23,42,0.08)",
+              width: "100%",
+              maxWidth: "340px",
             }}
           >
-            Merge PDF
-          </button>
-
-          <button
-            onClick={() => setActiveTab("compress")}
-            style={{
-              padding: "10px 20px",
-              borderRadius: "999px",
-              border: "1px solid #e5e7eb",
-              background: activeTab === "compress" ? "#4f46e5" : "white",
-              color: activeTab === "compress" ? "white" : "#374151",
-              cursor: "pointer",
-              fontSize: "14px",
-              fontWeight: 500,
-              boxShadow:
-                activeTab === "compress"
-                  ? "0 4px 12px rgba(79,70,229,0.3)"
-                  : "0 1px 4px rgba(0,0,0,0.06)",
-            }}
-          >
-            Compress PDF
-          </button>
-
-          <button
-            onClick={() => setActiveTab("jpgToPdf")}
-            style={{
-              padding: "10px 20px",
-              borderRadius: "999px",
-              border: "1px solid #e5e7eb",
-              background: activeTab === "jpgToPdf" ? "#4f46e5" : "white",
-              color: activeTab === "jpgToPdf" ? "white" : "#374151",
-              cursor: "pointer",
-              fontSize: "14px",
-              fontWeight: 500,
-              boxShadow:
-                activeTab === "jpgToPdf"
-                  ? "0 4px 12px rgba(79,70,229,0.3)"
-                  : "0 1px 4px rgba(0,0,0,0.06)",
-            }}
-          >
-            JPG to PDF
-          </button>
-
-          <button
-            onClick={() => setActiveTab("pdfToJpg")}
-            style={{
-              padding: "10px 20px",
-              borderRadius: "999px",
-              border: "1px solid #e5e7eb",
-              background: activeTab === "pdfToJpg" ? "#4f46e5" : "white",
-              color: activeTab === "pdfToJpg" ? "white" : "#374151",
-              cursor: "pointer",
-              fontSize: "14px",
-              fontWeight: 500,
-              boxShadow:
-                activeTab === "pdfToJpg"
-                  ? "0 4px 12px rgba(79,70,229,0.3)"
-                  : "0 1px 4px rgba(0,0,0,0.06)",
-            }}
-          >
-            PDF to JPG
-          </button>
+            <span
+              style={{
+                fontSize: "14px",
+                color: "#374151",
+                fontWeight: 600,
+                whiteSpace: "nowrap",
+              }}
+            >
+              Select tool
+            </span>
+            <select
+              value={activeTab}
+              onChange={(e) => setActiveTab(e.target.value)}
+              style={{
+                flex: 1,
+                padding: "10px 12px",
+                borderRadius: "10px",
+                border: "1px solid #cbd5e1",
+                fontSize: "14px",
+                fontWeight: 600,
+                color: "#111827",
+                background: "linear-gradient(180deg, #f8fafc, #f1f5f9)",
+                boxShadow: "inset 0 1px 2px rgba(15,23,42,0.06)",
+                outline: "none",
+              }}
+            >
+              <option value="merge">Merge PDF</option>
+              <option value="compress">Compress PDF</option>
+              <option value="jpgToPdf">JPG to PDF</option>
+              <option value="pdfToJpg">PDF to JPG</option>
+            </select>
+          </label>
         </div>
 
         {/* ACTIVE TOOL CONTENT */}
