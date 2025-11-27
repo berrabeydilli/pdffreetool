@@ -86,7 +86,7 @@ export default function ExtractPdfPagesCard() {
     <ToolCardShell
       pillLabel="Extract pages"
       title="Save specific pages as a new PDF"
-      description="Type the pages you need (e.g., 1,2,7) and download them as a fresh document."
+      description="Type the pages you need (e.g., 1,2,7) to carve out a smaller, focused PDF. Ideal for sharing only the important chapters or receipts, it keeps everything local to your browser and returns a fresh download in seconds."
       accentColor="#f59e0b"
       pillBackground="#fffbeb"
     >

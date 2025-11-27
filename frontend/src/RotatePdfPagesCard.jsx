@@ -84,7 +84,7 @@ export default function RotatePdfPagesCard() {
     <ToolCardShell
       pillLabel="Rotate PDF pages"
       title="Rotate specific pages or the whole file"
-      description="Upload a PDF, choose the angle, and rotate selected pages (leave blank to rotate all)."
+      description="Upload a PDF, pick an angle, and rotate only the pages you choose—or leave the field blank to fix the entire document. It is perfect for correcting sideways scans, mixing portrait and landscape pages, and tidying up multi-page contracts before sharing."
       accentColor="#0ea5e9"
       pillBackground="#e0f2fe"
     >

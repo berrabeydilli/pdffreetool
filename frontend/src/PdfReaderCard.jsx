@@ -52,7 +52,7 @@ export default function PdfReaderCard() {
     <ToolCardShell
       pillLabel="PDF reader"
       title="Read and preview PDFs in your browser"
-      description="Open a PDF instantly without downloads. Everything stays on your device."
+      description="Open a PDF instantly without downloading extra apps or sending files to a server. Flip through pages, zoom from your browser, and keep everything safely on your device for offline-friendly reading."
       accentColor="#10b981"
       pillBackground="#ecfdf3"
     >
