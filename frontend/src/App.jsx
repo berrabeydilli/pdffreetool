@@ -424,6 +424,10 @@ const TOOL_DETAILS = {
 
 const MAX_FILES = 10; // Max number of files
 const MAX_TOTAL_MB = 50; // Max total size (MB)
+const LANGUAGE_OPTIONS = [
+  { value: "en", label: "English" },
+  { value: "tr", label: "Türkçe" },
+];
 
 function App() {
   const [activeTab, setActiveTab] = useState("merge");
@@ -436,6 +440,10 @@ function App() {
   const [themeMode, setThemeMode] = useState(() => {
     if (typeof window === "undefined") return "light";
     return localStorage.getItem("pdffreetool-theme") || "light";
+  });
+  const [language, setLanguage] = useState(() => {
+    if (typeof window === "undefined") return "en";
+    return localStorage.getItem("pdffreetool-language") || "en";
   });
   const [showCookieBanner, setShowCookieBanner] = useState(false);
   const fileInputRef = useRef(null);
@@ -468,6 +476,12 @@ function App() {
     if (typeof window === "undefined") return;
     localStorage.setItem("pdffreetool-theme", themeMode);
   }, [themeMode]);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    localStorage.setItem("pdffreetool-language", language);
+    document.documentElement.lang = language;
+  }, [language]);
 
   const handleTabChange = (id) => {
     setActiveTab(id);
@@ -1033,6 +1047,49 @@ function App() {
     </div>
   );
 
+  const renderLanguageSelector = () => (
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: "6px",
+        padding: "6px 8px",
+        borderRadius: "12px",
+        border: "1px solid #e5e7eb",
+        background: "#ffffff",
+        boxShadow: "0 6px 16px rgba(15,23,42,0.05)",
+      }}
+    >
+      <label
+        htmlFor="language-select"
+        style={{ fontSize: "12px", color: "#374151", fontWeight: 600 }}
+      >
+        Language
+      </label>
+      <select
+        id="language-select"
+        value={language}
+        onChange={(e) => setLanguage(e.target.value)}
+        style={{
+          padding: "8px 10px",
+          borderRadius: "10px",
+          border: "1px solid #e5e7eb",
+          background: "white",
+          color: "#111827",
+          fontWeight: 600,
+          cursor: "pointer",
+          boxShadow: "0 4px 10px rgba(15,23,42,0.05)",
+        }}
+      >
+        {LANGUAGE_OPTIONS.map((option) => (
+          <option key={option.value} value={option.value}>
+            {option.label}
+          </option>
+        ))}
+      </select>
+    </div>
+  );
+
   const renderToolDetails = () => {
     const detail = TOOL_DETAILS[activeTab];
 
@@ -1193,10 +1250,13 @@ function App() {
           style={{
             display: "flex",
             justifyContent: "flex-end",
+            gap: "8px",
             marginBottom: "10px",
+            flexWrap: "wrap",
           }}
         >
           {renderThemeToggle()}
+          {renderLanguageSelector()}
         </div>
         <header
           style={{
