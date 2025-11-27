@@ -507,8 +507,8 @@ const TOOL_DETAILS = {
 const MAX_FILES = 10; // Max number of files
 const MAX_TOTAL_MB = 50; // Max total size (MB)
 const LANGUAGE_OPTIONS = [
-  { value: "en", label: "English", flag: "🇺🇸", code: "US" },
-  { value: "tr", label: "Türkçe", flag: "🇹🇷", code: "TR" },
+  { value: "en", label: "English", flag: "🇺🇸" },
+  { value: "tr", label: "Türkçe", flag: "🇹🇷" },
 ];
 
 const TRANSLATIONS = {
@@ -533,6 +533,37 @@ const TRANSLATIONS = {
     toolMenuTitle: "Tool menu",
     toolMenuDescription: "Click any card to jump to a tool, read the overview, and start using it.",
     languageLabel: "Language",
+    themeLabel: "Theme",
+    themeLight: "Light",
+    themeDark: "Dark",
+    selectToolLabel: "Select tool",
+    merge: {
+      pill: "Merge PDFs in your browser",
+      title: "Merge PDF files in seconds",
+      description: "Upload, reorder, and download a single merged PDF. Nothing is stored on our servers.",
+      badge: "Simple & secure",
+      chooseFiles: "Choose PDF files",
+      selectPdfs: "Select PDFs",
+      fileLimit: (maxFiles, maxTotalMb) => `Up to ${maxFiles} files • Total size ≤ ${maxTotalMb} MB`,
+      filesSelected: "Files selected:",
+      totalSize: "Total size:",
+      reorderTitle: "Reorder files",
+      reorderHint: "Drag to change merge order",
+      dragHandle: "Drag to reorder",
+      usageLabel: "Merges this session:",
+      clear: "Clear",
+      merge: "Merge PDFs",
+      merging: "Merging...",
+      removeFile: "Remove this file",
+    },
+    errors: {
+      pdfOnly: "Please select PDF files only.",
+      maxFiles: (limit) => `You can upload up to ${limit} PDF files. Extra files were ignored.`,
+      maxSize: (limit) => `Total file size cannot exceed ${limit} MB. Please choose fewer or smaller files.`,
+      noneSelected: "Please select at least one PDF file.",
+      generic: "Something went wrong.",
+      mergeFailed: "Failed to merge PDFs.",
+    },
   },
   tr: {
     studioLabel: "PDFFreeTool Stüdyosu",
@@ -556,6 +587,38 @@ const TRANSLATIONS = {
     toolMenuDescription:
       "Bir araca gitmek, özetini okumak ve kullanmaya başlamak için herhangi bir karta tıklayın.",
     languageLabel: "Dil",
+    themeLabel: "Tema",
+    themeLight: "Açık",
+    themeDark: "Koyu",
+    selectToolLabel: "Aracı seç",
+    merge: {
+      pill: "PDF'leri tarayıcıda birleştir",
+      title: "Saniyeler içinde PDF birleştirme",
+      description:
+        "Yükleyin, sıralayın ve tek birleştirilmiş PDF'i indirin. Dosyalar sunucularımızda tutulmaz.",
+      badge: "Basit ve güvenli",
+      chooseFiles: "PDF dosyalarını seç",
+      selectPdfs: "PDF seç",
+      fileLimit: (maxFiles, maxTotalMb) => `En fazla ${maxFiles} dosya • Toplam boyut ≤ ${maxTotalMb} MB`,
+      filesSelected: "Seçilen dosya sayısı:",
+      totalSize: "Toplam boyut:",
+      reorderTitle: "Dosyaları yeniden sırala",
+      reorderHint: "Birleştirme sırasını değiştirmek için sürükleyin",
+      dragHandle: "Sürükleyerek yeniden sırala",
+      usageLabel: "Bu oturumdaki birleştirmeler:",
+      clear: "Temizle",
+      merge: "PDF'leri birleştir",
+      merging: "Birleştiriliyor...",
+      removeFile: "Bu dosyayı kaldır",
+    },
+    errors: {
+      pdfOnly: "Lütfen sadece PDF dosyaları seçin.",
+      maxFiles: (limit) => `En fazla ${limit} PDF yükleyebilirsiniz. Fazla dosyalar yok sayıldı.`,
+      maxSize: (limit) => `Toplam dosya boyutu ${limit} MB'ı geçemez. Lütfen daha az veya daha küçük dosya seçin.`,
+      noneSelected: "Lütfen en az bir PDF dosyası seçin.",
+      generic: "Bir şeyler yanlış gitti.",
+      mergeFailed: "PDF birleştirme başarısız oldu.",
+    },
   },
 };
 
@@ -633,6 +696,8 @@ function App() {
   const hasMountedRef = useRef(false);
   const languageMenuRef = useRef(null);
   const t = TRANSLATIONS[language] || TRANSLATIONS.en;
+  const mergeText = t.merge || TRANSLATIONS.en.merge;
+  const errors = t.errors || TRANSLATIONS.en.errors;
 
   useEffect(() => {
     if (!hasMountedRef.current) {
@@ -698,7 +763,7 @@ function App() {
     const pdfs = selected.filter((f) => f.type === "application/pdf");
 
     if (pdfs.length === 0) {
-      setError("Please select PDF files only.");
+      setError(errors.pdfOnly);
       return;
     }
 
@@ -706,9 +771,7 @@ function App() {
     let combined = [...files, ...pdfs];
 
     if (combined.length > MAX_FILES) {
-      setError(
-        `You can upload up to ${MAX_FILES} PDF files. Extra files were ignored.`
-      );
+      setError(errors.maxFiles(MAX_FILES));
       combined = combined.slice(0, MAX_FILES);
     }
 
@@ -716,9 +779,7 @@ function App() {
     const totalMB = totalBytes / 1024 / 1024;
 
     if (totalMB > MAX_TOTAL_MB) {
-      setError(
-        `Total file size cannot exceed ${MAX_TOTAL_MB} MB. Please choose fewer or smaller files.`
-      );
+      setError(errors.maxSize(MAX_TOTAL_MB));
       return;
     }
 
@@ -728,7 +789,7 @@ function App() {
   const handleMerge = async () => {
     setError("");
     if (!files.length) {
-      setError("Please select at least one PDF file.");
+      setError(errors.noneSelected);
       return;
     }
 
@@ -749,7 +810,7 @@ function App() {
 
       if (!res.ok) {
         const data = await res.json().catch(() => ({}));
-        throw new Error(data.error || "Something went wrong.");
+        throw new Error(data.error || errors.generic);
       }
 
       const blob = await res.blob();
@@ -766,7 +827,7 @@ function App() {
       setUsageCount((prev) => prev + 1);
     } catch (err) {
       console.error(err);
-      setError(err.message || "Failed to merge PDFs.");
+      setError(err.message || errors.mergeFailed);
     } finally {
       setIsMerging(false);
     }
@@ -1197,7 +1258,7 @@ function App() {
       }}
     >
       <span style={{ fontSize: "12px", color: "#374151", fontWeight: 600 }}>
-        Theme
+        {t.themeLabel}
       </span>
       <button
         type="button"
@@ -1218,7 +1279,7 @@ function App() {
           transition: "all 0.15s ease",
         }}
       >
-        Light
+        {t.themeLight}
       </button>
       <button
         type="button"
@@ -1239,7 +1300,7 @@ function App() {
           transition: "all 0.15s ease",
         }}
       >
-        Dark
+        {t.themeDark}
       </button>
     </div>
   );
@@ -1283,7 +1344,7 @@ function App() {
             display: "flex",
             alignItems: "center",
             gap: "10px",
-            minWidth: "150px",
+            minWidth: "120px",
           }}
         >
           <span
@@ -1301,20 +1362,7 @@ function App() {
           >
             {FLAG_ICONS[selectedLanguage.value]}
           </span>
-          <span style={{ display: "flex", alignItems: "center", gap: "6px" }}>
-            <span
-              style={{
-                fontSize: "10px",
-                fontWeight: 700,
-                color: "#6b7280",
-                letterSpacing: "0.5px",
-                textTransform: "uppercase",
-              }}
-            >
-              {selectedLanguage.code}
-            </span>
-            <span style={{ fontWeight: 700, color: "#111827" }}>{selectedLanguage.label}</span>
-          </span>
+          <span style={{ fontWeight: 700, color: "#111827" }}>{selectedLanguage.label}</span>
           <svg
             aria-hidden
             width="16"
@@ -1387,20 +1435,7 @@ function App() {
                   >
                     {FLAG_ICONS[option.value]}
                   </span>
-                  <span style={{ display: "flex", alignItems: "center", gap: "6px" }}>
-                    <span
-                      style={{
-                        fontSize: "10px",
-                        fontWeight: 700,
-                        color: "#6b7280",
-                        letterSpacing: "0.5px",
-                        textTransform: "uppercase",
-                      }}
-                    >
-                      {option.code}
-                    </span>
-                    <span>{option.label}</span>
-                  </span>
+                  <span>{option.label}</span>
                   {isActive && (
                     <svg
                       aria-hidden
@@ -1965,7 +2000,7 @@ function App() {
               width: "100%",
               maxWidth: "340px",
             }}
-          >
+            >
             <span
               style={{
                 fontSize: "14px",
@@ -1974,7 +2009,7 @@ function App() {
                 whiteSpace: "nowrap",
               }}
             >
-              Select tool
+              {t.selectToolLabel}
             </span>
             <select
               value={activeTab}
@@ -2062,7 +2097,7 @@ function App() {
                           background: "#22c55e",
                         }}
                       ></span>
-                      Merge PDFs in your browser
+                      {mergeText.pill}
                     </div>
                     <h2
                       style={{
@@ -2072,7 +2107,7 @@ function App() {
                         color: "#0f172a",
                       }}
                     >
-                      Merge PDF files in seconds
+                      {mergeText.title}
                     </h2>
                     <p
                       style={{
@@ -2081,8 +2116,7 @@ function App() {
                         fontSize: "13px",
                       }}
                     >
-                      Upload, reorder, and download a single merged PDF. Nothing
-                      is stored on our servers.
+                      {mergeText.description}
                     </p>
                   </div>
                   <div
@@ -2113,7 +2147,7 @@ function App() {
                           background: "#4ade80",
                         }}
                       ></span>
-                      Simple & secure
+                      {mergeText.badge}
                     </div>
                   </div>
                 </div>
@@ -2138,7 +2172,7 @@ function App() {
                       fontWeight: 500,
                     }}
                   >
-                    Choose PDF files
+                    {mergeText.chooseFiles}
                   </div>
                   <label
                     style={{
@@ -2161,7 +2195,7 @@ function App() {
                     >
                       📄
                     </span>
-                    <span>Select PDFs</span>
+                    <span>{mergeText.selectPdfs}</span>
                     <input
                       ref={fileInputRef}
                       type="file"
@@ -2179,7 +2213,7 @@ function App() {
                       marginBottom: 0,
                     }}
                   >
-                    Up to {MAX_FILES} files • Total size ≤ {MAX_TOTAL_MB} MB
+                    {mergeText.fileLimit(MAX_FILES, MAX_TOTAL_MB)}
                   </p>
                 </div>
 
@@ -2196,13 +2230,13 @@ function App() {
                     }}
                   >
                     <div>
-                      Files selected:{" "}
+                      {mergeText.filesSelected}{" "}
                       <strong style={{ color: "#111827" }}>
                         {files.length}
                       </strong>
                     </div>
                     <div>
-                      Total size:{" "}
+                      {mergeText.totalSize}{" "}
                       <strong style={{ color: "#111827" }}>
                         {totalMB.toFixed(2)} MB
                       </strong>
@@ -2233,9 +2267,9 @@ function App() {
                       }}
                     >
                       <span style={{ fontWeight: 500, color: "#111827" }}>
-                        Reorder files
+                        {mergeText.reorderTitle}
                       </span>
-                      <span>Drag to change merge order</span>
+                      <span>{mergeText.reorderHint}</span>
                     </div>
                     <ul
                       style={{
@@ -2284,7 +2318,7 @@ function App() {
                               textAlign: "center",
                               color: "#9ca3af",
                             }}
-                            title="Drag to reorder"
+                            title={mergeText.dragHandle}
                           >
                             ☰
                           </span>
@@ -2337,7 +2371,7 @@ function App() {
                               cursor: "pointer",
                               padding: "0 6px",
                             }}
-                            title="Remove this file"
+                            title={mergeText.removeFile}
                           >
                             ✕
                           </button>
@@ -2380,7 +2414,7 @@ function App() {
                       color: "#6b7280",
                     }}
                   >
-                    Merges this session:{" "}
+                    {mergeText.usageLabel}{" "}
                     <strong style={{ color: "#111827" }}>
                       {usageCount}
                     </strong>
@@ -2408,7 +2442,7 @@ function App() {
                         minWidth: "80px",
                       }}
                     >
-                      Clear
+                      {mergeText.clear}
                     </button>
                     <button
                       onClick={handleMerge}
@@ -2435,7 +2469,7 @@ function App() {
                             : "0 10px 25px rgba(79,70,229,0.4)",
                       }}
                     >
-                      {isMerging ? "Merging..." : "Merge PDFs"}
+                      {isMerging ? mergeText.merging : mergeText.merge}
                     </button>
                   </div>
                 </div>
