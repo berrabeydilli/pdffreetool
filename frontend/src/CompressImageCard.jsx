@@ -175,11 +175,11 @@ export default function CompressImageCard() {
                 gap: "6px",
                 padding: "8px 14px",
                 borderRadius: "999px",
-                background: "#111827",
+                background: "linear-gradient(90deg, #2563eb, #60a5fa)",
                 color: "white",
                 fontSize: "12px",
                 cursor: "pointer",
-                boxShadow: "0 8px 20px rgba(15,23,42,0.35)",
+                boxShadow: "0 8px 18px rgba(37, 99, 235, 0.28)",
               }}
             >
               <span style={{ fontSize: "14px" }}>🖼️</span>
@@ -261,11 +261,11 @@ export default function CompressImageCard() {
                 padding: "10px 16px",
                 borderRadius: "10px",
                 border: "none",
-                background: "linear-gradient(90deg, #111827, #2563eb)",
+                background: "linear-gradient(90deg, #2563eb, #60a5fa)",
                 color: "white",
                 cursor: "pointer",
                 fontWeight: 700,
-                boxShadow: "0 12px 30px rgba(37, 99, 235, 0.35)",
+                boxShadow: "0 12px 26px rgba(37, 99, 235, 0.28)",
                 opacity: isProcessing ? 0.7 : 1,
               }}
             >
