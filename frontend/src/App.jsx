@@ -1,8 +1,13 @@
 import React, { useState, useRef } from "react";
 import AdsenseBanner from "./components/AdsenseBanner";
 import CompressCard from "./CompressCard";
+import CompressImageCard from "./CompressImageCard";
 import JpgToPdfCard from "./JpgToPdfCard";
 import PdfToJpgCard from "./PdfToJpgCard";
+import PdfToPngCard from "./PdfToPngCard";
+import SplitPdfCard from "./SplitPdfCard";
+import PdfToWordCard from "./PdfToWordCard";
+import WordToPdfCard from "./WordToPdfCard";
 
 const MAX_FILES = 10; // Max number of files
 const MAX_TOTAL_MB = 50; // Max total size (MB)
@@ -175,7 +180,7 @@ function App() {
               color: "#0f172a",
             }}
           >
-            Free Online PDF Tools – Merge, Compress, PDF ↔ JPG
+            Free Online PDF & Image Tools – Merge, Split, Convert
           </h1>
           <p
             style={{
@@ -186,9 +191,10 @@ function App() {
               marginBottom: "10px",
             }}
           >
-            Combine multiple PDF files, compress large documents, convert JPG
-            images into a polished PDF, or export PDF pages as JPGs. Fast,
-            secure, and completely free tools in your browser.
+            Combine or split PDFs, compress PDF and image files, convert images
+            into polished PDFs, export pages as JPG/PNG, and turn PDFs into
+            Word files (or back again). Fast, secure, and completely free tools
+            in your browser.
           </p>
           <ul
             style={{
@@ -289,8 +295,13 @@ function App() {
             >
               <option value="merge">Merge PDF</option>
               <option value="compress">Compress PDF</option>
-              <option value="jpgToPdf">JPG to PDF</option>
+              <option value="compressImage">Compress Image</option>
+              <option value="jpgToPdf">Images to PDF</option>
               <option value="pdfToJpg">PDF to JPG</option>
+              <option value="pdfToPng">PDF to PNG</option>
+              <option value="split">Split PDF</option>
+              <option value="pdfToWord">PDF to Word</option>
+              <option value="wordToPdf">Word to PDF</option>
             </select>
           </label>
         </div>
@@ -739,8 +750,13 @@ function App() {
         )}
 
         {activeTab === "compress" && <CompressCard />}
+        {activeTab === "compressImage" && <CompressImageCard />}
         {activeTab === "jpgToPdf" && <JpgToPdfCard />}
         {activeTab === "pdfToJpg" && <PdfToJpgCard />}
+        {activeTab === "pdfToPng" && <PdfToPngCard />}
+        {activeTab === "split" && <SplitPdfCard />}
+        {activeTab === "pdfToWord" && <PdfToWordCard />}
+        {activeTab === "wordToPdf" && <WordToPdfCard />}
 
         {/* Ads under tools */}
         <AdsenseBanner slot="3737459241" />
@@ -760,7 +776,7 @@ function App() {
               color: "#111827",
             }}
           >
-            Free Online PDF Tools – Merge, Compress & Convert JPGs
+            Free Online PDF & Image Tools – Merge, Split & Convert
           </h2>
 
           <p
