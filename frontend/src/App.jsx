@@ -405,6 +405,7 @@ function App() {
   const [error, setError] = useState("");
   const [dragIndex, setDragIndex] = useState(null);
   const [usageCount, setUsageCount] = useState(0);
+  const [activePage, setActivePage] = useState("home");
   const fileInputRef = useRef(null);
   const toolContentRef = useRef(null);
   const hasMountedRef = useRef(false);
@@ -425,6 +426,11 @@ function App() {
 
   const handleTabChange = (id) => {
     setActiveTab(id);
+  };
+
+  const handleNavigate = (page) => {
+    setActivePage(page);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const handleFileChange = (e) => {
@@ -519,6 +525,304 @@ function App() {
 
   const handleRemoveFile = (indexToRemove) => {
     setFiles((prev) => prev.filter((_, i) => i !== indexToRemove));
+  };
+
+  const renderNavLink = (page, label) => {
+    const isActive = activePage === page;
+
+    return (
+      <button
+        key={page}
+        onClick={() => handleNavigate(page)}
+        style={{
+          padding: "8px 12px",
+          borderRadius: "10px",
+          border: "1px solid" + (isActive ? " #4f46e5" : " #e5e7eb"),
+          background: isActive ? "#eef2ff" : "#ffffff",
+          color: isActive ? "#312e81" : "#374151",
+          fontWeight: 600,
+          fontSize: "13px",
+          cursor: "pointer",
+          boxShadow: isActive
+            ? "0 10px 24px rgba(79,70,229,0.18)"
+            : "0 4px 12px rgba(15,23,42,0.06)",
+          transition: "all 0.15s ease",
+        }}
+      >
+        {label}
+      </button>
+    );
+  };
+
+  const renderStaticPage = () => {
+    const cardStyle = {
+      background: "white",
+      borderRadius: "16px",
+      border: "1px solid #e5e7eb",
+      padding: "22px",
+      boxShadow: "0 18px 36px rgba(15,23,42,0.08)",
+      marginBottom: "14px",
+    };
+
+    const headingStyle = {
+      marginTop: 0,
+      marginBottom: "12px",
+      fontSize: "22px",
+      color: "#0f172a",
+    };
+
+    const paragraphStyle = {
+      marginTop: 0,
+      marginBottom: "12px",
+      color: "#4b5563",
+      lineHeight: 1.7,
+      fontSize: "14px",
+    };
+
+    const listStyle = {
+      paddingLeft: "18px",
+      marginTop: 0,
+      marginBottom: "12px",
+      color: "#4b5563",
+      fontSize: "14px",
+      lineHeight: 1.7,
+    };
+
+    switch (activePage) {
+      case "blog":
+        return (
+          <section style={cardStyle} aria-label="Kılavuz ve ipuçları sayfası">
+            <h2 style={headingStyle}>Blog / Kılavuz &amp; İpuçları</h2>
+            <p style={paragraphStyle}>
+              PDF ve görsel araçlarımızı en verimli şekilde kullanabilmeniz için uzun soluklu
+              bir rehber hazırladık. İster sözleşme, ister sunum, ister ürün kataloğu yönetin;
+              burada yer alan adımlar PDFFreeTool deneyiminizi hızlandırmak ve hatalardan
+              kaçınmak için tasarlandı. Tarayıcı içi işlem gücü sayesinde dosyalarınız
+              gizli kalır, siz de zaman kazanırsınız.
+            </p>
+            <h3 style={{ ...headingStyle, fontSize: "18px", marginBottom: "8px" }}>
+              Çalışma akışınızı sadeleştirmek için altın kurallar
+            </h3>
+            <ul style={listStyle}>
+              <li>
+                <strong>Önizleme alışkanlığı:</strong> Birleştirme, bölme ya da sayfa silme
+                işlemi öncesi dosyaları küçük birer notla adlandırın ve sıralamayı kontrol
+                edin. Yanlış sayfa silme veya tekrar eden görsellerin önüne geçersiniz.
+              </li>
+              <li>
+                <strong>Doğru format seçimi:</strong> Sunum görselleri için PNG çıktısı, sosyal
+                medya paylaşımları için JPG çıktısı tercih ederek kalite ve dosya boyutu
+                dengesini koruyun.
+              </li>
+              <li>
+                <strong>Hafifletme döngüsü:</strong> Büyük bir dosyayı paylaşmadan önce
+                <em>Compress PDF</em> aracını çalıştırın, ardından görüntü kalitesini kontrol
+                edip gerekiyorsa tekrar optimizasyon yapın.
+              </li>
+              <li>
+                <strong>Gizlilik notu:</strong> Tarayıcı içinde çalışan işlemler, projelerinizin
+                şirket dışına çıkmamasını sağlar. Ancak önemli sözleşmeleri işlerken yerel
+                bir kopya saklamayı alışkanlık hâline getirin.
+              </li>
+              <li>
+                <strong>Takım içi paylaşım:</strong> Birleştirilmiş ya da bölünmüş belgeleri
+                isimlendirirken versiyon numarası ekleyin (ör. "Teklif-v3.pdf"), böylece
+                karışıklık yaşamazsınız.
+              </li>
+            </ul>
+            <h3 style={{ ...headingStyle, fontSize: "18px", marginBottom: "8px" }}>
+              Senaryolara göre önerilen araç kombinasyonları
+            </h3>
+            <p style={paragraphStyle}>
+              Her aracın birlikte kullanıldığında sağladığı hız kazancını örneklerle
+              anlattık. Böylece aynı gün içinde birden fazla dosya tipiyle uğraşsanız bile
+              nereden başlayacağınızı bilirsiniz.
+            </p>
+            <ol style={{ ...listStyle, paddingLeft: "20px" }}>
+              <li>
+                <strong>Toplantı paketleri:</strong> Önce <em>Merge PDF</em> ile tüm raporları
+                bir araya getirin, ardından <em>Rotate Pages</em> ile yatay çizimleri düzeltip
+                <em>Compress PDF</em> ile paylaşılabilir hâle getirin.
+              </li>
+              <li>
+                <strong>Eğitim setleri:</strong> Telefon fotoğraflarını <em>Images to PDF</em>
+                içinde sıraya dizin, gerekirse <em>Delete Pages</em> ile boş sayfaları temizleyin
+                ve final dokümanı öğrencilerle paylaşmadan önce <em>PDF Reader</em> içinde
+                hızlıca gözden geçirin.
+              </li>
+              <li>
+                <strong>Ürün kataloğu:</strong> Tasarım sayfalarını PNG olarak dışa aktarın,
+                <em>PDF to PNG</em> ile şeffaf arka planlı görseller elde edin, web için
+                <em>Compress Image</em> ile optimize edin ve satış ekibine tek klasörde teslim
+                edin.
+              </li>
+              <li>
+                <strong>Hukuk ve sözleşmeler:</strong> Belgeyi bölmeden paylaşmak için önce
+                <em>Extract Pages</em> ile ilgili maddeleri seçin, ardından <em>Word to PDF</em>
+                ile güncel sürümleri sabitleyin. En sonunda <em>PDF to Word</em> ile gerekli
+                yerleri düzenleyip yeniden PDF'e çevirin.
+              </li>
+            </ol>
+            <p style={paragraphStyle}>
+              Kılavuzda yer alan öneriler, kullanıcı geri bildirimleriyle sık sık güncellenir.
+              Yeni bir ipucu görmek isterseniz <strong>İletişim</strong> sayfasındaki form
+              ipuçlarını kullanarak bize mesaj bırakabilirsiniz.
+            </p>
+          </section>
+        );
+      case "privacy":
+        return (
+          <section style={cardStyle} aria-label="Gizlilik politikası">
+            <h2 style={headingStyle}>Privacy Policy</h2>
+            <p style={paragraphStyle}>
+              PDFFreeTool tarayıcı içi çalışan bir dosya yönetimi deneyimi sunar. Bu sayfa,
+              kullanıcı verilerini nasıl işlediğimizi ve gizliliğinizi korumak için aldığımız
+              önlemleri açıklar. Kullandığınız araçlardan bağımsız olarak dosyalarınız sunucu
+              tarafında saklanmaz; işlemler mümkün olduğunca bellekte tamamlanır.
+            </p>
+            <h3 style={{ ...headingStyle, fontSize: "18px", marginBottom: "8px" }}>
+              Toplanan veriler ve kullanım amaçları
+            </h3>
+            <ul style={listStyle}>
+              <li>
+                <strong>Günlük kayıtları:</strong> Trafik seviyesini ölçmek için anonim
+                kullanım metrikleri tutulur; IP adresleri veya dosya adları kaydedilmez.
+              </li>
+              <li>
+                <strong>Çerezler:</strong> Zorunlu oturum çerezleri, dil tercihiniz veya
+                tekrar açtığınız araçları hatırlamak için kullanılır. Reklam çerezleri
+                yalnızca sizin onayınızla etkinleşir.
+              </li>
+              <li>
+                <strong>Üçüncü taraf entegrasyonları:</strong> Reklam sağlayıcıları yalnızca
+                sayfa görüntüleme istatistikleri alır; yüklediğiniz dosyalarla hiçbir
+                şekilde etkileşime geçmez.
+              </li>
+            </ul>
+            <h3 style={{ ...headingStyle, fontSize: "18px", marginBottom: "8px" }}>
+              Dosya güvenliği ve saklama
+            </h3>
+            <p style={paragraphStyle}>
+              Yüklediğiniz PDF veya görseller geçici bellekte işlenir ve indirme bağlantısı
+              oluşturulduktan sonra otomatik olarak temizlenir. Sunucuda tutulan tek veri,
+              kötüye kullanım tespitine yardımcı olan hata günlükleridir; bu günlükler dosya
+              içeriği içermez.
+            </p>
+            <ul style={listStyle}>
+              <li>İşlem tamamlandığında dosya parçaları bellekten silinir.</li>
+              <li>Şifreli veya gizli belgeler için yerel kopyalarınızı yedeklemenizi öneririz.</li>
+              <li>Paylaşılan cihazlarda tarayıcı geçmişini temizleyerek gizliliğinizi koruyun.</li>
+            </ul>
+            <h3 style={{ ...headingStyle, fontSize: "18px", marginBottom: "8px" }}>
+              Haklarınız
+            </h3>
+            <p style={paragraphStyle}>
+              Kullanım verilerinizin silinmesini veya anonimleştirilmesini talep etmek
+              istediğinizde bizimle iletişime geçebilirsiniz. Reklam tercihleri, tarayıcı
+              ayarları ve çerez yönetimi paneli üzerinden güncellenebilir.
+            </p>
+          </section>
+        );
+      case "terms":
+        return (
+          <section style={cardStyle} aria-label="Kullanım koşulları">
+            <h2 style={headingStyle}>Terms of Service</h2>
+            <p style={paragraphStyle}>
+              PDFFreeTool'ü kullanarak dosyalarınızı yasal düzenlemelere uygun şekilde
+              yönetmeyi kabul etmiş olursunuz. Araçlar, kişisel ve kurumsal kullanım için
+              sunulur; fikri mülkiyet ihlali veya hukuka aykırı içerik yüklenmesinden siz
+              sorumlusunuz.
+            </p>
+            <ol style={{ ...listStyle, paddingLeft: "20px" }}>
+              <li>
+                <strong>Sorumluluk sınırı:</strong> Tarayıcı içi işlenen dosyalarda veri
+                kaybı yaşanmaması için yedekleme yapmanız önerilir. Platformumuz, doğrudan
+                veya dolaylı zararlardan sorumlu tutulamaz.
+              </li>
+              <li>
+                <strong>Adil kullanım:</strong> Hizmeti otomatikleştiren botlar veya aşırı
+                istek gönderen sistemler tespit edildiğinde erişim sınırlanabilir.
+              </li>
+              <li>
+                <strong>İçerik bütünlüğü:</strong> Telif hakkı ihlali barındıran belgeler
+                yüklemek yasaktır. Şikâyet bildirildiğinde ilgili erişim engellenir.
+              </li>
+              <li>
+                <strong>Güncellemeler:</strong> Bu koşullar düzenli olarak güncellenir ve
+                duyurular footer'daki bağlantılar üzerinden paylaşılır.
+              </li>
+            </ol>
+            <p style={paragraphStyle}>
+              Hizmet, bakım çalışmaları sırasında kısa süreliğine erişilemez olabilir. Bu
+              durumlarda mevcut dosyalarınız tarayıcıda tutulur, işlem süreciniz bozulmaz;
+              sayfayı yenilediğinizde kaldığınız yerden devam edebilirsiniz.
+            </p>
+          </section>
+        );
+      case "about":
+        return (
+          <section style={cardStyle} aria-label="Hakkımızda sayfası">
+            <h2 style={headingStyle}>About</h2>
+            <p style={paragraphStyle}>
+              PDFFreeTool, PDF ve görsel düzenleme araçlarını tek çatı altında toplayan hafif
+              bir web uygulamasıdır. Tasarım prensibimiz, teknik detayları arka planda
+              tutarken kullanıcıyı anlaşılır adımlarla yönlendirmek üzerine kuruldu.
+            </p>
+            <p style={paragraphStyle}>
+              Ürün; React, Vite ve hızlı önbellek stratejileriyle inşa edildi. Tüm araçlar
+              tek sayfada toplanır ve bilgi kutucukları, hangi aracı neden seçmeniz
+              gerektiğini açıklayacak şekilde yazıldı. İçerik ekibi, SEO uyumlu başlıklar ve
+              AdSense ile uyumlu rehberlik metinleri hazırlayarak ziyaretçilerin her araçtan
+              önce bilgilendirilmesini sağladı.
+            </p>
+            <ul style={listStyle}>
+              <li>Dosyalarınızı cihazda tutan güvenli işlem akışları.</li>
+              <li>Çoklu dil desteği için hazır içerik yapısı ve rehber metinler.</li>
+              <li>Destek ekibine hızlı ulaşım için sade iletişim bölümü.</li>
+            </ul>
+            <p style={paragraphStyle}>
+              Önceliğimiz, herkesin ücretsiz ve erişilebilir araçlarla üretkenliğini
+              artırması. Bu vizyon doğrultusunda, yeni araç fikirlerini toplamak ve mevcut
+              deneyimi iyileştirmek için kullanıcı geri bildirimlerini düzenli olarak
+              inceliyoruz.
+            </p>
+          </section>
+        );
+      case "contact":
+        return (
+          <section style={cardStyle} aria-label="İletişim sayfası">
+            <h2 style={headingStyle}>Contact</h2>
+            <p style={paragraphStyle}>
+              Sorularınız, geri bildirimleriniz veya yeni araç önerileriniz için bizimle
+              iletişime geçmekten çekinmeyin. Aşağıdaki rehber, mesajınızı hazırlarken nelere
+              değinebileceğinizi anlatır ve destek sürecimizi hızlandırır.
+            </p>
+            <ul style={listStyle}>
+              <li>
+                <strong>Teknik destek:</strong> Hangi aracı kullandığınızı, dosya boyutunu ve
+                gördüğünüz hata mesajını ekleyin. Böylece sorunu daha hızlı yeniden
+                oluşturabiliriz.
+              </li>
+              <li>
+                <strong>Özellik talebi:</strong> Sürecinizi nasıl geliştireceğini düşündüğünüz
+                yeni araçları veya kısayolları anlatın. Kullanım senaryosu eklemek öncelik
+                belirlememize yardımcı olur.
+              </li>
+              <li>
+                <strong>İşbirliği:</strong> Entegrasyon veya içerik ortaklığı teklifleri için
+                şirket adınızı, iletişim bilgilerinizi ve beklentilerinizi paylaşın.
+              </li>
+            </ul>
+            <p style={paragraphStyle}>
+              Ayrıca <strong>destek@pdffreetool.com</strong> adresine e-posta göndererek ya da
+              sosyal medya hesaplarımız üzerinden bize ulaşabilirsiniz. Tüm mesajlara
+              mümkün olan en kısa sürede geri dönmeye çalışıyoruz.
+            </p>
+          </section>
+        );
+      default:
+        return null;
+    }
   };
 
   const handleDragStart = (index) => {
@@ -713,7 +1017,9 @@ function App() {
             marginBottom: "18px",
             display: "flex",
             alignItems: "center",
+            justifyContent: "space-between",
             gap: "12px",
+            flexWrap: "wrap",
           }}
         >
           <div
@@ -748,7 +1054,7 @@ function App() {
               PDF
             </div>
           </div>
-          <div>
+          <div style={{ flex: 1, minWidth: "240px" }}>
             <p
               style={{
                 margin: 0,
@@ -786,118 +1092,137 @@ function App() {
               with a clear description and practical tips so you can finish faster.
             </p>
           </div>
-        </header>
-
-        {/* Hero / Landing Text (SEO-friendly) */}
-        <section
-          style={{
-            marginBottom: "20px",
-            textAlign: "left",
-            background: "white",
-            borderRadius: "16px",
-            padding: "18px",
-            border: "1px solid #e5e7eb",
-            boxShadow: "0 12px 30px rgba(15,23,42,0.06)",
-          }}
-        >
-          <div
+          <nav
+            aria-label="Site navigation"
             style={{
               display: "flex",
               alignItems: "center",
-              gap: "10px",
+              gap: "8px",
               flexWrap: "wrap",
+              justifyContent: "flex-end",
+              minWidth: "240px",
             }}
           >
-            <h2
+            {renderNavLink("home", "Ana Sayfa")}
+            {renderNavLink("blog", "Kılavuz & İpuçları")}
+            {renderNavLink("privacy", "Privacy")}
+            {renderNavLink("terms", "Terms")}
+            {renderNavLink("about", "About")}
+            {renderNavLink("contact", "Contact")}
+          </nav>
+        </header>
+        {activePage === "home" ? (
+          <>
+            {/* Hero / Landing Text (SEO-friendly) */}
+            <section
               style={{
-                fontSize: "20px",
-                lineHeight: 1.25,
-                margin: 0,
-                color: "#0f172a",
+                marginBottom: "20px",
+                textAlign: "left",
+                background: "white",
+                borderRadius: "16px",
+                padding: "18px",
+                border: "1px solid #e5e7eb",
+                boxShadow: "0 12px 30px rgba(15,23,42,0.06)",
               }}
             >
-              Online PDF and image tools
-            </h2>
-            <span
-              style={{
-                padding: "6px 10px",
-                background: "#ecfdf3",
-                color: "#15803d",
-                borderRadius: "12px",
-                fontSize: "12px",
-                fontWeight: 700,
-                letterSpacing: "0.02em",
-              }}
-            >
-              Ad-friendly content
-            </span>
-          </div>
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "10px",
+                  flexWrap: "wrap",
+                }}
+              >
+                <h2
+                  style={{
+                    fontSize: "20px",
+                    lineHeight: 1.25,
+                    margin: 0,
+                    color: "#0f172a",
+                  }}
+                >
+                  Online PDF and image tools
+                </h2>
+                <span
+                  style={{
+                    padding: "6px 10px",
+                    background: "#ecfdf3",
+                    color: "#15803d",
+                    borderRadius: "12px",
+                    fontSize: "12px",
+                    fontWeight: 700,
+                    letterSpacing: "0.02em",
+                  }}
+                >
+                  Ad-friendly content
+                </span>
+              </div>
 
-          <p
-            style={{
-              fontSize: "14px",
-              color: "#4b5563",
-              maxWidth: "780px",
-              margin: 0,
-              marginTop: "8px",
-              marginBottom: "10px",
-              lineHeight: 1.6,
-            }}
-          >
-            Merge, compress, rotate, convert, and read PDFs all in one place. Our
-            rich menu keeps every tool informative, user-friendly, and compliant
-            with AdSense guidelines so visitors see helpful content.
-          </p>
-          <ul
-            style={{
-              display: "flex",
-              flexWrap: "wrap",
-              gap: "10px",
-              padding: 0,
-              margin: 0,
-              marginTop: "6px",
-              listStyle: "none",
-              fontSize: "12px",
-              color: "#374151",
-            }}
-          >
-            <li
-              style={{
-                padding: "4px 10px",
-                borderRadius: "999px",
-                background: "#eef2ff",
-                color: "#4f46e5",
-                fontWeight: 500,
-              }}
-            >
-              ✅ Drag & drop reorder
-            </li>
-            <li
-              style={{
-                padding: "4px 10px",
-                borderRadius: "999px",
-                background: "#ecfdf5",
-                color: "#15803d",
-                fontWeight: 500,
-              }}
-            >
-              ✅ Files processed in memory
-            </li>
-            <li
-              style={{
-                padding: "4px 10px",
-                borderRadius: "999px",
-                background: "#fefce8",
-                color: "#92400e",
-                fontWeight: 500,
-              }}
-            >
-              ✅ No registration required
-            </li>
-          </ul>
-        </section>
+              <p
+                style={{
+                  fontSize: "14px",
+                  color: "#4b5563",
+                  maxWidth: "780px",
+                  margin: 0,
+                  marginTop: "8px",
+                  marginBottom: "10px",
+                  lineHeight: 1.6,
+                }}
+              >
+                Merge, compress, rotate, convert, and read PDFs all in one place. Our
+                rich menu keeps every tool informative, user-friendly, and compliant
+                with AdSense guidelines so visitors see helpful content.
+              </p>
+              <ul
+                style={{
+                  display: "flex",
+                  flexWrap: "wrap",
+                  gap: "10px",
+                  padding: 0,
+                  margin: 0,
+                  marginTop: "6px",
+                  listStyle: "none",
+                  fontSize: "12px",
+                  color: "#374151",
+                }}
+              >
+                <li
+                  style={{
+                    padding: "4px 10px",
+                    borderRadius: "999px",
+                    background: "#eef2ff",
+                    color: "#4f46e5",
+                    fontWeight: 500,
+                  }}
+                >
+                  ✅ Drag & drop reorder
+                </li>
+                <li
+                  style={{
+                    padding: "4px 10px",
+                    borderRadius: "999px",
+                    background: "#ecfdf5",
+                    color: "#15803d",
+                    fontWeight: 500,
+                  }}
+                >
+                  ✅ Files processed in memory
+                </li>
+                <li
+                  style={{
+                    padding: "4px 10px",
+                    borderRadius: "999px",
+                    background: "#fefce8",
+                    color: "#92400e",
+                    fontWeight: 500,
+                  }}
+                >
+                  ✅ No registration required
+                </li>
+              </ul>
+            </section>
 
-        {/* Tool navigation menu */}
+            {/* Tool navigation menu */}
         <section
           aria-label="PDF tool menu"
           style={{
@@ -1809,16 +2134,62 @@ function App() {
             <li>Our mission is to keep these tools fast, private, and easy to use.</li>
           </ul>
         </section>
+          </>
+        ) : (
+          renderStaticPage()
+        )}
 
         <footer
           style={{
             marginTop: "12px",
-            fontSize: "11px",
-            color: "#9ca3af",
+            fontSize: "12px",
+            color: "#6b7280",
             textAlign: "center",
+            background: "white",
+            borderRadius: "12px",
+            border: "1px solid #e5e7eb",
+            padding: "12px 10px",
+            boxShadow: "0 8px 20px rgba(15,23,42,0.06)",
+            display: "grid",
+            gap: "6px",
           }}
         >
-          © 2025 PDFFreeTool All rights reserved.
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              gap: "12px",
+              flexWrap: "wrap",
+              fontWeight: 600,
+              fontSize: "12px",
+            }}
+          >
+            <button
+              onClick={() => handleNavigate("privacy")}
+              style={{ border: "none", background: "none", color: "#2563eb", cursor: "pointer" }}
+            >
+              Privacy Policy
+            </button>
+            <button
+              onClick={() => handleNavigate("terms")}
+              style={{ border: "none", background: "none", color: "#2563eb", cursor: "pointer" }}
+            >
+              Terms of Service
+            </button>
+            <button
+              onClick={() => handleNavigate("about")}
+              style={{ border: "none", background: "none", color: "#2563eb", cursor: "pointer" }}
+            >
+              About
+            </button>
+            <button
+              onClick={() => handleNavigate("contact")}
+              style={{ border: "none", background: "none", color: "#2563eb", cursor: "pointer" }}
+            >
+              Contact
+            </button>
+          </div>
+          <div>© 2025 PDFFreeTool. All rights reserved.</div>
         </footer>
       </main>
     </div>
