@@ -2,7 +2,61 @@ import React, { useState, useRef } from "react";
 
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:4000";
 
-export default function CompressCard() {
+const TEXT = {
+  en: {
+    ariaLabel: "Compress PDF tool",
+    badge: "Compress PDF file size",
+    title: "Compress PDF files online",
+    description:
+      "Upload a PDF and download a smaller, optimized version. Great for email attachments and uploads.",
+    choosePrompt: "Choose a PDF to compress",
+    selectLabel: "Select PDF",
+    selectedFileLabel: "Selected",
+    selectedFileNote: "Selected file:",
+    noFile: "No PDF selected",
+    selectedLabel: "Files selected:",
+    totalSizeLabel: "Total size:",
+    sizeLabel: "Size:",
+    singleFileNote: "Only one PDF file at a time.",
+    clear: "Clear",
+    compress: "Compress PDF",
+    compressing: "Compressing...",
+    errors: {
+      pdfOnly: "Please select PDF files only.",
+      noneSelected: "Please select a PDF file to compress.",
+      generic: "Something went wrong.",
+      failed: "Failed to compress PDF.",
+    },
+  },
+  tr: {
+    ariaLabel: "PDF sıkıştırma aracı",
+    badge: "PDF dosya boyutunu küçült",
+    title: "PDF'leri çevrimiçi sıkıştır",
+    description:
+      "Bir PDF yükleyin ve daha küçük, optimize edilmiş halini indirin. E-posta ekleri ve yüklemeler için idealdir.",
+    choosePrompt: "Sıkıştırmak için bir PDF seçin",
+    selectLabel: "PDF seç",
+    selectedFileLabel: "Seçilen",
+    selectedFileNote: "Seçilen dosya:",
+    noFile: "PDF seçilmedi",
+    selectedLabel: "Seçilen dosya sayısı:",
+    totalSizeLabel: "Toplam boyut:",
+    sizeLabel: "Boyut:",
+    singleFileNote: "Tek seferde yalnızca bir PDF seçebilirsiniz.",
+    clear: "Temizle",
+    compress: "PDF'yi sıkıştır",
+    compressing: "Sıkıştırılıyor...",
+    errors: {
+      pdfOnly: "Lütfen sadece PDF dosyaları seçin.",
+      noneSelected: "Lütfen sıkıştırmak için bir PDF dosyası seçin.",
+      generic: "Bir şeyler yanlış gitti.",
+      failed: "PDF sıkıştırma başarısız oldu.",
+    },
+  },
+};
+
+export default function CompressCard({ language = "en" }) {
+  const t = TEXT[language] || TEXT.en;
   const [file, setFile] = useState(null);
   const [isCompressing, setIsCompressing] = useState(false);
   const [error, setError] = useState("");
@@ -17,7 +71,7 @@ export default function CompressCard() {
     }
 
     if (selected.type !== "application/pdf") {
-      setError("Please select a PDF file.");
+      setError(t.errors.pdfOnly);
       setFile(null);
       return;
     }
@@ -36,7 +90,7 @@ export default function CompressCard() {
   const handleCompress = async () => {
     setError("");
     if (!file) {
-      setError("Please select a PDF file to compress.");
+      setError(t.errors.noneSelected);
       return;
     }
 
@@ -53,7 +107,7 @@ export default function CompressCard() {
 
       if (!res.ok) {
         const data = await res.json().catch(() => ({}));
-        throw new Error(data.error || "Something went wrong.");
+        throw new Error(data.error || t.errors.generic);
       }
 
       const blob = await res.blob();
@@ -68,7 +122,7 @@ export default function CompressCard() {
       window.URL.revokeObjectURL(url);
     } catch (err) {
       console.error(err);
-      setError(err.message || "Failed to compress PDF.");
+      setError(err.message || t.errors.failed);
     } finally {
       setIsCompressing(false);
     }
@@ -76,7 +130,7 @@ export default function CompressCard() {
 
   return (
     <section
-      aria-label="Compress PDF tool"
+      aria-label={t.ariaLabel}
       style={{
         marginBottom: "28px",
         marginTop: "24px",
@@ -135,7 +189,7 @@ export default function CompressCard() {
                     background: "#22c55e",
                   }}
                 ></span>
-                Compress PDF file size
+                {t.badge}
               </div>
               <h2
                 style={{
@@ -145,7 +199,7 @@ export default function CompressCard() {
                   color: "#0f172a",
                 }}
               >
-                Compress PDF files online
+                {t.title}
               </h2>
               <p
                 style={{
@@ -154,8 +208,7 @@ export default function CompressCard() {
                   fontSize: "13px",
                 }}
               >
-                Upload a PDF and download a smaller, optimized version. Great
-                for email attachments and uploads.
+                {t.description}
               </p>
             </div>
           </div>
@@ -180,7 +233,7 @@ export default function CompressCard() {
                 fontWeight: 500,
               }}
             >
-              Choose a PDF to compress
+              {t.choosePrompt}
             </div>
             <label
               style={{
@@ -197,7 +250,7 @@ export default function CompressCard() {
               }}
             >
               <span style={{ fontSize: "14px" }}>📄</span>
-              <span>Select PDF</span>
+              <span>{t.selectLabel}</span>
               <input
                 ref={fileInputRef}
                 type="file"
@@ -214,7 +267,7 @@ export default function CompressCard() {
                 marginBottom: 0,
               }}
             >
-              Only one PDF file at a time.
+              {t.singleFileNote}
             </p>
           </div>
 
@@ -230,11 +283,11 @@ export default function CompressCard() {
               }}
             >
               <div>
-                Selected file:{" "}
+                {t.selectedFileNote}{" "}
                 <strong style={{ color: "#111827" }}>{file.name}</strong>
               </div>
               <div>
-                Size:{" "}
+                {t.sizeLabel}{" "}
                 <strong style={{ color: "#111827" }}>
                   {(file.size / 1024 / 1024).toFixed(2)} MB
                 </strong>
@@ -280,7 +333,7 @@ export default function CompressCard() {
                 minWidth: "80px",
               }}
             >
-              Clear
+              {t.clear}
             </button>
             <button
               onClick={handleCompress}
@@ -301,7 +354,7 @@ export default function CompressCard() {
                     : "0 10px 25px rgba(22,163,74,0.4)",
               }}
             >
-              {isCompressing ? "Compressing..." : "Compress PDF"}
+              {isCompressing ? t.compressing : t.compress}
             </button>
           </div>
         </div>
