@@ -433,6 +433,10 @@ function App() {
   const [dragIndex, setDragIndex] = useState(null);
   const [usageCount, setUsageCount] = useState(0);
   const [activePage, setActivePage] = useState("home");
+  const [themeMode, setThemeMode] = useState(() => {
+    if (typeof window === "undefined") return "light";
+    return localStorage.getItem("pdffreetool-theme") || "light";
+  });
   const [showCookieBanner, setShowCookieBanner] = useState(false);
   const fileInputRef = useRef(null);
   const toolContentRef = useRef(null);
@@ -459,6 +463,11 @@ function App() {
       setShowCookieBanner(true);
     }
   }, []);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    localStorage.setItem("pdffreetool-theme", themeMode);
+  }, [themeMode]);
 
   const handleTabChange = (id) => {
     setActiveTab(id);
@@ -1109,6 +1118,8 @@ function App() {
         boxSizing: "border-box",
         fontFamily:
           '-apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif',
+        filter: themeMode === "dark" ? "invert(1) hue-rotate(180deg)" : "none",
+        transition: "filter 180ms ease",
       }}
     >
       <main
@@ -1215,6 +1226,68 @@ function App() {
             {renderNavLink("terms", "Terms")}
             {renderNavLink("about", "About")}
             {renderNavLink("contact", "Contact")}
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "6px",
+                padding: "6px 8px",
+                borderRadius: "12px",
+                border: "1px solid #e5e7eb",
+                background: "#ffffff",
+                boxShadow: "0 6px 16px rgba(15,23,42,0.05)",
+              }}
+            >
+              <span style={{ fontSize: "12px", color: "#374151", fontWeight: 600 }}>
+                Theme
+              </span>
+              <button
+                type="button"
+                onClick={() => setThemeMode("light")}
+                style={{
+                  padding: "6px 10px",
+                  borderRadius: "10px",
+                  border: themeMode === "light" ? "1px solid #4f46e5" : "1px solid #e5e7eb",
+                  background:
+                    themeMode === "light"
+                      ? "linear-gradient(180deg, #eef2ff, #e0e7ff)"
+                      : "white",
+                  color: "#111827",
+                  fontWeight: 700,
+                  cursor: "pointer",
+                  boxShadow:
+                    themeMode === "light"
+                      ? "0 8px 18px rgba(79,70,229,0.18)"
+                      : "0 4px 10px rgba(15,23,42,0.05)",
+                  transition: "all 0.15s ease",
+                }}
+              >
+                Light
+              </button>
+              <button
+                type="button"
+                onClick={() => setThemeMode("dark")}
+                style={{
+                  padding: "6px 10px",
+                  borderRadius: "10px",
+                  border: themeMode === "dark" ? "1px solid #0f172a" : "1px solid #e5e7eb",
+                  background:
+                    themeMode === "dark"
+                      ? "linear-gradient(180deg, #0f172a, #111827)"
+                      : "white",
+                  color: themeMode === "dark" ? "#e5e7eb" : "#111827",
+                  fontWeight: 700,
+                  cursor: "pointer",
+                  boxShadow:
+                    themeMode === "dark"
+                      ? "0 10px 20px rgba(15,23,42,0.4)"
+                      : "0 4px 10px rgba(15,23,42,0.05)",
+                  transition: "all 0.15s ease",
+                }}
+              >
+                Dark
+              </button>
+            </div>
           </nav>
         </header>
         {activePage === "home" ? (
