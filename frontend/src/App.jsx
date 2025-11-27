@@ -892,9 +892,9 @@ function App() {
               </li>
             </ul>
             <p style={paragraphStyle}>
-              You can also email <strong>destek@pdffreetool.com</strong> or reach us through
-              our social media accounts. We try to respond to all messages as quickly as
-              possible.
+              You can also email <strong>support@pdffreetool.com</strong> or reach us
+              through our social media accounts. We try to respond to all messages as
+              quickly as possible.
             </p>
           </section>
         );
