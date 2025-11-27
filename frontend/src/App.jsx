@@ -649,6 +649,359 @@ const TRANSLATIONS = {
   },
 };
 
+const PAGE_CONTENT = {
+  blog: {
+    en: {
+      title: "Blog / Guide & Tips",
+      intro:
+        "We put together a long-form guide to help you use our PDF and image tools as efficiently as possible. Whether you're managing a contract, a presentation, or a product catalog, the steps here are designed to speed up your PDFFreeTool experience and help you avoid mistakes. Because everything runs in your browser, your files stay private while you save time.",
+      goldenRulesTitle: "Golden rules to streamline your workflow",
+      goldenRules: [
+        {
+          label: "Preview habit",
+          text:
+            "Before merging, splitting, or deleting pages, name files with small notes and double-check the order. You'll avoid deleting the wrong page or repeating images.",
+        },
+        {
+          label: "Right format choice",
+          text:
+            "Prefer PNG output for presentation visuals and JPG output for social posts to balance quality and file size.",
+        },
+        {
+          label: "Lightweight compression loop",
+          text:
+            "Run Compress PDF before sharing a large file, then check image quality and re-optimize if needed.",
+        },
+        {
+          label: "Privacy note",
+          text:
+            "Browser-based processing keeps your projects from leaving the company, but make it a habit to store a local copy when handling important contracts.",
+        },
+        {
+          label: "Internal sharing",
+          text:
+            "When naming merged or split documents, add a version number (e.g., \"Proposal-v3.pdf\") so nothing gets mixed up.",
+        },
+      ],
+      recommendedTitle: "Recommended tool combinations by scenario",
+      recommendedIntro:
+        "We illustrated the time savings each tool provides when combined. That way, even if you handle multiple file types in the same day, you'll know where to start.",
+      recommended: [
+        {
+          label: "Meeting packets",
+          body: (
+            <>
+              First gather all reports with <em>Merge PDF</em>, then straighten landscape diagrams with <em>Rotate Pages</em> and make them share-ready with <em>Compress PDF</em>.
+            </>
+          ),
+        },
+        {
+          label: "Training kits",
+          body: (
+            <>
+              Line up phone photos in <em>Images to PDF</em>, clear empty pages with <em>Delete Pages</em> if needed, and quickly review the final document in <em>PDF Reader</em> before sharing it with students.
+            </>
+          ),
+        },
+        {
+          label: "Product catalog",
+          body: (
+            <>
+              Export design pages as PNG, get transparent-background assets with <em>PDF to PNG</em>, optimize them for the web using <em>Compress Image</em>, and deliver them to the sales team in one folder.
+            </>
+          ),
+        },
+        {
+          label: "Legal and contracts",
+          body: (
+            <>
+              To share without splitting the document, first select relevant clauses with <em>Extract Pages</em>, lock in the latest versions with <em>Word to PDF</em>, and finally edit needed sections with <em>PDF to Word</em> before converting back to PDF.
+            </>
+          ),
+        },
+      ],
+      closing:
+        "The recommendations in this guide are frequently updated based on user feedback. If you'd like to see a new tip, use the hints on the Contact page to leave us a message.",
+    },
+    tr: {
+      title: "Blog / Rehber ve İpuçları",
+      intro:
+        "PDF ve görsel araçlarımızı olabildiğince verimli kullanmanız için ayrıntılı bir rehber hazırladık. İster sözleşme, ister sunum, ister ürün kataloğu yönetin; buradaki adımlar PDFFreeTool deneyiminizi hızlandırmak ve hataları önlemek için tasarlandı. Tüm işlemler tarayıcınızda çalıştığı için dosyalarınız gizli kalırken zaman kazanırsınız.",
+      goldenRulesTitle: "İş akışınızı hızlandıran altın kurallar",
+      goldenRules: [
+        {
+          label: "Ön izleme alışkanlığı",
+          text:
+            "Birleştirme, bölme veya sayfa silme öncesinde dosyaları kısa notlarla adlandırın ve sıralamayı kontrol edin. Böylece yanlış sayfayı silmez veya görselleri tekrar etmezsiniz.",
+        },
+        {
+          label: "Doğru format seçimi",
+          text:
+            "Sunum görselleri için PNG, sosyal medya paylaşımları için JPG çıktıyı tercih ederek kalite ve boyut dengesini koruyun.",
+        },
+        {
+          label: "Hafif sıkıştırma döngüsü",
+          text:
+            "Büyük bir dosyayı paylaşmadan önce PDF Sıkıştır'ı çalıştırın, ardından görsel kalitesini kontrol edip gerekirse yeniden optimize edin.",
+        },
+        {
+          label: "Gizlilik notu",
+          text:
+            "Tarayıcı tabanlı işlem projelerinizin şirket dışına çıkmasını önler, ancak önemli sözleşmeleri işlerken yerel kopya saklamayı alışkanlık haline getirin.",
+        },
+        {
+          label: "İç paylaşım",
+          text:
+            "Birleştirilmiş veya bölünmüş dosyaları adlandırırken sürüm numarası ekleyin (örn. \"Teklif-v3.pdf\") ki hiçbir şey karışmasın.",
+        },
+      ],
+      recommendedTitle: "Senaryolara göre önerilen araç kombinasyonları",
+      recommendedIntro:
+        "Birlikte kullanıldığında her aracın sağladığı zaman kazancını örneklerle gösterdik. Böylece aynı gün birden fazla dosya türüyle çalışsanız bile nereden başlayacağınızı bilirsiniz.",
+      recommended: [
+        {
+          label: "Toplantı paketleri",
+          body: (
+            <>
+              Önce tüm raporları <em>PDF Birleştir</em> ile toplayın, yatay diyagramları <em>Sayfaları Döndür</em> ile düzeltin ve <em>PDF Sıkıştır</em> ile paylaşmaya hazır hale getirin.
+            </>
+          ),
+        },
+        {
+          label: "Eğitim setleri",
+          body: (
+            <>
+              Telefon fotoğraflarını <em>Görsellerden PDF</em> aracında sıralayın, gerekirse <em>Sayfa Sil</em> ile boş sayfaları temizleyin ve paylaşmadan önce son hali <em>PDF Okuyucu</em> içinde hızla kontrol edin.
+            </>
+          ),
+        },
+        {
+          label: "Ürün kataloğu",
+          body: (
+            <>
+              Tasarım sayfalarını PNG olarak dışa aktarın, şeffaf arka planlı görselleri <em>PDF'den PNG'ye</em> ile alın, <em>Görsel Sıkıştır</em> ile web'e uygun hale getirin ve satış ekibine tek klasörde iletin.
+            </>
+          ),
+        },
+        {
+          label: "Hukuk ve sözleşmeler",
+          body: (
+            <>
+              Belgeyi bölmeden paylaşmak için önce ilgili maddeleri <em>Sayfa Çıkar</em> ile seçin, son sürümleri <em>Word'den PDF'ye</em> ile sabitleyin, ihtiyaç olan bölümleri <em>PDF'den Word'e</em> ile düzenleyip tekrar PDF'e dönüştürün.
+            </>
+          ),
+        },
+      ],
+      closing:
+        "Bu rehberdeki öneriler kullanıcı geri bildirimlerine göre sık sık güncellenir. Yeni bir ipucu görmek isterseniz, İletişim sayfasındaki yönergeleri kullanarak bize mesaj bırakabilirsiniz.",
+    },
+  },
+  privacy: {
+    en: {
+      title: "Privacy Policy",
+      intro:
+        "PDFFreeTool offers an in-browser file management experience. This page explains how we process user data and the measures we take to protect your privacy. Regardless of which tool you use, your files are not stored server-side; processing is completed in memory whenever possible.",
+      dataTitle: "Data we collect and why we use it",
+      dataPoints: [
+        "Log entries: Anonymous usage metrics are kept to measure traffic levels; IP addresses or file names are not recorded.",
+        "Cookies: Required session cookies remember your language preference or the tools you reopen. Advertising cookies activate only with your consent.",
+        "Third-party integrations: Ad providers receive only page-view statistics and never interact with the files you upload.",
+      ],
+      analytics:
+        "We use third-party vendors, including Google, that use cookies to serve ads based on your prior visits to this and other websites. These partners receive anonymized analytics so they can show relevant messages without touching the documents you process here.",
+      optOut:
+        "Users may opt out of personalised advertising by visiting Google Ads Settings or updating consent preferences in the cookie notice on this site.",
+      securityTitle: "File security and retention",
+      securityBody:
+        "Uploaded PDFs or images are processed in temporary memory and are automatically cleared after the download link is created. The only data kept on the server is error logs that help detect abuse; these logs do not include file contents.",
+      securityList: [
+        "File fragments are removed from memory when processing finishes.",
+        "For encrypted or confidential documents, we recommend backing up your local copies.",
+        "On shared devices, clear your browser history to protect your privacy.",
+      ],
+      rightsTitle: "Your rights",
+      rightsBody:
+        "You can contact us when you want to request deletion or anonymization of your usage data. Ad preferences can be updated through your browser settings and the cookie management panel.",
+    },
+    tr: {
+      title: "Gizlilik Politikası",
+      intro:
+        "PDFFreeTool tarayıcı içinde dosya yönetim deneyimi sunar. Bu sayfa kullanıcı verilerini nasıl işlediğimizi ve gizliliğinizi korumak için aldığımız önlemleri açıklar. Hangi aracı kullanırsanız kullanın, dosyalarınız sunucuda saklanmaz; işlemler mümkün olduğunca bellekte tamamlanır.",
+      dataTitle: "Topladığımız veriler ve kullanım amaçları",
+      dataPoints: [
+        "Günlük kayıtları: Trafik seviyesini ölçmek için anonim kullanım metrikleri tutulur; IP adresleri veya dosya adları kaydedilmez.",
+        "Çerezler: Zorunlu oturum çerezleri dil tercihinizi veya yeniden açtığınız araçları hatırlar. Reklam çerezleri yalnızca onayınızla etkinleşir.",
+        "Üçüncü taraf entegrasyonları: Reklam sağlayıcıları yalnızca sayfa görüntüleme istatistikleri alır ve yüklediğiniz dosyalarla etkileşime geçmez.",
+      ],
+      analytics:
+        "Google dahil üçüncü taraf sağlayıcılar, bu ve diğer sitelere önceki ziyaretlerinize göre reklam sunmak için çerez kullanır. Bu ortaklar, burada işlediğiniz belgelere dokunmadan ilgili mesajlar gösterebilmek için anonimleştirilmiş analizler alır.",
+      optOut:
+        "Kişiselleştirilmiş reklamları Google Ads Ayarları üzerinden veya sitedeki çerez bildiriminde tercihlerinizi güncelleyerek devre dışı bırakabilirsiniz.",
+      securityTitle: "Dosya güvenliği ve saklama",
+      securityBody:
+        "Yüklenen PDF veya görseller geçici bellekte işlenir ve indirme bağlantısı oluşturulduktan sonra otomatik olarak temizlenir. Sunucuda yalnızca kötüye kullanımı tespit etmeye yarayan hata kayıtları tutulur; bu kayıtlar dosya içeriği içermez.",
+      securityList: [
+        "İşlem tamamlandığında dosya parçaları bellekten kaldırılır.",
+        "Şifreli veya gizli belgeler için yerel kopyalarınızı yedeklemenizi öneririz.",
+        "Paylaşılan cihazlarda gizliliğinizi korumak için tarayıcı geçmişini temizleyin.",
+      ],
+      rightsTitle: "Haklarınız",
+      rightsBody:
+        "Kullanım verilerinizin silinmesini veya anonimleştirilmesini talep etmek istediğinizde bizimle iletişime geçebilirsiniz. Reklam tercihlerinizi tarayıcı ayarları ve çerez yönetim paneli üzerinden güncelleyebilirsiniz.",
+    },
+  },
+  terms: {
+    en: {
+      title: "Terms of Service",
+      intro:
+        "By using PDFFreeTool, you agree to manage your files in compliance with legal regulations. The tools are provided for personal and business use; you are responsible for uploading any content that infringes intellectual property or violates the law.",
+      points: [
+        "Limitation of liability: Back up your data to avoid loss in browser-processed files. Our platform cannot be held liable for direct or indirect damages.",
+        "Fair use: Access may be limited if bots or systems sending excessive requests are detected.",
+        "Content integrity: Uploading documents that infringe copyright is prohibited. Access to reported items will be blocked.",
+        "Updates: These terms are updated regularly and announcements are shared through the links in the footer.",
+      ],
+      maintenance:
+        "The service may be briefly unavailable during maintenance. In these cases, your current files remain in the browser and your workflow stays intact; refresh the page to pick up where you left off.",
+    },
+    tr: {
+      title: "Hizmet Şartları",
+      intro:
+        "PDFFreeTool'u kullanarak dosyalarınızı yasal düzenlemelere uygun şekilde yönetmeyi kabul edersiniz. Araçlar kişisel ve ticari kullanım için sunulur; telif hakkını ihlal eden veya yasaları çiğneyen içerikleri yüklemek sizin sorumluluğunuzdadır.",
+      points: [
+        "Sorumluluk sınırlaması: Tarayıcıda işlenen dosyalarda veri kaybı yaşamamak için yedek alın. Platformumuz doğrudan veya dolaylı zararlardan sorumlu tutulamaz.",
+        "Adil kullanım: Aşırı istek gönderen botlar veya sistemler tespit edilirse erişim sınırlandırılabilir.",
+        "İçerik bütünlüğü: Telif hakkını ihlal eden belgeleri yüklemek yasaktır. Bildirilen öğelere erişim engellenecektir.",
+        "Güncellemeler: Bu şartlar düzenli olarak güncellenir ve duyurular alt kısımdaki bağlantılar aracılığıyla paylaşılır.",
+      ],
+      maintenance:
+        "Hizmet bakım sırasında kısa süreliğine kullanılamayabilir. Bu durumlarda mevcut dosyalarınız tarayıcıda kalır ve iş akışınız bozulmaz; kaldığınız yerden devam etmek için sayfayı yenileyin.",
+    },
+  },
+  faq: {
+    en: {
+      title: "Frequently Asked Questions",
+      intro:
+        "Here is a detailed overview of the most common questions people ask about PDFFreeTool. These answers focus on the merge tool but also cover how we handle your data and how the experience works across devices. If you need more help, visit the Contact page and share your scenario so we can expand this guide further.",
+      mergeTitle: "Merge PDF specifics",
+      mergeItems: [
+        {
+          question: "Is this PDF merge tool free?",
+          answer:
+            "Yes. You can merge your PDF files for free with no account or subscription required. There are no watermarks or hidden limits beyond the standard upload caps shown on the homepage.",
+        },
+        {
+          question: "Is it safe to upload my documents?",
+          answer:
+            "Your files are processed in memory on the server and are not stored permanently. We do not keep a copy of your merged PDF, and temporary processing buffers are cleared automatically after the download is prepared.",
+        },
+        {
+          question: "Does this work on mobile?",
+          answer:
+            "Yes. The tool works in any modern browser, including mobile browsers on Android and iOS. You can drag to reorder on touchscreens, and the interface adapts to small screens so you do not lose visibility of your file list.",
+        },
+      ],
+      tipsTitle: "Extra tips and troubleshooting",
+      tips: [
+        "Upload guidance: Keep individual files under the size limit shown on the tool and avoid encrypted PDFs when possible; password-protected files may need to be unlocked before merging.",
+        "Ordering pages: Use the drag handle on each file row to set the exact order you want before merging. If you upload more than once, newer files will appear at the end of the list.",
+        "Slow connections: On weaker networks, try compressing large PDFs first to speed up the upload step. You can always merge and then compress again if needed.",
+        "Sharing results: After merging, rename the downloaded file with a clear version number (for example, Project-Proposal-v2.pdf) so teammates know which file to open.",
+      ],
+      closing:
+        "We continue to expand this FAQ based on feedback. If there is a question we have not covered yet, send us a short note with the tool you used, your device type, and what you were trying to achieve. We will use that information to improve this help page for everyone.",
+    },
+    tr: {
+      title: "Sık Sorulan Sorular",
+      intro:
+        "PDFFreeTool hakkında en sık sorulan soruların ayrıntılı özetini burada bulabilirsiniz. Yanıtlar ağırlıklı olarak birleştirme aracına odaklanır ancak verilerinizi nasıl işlediğimizi ve deneyimin cihazlar arasında nasıl çalıştığını da açıklar. Daha fazla yardıma ihtiyacınız olursa İletişim sayfasına gidip senaryonuzu paylaşın, bu rehberi genişletelim.",
+      mergeTitle: "PDF Birleştirme ayrıntıları",
+      mergeItems: [
+        {
+          question: "Bu PDF birleştirme aracı ücretsiz mi?",
+          answer:
+            "Evet. PDF dosyalarınızı hesap veya abonelik gerekmeden ücretsiz birleştirebilirsiniz. Ana sayfada gösterilen standart yükleme sınırları dışında filigran veya gizli kısıtlama yoktur.",
+        },
+        {
+          question: "Belgelerimi yüklemek güvenli mi?",
+          answer:
+            "Dosyalarınız sunucuda bellekte işlenir ve kalıcı olarak saklanmaz. Birleştirilmiş PDF'inizin kopyasını tutmayız, indirme hazırlanırken geçici işleme tamponları otomatik olarak temizlenir.",
+        },
+        {
+          question: "Mobilde çalışıyor mu?",
+          answer:
+            "Evet. Araç Android ve iOS'taki mobil tarayıcılar dahil modern tüm tarayıcılarda çalışır. Dokunmatik ekranlarda sürükleyerek sıralayabilir, arayüz küçük ekranlara uyum sağlayarak dosya listenizi görünür tutar.",
+        },
+      ],
+      tipsTitle: "Ek ipuçları ve sorun giderme",
+      tips: [
+        "Yükleme rehberi: Tekil dosyaları araçta gösterilen boyut sınırının altında tutun ve mümkünse şifreli PDF'lerden kaçının; şifre korumalı dosyalar birleştirme öncesi kilitlerinin kaldırılmasını gerektirebilir.",
+        "Sayfa sıralaması: Birleştirme öncesi istediğiniz tam sırayı vermek için her dosya satırındaki sürükleme tutamacını kullanın. Birden fazla kez yüklerseniz yeni dosyalar listenin sonunda görünür.",
+        "Yavaş bağlantılar: Zayıf ağlarda yüklemeyi hızlandırmak için önce büyük PDF'leri sıkıştırmayı deneyin. Gerekirse tekrar birleştirip yeniden sıkıştırabilirsiniz.",
+        "Sonuçları paylaşma: Birleştirdikten sonra indirilen dosyayı net bir sürüm numarasıyla yeniden adlandırın (örneğin, Proje-Teklifi-v2.pdf) ki ekip arkadaşlarınız hangi dosyayı açacağını bilsin.",
+      ],
+      closing:
+        "Bu SSS'yi geri bildirimlere göre genişletmeye devam ediyoruz. Henüz yanıtlamadığımız bir soru varsa, kullandığınız aracı, cihaz tipinizi ve ne yapmaya çalıştığınızı belirten kısa bir not gönderin. Bu bilgiyi herkes için yardım sayfasını geliştirmek amacıyla kullanacağız.",
+    },
+  },
+  about: {
+    en: {
+      title: "About",
+      intro:
+        "PDFFreeTool is a lightweight web app that unites PDF and image editing tools under one roof. Our design principle is to keep technical details in the background while guiding users with clear steps.",
+      build:
+        "The product is built with React, Vite, and fast caching strategies. All tools live on a single page, and the info boxes explain why you should choose each tool. The content team prepared SEO-friendly headings and AdSense-ready guidance copy to inform visitors before they use every tool.",
+      highlights: [
+        "Secure processing flows that keep your files on your device.",
+        "Ready-made content structure and guide copy for multilingual support.",
+        "A simple contact section to reach the support team quickly.",
+      ],
+      closing:
+        "Our priority is for everyone to boost productivity with free and accessible tools. In line with this vision, we regularly collect new tool ideas and review user feedback to improve the existing experience.",
+    },
+    tr: {
+      title: "Hakkında",
+      intro:
+        "PDFFreeTool, PDF ve görsel düzenleme araçlarını tek çatı altında toplayan hafif bir web uygulamasıdır. Tasarım prensibimiz, teknik ayrıntıları arka planda tutarken kullanıcılara net adımlarla rehberlik etmektir.",
+      build:
+        "Ürün React, Vite ve hızlı önbellekleme stratejileriyle geliştirilmiştir. Tüm araçlar tek sayfada bulunur, bilgi kutuları her aracı neden seçmeniz gerektiğini açıklar. İçerik ekibi SEO dostu başlıklar ve AdSense'e hazır rehber metinleri hazırlayarak ziyaretçileri her araç öncesinde bilgilendirir.",
+      highlights: [
+        "Dosyalarınızı cihazınızda tutan güvenli işlem akışları.",
+        "Çok dilliliğe hazır içerik yapısı ve rehber metinleri.",
+        "Destek ekibine hızlıca ulaşmak için sade bir iletişim bölümü.",
+      ],
+      closing:
+        "Önceliğimiz herkesin ücretsiz ve erişilebilir araçlarla verimliliğini artırmasıdır. Bu vizyon doğrultusunda düzenli olarak yeni araç fikirleri toplar, mevcut deneyimi iyileştirmek için kullanıcı geri bildirimlerini inceleriz.",
+    },
+  },
+  contact: {
+    en: {
+      title: "Contact",
+      intro:
+        "Feel free to reach us with your questions, feedback, or suggestions for new tools. The guide below explains what to mention in your message and helps us speed up support.",
+      list: [
+        "Technical support: Include which tool you used, the file size, and any error message you saw so we can reproduce the issue faster.",
+        "Feature request: Describe new tools or shortcuts you think would improve your workflow. Adding a use case helps us prioritize.",
+        "Collaboration: For integration or content partnership proposals, share your company name, contact details, and expectations.",
+      ],
+      closing:
+        "You can also email support@pdffreetool.com or reach us through our social media accounts. We try to respond to all messages as quickly as possible.",
+    },
+    tr: {
+      title: "İletişim",
+      intro:
+        "Sorularınız, geri bildirimleriniz veya yeni araç önerileriniz için bize her zaman ulaşabilirsiniz. Aşağıdaki rehber, mesajınızda nelerden bahsetmeniz gerektiğini açıklayarak desteği hızlandırır.",
+      list: [
+        "Teknik destek: Kullandığınız aracı, dosya boyutunu ve gördüğünüz hata mesajını ekleyin ki sorunu hızlıca yeniden oluşturabilelim.",
+        "Özellik talebi: İş akışınızı geliştireceğini düşündüğünüz yeni araçları veya kısayolları anlatın. Bir kullanım senaryosu eklemek önceliklendirmemize yardımcı olur.",
+        "İş birliği: Entegrasyon veya içerik ortaklığı teklifleri için şirket adınızı, iletişim bilgilerinizi ve beklentilerinizi paylaşın.",
+      ],
+      closing:
+        "Bize support@pdffreetool.com adresinden e-posta gönderebilir veya sosyal medya hesaplarımız üzerinden ulaşabilirsiniz. Tüm mesajlara mümkün olan en kısa sürede yanıt vermeye çalışıyoruz.",
+    },
+  },
+};
+
 const FLAG_ICONS = {
   en: (
     <svg
@@ -935,300 +1288,134 @@ function App() {
       lineHeight: 1.7,
     };
 
+    const pageContent = PAGE_CONTENT[activePage]?.[language] || PAGE_CONTENT[activePage]?.en;
+
     switch (activePage) {
       case "blog":
         return (
           <section style={cardStyle} aria-label="Guide and tips page">
-            <h2 style={headingStyle}>Blog / Guide &amp; Tips</h2>
-            <p style={paragraphStyle}>
-              We put together a long-form guide to help you use our PDF and image tools as
-              efficiently as possible. Whether you're managing a contract, a presentation,
-              or a product catalog, the steps here are designed to speed up your PDFFreeTool
-              experience and help you avoid mistakes. Because everything runs in your
-              browser, your files stay private while you save time.
-            </p>
+            <h2 style={headingStyle}>{pageContent?.title}</h2>
+            <p style={paragraphStyle}>{pageContent?.intro}</p>
             <h3 style={{ ...headingStyle, fontSize: "18px", marginBottom: "8px" }}>
-              Golden rules to streamline your workflow
+              {pageContent?.goldenRulesTitle}
             </h3>
             <ul style={listStyle}>
-              <li>
-                <strong>Preview habit:</strong> Before merging, splitting, or deleting pages,
-                name files with small notes and double-check the order. You'll avoid deleting
-                the wrong page or repeating images.
-              </li>
-              <li>
-                <strong>Right format choice:</strong> Prefer PNG output for presentation
-                visuals and JPG output for social posts to balance quality and file size.
-              </li>
-              <li>
-                <strong>Lightweight compression loop:</strong> Run <em>Compress PDF</em>
-                before sharing a large file, then check image quality and re-optimize if
-                needed.
-              </li>
-              <li>
-                <strong>Privacy note:</strong> Browser-based processing keeps your projects
-                from leaving the company, but make it a habit to store a local copy when
-                handling important contracts.
-              </li>
-              <li>
-                <strong>Internal sharing:</strong> When naming merged or split documents, add
-                a version number (e.g., "Proposal-v3.pdf") so nothing gets mixed up.
-              </li>
+              {pageContent?.goldenRules?.map((rule) => (
+                <li key={rule.label}>
+                  <strong>{rule.label}:</strong> {rule.text}
+                </li>
+              ))}
             </ul>
             <h3 style={{ ...headingStyle, fontSize: "18px", marginBottom: "8px" }}>
-              Recommended tool combinations by scenario
+              {pageContent?.recommendedTitle}
             </h3>
-            <p style={paragraphStyle}>
-              We illustrated the time savings each tool provides when combined. That way,
-              even if you handle multiple file types in the same day, you'll know where to
-              start.
-            </p>
+            <p style={paragraphStyle}>{pageContent?.recommendedIntro}</p>
             <ol style={{ ...listStyle, paddingLeft: "20px" }}>
-              <li>
-                <strong>Meeting packets:</strong> First gather all reports with
-                <em> Merge PDF</em>, then straighten landscape diagrams with <em>Rotate Pages</em>
-                and make them share-ready with <em>Compress PDF</em>.
-              </li>
-              <li>
-                <strong>Training kits:</strong> Line up phone photos in <em>Images to PDF</em>,
-                clear empty pages with <em>Delete Pages</em> if needed, and quickly review the
-                final document in <em>PDF Reader</em> before sharing it with students.
-              </li>
-              <li>
-                <strong>Product catalog:</strong> Export design pages as PNG, get
-                transparent-background assets with <em>PDF to PNG</em>, optimize them for the
-                web using <em>Compress Image</em>, and deliver them to the sales team in one
-                folder.
-              </li>
-              <li>
-                <strong>Legal and contracts:</strong> To share without splitting the document,
-                first select relevant clauses with <em>Extract Pages</em>, lock in the latest
-                versions with <em>Word to PDF</em>, and finally edit needed sections with
-                <em>PDF to Word</em> before converting back to PDF.
-              </li>
+              {pageContent?.recommended?.map((item) => (
+                <li key={item.label}>
+                  <strong>{item.label}:</strong> {item.body}
+                </li>
+              ))}
             </ol>
-            <p style={paragraphStyle}>
-              The recommendations in this guide are frequently updated based on user
-              feedback. If you'd like to see a new tip, use the hints on the
-              <strong> Contact</strong> page to leave us a message.
-            </p>
+            <p style={paragraphStyle}>{pageContent?.closing}</p>
           </section>
         );
       case "privacy":
         return (
           <section style={cardStyle} aria-label="Privacy policy">
-            <h2 style={headingStyle}>Privacy Policy</h2>
-            <p style={paragraphStyle}>
-              PDFFreeTool offers an in-browser file management experience. This page explains
-              how we process user data and the measures we take to protect your privacy.
-              Regardless of which tool you use, your files are not stored server-side;
-              processing is completed in memory whenever possible.
-            </p>
+            <h2 style={headingStyle}>{pageContent?.title}</h2>
+            <p style={paragraphStyle}>{pageContent?.intro}</p>
             <h3 style={{ ...headingStyle, fontSize: "18px", marginBottom: "8px" }}>
-              Data we collect and why we use it
+              {pageContent?.dataTitle}
             </h3>
             <ul style={listStyle}>
-              <li>
-                <strong>Log entries:</strong> Anonymous usage metrics are kept to measure
-                traffic levels; IP addresses or file names are not recorded.
-              </li>
-              <li>
-                <strong>Cookies:</strong> Required session cookies remember your language
-                preference or the tools you reopen. Advertising cookies activate only with
-                your consent.
-              </li>
-              <li>
-                <strong>Third-party integrations:</strong> Ad providers receive only
-                page-view statistics and never interact with the files you upload.
-              </li>
+              {pageContent?.dataPoints?.map((point) => (
+                <li key={point}>{point}</li>
+              ))}
             </ul>
-            <p style={paragraphStyle}>
-              We use third-party vendors, including Google, that use cookies to serve ads
-              based on your prior visits to this and other websites. These partners receive
-              anonymized analytics so they can show relevant messages without touching the
-              documents you process here.
-            </p>
-            <p style={paragraphStyle}>
-              Users may opt out of personalised advertising by visiting Google Ads Settings
-              or updating consent preferences in the cookie notice on this site.
-            </p>
+            <p style={paragraphStyle}>{pageContent?.analytics}</p>
+            <p style={paragraphStyle}>{pageContent?.optOut}</p>
             <h3 style={{ ...headingStyle, fontSize: "18px", marginBottom: "8px" }}>
-              File security and retention
+              {pageContent?.securityTitle}
             </h3>
-            <p style={paragraphStyle}>
-              Uploaded PDFs or images are processed in temporary memory and are automatically
-              cleared after the download link is created. The only data kept on the server is
-              error logs that help detect abuse; these logs do not include file contents.
-            </p>
+            <p style={paragraphStyle}>{pageContent?.securityBody}</p>
             <ul style={listStyle}>
-              <li>File fragments are removed from memory when processing finishes.</li>
-              <li>For encrypted or confidential documents, we recommend backing up your local copies.</li>
-              <li>On shared devices, clear your browser history to protect your privacy.</li>
+              {pageContent?.securityList?.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
             </ul>
             <h3 style={{ ...headingStyle, fontSize: "18px", marginBottom: "8px" }}>
-              Your rights
+              {pageContent?.rightsTitle}
             </h3>
-            <p style={paragraphStyle}>
-              You can contact us when you want to request deletion or anonymization of your
-              usage data. Ad preferences can be updated through your browser settings and the
-              cookie management panel.
-            </p>
+            <p style={paragraphStyle}>{pageContent?.rightsBody}</p>
           </section>
         );
       case "terms":
         return (
           <section style={cardStyle} aria-label="Terms of service">
-            <h2 style={headingStyle}>Terms of Service</h2>
-            <p style={paragraphStyle}>
-              By using PDFFreeTool, you agree to manage your files in compliance with legal
-              regulations. The tools are provided for personal and business use; you are
-              responsible for uploading any content that infringes intellectual property or
-              violates the law.
-            </p>
+            <h2 style={headingStyle}>{pageContent?.title}</h2>
+            <p style={paragraphStyle}>{pageContent?.intro}</p>
             <ol style={{ ...listStyle, paddingLeft: "20px" }}>
-              <li>
-                <strong>Limitation of liability:</strong> Back up your data to avoid loss in
-                browser-processed files. Our platform cannot be held liable for direct or
-                indirect damages.
-              </li>
-              <li>
-                <strong>Fair use:</strong> Access may be limited if bots or systems sending
-                excessive requests are detected.
-              </li>
-              <li>
-                <strong>Content integrity:</strong> Uploading documents that infringe
-                copyright is prohibited. Access to reported items will be blocked.
-              </li>
-              <li>
-                <strong>Updates:</strong> These terms are updated regularly and announcements
-                are shared through the links in the footer.
-              </li>
+              {pageContent?.points?.map((point) => (
+                <li key={point}>{point}</li>
+              ))}
             </ol>
-            <p style={paragraphStyle}>
-              The service may be briefly unavailable during maintenance. In these cases, your
-              current files remain in the browser and your workflow stays intact; refresh the
-              page to pick up where you left off.
-            </p>
+            <p style={paragraphStyle}>{pageContent?.maintenance}</p>
           </section>
         );
       case "faq":
         return (
           <section style={cardStyle} aria-label="Frequently asked questions page">
-            <h2 style={headingStyle}>Frequently Asked Questions</h2>
-            <p style={paragraphStyle}>
-              Here is a detailed overview of the most common questions people ask about PDFFreeTool. These answers
-              focus on the merge tool but also cover how we handle your data and how the experience works across
-              devices. If you need more help, visit the Contact page and share your scenario so we can expand this
-              guide further.
-            </p>
+            <h2 style={headingStyle}>{pageContent?.title}</h2>
+            <p style={paragraphStyle}>{pageContent?.intro}</p>
             <h3 style={{ ...headingStyle, fontSize: "18px", marginBottom: "8px" }}>
-              Merge PDF specifics
+              {pageContent?.mergeTitle}
             </h3>
             <div style={{ ...paragraphStyle, marginBottom: "0" }}>
-              <p style={{ marginTop: 0, marginBottom: "10px" }}>
-                <strong>Is this PDF merge tool free?</strong>
-                <br />
-                Yes. You can merge your PDF files for free with no account or subscription required. There are no
-                watermarks or hidden limits beyond the standard upload caps shown on the homepage.
-              </p>
-              <p style={{ marginTop: 0, marginBottom: "10px" }}>
-                <strong>Is it safe to upload my documents?</strong>
-                <br />
-                Your files are processed in memory on the server and are not stored permanently. We do not keep a copy
-                of your merged PDF, and temporary processing buffers are cleared automatically after the download is
-                prepared.
-              </p>
-              <p style={{ marginTop: 0, marginBottom: "10px" }}>
-                <strong>Does this work on mobile?</strong>
-                <br />
-                Yes. The tool works in any modern browser, including mobile browsers on Android and iOS. You can drag to
-                reorder on touchscreens, and the interface adapts to small screens so you do not lose visibility of your
-                file list.
-              </p>
+              {pageContent?.mergeItems?.map((item) => (
+                <p key={item.question} style={{ marginTop: 0, marginBottom: "10px" }}>
+                  <strong>{item.question}</strong>
+                  <br />
+                  {item.answer}
+                </p>
+              ))}
             </div>
             <h3 style={{ ...headingStyle, fontSize: "18px", marginBottom: "8px" }}>
-              Extra tips and troubleshooting
+              {pageContent?.tipsTitle}
             </h3>
             <ul style={listStyle}>
-              <li>
-                <strong>Upload guidance:</strong> Keep individual files under the size limit shown on the tool and avoid
-                encrypted PDFs when possible; password-protected files may need to be unlocked before merging.
-              </li>
-              <li>
-                <strong>Ordering pages:</strong> Use the drag handle on each file row to set the exact order you want
-                before merging. If you upload more than once, newer files will appear at the end of the list.
-              </li>
-              <li>
-                <strong>Slow connections:</strong> On weaker networks, try compressing large PDFs first to speed up the
-                upload step. You can always merge and then compress again if needed.
-              </li>
-              <li>
-                <strong>Sharing results:</strong> After merging, rename the downloaded file with a clear version number
-                (for example, <em>Project-Proposal-v2.pdf</em>) so teammates know which file to open.
-              </li>
+              {pageContent?.tips?.map((tip) => (
+                <li key={tip}>{tip}</li>
+              ))}
             </ul>
-            <p style={paragraphStyle}>
-              We continue to expand this FAQ based on feedback. If there is a question we have not covered yet, send us a
-              short note with the tool you used, your device type, and what you were trying to achieve. We will use that
-              information to improve this help page for everyone.
-            </p>
+            <p style={paragraphStyle}>{pageContent?.closing}</p>
           </section>
         );
       case "about":
         return (
           <section style={cardStyle} aria-label="About page">
-            <h2 style={headingStyle}>About</h2>
-            <p style={paragraphStyle}>
-              PDFFreeTool is a lightweight web app that unites PDF and image editing tools
-              under one roof. Our design principle is to keep technical details in the
-              background while guiding users with clear steps.
-            </p>
-            <p style={paragraphStyle}>
-              The product is built with React, Vite, and fast caching strategies. All tools
-              live on a single page, and the info boxes explain why you should choose each
-              tool. The content team prepared SEO-friendly headings and AdSense-ready
-              guidance copy to inform visitors before they use every tool.
-            </p>
+            <h2 style={headingStyle}>{pageContent?.title}</h2>
+            <p style={paragraphStyle}>{pageContent?.intro}</p>
+            <p style={paragraphStyle}>{pageContent?.build}</p>
             <ul style={listStyle}>
-              <li>Secure processing flows that keep your files on your device.</li>
-              <li>Ready-made content structure and guide copy for multilingual support.</li>
-              <li>A simple contact section to reach the support team quickly.</li>
+              {pageContent?.highlights?.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
             </ul>
-            <p style={paragraphStyle}>
-              Our priority is for everyone to boost productivity with free and accessible
-              tools. In line with this vision, we regularly collect new tool ideas and review
-              user feedback to improve the existing experience.
-            </p>
+            <p style={paragraphStyle}>{pageContent?.closing}</p>
           </section>
         );
       case "contact":
         return (
           <section style={cardStyle} aria-label="Contact page">
-            <h2 style={headingStyle}>Contact</h2>
-            <p style={paragraphStyle}>
-              Feel free to reach us with your questions, feedback, or suggestions for new
-              tools. The guide below explains what to mention in your message and helps us
-              speed up support.
-            </p>
+            <h2 style={headingStyle}>{pageContent?.title}</h2>
+            <p style={paragraphStyle}>{pageContent?.intro}</p>
             <ul style={listStyle}>
-              <li>
-                <strong>Technical support:</strong> Include which tool you used, the file
-                size, and any error message you saw so we can reproduce the issue faster.
-              </li>
-              <li>
-                <strong>Feature request:</strong> Describe new tools or shortcuts you think
-                would improve your workflow. Adding a use case helps us prioritize.
-              </li>
-              <li>
-                <strong>Collaboration:</strong> For integration or content partnership
-                proposals, share your company name, contact details, and expectations.
-              </li>
+              {pageContent?.list?.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
             </ul>
-            <p style={paragraphStyle}>
-              You can also email <strong>support@pdffreetool.com</strong> or reach us
-              through our social media accounts. We try to respond to all messages as
-              quickly as possible.
-            </p>
+            <p style={paragraphStyle}>{pageContent?.closing}</p>
           </section>
         );
       default:
