@@ -14,17 +14,20 @@ export default function JpgToPdfCard() {
     setError("");
     const selected = Array.from(e.target.files || []);
 
-    const jpgs = selected.filter(
-      (file) => file.type === "image/jpeg" || file.type === "image/jpg"
+    const supported = selected.filter(
+      (file) =>
+        file.type === "image/jpeg" ||
+        file.type === "image/jpg" ||
+        file.type === "image/png"
     );
 
-    if (!jpgs.length) {
-      setError("Please select JPG images only.");
+    if (!supported.length) {
+      setError("Please select JPG or PNG images only.");
       setImages([]);
       return;
     }
 
-    let combined = [...images, ...jpgs];
+    let combined = [...images, ...supported];
 
     if (combined.length > MAX_FILES) {
       setError(`You can upload up to ${MAX_FILES} images.`);
@@ -55,7 +58,7 @@ export default function JpgToPdfCard() {
   const handleConvert = async () => {
     setError("");
     if (!images.length) {
-      setError("Please upload at least one JPG image.");
+      setError("Please upload at least one image.");
       return;
     }
 

@@ -16,6 +16,39 @@ app.get("/health", (req, res) => {
   res.json({ status: "ok" });
 });
 
+// Split PDF into individual pages (returned as base64 strings)
+app.post("/split", upload.single("file"), async (req, res) => {
+  try {
+    if (!req.file) {
+      return res.status(400).json({ error: "No file uploaded" });
+    }
+
+    if (req.file.mimetype !== "application/pdf") {
+      return res.status(400).json({ error: "Only PDF files are supported" });
+    }
+
+    const originalPdf = await PDFDocument.load(req.file.buffer);
+    const responses = [];
+
+    for (const pageIndex of originalPdf.getPageIndices()) {
+      const singleDoc = await PDFDocument.create();
+      const [copiedPage] = await singleDoc.copyPages(originalPdf, [pageIndex]);
+      singleDoc.addPage(copiedPage);
+      const bytes = await singleDoc.save({ useObjectStreams: true });
+
+      responses.push({
+        name: `page-${pageIndex + 1}.pdf`,
+        data: Buffer.from(bytes).toString("base64"),
+      });
+    }
+
+    res.json({ files: responses });
+  } catch (err) {
+    console.error("Split error:", err);
+    res.status(500).json({ error: "Failed to split PDF" });
+  }
+});
+
 // --- EXISTING: MERGE ---
 app.post("/merge", upload.array("files"), async (req, res) => {
   try {
@@ -76,7 +109,7 @@ app.post("/compress", upload.single("file"), async (req, res) => {
   }
 });
 
-// --- NEW: JPG TO PDF ---
+// --- NEW: JPG/PNG TO PDF ---
 app.post("/jpg-to-pdf", upload.array("images"), async (req, res) => {
   try {
     if (!req.files || req.files.length === 0) {
@@ -84,20 +117,29 @@ app.post("/jpg-to-pdf", upload.array("images"), async (req, res) => {
     }
 
     const invalidFile = req.files.find(
-      (file) => file.mimetype !== "image/jpeg" && file.mimetype !== "image/jpg"
+      (file) =>
+        file.mimetype !== "image/jpeg" &&
+        file.mimetype !== "image/jpg" &&
+        file.mimetype !== "image/png"
     );
 
     if (invalidFile) {
-      return res.status(400).json({ error: "Only JPG images are supported" });
+      return res
+        .status(400)
+        .json({ error: "Only JPG or PNG images are supported" });
     }
 
     const pdfDoc = await PDFDocument.create();
 
     for (const file of req.files) {
-      const jpgImage = await pdfDoc.embedJpg(file.buffer);
-      const { width, height } = jpgImage.scale(1);
+      const image =
+        file.mimetype === "image/png"
+          ? await pdfDoc.embedPng(file.buffer)
+          : await pdfDoc.embedJpg(file.buffer);
+
+      const { width, height } = image.scale(1);
       const page = pdfDoc.addPage([width, height]);
-      page.drawImage(jpgImage, {
+      page.drawImage(image, {
         x: 0,
         y: 0,
         width,
