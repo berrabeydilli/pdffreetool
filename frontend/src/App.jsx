@@ -8,6 +8,10 @@ import PdfToPngCard from "./PdfToPngCard";
 import SplitPdfCard from "./SplitPdfCard";
 import PdfToWordCard from "./PdfToWordCard";
 import WordToPdfCard from "./WordToPdfCard";
+import DeletePdfPagesCard from "./DeletePdfPagesCard";
+import RotatePdfPagesCard from "./RotatePdfPagesCard";
+import PdfReaderCard from "./PdfReaderCard";
+import ExtractPdfPagesCard from "./ExtractPdfPagesCard";
 
 const MAX_FILES = 10; // Max number of files
 const MAX_TOTAL_MB = 50; // Max total size (MB)
@@ -300,6 +304,10 @@ function App() {
               <option value="pdfToJpg">PDF to JPG</option>
               <option value="pdfToPng">PDF to PNG</option>
               <option value="split">Split PDF</option>
+              <option value="deletePages">Delete PDF pages</option>
+              <option value="rotatePages">Rotate PDF pages</option>
+              <option value="extractPages">Extract PDF pages</option>
+              <option value="pdfReader">PDF reader</option>
               <option value="pdfToWord">PDF to Word</option>
               <option value="wordToPdf">Word to PDF</option>
             </select>
@@ -755,6 +763,10 @@ function App() {
         {activeTab === "pdfToJpg" && <PdfToJpgCard />}
         {activeTab === "pdfToPng" && <PdfToPngCard />}
         {activeTab === "split" && <SplitPdfCard />}
+        {activeTab === "deletePages" && <DeletePdfPagesCard />}
+        {activeTab === "rotatePages" && <RotatePdfPagesCard />}
+        {activeTab === "extractPages" && <ExtractPdfPagesCard />}
+        {activeTab === "pdfReader" && <PdfReaderCard />}
         {activeTab === "pdfToWord" && <PdfToWordCard />}
         {activeTab === "wordToPdf" && <WordToPdfCard />}
 
