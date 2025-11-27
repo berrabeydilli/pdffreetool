@@ -1577,7 +1577,7 @@ function App() {
               color: "#111827",
             }}
           >
-            Free Online PDF & Image Tools – Merge, Split & Convert
+            Simple PDF &amp; image tools for everyday work
           </h2>
 
           <p
@@ -1587,11 +1587,9 @@ function App() {
               marginBottom: "10px",
             }}
           >
-            PDFFreeTool offers four essential utilities:{" "}
-            <strong>Merge PDF</strong>, <strong>Compress PDF</strong>,
-            <strong>JPG to PDF</strong>, and <strong>PDF to JPG</strong>. All
-            tools work directly in your browser, require no account, and are
-            completely free to use.
+            PDFFreeTool keeps popular PDF and image actions in one place. Merge,
+            compress, convert between JPG and PDF, and handle pages directly in
+            your browser—no downloads, accounts, or limits.
           </p>
 
           <h3
@@ -1602,7 +1600,7 @@ function App() {
               color: "#111827",
             }}
           >
-            Merge PDF online
+            What you can do
           </h3>
           <ul
             style={{
@@ -1612,82 +1610,10 @@ function App() {
               color: "#4b5563",
             }}
           >
-            <li>Combine multiple PDF files into one document.</li>
-            <li>Reorder pages easily using drag &amp; drop.</li>
-            <li>Download a single optimized merged PDF.</li>
-            <li>Secure processing entirely in memory.</li>
-          </ul>
-
-          <p
-            style={{
-              fontSize: "13px",
-              color: "#4b5563",
-              marginTop: "8px",
-              marginBottom: "10px",
-            }}
-          >
-            Perfect for students, professionals, or anyone who needs to organize
-            documents quickly and efficiently.
-          </p>
-
-          <h3
-            style={{
-              fontSize: "16px",
-              marginBottom: "6px",
-              marginTop: "14px",
-              color: "#111827",
-            }}
-          >
-            Compress PDF online
-          </h3>
-          <ul
-            style={{
-              paddingLeft: "20px",
-              margin: 0,
-              fontSize: "13px",
-              color: "#4b5563",
-            }}
-          >
-            <li>Reduce large PDF file sizes instantly.</li>
-            <li>Make files easier to upload to websites and portals.</li>
-            <li>Send PDFs via email without size limits.</li>
-            <li>Optimize scanned documents and save storage space.</li>
-          </ul>
-
-          <p
-            style={{
-              fontSize: "13px",
-              color: "#4b5563",
-              marginTop: "8px",
-              marginBottom: "10px",
-            }}
-          >
-            Compression keeps your document readable while drastically reducing
-            its file size.
-          </p>
-
-          <h3
-            style={{
-              fontSize: "16px",
-              marginBottom: "6px",
-              marginTop: "14px",
-              color: "#111827",
-            }}
-          >
-            JPG to PDF online
-          </h3>
-          <ul
-            style={{
-              paddingLeft: "20px",
-              margin: 0,
-              fontSize: "13px",
-              color: "#4b5563",
-            }}
-          >
-            <li>Upload multiple JPG photos and combine them into one PDF.</li>
-            <li>Keep image quality intact for printing or sharing.</li>
-            <li>Create a tidy document from scans, receipts, or photos.</li>
-            <li>Download instantly with no sign-up required.</li>
+            <li>Merge and organize PDFs in the order you need.</li>
+            <li>Compress files to share or upload without hassle.</li>
+            <li>Convert seamlessly between JPG images and PDF documents.</li>
+            <li>Split, rotate, or extract pages while keeping quality.</li>
           </ul>
 
           <h3
@@ -1698,7 +1624,7 @@ function App() {
               color: "#111827",
             }}
           >
-            PDF to JPG online
+            Why people choose it
           </h3>
           <ul
             style={{
@@ -1708,33 +1634,12 @@ function App() {
               color: "#4b5563",
             }}
           >
-            <li>Convert every PDF page to a crisp JPG image.</li>
-            <li>Process everything in your browser for extra privacy.</li>
-            <li>Download all JPGs at once inside a single ZIP file.</li>
-            <li>Ideal for slides, reports, or sharing individual pages.</li>
+            <li>Secure, in-browser processing keeps files private.</li>
+            <li>Fast results without sign-ups or watermarks.</li>
+            <li>Free tools that work on any modern device.</li>
           </ul>
-
-          <h3
-            style={{
-              fontSize: "16px",
-              marginBottom: "6px",
-              marginTop: "14px",
-              color: "#111827",
-            }}
-          >
-            Secure, private, and fast
-          </h3>
-          <p
-            style={{
-              fontSize: "13px",
-              color: "#4b5563",
-            }}
-          >
-            Your PDFs are processed securely and deleted immediately after
-            download. No files are stored on our servers, ensuring complete
-            privacy.
-          </p>
         </section>
+
 
         <section
           aria-label="Why choose this free PDF merger"
@@ -1913,7 +1818,7 @@ function App() {
             textAlign: "center",
           }}
         >
-          © {new Date().getFullYear()} Online PDF Tools. All rights reserved.
+          © 2025 PDFFreeTool All rights reserved.
         </footer>
       </main>
     </div>
