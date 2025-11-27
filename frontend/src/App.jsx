@@ -2,6 +2,7 @@ import React, { useState, useRef } from "react";
 import AdsenseBanner from "./components/AdsenseBanner";
 import CompressCard from "./CompressCard";
 import JpgToPdfCard from "./JpgToPdfCard";
+import PdfToJpgCard from "./PdfToJpgCard";
 
 const MAX_FILES = 10; // Max number of files
 const MAX_TOTAL_MB = 50; // Max total size (MB)
@@ -174,7 +175,7 @@ function App() {
               color: "#0f172a",
             }}
           >
-            Free Online PDF Tools – Merge, Compress & JPG to PDF
+            Free Online PDF Tools – Merge, Compress, PDF ↔ JPG
           </h1>
           <p
             style={{
@@ -185,9 +186,9 @@ function App() {
               marginBottom: "10px",
             }}
           >
-            Combine multiple PDF files, compress large documents, or convert
-            JPG images into a polished PDF. Fast, secure, and completely free
-            tools in your browser.
+            Combine multiple PDF files, compress large documents, convert JPG
+            images into a polished PDF, or export PDF pages as JPGs. Fast,
+            secure, and completely free tools in your browser.
           </p>
           <ul
             style={{
@@ -305,6 +306,26 @@ function App() {
             }}
           >
             JPG to PDF
+          </button>
+
+          <button
+            onClick={() => setActiveTab("pdfToJpg")}
+            style={{
+              padding: "10px 20px",
+              borderRadius: "999px",
+              border: "1px solid #e5e7eb",
+              background: activeTab === "pdfToJpg" ? "#4f46e5" : "white",
+              color: activeTab === "pdfToJpg" ? "white" : "#374151",
+              cursor: "pointer",
+              fontSize: "14px",
+              fontWeight: 500,
+              boxShadow:
+                activeTab === "pdfToJpg"
+                  ? "0 4px 12px rgba(79,70,229,0.3)"
+                  : "0 1px 4px rgba(0,0,0,0.06)",
+            }}
+          >
+            PDF to JPG
           </button>
         </div>
 
@@ -753,6 +774,7 @@ function App() {
 
         {activeTab === "compress" && <CompressCard />}
         {activeTab === "jpgToPdf" && <JpgToPdfCard />}
+        {activeTab === "pdfToJpg" && <PdfToJpgCard />}
 
         {/* Ads under tools */}
         <AdsenseBanner slot="3737459241" />
@@ -782,10 +804,11 @@ function App() {
               marginBottom: "10px",
             }}
           >
-            PDFFreeTool offers three essential utilities:{" "}
-            <strong>Merge PDF</strong>, <strong>Compress PDF</strong>, and
-            <strong>JPG to PDF</strong>. All tools work directly in your
-            browser, require no account, and are completely free to use.
+            PDFFreeTool offers four essential utilities:{" "}
+            <strong>Merge PDF</strong>, <strong>Compress PDF</strong>,
+            <strong>JPG to PDF</strong>, and <strong>PDF to JPG</strong>. All
+            tools work directly in your browser, require no account, and are
+            completely free to use.
           </p>
 
           <h3
@@ -882,6 +905,30 @@ function App() {
             <li>Keep image quality intact for printing or sharing.</li>
             <li>Create a tidy document from scans, receipts, or photos.</li>
             <li>Download instantly with no sign-up required.</li>
+          </ul>
+
+          <h3
+            style={{
+              fontSize: "16px",
+              marginBottom: "6px",
+              marginTop: "14px",
+              color: "#111827",
+            }}
+          >
+            PDF to JPG online
+          </h3>
+          <ul
+            style={{
+              paddingLeft: "20px",
+              margin: 0,
+              fontSize: "13px",
+              color: "#4b5563",
+            }}
+          >
+            <li>Convert every PDF page to a crisp JPG image.</li>
+            <li>Process everything in your browser for extra privacy.</li>
+            <li>Download all JPGs at once inside a single ZIP file.</li>
+            <li>Ideal for slides, reports, or sharing individual pages.</li>
           </ul>
 
           <h3
