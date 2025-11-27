@@ -558,6 +558,43 @@ const TRANSLATIONS = {
     adFriendly: "Ad-friendly content",
     onlineToolsDescription:
       "Merge, compress, rotate, convert, and read PDFs all in one place. Our rich menu keeps every tool informative, user-friendly, and compliant with AdSense guidelines so visitors see helpful content.",
+    seoSection: {
+      title: "Simple PDF & image tools for everyday work",
+      intro:
+        "PDFFreeTool keeps popular PDF and image actions in one place. Merge, compress, convert between JPG and PDF, and handle pages directly in your browser—no downloads, accounts, or limits.",
+      whatTitle: "What you can do",
+      whatList: [
+        "Merge and organize PDFs in the order you need.",
+        "Compress files to share or upload without hassle.",
+        "Convert seamlessly between JPG images and PDF documents.",
+        "Split, rotate, or extract pages while keeping quality.",
+      ],
+      whyTitle: "Why people choose it",
+      whyList: [
+        "Secure, in-browser processing keeps files private.",
+        "Fast results without sign-ups or watermarks.",
+        "Free tools that work on any modern device.",
+      ],
+      mergerTitle: "Why choose this free PDF merger?",
+      mergerList: [
+        {
+          title: "Fast and simple",
+          text: "No complex settings or ads-heavy interface. Just upload, reorder, and merge.",
+        },
+        {
+          title: "Secure",
+          text: "PDF files are processed directly in memory. We do not permanently store your documents.",
+        },
+        {
+          title: "Browser-based",
+          text: "Works on Windows, macOS, Linux, and mobile devices with a modern browser.",
+        },
+        {
+          title: "Free to use",
+          text: "No registration or account required to merge your PDF files.",
+        },
+      ],
+    },
     toolMenuTitle: "Tool menu",
     toolMenuDescription: "Click any card to jump to a tool, read the overview, and start using it.",
     languageLabel: "Language",
@@ -612,6 +649,43 @@ const TRANSLATIONS = {
     adFriendly: "Reklam dostu içerik",
     onlineToolsDescription:
       "PDF'leri tek bir yerde birleştirin, sıkıştırın, döndürün, dönüştürün ve okuyun. Zengin menümüz her aracı bilgilendirici, kullanıcı dostu ve AdSense yönergeleriyle uyumlu tutarak ziyaretçilere faydalı içerik sunar.",
+    seoSection: {
+      title: "Gündelik işler için basit PDF ve görsel araçları",
+      intro:
+        "PDFFreeTool popüler PDF ve görsel işlemlerini tek yerde toplar. PDF ve JPG arasında dönüştürün, dosyaları birleştirin, sıkıştırın ve sayfaları doğrudan tarayıcınızda yönetin—indirme, hesap, limit yok.",
+      whatTitle: "Neler yapabilirsiniz",
+      whatList: [
+        "PDF'leri ihtiyaç duyduğunuz sırayla birleştirip düzenleyin.",
+        "Paylaşırken veya yüklerken zahmetsizce sıkıştırın.",
+        "JPG görsellerle PDF belgeleri arasında sorunsuzca dönüştürün.",
+        "Kaliteyi koruyarak sayfaları bölün, döndürün veya çıkarın.",
+      ],
+      whyTitle: "Neden tercih ediliyor",
+      whyList: [
+        "İşleme doğrudan tarayıcıda yapıldığı için dosyalarınız gizli kalır.",
+        "Üyelik veya filigran olmadan hızlı sonuç.",
+        "Her modern cihazda çalışan ücretsiz araçlar.",
+      ],
+      mergerTitle: "Bu ücretsiz PDF birleştiricisini neden seçmelisiniz?",
+      mergerList: [
+        {
+          title: "Hızlı ve basit",
+          text: "Karmaşık ayarlar veya reklam dolu arayüz yok. Sadece yükleyin, sıralayın ve birleştirin.",
+        },
+        {
+          title: "Güvenli",
+          text: "PDF dosyaları doğrudan bellekte işlenir. Belgelerinizi kalıcı olarak saklamıyoruz.",
+        },
+        {
+          title: "Tarayıcı tabanlı",
+          text: "Windows, macOS, Linux ve modern mobil tarayıcılarda çalışır.",
+        },
+        {
+          title: "Ücretsiz",
+          text: "PDF dosyalarınızı birleştirmek için kayıt veya hesap gerekmez.",
+        },
+      ],
+    },
     toolMenuTitle: "Araç menüsü",
     toolMenuDescription:
       "Bir araca gitmek, özetini okumak ve kullanmaya başlamak için herhangi bir karta tıklayın.",
@@ -1080,6 +1154,7 @@ function App() {
   const t = TRANSLATIONS[language] || TRANSLATIONS.en;
   const mergeText = t.merge || TRANSLATIONS.en.merge;
   const errors = t.errors || TRANSLATIONS.en.errors;
+  const seoText = t.seoSection || TRANSLATIONS.en.seoSection;
 
   useEffect(() => {
     if (!hasMountedRef.current) {
@@ -2742,7 +2817,7 @@ function App() {
               color: "#111827",
             }}
           >
-            Simple PDF &amp; image tools for everyday work
+            {seoText.title}
           </h2>
 
           <p
@@ -2752,9 +2827,7 @@ function App() {
               marginBottom: "10px",
             }}
           >
-            PDFFreeTool keeps popular PDF and image actions in one place. Merge,
-            compress, convert between JPG and PDF, and handle pages directly in
-            your browser—no downloads, accounts, or limits.
+            {seoText.intro}
           </p>
 
           <h3
@@ -2765,7 +2838,7 @@ function App() {
               color: "#111827",
             }}
           >
-            What you can do
+            {seoText.whatTitle}
           </h3>
           <ul
             style={{
@@ -2775,10 +2848,9 @@ function App() {
               color: "#4b5563",
             }}
           >
-            <li>Merge and organize PDFs in the order you need.</li>
-            <li>Compress files to share or upload without hassle.</li>
-            <li>Convert seamlessly between JPG images and PDF documents.</li>
-            <li>Split, rotate, or extract pages while keeping quality.</li>
+            {seoText.whatList?.map((item, index) => (
+              <li key={`seo-what-${index}`}>{item}</li>
+            ))}
           </ul>
 
           <h3
@@ -2789,7 +2861,7 @@ function App() {
               color: "#111827",
             }}
           >
-            Why people choose it
+            {seoText.whyTitle}
           </h3>
           <ul
             style={{
@@ -2799,9 +2871,9 @@ function App() {
               color: "#4b5563",
             }}
           >
-            <li>Secure, in-browser processing keeps files private.</li>
-            <li>Fast results without sign-ups or watermarks.</li>
-            <li>Free tools that work on any modern device.</li>
+            {seoText.whyList?.map((item, index) => (
+              <li key={`seo-why-${index}`}>{item}</li>
+            ))}
           </ul>
         </section>
 
@@ -2819,7 +2891,7 @@ function App() {
               color: "#111827",
             }}
           >
-            Why choose this free PDF merger?
+            {seoText.mergerTitle}
           </h2>
           <ul
             style={{
@@ -2829,22 +2901,11 @@ function App() {
               color: "#4b5563",
             }}
           >
-            <li>
-              <strong>Fast and simple:</strong> No complex settings or ads-heavy
-              interface. Just upload, reorder, and merge.
-            </li>
-            <li>
-              <strong>Secure:</strong> PDF files are processed directly in
-              memory. We do not permanently store your documents.
-            </li>
-            <li>
-              <strong>Browser-based:</strong> Works on Windows, macOS, Linux,
-              and mobile devices with a modern browser.
-            </li>
-            <li>
-              <strong>Free to use:</strong> No registration or account required
-              to merge your PDF files.
-            </li>
+            {seoText.mergerList?.map((item, index) => (
+              <li key={`seo-merger-${index}`}>
+                <strong>{item.title}:</strong> {item.text}
+              </li>
+            ))}
           </ul>
         </section>
 
