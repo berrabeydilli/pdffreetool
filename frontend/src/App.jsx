@@ -178,29 +178,56 @@ const TOOL_MENU = {
 
 const TOOL_DETAILS = {
   merge: {
-    title: "Merge PDF guide",
-    intro:
-      "Combine scanned forms, spreadsheets, and annotated slides into a single PDF that keeps the order and metadata intact for smoother sharing.",
-    paragraphs: [
-      "Upload multiple documents, drag to reorder them, and merge everything directly in your browser so sensitive information never leaves your device.",
-      "It is ideal when packaging onboarding paperwork, research appendices, or feedback decks before sending them for review or e-signature.",
-      "After merging you can immediately run compression or rotation to finish the file without reopening another tool.",
-    ],
-    bulletTitle: "Great for",
-    bullets: [
-      "Creating one master report from slide decks, drawings, and reference PDFs that belong together.",
-      "Bundling invoices or pay slips for a quarter into a single archival document.",
-      "Preparing contract exhibits in the exact order required by legal or procurement teams.",
-      "Sending multiple scans as one attachment so recipients do not miss anything important.",
-    ],
-    checklistTitle: "Before you merge",
-    checklist: [
-      "Rename files with clear prefixes so the sequence stays obvious while reordering.",
-      "Insert a cover page or short summary slide if readers need context at a glance.",
-      "Delete ads, duplicates, or blank pages to keep the final PDF lean.",
-      "Skim the preview after merging and run compression if email limits are strict.",
-      "Keep a backup of the originals in case you need to undo a change later.",
-    ],
+    en: {
+      title: "Merge PDF guide",
+      intro:
+        "Combine scanned forms, spreadsheets, and annotated slides into a single PDF that keeps the order and metadata intact for smoother sharing.",
+      paragraphs: [
+        "Upload multiple documents, drag to reorder them, and merge everything directly in your browser so sensitive information never leaves your device.",
+        "It is ideal when packaging onboarding paperwork, research appendices, or feedback decks before sending them for review or e-signature.",
+        "After merging you can immediately run compression or rotation to finish the file without reopening another tool.",
+      ],
+      bulletTitle: "Great for",
+      bullets: [
+        "Creating one master report from slide decks, drawings, and reference PDFs that belong together.",
+        "Bundling invoices or pay slips for a quarter into a single archival document.",
+        "Preparing contract exhibits in the exact order required by legal or procurement teams.",
+        "Sending multiple scans as one attachment so recipients do not miss anything important.",
+      ],
+      checklistTitle: "Before you merge",
+      checklist: [
+        "Rename files with clear prefixes so the sequence stays obvious while reordering.",
+        "Insert a cover page or short summary slide if readers need context at a glance.",
+        "Delete ads, duplicates, or blank pages to keep the final PDF lean.",
+        "Skim the preview after merging and run compression if email limits are strict.",
+        "Keep a backup of the originals in case you need to undo a change later.",
+      ],
+    },
+    tr: {
+      title: "PDF Birleştirme rehberi",
+      intro:
+        "Taranmış formları, tabloları ve notlu slaytları tek bir PDF'te toplayarak sıralamayı ve meta verileri koruyun, paylaşımı kolaylaştırın.",
+      paragraphs: [
+        "Birden fazla belge yükleyin, sürükleyip yeniden sıralayın ve her şeyi doğrudan tarayıcınızda birleştirerek hassas bilgiler cihazınızdan çıkmadan kalsın.",
+        "İşe alım evraklarını, araştırma eklerini veya geri bildirim sunumlarını inceleme ya da e-imza öncesinde paketlemek için idealdir.",
+        "Birleştirdikten sonra dosyayı kapatmadan hemen sıkıştırma veya döndürme uygulayarak işlemi tamamlayabilirsiniz.",
+      ],
+      bulletTitle: "Şunlar için ideal",
+      bullets: [
+        "Birbiriyle bağlantılı slaytlar, çizimler ve referans PDF'lerden tek bir ana rapor oluşturmak.",
+        "Çeyrek dönemlik faturaları veya bordroları tek bir arşiv dokümanında toplamak.",
+        "Sözleşme eklerini hukuk veya satın alma ekiplerinin istediği sırada hazırlamak.",
+        "Alıcıların hiçbir önemli sayfayı kaçırmaması için birden fazla taramayı tek ek olarak göndermek.",
+      ],
+      checklistTitle: "Birleştirmeden önce",
+      checklist: [
+        "Sıra karışmasın diye dosyalara belirgin ön eklerle yeniden ad verin.",
+        "Okuyucuların hızlıca bağlamı anlayabilmesi için bir kapak sayfası veya kısa özet slaytı ekleyin.",
+        "Son PDF'in yalın kalması için reklam, kopya ya da boş sayfaları silin.",
+        "Birleştirme sonrası ön izlemeyi gezin ve e-posta kısıtları sıkıysa sıkıştırmayı çalıştırın.",
+        "Sonradan geri dönmeniz gerekirse diye orijinal dosyaların yedeğini saklayın.",
+      ],
+    },
   },
   compress: {
     title: "Compress PDF tips",
@@ -1464,8 +1491,23 @@ function App() {
     );
   };
 
+  const getToolDetail = (toolId) => {
+    const detail = TOOL_DETAILS[toolId];
+
+    if (!detail) return null;
+
+    if (detail.title && typeof detail.title === "string") {
+      return detail;
+    }
+
+    if (detail[language]) return detail[language];
+    if (detail.en) return detail.en;
+
+    return Object.values(detail).find((entry) => entry && entry.title) || null;
+  };
+
   const renderToolDetails = () => {
-    const detail = TOOL_DETAILS[activeTab];
+    const detail = getToolDetail(activeTab);
 
     if (!detail) return null;
 
