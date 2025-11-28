@@ -1412,6 +1412,25 @@ const PAGE_CONTENT = {
   },
 };
 
+const PAGE_LABELS = {
+  en: {
+    blog: "Guide and tips page",
+    faq: "Frequently asked questions page",
+    privacy: "Privacy policy page",
+    terms: "Terms of service page",
+    about: "About page",
+    contact: "Contact page",
+  },
+  tr: {
+    blog: "Rehber ve ipuçları sayfası",
+    faq: "Sık sorulan sorular sayfası",
+    privacy: "Gizlilik politikası sayfası",
+    terms: "Hizmet şartları sayfası",
+    about: "Hakkında sayfası",
+    contact: "İletişim sayfası",
+  },
+};
+
 const FLAG_ICONS = {
   en: (
     <svg
@@ -1489,6 +1508,7 @@ function App() {
   const mergeText = t.merge || TRANSLATIONS.en.merge;
   const errors = t.errors || TRANSLATIONS.en.errors;
   const seoText = t.seoSection || TRANSLATIONS.en.seoSection;
+  const pageLabels = PAGE_LABELS[language] || PAGE_LABELS.en;
 
   useEffect(() => {
     if (!hasMountedRef.current) {
@@ -1644,6 +1664,7 @@ function App() {
     return (
       <button
         key={page}
+        aria-label={pageLabels?.[page] || label}
         onClick={() => handleNavigate(page)}
         style={{
           padding: "8px 12px",
@@ -1704,7 +1725,10 @@ function App() {
     switch (activePage) {
       case "blog":
         return (
-          <section style={cardStyle} aria-label="Guide and tips page">
+          <section
+            style={cardStyle}
+            aria-label={pageLabels?.blog || "Guide and tips page"}
+          >
             <h2 style={headingStyle}>{pageContent?.title}</h2>
             <p style={paragraphStyle}>{pageContent?.intro}</p>
             <h3 style={{ ...headingStyle, fontSize: "18px", marginBottom: "8px" }}>
@@ -1733,7 +1757,10 @@ function App() {
         );
       case "privacy":
         return (
-          <section style={cardStyle} aria-label="Privacy policy">
+          <section
+            style={cardStyle}
+            aria-label={pageLabels?.privacy || "Privacy policy"}
+          >
             <h2 style={headingStyle}>{pageContent?.title}</h2>
             <p style={paragraphStyle}>{pageContent?.intro}</p>
             <h3 style={{ ...headingStyle, fontSize: "18px", marginBottom: "8px" }}>
@@ -1763,7 +1790,10 @@ function App() {
         );
       case "terms":
         return (
-          <section style={cardStyle} aria-label="Terms of service">
+          <section
+            style={cardStyle}
+            aria-label={pageLabels?.terms || "Terms of service"}
+          >
             <h2 style={headingStyle}>{pageContent?.title}</h2>
             <p style={paragraphStyle}>{pageContent?.intro}</p>
             <ol style={{ ...listStyle, paddingLeft: "20px" }}>
@@ -1776,7 +1806,10 @@ function App() {
         );
       case "faq":
         return (
-          <section style={cardStyle} aria-label="Frequently asked questions page">
+          <section
+            style={cardStyle}
+            aria-label={pageLabels?.faq || "Frequently asked questions page"}
+          >
             <h2 style={headingStyle}>{pageContent?.title}</h2>
             <p style={paragraphStyle}>{pageContent?.intro}</p>
             <h3 style={{ ...headingStyle, fontSize: "18px", marginBottom: "8px" }}>
@@ -1804,7 +1837,10 @@ function App() {
         );
       case "about":
         return (
-          <section style={cardStyle} aria-label="About page">
+          <section
+            style={cardStyle}
+            aria-label={pageLabels?.about || "About page"}
+          >
             <h2 style={headingStyle}>{pageContent?.title}</h2>
             <p style={paragraphStyle}>{pageContent?.intro}</p>
             <p style={paragraphStyle}>{pageContent?.build}</p>
@@ -1818,7 +1854,10 @@ function App() {
         );
       case "contact":
         return (
-          <section style={cardStyle} aria-label="Contact page">
+          <section
+            style={cardStyle}
+            aria-label={pageLabels?.contact || "Contact page"}
+          >
             <h2 style={headingStyle}>{pageContent?.title}</h2>
             <p style={paragraphStyle}>{pageContent?.intro}</p>
             <ul style={listStyle}>
