@@ -1913,22 +1913,19 @@ function App() {
       style={{
         display: "flex",
         alignItems: "center",
-        gap: "6px",
-        padding: "6px 8px",
+        gap: "4px",
+        padding: "6px 6px",
         borderRadius: "12px",
         border: "1px solid #e5e7eb",
         background: "#ffffff",
         boxShadow: "0 6px 16px rgba(15,23,42,0.05)",
       }}
     >
-      <span style={{ fontSize: "12px", color: "#374151", fontWeight: 600 }}>
-        {t.themeLabel}
-      </span>
       <button
         type="button"
         onClick={() => setThemeMode("light")}
         style={{
-          padding: "6px 10px",
+          padding: "6px 9px",
           borderRadius: "10px",
           border: themeMode === "light" ? "1px solid #4f46e5" : "1px solid #e5e7eb",
           background:
@@ -1949,7 +1946,7 @@ function App() {
         type="button"
         onClick={() => setThemeMode("dark")}
         style={{
-          padding: "6px 10px",
+          padding: "6px 9px",
           borderRadius: "10px",
           border: themeMode === "dark" ? "1px solid #0f172a" : "1px solid #e5e7eb",
           background:
@@ -1980,7 +1977,7 @@ function App() {
           display: "flex",
           alignItems: "center",
           gap: "6px",
-          padding: "6px 8px",
+          padding: "6px 6px",
           borderRadius: "12px",
           border: "1px solid #e5e7eb",
           background: "#ffffff",
@@ -1988,16 +1985,13 @@ function App() {
           position: "relative",
         }}
       >
-        <label style={{ fontSize: "12px", color: "#374151", fontWeight: 600 }}>
-          {t.languageLabel}
-        </label>
         <button
           type="button"
           onClick={() => setLanguageMenuOpen((prev) => !prev)}
           aria-haspopup="listbox"
           aria-expanded={languageMenuOpen}
           style={{
-            padding: "8px 10px",
+            padding: "7px 9px",
             borderRadius: "10px",
             border: "1px solid #e5e7eb",
             background: "white",
@@ -2007,8 +2001,8 @@ function App() {
             boxShadow: "0 4px 10px rgba(15,23,42,0.05)",
             display: "flex",
             alignItems: "center",
-            gap: "10px",
-            minWidth: "120px",
+            gap: "8px",
+            minWidth: "110px",
           }}
         >
           <span
