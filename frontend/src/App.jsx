@@ -687,6 +687,31 @@ const TOOL_DETAILS = {
         "Sonradan geri dönmeniz gerekirse diye orijinal dosyaların yedeğini saklayın.",
       ],
     },
+    de: {
+      title: "PDF-Zusammenführungsleitfaden",
+      intro:
+        "Scans, Tabellen und kommentierte Folien in einer einzigen PDF bündeln, die Reihenfolge beibehalten und Metadaten sichern, damit sich alles leichter teilen lässt.",
+      paragraphs: [
+        "Mehrere Dokumente hochladen, zum Neuordnen ziehen und direkt im Browser zusammenführen, damit sensible Informationen dein Gerät nicht verlassen.",
+        "Ideal zum Paketieren von Onboarding-Unterlagen, Forschungsanhängen oder Feedback-Decks, bevor sie zur Prüfung oder E-Signatur verschickt werden.",
+        "Nach dem Zusammenführen kannst du sofort komprimieren oder drehen, ohne ein anderes Tool öffnen zu müssen.",
+      ],
+      bulletTitle: "Perfekt für",
+      bullets: [
+        "Einen Master-Report aus zusammengehörigen Präsentationen, Zeichnungen und Referenz-PDFs erstellen.",
+        "Rechnungen oder Gehaltsabrechnungen eines Quartals in einem einzigen Archivdokument bündeln.",
+        "Vertragsanlagen genau in der Reihenfolge vorbereiten, die Rechts- oder Beschaffungsteams verlangen.",
+        "Mehrere Scans als einen Anhang senden, damit keine wichtige Seite übersehen wird.",
+      ],
+      checklistTitle: "Vor dem Zusammenführen",
+      checklist: [
+        "Dateien mit klaren Präfixen umbenennen, damit die Reihenfolge beim Sortieren eindeutig bleibt.",
+        "Eine Titelseite oder kurze Zusammenfassung einfügen, wenn Lesende sofort Kontext brauchen.",
+        "Werbung, Duplikate oder leere Seiten entfernen, damit die finale PDF schlank bleibt.",
+        "Nach dem Zusammenführen die Vorschau prüfen und komprimieren, falls E-Mail-Grenzen streng sind.",
+        "Sicherheitskopien der Originale behalten, falls du eine Änderung rückgängig machen musst.",
+      ],
+    },
   },
   compress: {
     en: {
@@ -737,6 +762,31 @@ const TOOL_DETAILS = {
         "Son boyutu not alın ki e-posta veya sohbet araçlarının kabul edip etmeyeceğini bilin.",
         "Özellikle görsel ağırlıklı birkaç sayfayı kontrol ederek grafik ve fotoğrafların net kaldığını doğrulayın.",
         "Belge baskıya gidecekse küçük bir deneme baskısı yaparak kalitenin beklentiyi karşılayıp karşılamadığını görün.",
+      ],
+    },
+    de: {
+      title: "Tipps zum PDF-Komprimieren",
+      intro:
+        "PDFs verkleinern, ohne an Klarheit zu verlieren, damit Anhänge e-Mail-freundlich bleiben und auch bei langsamen Verbindungen schnell hochladen.",
+      paragraphs: [
+        "Präsentationen, Kataloge und scanlastige Berichte wachsen schnell. Komprimierung entfernt unnötige Metadaten und optimiert Bilder, während Text scharf bleibt.",
+        "Die kleinere Ausgabe spart Cloud-Speicher und verhindert, dass Teammitglieder auf dem Handy große Downloads stemmen müssen.",
+        "Nach Bearbeitungen kannst du erneut komprimieren, um die Dateigröße zwischen Versionen berechenbar zu halten.",
+      ],
+      bulletTitle: "Wann einsetzen",
+      bullets: [
+        "Bei Ausschreibungen oder Förderanträgen mit strengen Anhanglimits.",
+        "Beim Teilen von Broschüren, Lookbooks oder Portfolios, die leicht, aber gestochen scharf bleiben sollen.",
+        "Beim Archivieren vieler PDFs in begrenzten geteilten Laufwerken, ohne die Lesbarkeit zu verlieren.",
+        "Beim Hochladen von Aufgaben in LMS-Plattformen, auf denen übergroße Dateien oft stillscheitern.",
+      ],
+      checklistTitle: "Qualitäts-Checkliste",
+      checklist: [
+        "Duplikate oder leere Seiten vor dem Komprimieren entfernen, um Platz zu sparen.",
+        "Auf Graustufen umstellen, wenn der Inhalt überwiegend Text oder farblose Scans enthält.",
+        "Die endgültige Größe notieren, um zu wissen, ob Mail- oder Chat-Plattformen sie akzeptieren.",
+        "Einige Seiten prüfen, besonders bildlastige, damit Diagramme und Fotos klar bleiben.",
+        "Für den Druck eine kleine Testseite ausgeben, um sicherzugehen, dass die Qualität passt.",
       ],
     },
   },
@@ -791,6 +841,31 @@ const TOOL_DETAILS = {
         "Oluşan dosya boyutu ve ölçülerin platform tavsiyeleriyle uyumlu olduğundan emin olun.",
       ],
     },
+    de: {
+      title: "Überblick Bildkomprimierung",
+      intro:
+        "Große Fotos auf webfreundliche Größen bringen und dabei Kontrast und Farbbalance beibehalten, wie du sie im finalen Bild erwartest.",
+      paragraphs: [
+        "Das Tool entfernt schwere Metadaten, passt die Komprimierung für JPG- und PNG-Dateien automatisch an und bewahrt Transparenz, wenn nötig.",
+        "Ideal für Marketingteams, Blogger oder Support, die schnelle, konsistente Assets brauchen, ohne Designsoftware zu öffnen.",
+        "Ausgaben sind webbereit und dennoch hochwertig genug für die meisten Präsentationen oder leichte Ausdrucke.",
+      ],
+      bulletTitle: "Am besten geeignet für",
+      bullets: [
+        "E-Commerce-Galerien, in denen Produkt-Thumbnails sofort laden müssen.",
+        "Portfolio- oder Blog-Visuals, die scharf wirken sollen, ohne die Bandbreite der Besucher zu belasten.",
+        "E-Mail-Anhänge oder Hilfeartikel, die Gefahr laufen, Größenlimits zu erreichen.",
+        "Social-Media-Grafiken, die vorhersehbare Maße und Farbtreue benötigen.",
+      ],
+      checklistTitle: "Kurze Vorbereitungsliste",
+      checklist: [
+        "Eine unangetastete Originalkopie aufbewahren, falls später eine höher auflösende Version benötigt wird.",
+        "PNG-Ausgabe wählen für Assets mit Transparenz wie Logos oder UI-Elemente.",
+        "Dateien vor dem Upload mit beschreibenden Slugs benennen, damit Bibliotheken organisiert bleiben.",
+        "Für Hero-Bilder reichen meist 1200–1600px Breite, ohne unnötiges Gewicht.",
+        "Dateigröße und Abmessungen prüfen, damit sie zu Plattformempfehlungen passen.",
+      ],
+    },
   },
   jpgToPdf: {
     en: {
@@ -843,6 +918,31 @@ const TOOL_DETAILS = {
         "Baskı alacaksanız kaynak görsellerde küçük bir boşluk bırakın ki kırpılma olmasın.",
       ],
     },
+    de: {
+      title: "Bilder-zu-PDF-Leitfaden",
+      intro:
+        "Fotos, Scans oder Screenshots in ein aufgeräumtes Dokument verwandeln, das Seiten ausrichtet und bereit zum Teilen oder Drucken ist.",
+      paragraphs: [
+        "Bilder werden in der Reihenfolge hinzugefügt, in der du sie hochlädst, und lassen sich vor dem Export per Drag-and-drop neu sortieren.",
+        "Unterschiedliche Abmessungen werden automatisch zentriert, damit jede Seite ordentlich wirkt, ohne manuelles Anpassen.",
+        "Nutze es, um Belege, Designideen oder Fortschrittsfotos in ein Format zu packen, das jede*r öffnen kann.",
+      ],
+      bulletTitle: "Ideal für",
+      bullets: [
+        "Freelancer, die Belege, Rechnungen und Freigaben für die Buchhaltung sammeln.",
+        "Studierende, die Vorlesungsfotos oder Whiteboard-Aufnahmen in einem Lernpaket ordnen.",
+        "Designer, die Skizzen oder Iterationen in klarer Reihenfolge präsentieren wollen.",
+        "Teams vor Ort, die den Zustand mit beschrifteten Fotos und kurzen Notizen dokumentieren.",
+      ],
+      checklistTitle: "Bessere PDFs, schneller",
+      checklist: [
+        "Quer liegende Bilder vor dem Upload drehen, damit die finale PDF konsistent bleibt.",
+        "Helligkeit anpassen oder Ränder beschneiden, um Scan-Artefakte und Schatten zu entfernen.",
+        "Die Reihenfolge vor dem Export prüfen, damit keine doppelten oder fehlenden Bilder bleiben.",
+        "Bei mehreren PDFs für dasselbe Projekt einheitliche Dateinamen nutzen, um Versionen leicht zu verfolgen.",
+        "Für den Druck etwas Rand im Ausgangsbild lassen, um Beschneidungen zu vermeiden.",
+      ],
+    },
   },
   pdfToJpg: {
     en: {
@@ -893,6 +993,31 @@ const TOOL_DETAILS = {
         "ZIP'in hafif kalması için tüm PDF'e mi yoksa birkaç önemli sayfaya mı ihtiyacınız olduğuna karar verin.",
         "Görselleri sıkı limitli sohbet veya ticket araçlarına ekleyecekseniz dışa aktarma sonrası sıkıştırma çalıştırın.",
         "Ekibinizin hangi dışa aktarımı kullandığını takip etmek için ZIP'i bir sürüm veya tarih etiketiyle adlandırın.",
+      ],
+    },
+    de: {
+      title: "Details zu PDF in JPG",
+      intro:
+        "Präsentationsdecks oder Berichte mit einem Klick in hochauflösende JPGs verwandeln, damit jede Seite zu einem teilbaren Bild wird.",
+      paragraphs: [
+        "Jede Seite wird als eigenes JPG exportiert und in einer ZIP-Datei gebündelt – ideal zum Verteilen oder für geplante Posts auf verschiedenen Plattformen.",
+        "Nutze die Ausgabe für Slideshows, Infografiken oder überall dort, wo du schnell ladende Visuals statt einer kompletten PDF brauchst.",
+        "Die Bilder bleiben scharf, während die Dateigröße handlich für Web- und Mobile-Sharing bleibt.",
+      ],
+      bulletTitle: "Praktische Einsätze",
+      bullets: [
+        "Präsentationsseiten auf LinkedIn, Medium oder Firmenblogs teilen, ohne PDFs einzubetten.",
+        "Diagramme, Tabellen oder Checklisten als einzelne Bilder in Wissensdatenbanken posten.",
+        "Entwürfe an Teammitglieder senden, die schnelle Vorschauen bevorzugen.",
+        "Visuals in Newsletter-Tools oder Slide-Builder einbetten, die PDFs nicht zuverlässig verarbeiten.",
+      ],
+      checklistTitle: "Vor dem Export",
+      checklist: [
+        "Seitenausrichtung prüfen, damit exportierte Bilder nicht verdreht oder beschnitten wirken.",
+        "Versteckte Ebenen oder vertrauliche Folien vor der Konvertierung entfernen.",
+        "Entscheiden, ob die komplette PDF oder nur Schlüssel-Seiten nötig sind, um die ZIP klein zu halten.",
+        "Nach dem Export komprimieren, wenn die Bilder an Chats oder Tickets mit strengen Limits gehen.",
+        "Die ZIP mit Version oder Datum benennen, um nachzuvollziehen, welche Ausgabe das Team nutzt.",
       ],
     },
   },
@@ -1843,6 +1968,20 @@ const PAGE_CONTENT = {
       closing:
         "Önceliğimiz herkesin ücretsiz ve erişilebilir araçlarla verimliliğini artırmasıdır. Bu vizyon doğrultusunda düzenli olarak yeni araç fikirleri toplar, mevcut deneyimi iyileştirmek için kullanıcı geri bildirimlerini inceleriz.",
     },
+    de: {
+      title: "Über uns",
+      intro:
+        "PDFFreeTool ist eine schlanke Web-App, die PDF- und Bildbearbeitung unter einem Dach vereint. Unser Prinzip: Technik im Hintergrund halten und Nutzende mit klaren Schritten führen.",
+      build:
+        "Das Produkt basiert auf React, Vite und schnellen Caching-Strategien. Alle Tools leben auf einer Seite, Info-Boxen erklären, warum du welches Werkzeug wählen solltest. Das Content-Team liefert SEO-freundliche Überschriften und AdSense-taugliche Hinweise, damit Besucher vor jeder Nutzung informiert sind.",
+      highlights: [
+        "Sichere Abläufe, die deine Dateien auf deinem Gerät halten.",
+        "Inhaltsstruktur und Leittexte, die für Mehrsprachigkeit vorbereitet sind.",
+        "Ein schlanker Kontaktbereich, um den Support schnell zu erreichen.",
+      ],
+      closing:
+        "Unser Ziel ist, dass alle mit kostenlosen, zugänglichen Tools produktiver werden. Entsprechend sammeln wir regelmäßig neue Tool-Ideen und prüfen Feedback, um das Erlebnis stetig zu verbessern.",
+    },
   },
   contact: {
     en: {
@@ -1868,6 +2007,18 @@ const PAGE_CONTENT = {
       ],
       closing:
         "Bize support@pdffreetool.com adresinden e-posta gönderebilir veya sosyal medya hesaplarımız üzerinden ulaşabilirsiniz. Tüm mesajlara mümkün olan en kısa sürede yanıt vermeye çalışıyoruz.",
+    },
+    de: {
+      title: "Kontakt",
+      intro:
+        "Melde dich gern mit Fragen, Feedback oder Vorschlägen für neue Tools. Die Hinweise unten zeigen, was du in deiner Nachricht erwähnen solltest und beschleunigen den Support.",
+      list: [
+        "Technischer Support: Nenne das genutzte Tool, die Dateigröße und eventuelle Fehlermeldungen, damit wir das Problem schneller nachstellen können.",
+        "Feature-Wunsch: Beschreibe neue Werkzeuge oder Abkürzungen, die deinen Ablauf verbessern würden. Ein Anwendungsfall hilft uns bei der Priorisierung.",
+        "Zusammenarbeit: Für Integrations- oder Content-Partnerschaften teile deinen Firmennamen, Kontaktdaten und Erwartungen.",
+      ],
+      closing:
+        "Du kannst auch an support@pdffreetool.com mailen oder uns über unsere Social-Media-Konten erreichen. Wir bemühen uns, alle Nachrichten so schnell wie möglich zu beantworten.",
     },
   },
 };
