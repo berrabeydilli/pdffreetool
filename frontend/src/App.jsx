@@ -255,6 +255,29 @@ const buildPathFromState = (language, activePage, activeTab) => {
   return `/${lang}${slugPart}`;
 };
 
+const detectPreferredLanguage = () => {
+  if (typeof window === "undefined") return DEFAULT_LANGUAGE;
+
+  const navigatorLanguages = Array.isArray(navigator.languages)
+    ? navigator.languages
+    : [];
+  const primaryLanguage = navigator.language ? [navigator.language] : [];
+  const allLanguages = [...navigatorLanguages, ...primaryLanguage]
+    .filter(Boolean)
+    .map((lang) => lang.toLowerCase());
+
+  if (allLanguages.some((lang) => lang.startsWith("tr"))) return "tr";
+
+  const timeZone =
+    typeof Intl !== "undefined"
+      ? Intl.DateTimeFormat().resolvedOptions().timeZone || ""
+      : "";
+
+  if (timeZone.toLowerCase() === "europe/istanbul") return "tr";
+
+  return DEFAULT_LANGUAGE;
+};
+
 const parsePathToState = (pathname, fallbackLanguage = DEFAULT_LANGUAGE) => {
   const segments = pathname.split("/").filter(Boolean);
   const potentialLanguage = segments[0];
@@ -283,11 +306,13 @@ const getInitialRouteState = () => {
     };
   }
 
-  const storedLanguage = localStorage.getItem("pdffreetool-language") || DEFAULT_LANGUAGE;
-  const parsed = parsePathToState(window.location.pathname, storedLanguage);
+  const storedLanguage = localStorage.getItem("pdffreetool-language");
+  const detectedLanguage = detectPreferredLanguage();
+  const fallbackLanguage = storedLanguage || detectedLanguage || DEFAULT_LANGUAGE;
+  const parsed = parsePathToState(window.location.pathname, fallbackLanguage);
 
   return {
-    language: parsed.language || storedLanguage,
+    language: parsed.language || fallbackLanguage,
     activePage: parsed.activePage || "home",
     activeTab: parsed.activeTab || DEFAULT_TOOL,
   };
