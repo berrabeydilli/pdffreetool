@@ -490,179 +490,368 @@ const TOOL_DETAILS = {
     },
   },
   split: {
-    title: "Split PDF guidance",
-    intro:
-      "Break a large PDF into smaller, focused files so each audience gets only the sections they need without downloading the whole document.",
-    paragraphs: [
-      "Enter page ranges or select specific segments to create new PDFs instantly, keeping all formatting intact.",
-      "Splitting helps reorganize sprawling reports, trim appendices, or isolate sensitive sections before sharing externally.",
-      "You can combine this with compression to deliver lightweight, topic-specific packets.",
-    ],
-    bulletTitle: "Helpful when",
-    bullets: [
-      "Sharing only certain chapters of a manual with different teams.",
-      "Sending a project update without lengthy appendices or legal sections.",
-      "Extracting meeting notes or decisions from a longer transcript for quick reference.",
-      "Creating separate PDFs for each recipient or department to keep permissions clear.",
-    ],
-    checklistTitle: "Before splitting",
-    checklist: [
-      "Note the exact page ranges you need so you do not miss supporting figures or tables.",
-      "Check for rotated or landscape pages after splitting to keep readability consistent.",
-      "Remove blank or duplicate pages in the source to avoid clutter in each output.",
-      "Label the output files clearly with section names or version numbers.",
-      "Decide whether to recombine certain sections later, and keep a map of which ranges went where.",
-    ],
+    en: {
+      title: "Split PDF guidance",
+      intro:
+        "Break a large PDF into smaller, focused files so each audience gets only the sections they need without downloading the whole document.",
+      paragraphs: [
+        "Enter page ranges or select specific segments to create new PDFs instantly, keeping all formatting intact.",
+        "Splitting helps reorganize sprawling reports, trim appendices, or isolate sensitive sections before sharing externally.",
+        "You can combine this with compression to deliver lightweight, topic-specific packets.",
+      ],
+      bulletTitle: "Helpful when",
+      bullets: [
+        "Sharing only certain chapters of a manual with different teams.",
+        "Sending a project update without lengthy appendices or legal sections.",
+        "Extracting meeting notes or decisions from a longer transcript for quick reference.",
+        "Creating separate PDFs for each recipient or department to keep permissions clear.",
+      ],
+      checklistTitle: "Before splitting",
+      checklist: [
+        "Note the exact page ranges you need so you do not miss supporting figures or tables.",
+        "Check for rotated or landscape pages after splitting to keep readability consistent.",
+        "Remove blank or duplicate pages in the source to avoid clutter in each output.",
+        "Label the output files clearly with section names or version numbers.",
+        "Decide whether to recombine certain sections later, and keep a map of which ranges went where.",
+      ],
+    },
+    tr: {
+      title: "PDF bölme rehberi",
+      intro:
+        "Büyük bir PDF'i daha küçük ve odaklı dosyalara ayırarak her kitlenin sadece ihtiyaç duyduğu bölümleri indirmeden görmesini sağlayın.",
+      paragraphs: [
+        "Sayfa aralıklarını girin veya belirli bölümleri seçerek tüm formatı koruyarak anında yeni PDF'ler oluşturun.",
+        "Bölme işlemi, geniş raporları yeniden düzenlemeye, ekleri azaltmaya veya dış paylaşım öncesi hassas bölümleri ayırmaya yardımcı olur.",
+        "Hafif ve konuya özel paketler sunmak için bu işlemi sıkıştırmayla birleştirebilirsiniz.",
+      ],
+      bulletTitle: "Şunlarda işe yarar",
+      bullets: [
+        "Kılavuzun yalnızca ilgili bölümlerini farklı ekiplerle paylaşmak.",
+        "Uzun ekler veya hukuk kısımları olmadan proje güncellemesi göndermek.",
+        "Uzun bir transkriptten toplantı notlarını veya kararları hızlıca çıkarmak.",
+        "Yetkileri net tutmak için her alıcıya veya departmana ayrı PDF'ler oluşturmak.",
+      ],
+      checklistTitle: "Bölmeden önce",
+      checklist: [
+        "Gerekli sayfa aralıklarını not alın ki destekleyici tablo veya görselleri atlamayın.",
+        "Bölme sonrası döndürülmüş veya yatay sayfaları kontrol ederek okunabilirliği koruyun.",
+        "Her çıktının düzenli olması için kaynak dosyadaki boş veya kopya sayfaları kaldırın.",
+        "Çıktı dosyalarını bölüm adları veya sürüm numaralarıyla net şekilde etiketleyin.",
+        "İleride bazı bölümleri yeniden birleştirip birleştirmeyeceğinize karar verin ve hangi aralıkların nereye gittiğine dair bir not tutun.",
+      ],
+    },
   },
   deletePages: {
-    title: "Delete pages help",
-    intro:
-      "Remove unwanted or blank pages to clean up your PDF quickly, keeping only the content that matters for your audience.",
-    paragraphs: [
-      "Select the pages to drop, preview the changes, and download an updated PDF without altering the remaining layout.",
-      "It is perfect for removing cover sheets, advertisements, or personal data before sharing with clients or teammates.",
-      "Lean PDFs are easier to review, print, and search—especially for long reports or compiled scans.",
-    ],
-    bulletTitle: "Common uses",
-    bullets: [
-      "Tidying scan batches that include blank separators or misfeeds.",
-      "Stripping personal details from receipts or invoices before submitting them.",
-      "Dropping alternate language sections that are irrelevant to a specific recipient.",
-      "Clearing ads or sponsor pages from downloaded guides before archiving.",
-    ],
-    checklistTitle: "Quick checks",
-    checklist: [
-      "Double-check page numbers against the preview to avoid removing key content.",
-      "Save a backup copy of the original PDF in case you need to restore a deleted page.",
-      "Remove duplicates during the same pass to keep the document concise.",
-      "Re-run compression after trimming pages if you plan to email the file.",
-      "If the PDF is being signed, confirm signature fields still align after deletions.",
-    ],
+    en: {
+      title: "Delete pages help",
+      intro:
+        "Remove unwanted or blank pages to clean up your PDF quickly, keeping only the content that matters for your audience.",
+      paragraphs: [
+        "Select the pages to drop, preview the changes, and download an updated PDF without altering the remaining layout.",
+        "It is perfect for removing cover sheets, advertisements, or personal data before sharing with clients or teammates.",
+        "Lean PDFs are easier to review, print, and search—especially for long reports or compiled scans.",
+      ],
+      bulletTitle: "Common uses",
+      bullets: [
+        "Tidying scan batches that include blank separators or misfeeds.",
+        "Stripping personal details from receipts or invoices before submitting them.",
+        "Dropping alternate language sections that are irrelevant to a specific recipient.",
+        "Clearing ads or sponsor pages from downloaded guides before archiving.",
+      ],
+      checklistTitle: "Quick checks",
+      checklist: [
+        "Double-check page numbers against the preview to avoid removing key content.",
+        "Save a backup copy of the original PDF in case you need to restore a deleted page.",
+        "Remove duplicates during the same pass to keep the document concise.",
+        "Re-run compression after trimming pages if you plan to email the file.",
+        "If the PDF is being signed, confirm signature fields still align after deletions.",
+      ],
+    },
+    tr: {
+      title: "Sayfa silme yardımı",
+      intro:
+        "Gereksiz veya boş sayfaları kaldırarak PDF'inizi hızlıca temizleyin, kitleniz için önemli içeriklerin kalmasını sağlayın.",
+      paragraphs: [
+        "Silinecek sayfaları seçin, değişiklikleri önizleyin ve kalan düzeni bozmayacak güncel PDF'i indirin.",
+        "Kapak sayfalarını, reklamları veya kişisel verileri paylaşım öncesi çıkarmak için idealdir.",
+        "Hafif PDF'ler özellikle uzun rapor veya tarama derlemelerinde inceleme, yazdırma ve arama için daha rahattır.",
+      ],
+      bulletTitle: "Yaygın kullanım",
+      bullets: [
+        "Boş ayraçlar veya hatalı beslemeler içeren tarama setlerini düzenlemek.",
+        "Göndermeden önce fiş veya faturadan kişisel bilgileri temizlemek.",
+        "Belirli alıcı için gereksiz olan farklı dil bölümlerini çıkarmak.",
+        "Arşivlemeden önce indirilen kılavuzlardan reklam veya sponsor sayfalarını temizlemek.",
+      ],
+      checklistTitle: "Hızlı kontroller",
+      checklist: [
+        "Önemli içerikleri yanlışlıkla silmemek için sayfa numaralarını önizleme ile karşılaştırın.",
+        "Gerekirse silinen sayfaları geri getirmek için orijinal PDF'in bir yedeğini saklayın.",
+        "Belgeyi derli toplu tutmak için aynı işlemde yinelenen sayfaları da kaldırın.",
+        "Dosyayı e-posta ile gönderecekseniz sayfaları kırptıktan sonra sıkıştırmayı yeniden çalıştırın.",
+        "PDF imzalanacaksa, silme sonrası imza alanlarının hizasının korunduğunu doğrulayın.",
+      ],
+    },
   },
   rotatePages: {
-    title: "Rotate pages tips",
-    intro:
-      "Fix sideways or upside-down pages so the whole PDF reads smoothly without forcing readers to rotate their screens.",
-    paragraphs: [
-      "Rotate individual pages or apply a single rotation to all pages at once, keeping annotations and links aligned.",
-      "Especially useful for scans, meeting notes, or mixed-orientation slide decks that disrupt the reading flow.",
-      "Proper orientation makes reviewing, printing, and signing much faster for everyone involved.",
-    ],
-    bulletTitle: "Best cases",
-    bullets: [
-      "Scanned contracts or receipts that were captured sideways.",
-      "Design proofs or spreadsheets that are intentionally landscape.",
-      "Notebook pages or whiteboard photos taken at awkward angles.",
-      "Mixed orientation slide decks where some pages rotate unexpectedly.",
-    ],
-    checklistTitle: "Rotation reminders",
-    checklist: [
-      "Check a quick preview before downloading to confirm every page faces the right way.",
-      "Use 90° increments to keep text and form fields aligned with margins.",
-      "Rotate only the pages that need it to avoid unintended layout changes.",
-      "Re-run compression after rotating scans if file size is a concern.",
-      "For documents that require signatures, verify signature blocks still sit in the correct orientation.",
-    ],
+    en: {
+      title: "Rotate pages tips",
+      intro:
+        "Fix sideways or upside-down pages so the whole PDF reads smoothly without forcing readers to rotate their screens.",
+      paragraphs: [
+        "Rotate individual pages or apply a single rotation to all pages at once, keeping annotations and links aligned.",
+        "Especially useful for scans, meeting notes, or mixed-orientation slide decks that disrupt the reading flow.",
+        "Proper orientation makes reviewing, printing, and signing much faster for everyone involved.",
+      ],
+      bulletTitle: "Best cases",
+      bullets: [
+        "Scanned contracts or receipts that were captured sideways.",
+        "Design proofs or spreadsheets that are intentionally landscape.",
+        "Notebook pages or whiteboard photos taken at awkward angles.",
+        "Mixed orientation slide decks where some pages rotate unexpectedly.",
+      ],
+      checklistTitle: "Rotation reminders",
+      checklist: [
+        "Check a quick preview before downloading to confirm every page faces the right way.",
+        "Use 90° increments to keep text and form fields aligned with margins.",
+        "Rotate only the pages that need it to avoid unintended layout changes.",
+        "Re-run compression after rotating scans if file size is a concern.",
+        "For documents that require signatures, verify signature blocks still sit in the correct orientation.",
+      ],
+    },
+    tr: {
+      title: "Sayfa döndürme ipuçları",
+      intro:
+        "Yan duran veya ters dönmüş sayfaları düzelterek tüm PDF'in akıcı okunmasını sağlayın; okuyucular ekranlarını çevirmek zorunda kalmasın.",
+      paragraphs: [
+        "Tek tek sayfaları döndürün veya tek seferde tüm sayfalara aynı açıyı uygulayın; açıklama ve bağlantılar hizalı kalsın.",
+        "Okuma akışını bozan taramalar, toplantı notları veya karışık yönlendirmeli slayt desteleri için özellikle kullanışlıdır.",
+        "Doğru yönlendirme, inceleme, yazdırma ve imzalama süreçlerini tüm taraflar için hızlandırır.",
+      ],
+      bulletTitle: "En iyi senaryolar",
+      bullets: [
+        "Yatay yakalanmış taranmış sözleşmeler veya fişler.",
+        "Bilerek yatay tasarlanan prova tasarımları veya tablolar.",
+        "Garip açılardan çekilmiş defter sayfaları veya beyaz tahta fotoğrafları.",
+        "Bazı sayfaları beklenmedik şekilde dönen karışık yönlendirmeli slayt desteleri.",
+      ],
+      checklistTitle: "Döndürme hatırlatmaları",
+      checklist: [
+        "İndirmeden önce hızlıca önizleyerek tüm sayfaların doğru yönde olduğundan emin olun.",
+        "Metin ve form alanlarını kenar boşluklarıyla hizalı tutmak için 90° adımlar kullanın.",
+        "İstenmeyen düzen değişikliklerinden kaçınmak için sadece gerekli sayfaları döndürün.",
+        "Dosya boyutu önemliyse taramaları döndürdükten sonra sıkıştırmayı tekrar çalıştırın.",
+        "İmza gerektiren belgelerde, imza bloklarının doğru yönlendirmede kaldığını doğrulayın.",
+      ],
+    },
   },
   extractPages: {
-    title: "Extract pages notes",
-    intro:
-      "Pull specific pages into a fresh PDF without altering the original, so you can share only the sections that matter.",
-    paragraphs: [
-      "Select the pages you need, download instantly, and keep all formatting, links, and annotations intact.",
-      "It is a fast way to provide stakeholders with a highlights-only version while the source file remains unchanged.",
-      "You can combine extracts later or merge them with new content to create tailored packets.",
-    ],
-    bulletTitle: "Why use it",
-    bullets: [
-      "Sharing only the relevant slides or appendices with specific teams.",
-      "Sending proof or approval pages to clients without exposing the full document.",
-      "Extracting receipts or invoices from a larger scan pack for accounting.",
-      "Creating a highlights-only version for quick executive summaries.",
-    ],
-    checklistTitle: "Things to check",
-    checklist: [
-      "Ensure you include any referenced charts or footnotes so context is not lost.",
-      "Label the new file clearly with page ranges or topics for easy retrieval.",
-      "Consider using delete pages instead if the trimmed PDF will only stay internal.",
-      "Keep the original full PDF in case you need to extract different sections later.",
-      "If sharing externally, review for personal data that might still appear on extracted pages.",
-    ],
+    en: {
+      title: "Extract pages notes",
+      intro:
+        "Pull specific pages into a fresh PDF without altering the original, so you can share only the sections that matter.",
+      paragraphs: [
+        "Select the pages you need, download instantly, and keep all formatting, links, and annotations intact.",
+        "It is a fast way to provide stakeholders with a highlights-only version while the source file remains unchanged.",
+        "You can combine extracts later or merge them with new content to create tailored packets.",
+      ],
+      bulletTitle: "Why use it",
+      bullets: [
+        "Sharing only the relevant slides or appendices with specific teams.",
+        "Sending proof or approval pages to clients without exposing the full document.",
+        "Extracting receipts or invoices from a larger scan pack for accounting.",
+        "Creating a highlights-only version for quick executive summaries.",
+      ],
+      checklistTitle: "Things to check",
+      checklist: [
+        "Ensure you include any referenced charts or footnotes so context is not lost.",
+        "Label the new file clearly with page ranges or topics for easy retrieval.",
+        "Consider using delete pages instead if the trimmed PDF will only stay internal.",
+        "Keep the original full PDF in case you need to extract different sections later.",
+        "If sharing externally, review for personal data that might still appear on extracted pages.",
+      ],
+    },
+    tr: {
+      title: "Sayfa çıkarma notları",
+      intro:
+        "Orijinali değiştirmeden belirli sayfaları yeni bir PDF'e aktarın; böylece yalnızca önemli bölümleri paylaşabilirsiniz.",
+      paragraphs: [
+        "Gerekli sayfaları seçin, anında indirin ve tüm format, bağlantı ve açıklamalar korunmuş kalsın.",
+        "Kaynak dosyayı dokunmadan bırakırken paydaşlara yalnızca öne çıkanlar sürümünü sunmanın hızlı bir yoludur.",
+        "Çıkarılan bölümleri daha sonra birleştirerek veya yeni içerikle harmanlayarak hedefe yönelik paketler oluşturabilirsiniz.",
+      ],
+      bulletTitle: "Neden kullanılır",
+      bullets: [
+        "Yalnızca ilgili slayt veya ekleri belirli ekiplerle paylaşmak.",
+        "Tüm belgeyi açığa çıkarmadan müşterilere ispat veya onay sayfaları göndermek.",
+        "Daha büyük bir tarama setinden muhasebe için fiş veya faturaları çıkarmak.",
+        "Hızlı yönetici özetleri için sadece öne çıkanlardan oluşan bir sürüm hazırlamak.",
+      ],
+      checklistTitle: "Kontrol listesi",
+      checklist: [
+        "Bağlam kaybolmaması için referans verilen grafik veya dipnotları da eklediğinizden emin olun.",
+        "Yeni dosyayı kolay bulunması için sayfa aralıkları veya konu başlıklarıyla net biçimde etiketleyin.",
+        "Kırpılmış PDF yalnızca dahili kalacaksa bunun yerine sayfa silme aracını kullanmayı değerlendirin.",
+        "Farklı bölümleri daha sonra çıkarmak gerekirse diye orijinal tam PDF'i saklayın.",
+        "Dışa açılacaksa, çıkarılan sayfalarda hâlâ yer alabilecek kişisel verileri gözden geçirin.",
+      ],
+    },
   },
   pdfReader: {
-    title: "PDF reader guidance",
-    intro:
-      "Preview PDFs directly in your browser without installing extra software so you can validate content before editing or sharing.",
-    paragraphs: [
-      "Navigate pages quickly, zoom in on details, and download the file when you are ready to keep working elsewhere.",
-      "Use it as a lightweight review step before converting, compressing, or trimming pages.",
-      "Because everything runs in the browser, it is handy on shared or locked-down devices where installing viewers is difficult.",
-    ],
-    bulletTitle: "Use it for",
-    bullets: [
-      "Checking page orientation and layout before committing to edits.",
-      "Confirming the contents of uploaded files without downloading them locally.",
-      "Previewing received PDFs on kiosks or shared devices where viewers are limited.",
-      "Glancing through contracts or reports without opening a desktop application.",
-    ],
-    checklistTitle: "Reader tips",
-    checklist: [
-      "Zoom to 100% when verifying print quality or small text.",
-      "Skim all pages before deciding which conversion or cleanup tool to use next.",
-      "Use the download action to keep a local copy after review if you need offline access.",
-      "Switch between other tools without re-uploading to save time during multi-step tasks.",
-      "If something looks off, reopen the source in another viewer to confirm the file is not corrupted.",
-    ],
+    en: {
+      title: "PDF reader guidance",
+      intro:
+        "Preview PDFs directly in your browser without installing extra software so you can validate content before editing or sharing.",
+      paragraphs: [
+        "Navigate pages quickly, zoom in on details, and download the file when you are ready to keep working elsewhere.",
+        "Use it as a lightweight review step before converting, compressing, or trimming pages.",
+        "Because everything runs in the browser, it is handy on shared or locked-down devices where installing viewers is difficult.",
+      ],
+      bulletTitle: "Use it for",
+      bullets: [
+        "Checking page orientation and layout before committing to edits.",
+        "Confirming the contents of uploaded files without downloading them locally.",
+        "Previewing received PDFs on kiosks or shared devices where viewers are limited.",
+        "Glancing through contracts or reports without opening a desktop application.",
+      ],
+      checklistTitle: "Reader tips",
+      checklist: [
+        "Zoom to 100% when verifying print quality or small text.",
+        "Skim all pages before deciding which conversion or cleanup tool to use next.",
+        "Use the download action to keep a local copy after review if you need offline access.",
+        "Switch between other tools without re-uploading to save time during multi-step tasks.",
+        "If something looks off, reopen the source in another viewer to confirm the file is not corrupted.",
+      ],
+    },
+    tr: {
+      title: "PDF okuyucu rehberi",
+      intro:
+        "Ek yazılım kurmadan PDF'leri doğrudan tarayıcınızda önizleyin; böylece düzenleme veya paylaşım öncesi içeriği doğrulayın.",
+      paragraphs: [
+        "Sayfalar arasında hızlı gezin, detaylara yakınlaşın ve başka bir yerde çalışmaya hazır olduğunuzda dosyayı indirin.",
+        "Dönüştürme, sıkıştırma veya sayfa kırpma öncesinde hafif bir inceleme adımı olarak kullanın.",
+        "Her şey tarayıcıda çalıştığı için, görüntüleyici kurulumu zor olan paylaşımlı veya kısıtlı cihazlarda işinize yarar.",
+      ],
+      bulletTitle: "Şunlar için kullanın",
+      bullets: [
+        "Düzenlemeye başlamadan önce sayfa yönü ve düzenini kontrol etmek.",
+        "Yüklenen dosyaların içeriğini yerel indirme yapmadan doğrulamak.",
+        "Görüntüleyicilerin kısıtlı olduğu kiosk veya paylaşımlı cihazlarda gelen PDF'leri önizlemek.",
+        "Masaüstü uygulaması açmadan sözleşme veya raporlara hızlıca göz atmak.",
+      ],
+      checklistTitle: "Okuyucu ipuçları",
+      checklist: [
+        "Baskı kalitesini veya küçük metinleri doğrularken %100 yakınlaştırmayı kullanın.",
+        "Hangi dönüştürme veya düzenleme aracını kullanacağınıza karar vermeden önce tüm sayfaları gözden geçirin.",
+        "Çevrimdışı erişime ihtiyaç duyarsanız inceleme sonrası indirme ile yerel kopya saklayın.",
+        "Çok adımlı görevlerde zaman kazanmak için dosyayı yeniden yüklemeden diğer araçlar arasında geçiş yapın.",
+        "Bir şey garip görünüyorsa, dosyanın bozuk olmadığını doğrulamak için kaynağı başka bir görüntüleyicide açın.",
+      ],
+    },
   },
   pdfToWord: {
-    title: "PDF to Word notes",
-    intro:
-      "Convert PDFs to editable DOCX files while preserving layout as much as possible, so you can revise text without rebuilding documents from scratch.",
-    paragraphs: [
-      "Ideal for updating reports, proposals, or manuals where you need to tweak wording or pricing while keeping the existing structure.",
-      "Text becomes fully editable in Word or similar editors, and you can quickly re-export to PDF once changes are done.",
-      "Scanned PDFs may require light cleanup afterward, but this tool accelerates the heavy lifting of extraction.",
-    ],
-    bulletTitle: "Ideal uses",
-    bullets: [
-      "Refreshing proposals with new pricing or deliverables while keeping the same layout.",
-      "Editing contracts or agreements before sending for signature.",
-      "Updating academic papers, manuals, or course materials without reformatting chapters.",
-      "Recovering text from scanned PDFs to avoid retyping large sections.",
-    ],
-    checklistTitle: "Before converting",
-    checklist: [
-      "Check whether the PDF has selectable text; scans may require additional OCR cleanup.",
-      "Have custom fonts installed if the document relies on them for consistent layout.",
-      "Review the resulting DOCX for small alignment or spacing tweaks before sharing.",
-      "Keep the original PDF nearby as a reference for images, charts, or branding.",
-      "If you plan to share externally, remove hidden comments or tracked changes after editing.",
-    ],
+    en: {
+      title: "PDF to Word notes",
+      intro:
+        "Convert PDFs to editable DOCX files while preserving layout as much as possible, so you can revise text without rebuilding documents from scratch.",
+      paragraphs: [
+        "Ideal for updating reports, proposals, or manuals where you need to tweak wording or pricing while keeping the existing structure.",
+        "Text becomes fully editable in Word or similar editors, and you can quickly re-export to PDF once changes are done.",
+        "Scanned PDFs may require light cleanup afterward, but this tool accelerates the heavy lifting of extraction.",
+      ],
+      bulletTitle: "Ideal uses",
+      bullets: [
+        "Refreshing proposals with new pricing or deliverables while keeping the same layout.",
+        "Editing contracts or agreements before sending for signature.",
+        "Updating academic papers, manuals, or course materials without reformatting chapters.",
+        "Recovering text from scanned PDFs to avoid retyping large sections.",
+      ],
+      checklistTitle: "Before converting",
+      checklist: [
+        "Check whether the PDF has selectable text; scans may require additional OCR cleanup.",
+        "Have custom fonts installed if the document relies on them for consistent layout.",
+        "Review the resulting DOCX for small alignment or spacing tweaks before sharing.",
+        "Keep the original PDF nearby as a reference for images, charts, or branding.",
+        "If you plan to share externally, remove hidden comments or tracked changes after editing.",
+      ],
+    },
+    tr: {
+      title: "PDF'den Word'e notları",
+      intro:
+        "PDF'leri düzenlenebilir DOCX dosyalarına dönüştürürken yerleşimi olabildiğince koruyun; belgeleri baştan kurmadan metni revize edin.",
+      paragraphs: [
+        "Mevcut yapıyı bozmayarak kelimeleri veya fiyatlandırmayı güncellemeniz gereken rapor, teklif veya kılavuzlar için idealdir.",
+        "Metin Word veya benzeri editörlerde tamamen düzenlenebilir hale gelir; değişiklikler bittiğinde hızla yeniden PDF'e aktarabilirsiniz.",
+        "Taranmış PDF'ler sonrasında küçük bir temizlik gerektirebilir, ancak bu araç çıkarma işleminin büyük kısmını hızlandırır.",
+      ],
+      bulletTitle: "İdeal kullanımlar",
+      bullets: [
+        "Aynı yerleşimi korurken yeni fiyatlandırma veya teslimatlar ile teklifleri yenilemek.",
+        "İmzaya göndermeden önce sözleşme veya anlaşmaları düzenlemek.",
+        "Akademik makale, kılavuz veya eğitim materyallerini bölümleri yeniden biçimlendirmeden güncellemek.",
+        "Geniş bölümleri yeniden yazmaktan kaçınmak için taranmış PDF'lerden metni geri kazanmak.",
+      ],
+      checklistTitle: "Dönüştürmeden önce",
+      checklist: [
+        "PDF'de seçilebilir metin olup olmadığını kontrol edin; taramalar ek OCR temizliği isteyebilir.",
+        "Belge düzeni özel yazı tiplerine bağlıysa bunların yüklü olduğundan emin olun.",
+        "Paylaşmadan önce ortaya çıkan DOCX'i küçük hizalama veya boşluk ayarları için gözden geçirin.",
+        "Görseller, grafikler veya marka ögeleri için referans olarak orijinal PDF'i elinizde bulundurun.",
+        "Dışa açmayı planlıyorsanız, düzenleme sonrası gizli yorumları veya izlenen değişiklikleri temizleyin.",
+      ],
+    },
   },
   wordToPdf: {
-    title: "Word to PDF help",
-    intro:
-      "Turn DOCX files into shareable PDFs that look consistent everywhere, whether they are opened on desktop, mobile, or in the browser.",
-    paragraphs: [
-      "Preserves fonts, spacing, and layout so proposals, resumes, and reports appear polished and uneditable by default.",
-      "It is the quickest way to finalize documents for clients or recruiters without worrying about version mismatches.",
-      "Converted PDFs are lightweight and ready to archive, email, or upload to applicant tracking systems.",
-    ],
-    bulletTitle: "Best for",
-    bullets: [
-      "Job applications where formatting must remain identical for every reviewer.",
-      "Client-ready proposals, statements of work, or agreements.",
-      "Reports with charts, tables, or custom fonts that should not shift in transit.",
-      "Certificates, letters, or policies that should be view-only for recipients.",
-    ],
-    checklistTitle: "Before you convert",
-    checklist: [
-      "Review the DOCX for tracked changes or comments you do not want to share.",
-      "Check image resolutions if the PDF will be printed to avoid blurry results.",
-      "Verify margins and page size so the exported PDF aligns with your branding.",
-      "Save a copy of the original DOCX in case you need to make edits later.",
-      "If using custom fonts, embed them or outline critical text to keep the look consistent.",
-    ],
+    en: {
+      title: "Word to PDF help",
+      intro:
+        "Turn DOCX files into shareable PDFs that look consistent everywhere, whether they are opened on desktop, mobile, or in the browser.",
+      paragraphs: [
+        "Preserves fonts, spacing, and layout so proposals, resumes, and reports appear polished and uneditable by default.",
+        "It is the quickest way to finalize documents for clients or recruiters without worrying about version mismatches.",
+        "Converted PDFs are lightweight and ready to archive, email, or upload to applicant tracking systems.",
+      ],
+      bulletTitle: "Best for",
+      bullets: [
+        "Job applications where formatting must remain identical for every reviewer.",
+        "Client-ready proposals, statements of work, or agreements.",
+        "Reports with charts, tables, or custom fonts that should not shift in transit.",
+        "Certificates, letters, or policies that should be view-only for recipients.",
+      ],
+      checklistTitle: "Before you convert",
+      checklist: [
+        "Review the DOCX for tracked changes or comments you do not want to share.",
+        "Check image resolutions if the PDF will be printed to avoid blurry results.",
+        "Verify margins and page size so the exported PDF aligns with your branding.",
+        "Save a copy of the original DOCX in case you need to make edits later.",
+        "If using custom fonts, embed them or outline critical text to keep the look consistent.",
+      ],
+    },
+    tr: {
+      title: "Word'den PDF'ye yardım",
+      intro:
+        "DOCX dosyalarını masaüstü, mobil veya tarayıcıda açıldığında aynı görünen, paylaşılabilir PDF'lere dönüştürün.",
+      paragraphs: [
+        "Yazı tipleri, boşluklar ve yerleşim korunur; böylece teklifler, özgeçmişler ve raporlar varsayılan olarak düzenlenemez ve şık görünür.",
+        "Sürüm uyumsuzluklarını düşünmeden belgeleri müşteriler veya işe alımcılar için en hızlı şekilde sonlandırmanın yoludur.",
+        "Dönüştürülen PDF'ler hafiftir ve arşivlemeye, e-postalamaya veya aday takip sistemlerine yüklemeye hazırdır.",
+      ],
+      bulletTitle: "Şunlar için en uygunu",
+      bullets: [
+        "Her inceleyici için biçimin aynı kalmasının gerektiği iş başvuruları.",
+        "Müşteri onayına hazır teklifler, kapsam dokümanları veya anlaşmalar.",
+        "Taşıma sırasında kaymaması gereken grafik, tablo veya özel yazı tiplerine sahip raporlar.",
+        "Alıcıların yalnızca görüntülemesi gereken sertifikalar, mektuplar veya politikalar.",
+      ],
+      checklistTitle: "Dönüştürmeden önce",
+      checklist: [
+        "Paylaşmak istemediğiniz izlenen değişiklik veya yorumlar için DOCX'i gözden geçirin.",
+        "PDF yazdırılacaksa bulanık sonuçlardan kaçınmak için görsel çözünürlüklerini kontrol edin.",
+        "İhracatın markanıza uyumlu olması için kenar boşluklarını ve sayfa boyutunu doğrulayın.",
+        "Sonradan düzenleme gerekirse diye orijinal DOCX'in bir kopyasını saklayın.",
+        "Özel yazı tipleri kullanıyorsanız görünümü tutarlı tutmak için bunları yerleştirin veya kritik metni dış hatlara çevirin.",
+      ],
+    },
   },
 };
 
