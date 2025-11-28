@@ -1,6 +1,5 @@
 import React, { useRef, useState } from "react";
-
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:4000";
+import { API_URL } from "./apiConfig";
 const MAX_FILES = 10;
 const MAX_TOTAL_MB = 50;
 
