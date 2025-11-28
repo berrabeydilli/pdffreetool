@@ -3,7 +3,63 @@ import ToolCardShell from "./components/ToolCardShell";
 
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:4000";
 
-export default function ExtractPdfPagesCard() {
+const TEXT = {
+  en: {
+    pillLabel: "Extract pages",
+    title: "Save specific pages as a new PDF",
+    description:
+      "Type the pages you need (e.g., 1,2,7) to carve out a smaller, focused PDF. Ideal for sharing only the important chapters or receipts, it keeps everything local to your browser and returns a fresh download in seconds.",
+    upload: {
+      change: "Change PDF",
+      upload: "Upload PDF",
+      none: "No file chosen",
+    },
+    inputs: {
+      placeholder: "Pages to extract (e.g., 1-3,5)",
+    },
+    errors: {
+      pdfOnly: "Please upload a PDF file.",
+      missingFile: "Please choose a PDF file.",
+      missingPages: "Enter the page numbers to extract.",
+      generic: "Something went wrong.",
+      failed: "Failed to extract pages.",
+    },
+    buttons: {
+      clear: "Clear",
+      extract: "Extract pages",
+      extracting: "Working...",
+    },
+  },
+  tr: {
+    pillLabel: "Sayfaları çıkar",
+    title: "Belirli sayfaları yeni bir PDF olarak kaydedin",
+    description:
+      "Gereken sayfaları yazın (örn. 1,2,7) ve daha küçük, odaklı bir PDF oluşturun. Önemli bölümleri veya fişleri paylaşmak için idealdir; her şey tarayıcınızda kalır ve saniyeler içinde yeni indirme hazır olur.",
+    upload: {
+      change: "PDF değiştir",
+      upload: "PDF yükle",
+      none: "Dosya seçilmedi",
+    },
+    inputs: {
+      placeholder: "Çıkarılacak sayfalar (örn. 1-3,5)",
+    },
+    errors: {
+      pdfOnly: "Lütfen bir PDF dosyası yükleyin.",
+      missingFile: "Lütfen bir PDF dosyası seçin.",
+      missingPages: "Çıkarılacak sayfa numaralarını girin.",
+      generic: "Bir şeyler yanlış gitti.",
+      failed: "Sayfalar çıkarılamadı.",
+    },
+    buttons: {
+      clear: "Temizle",
+      extract: "Sayfaları çıkar",
+      extracting: "Çalışıyor...",
+    },
+  },
+};
+
+export default function ExtractPdfPagesCard({ language = "en" }) {
+  const t = TEXT[language] || TEXT.en;
   const [file, setFile] = useState(null);
   const [pages, setPages] = useState("");
   const [isProcessing, setIsProcessing] = useState(false);
@@ -19,7 +75,7 @@ export default function ExtractPdfPagesCard() {
     }
 
     if (selected.type !== "application/pdf") {
-      setError("Please upload a PDF file.");
+      setError(t.errors.pdfOnly);
       setFile(null);
       return;
     }
@@ -39,12 +95,12 @@ export default function ExtractPdfPagesCard() {
   const handleExtract = async () => {
     setError("");
     if (!file) {
-      setError("Please choose a PDF file.");
+      setError(t.errors.missingFile);
       return;
     }
 
     if (!pages.trim()) {
-      setError("Enter the page numbers to extract.");
+      setError(t.errors.missingPages);
       return;
     }
 
@@ -62,7 +118,7 @@ export default function ExtractPdfPagesCard() {
 
       if (!res.ok) {
         const data = await res.json().catch(() => ({}));
-        throw new Error(data.error || "Something went wrong.");
+        throw new Error(data.error || t.errors.generic);
       }
 
       const blob = await res.blob();
@@ -76,7 +132,7 @@ export default function ExtractPdfPagesCard() {
       window.URL.revokeObjectURL(url);
     } catch (err) {
       console.error(err);
-      setError(err.message || "Failed to extract pages.");
+      setError(err.message || t.errors.failed);
     } finally {
       setIsProcessing(false);
     }
@@ -84,9 +140,9 @@ export default function ExtractPdfPagesCard() {
 
   return (
     <ToolCardShell
-      pillLabel="Extract pages"
-      title="Save specific pages as a new PDF"
-      description="Type the pages you need (e.g., 1,2,7) to carve out a smaller, focused PDF. Ideal for sharing only the important chapters or receipts, it keeps everything local to your browser and returns a fresh download in seconds."
+      pillLabel={t.pillLabel}
+      title={t.title}
+      description={t.description}
       accentColor="#f59e0b"
       pillBackground="#fffbeb"
     >
@@ -126,7 +182,7 @@ export default function ExtractPdfPagesCard() {
             boxShadow: "0 10px 25px rgba(245,158,11,0.15)",
           }}
         >
-          {file ? "Change PDF" : "Upload PDF"}
+          {file ? t.upload.change : t.upload.upload}
         </label>
         <p
           style={{
@@ -135,7 +191,7 @@ export default function ExtractPdfPagesCard() {
             color: "#6b7280",
           }}
         >
-          {file ? file.name : "No file chosen"}
+          {file ? file.name : t.upload.none}
         </p>
       </div>
 
@@ -149,7 +205,7 @@ export default function ExtractPdfPagesCard() {
       >
         <input
           type="text"
-          placeholder="Pages to extract (e.g., 1-3,5)"
+          placeholder={t.inputs.placeholder}
           value={pages}
           onChange={(e) => setPages(e.target.value)}
           style={{
@@ -196,7 +252,7 @@ export default function ExtractPdfPagesCard() {
             minWidth: "90px",
           }}
         >
-          Clear
+          {t.buttons.clear}
         </button>
         <button
           onClick={handleExtract}
@@ -216,7 +272,7 @@ export default function ExtractPdfPagesCard() {
               : "0 10px 25px rgba(245,158,11,0.30)",
           }}
         >
-          {isProcessing ? "Working..." : "Extract pages"}
+          {isProcessing ? t.buttons.extracting : t.buttons.extract}
         </button>
       </div>
     </ToolCardShell>

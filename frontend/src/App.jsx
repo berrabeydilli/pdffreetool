@@ -2788,7 +2788,7 @@ function App() {
         {activeTab === "compressImage" && (
           <CompressImageCard language={language} />
         )}
-        {activeTab === "jpgToPdf" && <JpgToPdfCard />}
+        {activeTab === "jpgToPdf" && <JpgToPdfCard language={language} />}
         {activeTab === "pdfToJpg" && <PdfToJpgCard />}
         {activeTab === "pdfToPng" && <PdfToPngCard />}
         {activeTab === "split" && <SplitPdfCard />}
@@ -2798,7 +2798,9 @@ function App() {
         {activeTab === "rotatePages" && (
           <RotatePdfPagesCard language={language} />
         )}
-        {activeTab === "extractPages" && <ExtractPdfPagesCard />}
+        {activeTab === "extractPages" && (
+          <ExtractPdfPagesCard language={language} />
+        )}
         {activeTab === "pdfReader" && <PdfReaderCard language={language} />}
         {activeTab === "pdfToWord" && <PdfToWordCard />}
         {activeTab === "wordToPdf" && <WordToPdfCard />}

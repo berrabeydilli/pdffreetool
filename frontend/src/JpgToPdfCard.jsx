@@ -4,7 +4,66 @@ const API_URL = import.meta.env.VITE_API_URL || "http://localhost:4000";
 const MAX_FILES = 10;
 const MAX_TOTAL_MB = 50;
 
-export default function JpgToPdfCard() {
+const TEXT = {
+  en: {
+    ariaLabel: "JPG to PDF tool",
+    badge: "Convert JPG to PDF",
+    title: "Turn your images into a single PDF",
+    description:
+      "Upload JPG photos and download them as a clean, shareable PDF document.",
+    uploadPrompt: "Choose JPG images to convert",
+    selectCta: "Select JPGs",
+    uploadAria: "Upload JPG images",
+    selectedHeading: (count) => `Selected images (${count})`,
+    clear: "Clear",
+    remove: (name) => `Remove ${name}`,
+    stats: (count, totalMb) =>
+      `${count} image${count === 1 ? "" : "s"} | ${totalMb.toFixed(2)} MB total`,
+    actions: {
+      convert: "Convert to PDF",
+      converting: "Converting...",
+    },
+    errors: {
+      type: "Please select JPG or PNG images only.",
+      maxFiles: (limit) => `You can upload up to ${limit} images.`,
+      maxSize: (limit) =>
+        `Total image size cannot exceed ${limit} MB. Please choose fewer or smaller files.`,
+      noneSelected: "Please upload at least one image.",
+      generic: "Something went wrong.",
+      failed: "Failed to convert images.",
+    },
+  },
+  tr: {
+    ariaLabel: "JPG'den PDF'e araç",
+    badge: "JPG'yi PDF'e dönüştür",
+    title: "Görsellerinizi tek bir PDF'e çevirin",
+    description:
+      "JPG fotoğraflarını yükleyin, düzenli ve paylaşılabilir bir PDF olarak indirin.",
+    uploadPrompt: "Dönüştürülecek JPG görselleri seçin",
+    selectCta: "JPG seç",
+    uploadAria: "JPG görselleri yükle",
+    selectedHeading: (count) => `Seçilen görseller (${count})`,
+    clear: "Temizle",
+    remove: (name) => `${name} öğesini kaldır`,
+    stats: (count, totalMb) => `${count} görsel | ${totalMb.toFixed(2)} MB toplam`,
+    actions: {
+      convert: "PDF'e dönüştür",
+      converting: "Dönüştürülüyor...",
+    },
+    errors: {
+      type: "Lütfen sadece JPG veya PNG görseller seçin.",
+      maxFiles: (limit) => `En fazla ${limit} görsel yükleyebilirsiniz.`,
+      maxSize: (limit) =>
+        `Toplam görsel boyutu ${limit} MB'ı geçemez. Lütfen daha az veya daha küçük dosyalar seçin.`,
+      noneSelected: "Lütfen en az bir görsel yükleyin.",
+      generic: "Bir şeyler yanlış gitti.",
+      failed: "Görseller dönüştürülemedi.",
+    },
+  },
+};
+
+export default function JpgToPdfCard({ language = "en" }) {
+  const t = TEXT[language] || TEXT.en;
   const [images, setImages] = useState([]);
   const [error, setError] = useState("");
   const [isConverting, setIsConverting] = useState(false);
@@ -22,7 +81,7 @@ export default function JpgToPdfCard() {
     );
 
     if (!supported.length) {
-      setError("Please select JPG or PNG images only.");
+      setError(t.errors.type);
       setImages([]);
       return;
     }
@@ -30,7 +89,7 @@ export default function JpgToPdfCard() {
     let combined = [...images, ...supported];
 
     if (combined.length > MAX_FILES) {
-      setError(`You can upload up to ${MAX_FILES} images.`);
+      setError(t.errors.maxFiles(MAX_FILES));
       combined = combined.slice(0, MAX_FILES);
     }
 
@@ -38,9 +97,7 @@ export default function JpgToPdfCard() {
       combined.reduce((sum, f) => sum + f.size, 0) / 1024 / 1024 || 0;
 
     if (totalMB > MAX_TOTAL_MB) {
-      setError(
-        `Total image size cannot exceed ${MAX_TOTAL_MB} MB. Please choose fewer or smaller files.`
-      );
+      setError(t.errors.maxSize(MAX_TOTAL_MB));
       return;
     }
 
@@ -58,7 +115,7 @@ export default function JpgToPdfCard() {
   const handleConvert = async () => {
     setError("");
     if (!images.length) {
-      setError("Please upload at least one image.");
+      setError(t.errors.noneSelected);
       return;
     }
 
@@ -77,7 +134,7 @@ export default function JpgToPdfCard() {
 
       if (!res.ok) {
         const data = await res.json().catch(() => ({}));
-        throw new Error(data.error || "Something went wrong.");
+        throw new Error(data.error || t.errors.generic);
       }
 
       const blob = await res.blob();
@@ -92,7 +149,7 @@ export default function JpgToPdfCard() {
       window.URL.revokeObjectURL(url);
     } catch (err) {
       console.error(err);
-      setError(err.message || "Failed to convert images.");
+      setError(err.message || t.errors.failed);
     } finally {
       setIsConverting(false);
     }
@@ -103,7 +160,7 @@ export default function JpgToPdfCard() {
 
   return (
     <section
-      aria-label="JPG to PDF tool"
+      aria-label={t.ariaLabel}
       style={{
         marginBottom: "28px",
         marginTop: "24px",
@@ -162,7 +219,7 @@ export default function JpgToPdfCard() {
                     background: "#f97316",
                   }}
                 ></span>
-                Convert JPG to PDF
+                {t.badge}
               </div>
               <h2
                 style={{
@@ -172,7 +229,7 @@ export default function JpgToPdfCard() {
                   color: "#0f172a",
                 }}
               >
-                Turn your images into a single PDF
+                {t.title}
               </h2>
               <p
                 style={{
@@ -181,8 +238,7 @@ export default function JpgToPdfCard() {
                   fontSize: "13px",
                 }}
               >
-                Upload JPG photos and download them as a clean, shareable PDF
-                document.
+                {t.description}
               </p>
             </div>
           </div>
@@ -207,7 +263,7 @@ export default function JpgToPdfCard() {
                 fontWeight: 500,
               }}
             >
-              Choose JPG images to convert
+              {t.uploadPrompt}
             </div>
             <label
               style={{
@@ -224,7 +280,7 @@ export default function JpgToPdfCard() {
               }}
             >
               <span style={{ fontSize: "14px" }}>🖼️</span>
-              <span>Select JPGs</span>
+              <span>{t.selectCta}</span>
               <input
                 ref={fileInputRef}
                 type="file"
@@ -232,7 +288,7 @@ export default function JpgToPdfCard() {
                 multiple
                 onChange={handleFileChange}
                 style={{ display: "none" }}
-                aria-label="Upload JPG images"
+                aria-label={t.uploadAria}
               />
             </label>
 
@@ -253,7 +309,7 @@ export default function JpgToPdfCard() {
                     fontWeight: 600,
                   }}
                 >
-                  <span>Selected images ({images.length})</span>
+                  <span>{t.selectedHeading(images.length)}</span>
                   <button
                     onClick={handleClear}
                     style={{
@@ -265,7 +321,7 @@ export default function JpgToPdfCard() {
                       padding: 0,
                     }}
                   >
-                    Clear
+                    {t.clear}
                   </button>
                 </div>
                 <div
@@ -327,7 +383,7 @@ export default function JpgToPdfCard() {
                             fontSize: "16px",
                             lineHeight: 1,
                           }}
-                          aria-label={`Remove ${img.name}`}
+                          aria-label={t.remove(img.name)}
                         >
                           ×
                         </button>
@@ -384,7 +440,7 @@ export default function JpgToPdfCard() {
               }}
             >
               <span style={{ fontSize: "14px" }}>📄</span>
-              {isConverting ? "Converting..." : "Convert to PDF"}
+              {isConverting ? t.actions.converting : t.actions.convert}
             </button>
 
             <div
@@ -409,10 +465,7 @@ export default function JpgToPdfCard() {
                   background: "#f97316",
                 }}
               ></span>
-              <span>
-                {images.length} image{images.length === 1 ? "" : "s"} | {" "}
-                {totalMB.toFixed(2)} MB total
-              </span>
+              <span>{t.stats(images.length, totalMB)}</span>
             </div>
           </div>
         </div>
