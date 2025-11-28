@@ -1,7 +1,43 @@
 import React, { useEffect, useRef, useState } from "react";
 import ToolCardShell from "./components/ToolCardShell";
 
-export default function PdfReaderCard() {
+const TEXT = {
+  en: {
+    pillLabel: "PDF reader",
+    title: "Read and preview PDFs in your browser",
+    description:
+      "Open a PDF instantly without downloading extra apps or sending files to a server. Flip through pages, zoom from your browser, and keep everything safely on your device for offline-friendly reading.",
+    upload: {
+      upload: "Upload PDF",
+      change: "Change PDF",
+      noFile: "No file chosen",
+    },
+    errors: {
+      pdfOnly: "Please upload a PDF file.",
+    },
+    previewPlaceholder: "Upload a PDF to start reading instantly.",
+    clear: "Clear",
+  },
+  tr: {
+    pillLabel: "PDF okuyucu",
+    title: "PDF'leri tarayıcıda okuyun ve ön izleyin",
+    description:
+      "Ek uygulama indirmeden veya dosyaları sunucuya göndermeden PDF açın. Sayfalar arasında gezin, yakınlaştırın ve her şeyi cihazınızda tutarak çevrimdışı kullanım için güvenceye alın.",
+    upload: {
+      upload: "PDF yükle",
+      change: "PDF değiştir",
+      noFile: "Dosya seçilmedi",
+    },
+    errors: {
+      pdfOnly: "Lütfen bir PDF dosyası yükleyin.",
+    },
+    previewPlaceholder: "Hemen okumaya başlamak için bir PDF yükleyin.",
+    clear: "Temizle",
+  },
+};
+
+export default function PdfReaderCard({ language = "en" }) {
+  const t = TEXT[language] || TEXT.en;
   const [file, setFile] = useState(null);
   const [previewUrl, setPreviewUrl] = useState("");
   const [error, setError] = useState("");
@@ -25,7 +61,7 @@ export default function PdfReaderCard() {
     }
 
     if (selected.type !== "application/pdf") {
-      setError("Please upload a PDF file.");
+      setError(t.errors.pdfOnly);
       setFile(null);
       setPreviewUrl("");
       return;
@@ -50,9 +86,9 @@ export default function PdfReaderCard() {
 
   return (
     <ToolCardShell
-      pillLabel="PDF reader"
-      title="Read and preview PDFs in your browser"
-      description="Open a PDF instantly without downloading extra apps or sending files to a server. Flip through pages, zoom from your browser, and keep everything safely on your device for offline-friendly reading."
+      pillLabel={t.pillLabel}
+      title={t.title}
+      description={t.description}
       accentColor="#10b981"
       pillBackground="#ecfdf3"
     >
@@ -92,7 +128,7 @@ export default function PdfReaderCard() {
             boxShadow: "0 10px 25px rgba(16,185,129,0.15)",
           }}
         >
-          {file ? "Change PDF" : "Upload PDF"}
+          {file ? t.upload.change : t.upload.upload}
         </label>
         <p
           style={{
@@ -101,7 +137,7 @@ export default function PdfReaderCard() {
             color: "#6b7280",
           }}
         >
-          {file ? file.name : "No file chosen"}
+          {file ? file.name : t.upload.noFile}
         </p>
       </div>
 
@@ -149,7 +185,7 @@ export default function PdfReaderCard() {
             textAlign: "center",
           }}
         >
-          Upload a PDF to start reading instantly.
+          {t.previewPlaceholder}
         </div>
       )}
 
@@ -168,7 +204,7 @@ export default function PdfReaderCard() {
             minWidth: "90px",
           }}
         >
-          Clear
+          {t.clear}
         </button>
       </div>
     </ToolCardShell>

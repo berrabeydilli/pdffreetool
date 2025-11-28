@@ -2792,10 +2792,14 @@ function App() {
         {activeTab === "pdfToJpg" && <PdfToJpgCard />}
         {activeTab === "pdfToPng" && <PdfToPngCard />}
         {activeTab === "split" && <SplitPdfCard />}
-        {activeTab === "deletePages" && <DeletePdfPagesCard />}
-        {activeTab === "rotatePages" && <RotatePdfPagesCard />}
+        {activeTab === "deletePages" && (
+          <DeletePdfPagesCard language={language} />
+        )}
+        {activeTab === "rotatePages" && (
+          <RotatePdfPagesCard language={language} />
+        )}
         {activeTab === "extractPages" && <ExtractPdfPagesCard />}
-        {activeTab === "pdfReader" && <PdfReaderCard />}
+        {activeTab === "pdfReader" && <PdfReaderCard language={language} />}
         {activeTab === "pdfToWord" && <PdfToWordCard />}
         {activeTab === "wordToPdf" && <WordToPdfCard />}
 

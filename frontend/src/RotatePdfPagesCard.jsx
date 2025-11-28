@@ -3,7 +3,65 @@ import ToolCardShell from "./components/ToolCardShell";
 
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:4000";
 
-export default function RotatePdfPagesCard() {
+const TEXT = {
+  en: {
+    pillLabel: "Rotate PDF pages",
+    title: "Rotate specific pages or the whole file",
+    description:
+      "Upload a PDF, pick an angle, and rotate only the pages you choose—or leave the field blank to fix the entire document. It is perfect for correcting sideways scans, mixing portrait and landscape pages, and tidying up multi-page contracts before sharing.",
+    upload: {
+      change: "Change PDF",
+      upload: "Upload PDF",
+      none: "No file chosen",
+    },
+    inputs: {
+      pagesLabel: "Pages to rotate (leave empty for all)",
+      angleLabel: "Rotation",
+      angleNote: "degrees",
+    },
+    errors: {
+      pdfOnly: "Please upload a PDF file.",
+      missingFile: "Please choose a PDF file.",
+      generic: "Something went wrong.",
+      failed: "Failed to rotate pages.",
+    },
+    buttons: {
+      clear: "Clear",
+      rotate: "Rotate pages",
+      rotating: "Rotating...",
+    },
+  },
+  tr: {
+    pillLabel: "PDF sayfalarını döndür",
+    title: "Belirli sayfaları veya tüm dosyayı döndürün",
+    description:
+      "Bir PDF yükleyin, açıyı seçin ve yalnızca belirttiğiniz sayfaları döndürün—ya da alanı boş bırakarak tüm belgeyi düzeltin. Yan çekilmiş taramaları düzeltmek, dikey-yatay sayfaları düzenlemek ve çok sayfalı sözleşmeleri temizlemek için idealdir.",
+    upload: {
+      change: "PDF değiştir",
+      upload: "PDF yükle",
+      none: "Dosya seçilmedi",
+    },
+    inputs: {
+      pagesLabel: "Döndürülecek sayfalar (tamamı için boş bırakın)",
+      angleLabel: "Döndürme",
+      angleNote: "derece",
+    },
+    errors: {
+      pdfOnly: "Lütfen bir PDF dosyası yükleyin.",
+      missingFile: "Lütfen bir PDF dosyası seçin.",
+      generic: "Bir şeyler yanlış gitti.",
+      failed: "Sayfalar döndürülemedi.",
+    },
+    buttons: {
+      clear: "Temizle",
+      rotate: "Sayfaları döndür",
+      rotating: "Döndürülüyor...",
+    },
+  },
+};
+
+export default function RotatePdfPagesCard({ language = "en" }) {
+  const t = TEXT[language] || TEXT.en;
   const [file, setFile] = useState(null);
   const [pages, setPages] = useState("");
   const [angle, setAngle] = useState("90");
@@ -20,7 +78,7 @@ export default function RotatePdfPagesCard() {
     }
 
     if (selected.type !== "application/pdf") {
-      setError("Please upload a PDF file.");
+      setError(t.errors.pdfOnly);
       setFile(null);
       return;
     }
@@ -41,7 +99,7 @@ export default function RotatePdfPagesCard() {
   const handleRotate = async () => {
     setError("");
     if (!file) {
-      setError("Please choose a PDF file.");
+      setError(t.errors.missingFile);
       return;
     }
 
@@ -60,7 +118,7 @@ export default function RotatePdfPagesCard() {
 
       if (!res.ok) {
         const data = await res.json().catch(() => ({}));
-        throw new Error(data.error || "Something went wrong.");
+        throw new Error(data.error || t.errors.generic);
       }
 
       const blob = await res.blob();
@@ -74,7 +132,7 @@ export default function RotatePdfPagesCard() {
       window.URL.revokeObjectURL(url);
     } catch (err) {
       console.error(err);
-      setError(err.message || "Failed to rotate pages.");
+      setError(err.message || t.errors.failed);
     } finally {
       setIsProcessing(false);
     }
@@ -82,9 +140,9 @@ export default function RotatePdfPagesCard() {
 
   return (
     <ToolCardShell
-      pillLabel="Rotate PDF pages"
-      title="Rotate specific pages or the whole file"
-      description="Upload a PDF, pick an angle, and rotate only the pages you choose—or leave the field blank to fix the entire document. It is perfect for correcting sideways scans, mixing portrait and landscape pages, and tidying up multi-page contracts before sharing."
+      pillLabel={t.pillLabel}
+      title={t.title}
+      description={t.description}
       accentColor="#0ea5e9"
       pillBackground="#e0f2fe"
     >
@@ -124,7 +182,7 @@ export default function RotatePdfPagesCard() {
             boxShadow: "0 10px 25px rgba(14,165,233,0.15)",
           }}
         >
-          {file ? "Change PDF" : "Upload PDF"}
+          {file ? t.upload.change : t.upload.upload}
         </label>
         <p
           style={{
@@ -133,7 +191,7 @@ export default function RotatePdfPagesCard() {
             color: "#6b7280",
           }}
         >
-          {file ? file.name : "No file chosen"}
+          {file ? file.name : t.upload.none}
         </p>
       </div>
 
@@ -157,13 +215,13 @@ export default function RotatePdfPagesCard() {
             background: "#f8fafc",
           }}
         >
-          <option value="90">Rotate 90°</option>
-          <option value="180">Rotate 180°</option>
-          <option value="270">Rotate 270°</option>
+          <option value="90">{t.inputs.angleLabel} 90°</option>
+          <option value="180">{t.inputs.angleLabel} 180°</option>
+          <option value="270">{t.inputs.angleLabel} 270°</option>
         </select>
         <input
           type="text"
-          placeholder="Pages to rotate (e.g., 1,2,5). Blank = all"
+          placeholder={`${t.inputs.pagesLabel} ${language === "tr" ? "(örn. 1,2,5)" : "(e.g., 1,2,5)"}`}
           value={pages}
           onChange={(e) => setPages(e.target.value)}
           style={{
@@ -211,7 +269,7 @@ export default function RotatePdfPagesCard() {
             minWidth: "90px",
           }}
         >
-          Clear
+          {t.buttons.clear}
         </button>
         <button
           onClick={handleRotate}
@@ -231,7 +289,7 @@ export default function RotatePdfPagesCard() {
               : "0 10px 25px rgba(14,165,233,0.30)",
           }}
         >
-          {isProcessing ? "Working..." : "Rotate pages"}
+          {isProcessing ? t.buttons.rotating : t.buttons.rotate}
         </button>
       </div>
     </ToolCardShell>

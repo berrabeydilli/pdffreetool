@@ -3,7 +3,59 @@ import ToolCardShell from "./components/ToolCardShell";
 
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:4000";
 
-export default function DeletePdfPagesCard() {
+const TEXT = {
+  en: {
+    pillLabel: "Delete PDF pages",
+    title: "Remove unwanted pages",
+    description:
+      "Pick a PDF, list the page numbers to drop (e.g., 2,4,6), and instantly download a cleaner file. Use it to strip out blank inserts, duplicates, or sensitive sections while keeping everything processed locally in your browser.",
+    upload: {
+      change: "Change PDF",
+      upload: "Upload PDF",
+      none: "No file chosen",
+      placeholder: "Pages to delete (e.g., 1,3,5)",
+    },
+    errors: {
+      pdfOnly: "Please upload a PDF file.",
+      missingFile: "Please choose a PDF file.",
+      missingPages: "Enter the page numbers to delete.",
+      generic: "Something went wrong.",
+      failed: "Failed to delete pages.",
+    },
+    buttons: {
+      clear: "Clear",
+      delete: "Delete pages",
+      deleting: "Working...",
+    },
+  },
+  tr: {
+    pillLabel: "PDF sayfalarını sil",
+    title: "İstenmeyen sayfaları kaldırın",
+    description:
+      "Bir PDF seçin, kaldırmak istediğiniz sayfa numaralarını yazın (örn. 2,4,6) ve anında daha sade bir dosya indirin. Boş sayfaları, kopyaları veya hassas bölümleri temizlerken her şey tarayıcınızda işlenir.",
+    upload: {
+      change: "PDF değiştir",
+      upload: "PDF yükle",
+      none: "Dosya seçilmedi",
+      placeholder: "Silinecek sayfalar (örn. 1,3,5)",
+    },
+    errors: {
+      pdfOnly: "Lütfen bir PDF dosyası yükleyin.",
+      missingFile: "Lütfen bir PDF dosyası seçin.",
+      missingPages: "Silinecek sayfa numaralarını girin.",
+      generic: "Bir şeyler yanlış gitti.",
+      failed: "Sayfalar silinemedi.",
+    },
+    buttons: {
+      clear: "Temizle",
+      delete: "Sayfaları sil",
+      deleting: "Çalışıyor...",
+    },
+  },
+};
+
+export default function DeletePdfPagesCard({ language = "en" }) {
+  const t = TEXT[language] || TEXT.en;
   const [file, setFile] = useState(null);
   const [pages, setPages] = useState("");
   const [isProcessing, setIsProcessing] = useState(false);
@@ -19,7 +71,7 @@ export default function DeletePdfPagesCard() {
     }
 
     if (selected.type !== "application/pdf") {
-      setError("Please upload a PDF file.");
+      setError(t.errors.pdfOnly);
       setFile(null);
       return;
     }
@@ -39,12 +91,12 @@ export default function DeletePdfPagesCard() {
   const handleDelete = async () => {
     setError("");
     if (!file) {
-      setError("Please choose a PDF file.");
+      setError(t.errors.missingFile);
       return;
     }
 
     if (!pages.trim()) {
-      setError("Enter the page numbers to delete.");
+      setError(t.errors.missingPages);
       return;
     }
 
@@ -62,7 +114,7 @@ export default function DeletePdfPagesCard() {
 
       if (!res.ok) {
         const data = await res.json().catch(() => ({}));
-        throw new Error(data.error || "Something went wrong.");
+        throw new Error(data.error || t.errors.generic);
       }
 
       const blob = await res.blob();
@@ -76,7 +128,7 @@ export default function DeletePdfPagesCard() {
       window.URL.revokeObjectURL(url);
     } catch (err) {
       console.error(err);
-      setError(err.message || "Failed to delete pages.");
+      setError(err.message || t.errors.failed);
     } finally {
       setIsProcessing(false);
     }
@@ -84,9 +136,9 @@ export default function DeletePdfPagesCard() {
 
   return (
     <ToolCardShell
-      pillLabel="Delete PDF pages"
-      title="Remove unwanted pages"
-      description="Pick a PDF, list the page numbers to drop (e.g., 2,4,6), and instantly download a cleaner file. Use it to strip out blank inserts, duplicates, or sensitive sections while keeping everything processed locally in your browser."
+      pillLabel={t.pillLabel}
+      title={t.title}
+      description={t.description}
       accentColor="#7c3aed"
       pillBackground="#f5f3ff"
     >
@@ -126,7 +178,7 @@ export default function DeletePdfPagesCard() {
             boxShadow: "0 10px 25px rgba(79,70,229,0.15)",
           }}
         >
-          {file ? "Change PDF" : "Upload PDF"}
+          {file ? t.upload.change : t.upload.upload}
         </label>
         <p
           style={{
@@ -135,7 +187,7 @@ export default function DeletePdfPagesCard() {
             color: "#6b7280",
           }}
         >
-          {file ? file.name : "No file chosen"}
+          {file ? file.name : t.upload.none}
         </p>
       </div>
 
@@ -149,7 +201,7 @@ export default function DeletePdfPagesCard() {
       >
         <input
           type="text"
-          placeholder="Pages to delete (e.g., 1,3,5)"
+          placeholder={t.upload.placeholder}
           value={pages}
           onChange={(e) => setPages(e.target.value)}
           style={{
@@ -196,7 +248,7 @@ export default function DeletePdfPagesCard() {
             minWidth: "90px",
           }}
         >
-          Clear
+          {t.buttons.clear}
         </button>
         <button
           onClick={handleDelete}
@@ -216,7 +268,7 @@ export default function DeletePdfPagesCard() {
               : "0 10px 25px rgba(124,58,237,0.35)",
           }}
         >
-          {isProcessing ? "Working..." : "Delete pages"}
+          {isProcessing ? t.buttons.deleting : t.buttons.delete}
         </button>
       </div>
     </ToolCardShell>
