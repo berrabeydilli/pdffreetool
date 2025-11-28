@@ -882,6 +882,11 @@ const TRANSLATIONS = {
     adFriendly: "Ad-friendly content",
     onlineToolsDescription:
       "Merge, compress, rotate, convert, and read PDFs all in one place. Our rich menu keeps every tool informative, user-friendly, and compliant with AdSense guidelines so visitors see helpful content.",
+    featureTags: {
+      dragDrop: "✅ Drag & drop reorder",
+      memoryProcessing: "✅ Files processed in memory",
+      noRegistration: "✅ No registration required",
+    },
     seoSection: {
       title: "Simple PDF & image tools for everyday work",
       intro:
@@ -973,6 +978,11 @@ const TRANSLATIONS = {
     adFriendly: "Reklam dostu içerik",
     onlineToolsDescription:
       "PDF'leri tek bir yerde birleştirin, sıkıştırın, döndürün, dönüştürün ve okuyun. Zengin menümüz her aracı bilgilendirici, kullanıcı dostu ve AdSense yönergeleriyle uyumlu tutarak ziyaretçilere faydalı içerik sunar.",
+    featureTags: {
+      dragDrop: "✅ Sürükle-bırak ile yeniden sıralama",
+      memoryProcessing: "✅ Dosyalar bellekte işlenir",
+      noRegistration: "✅ Kayıt gerekmez",
+    },
     seoSection: {
       title: "Gündelik işler için basit PDF ve görsel araçları",
       intro:
@@ -2443,7 +2453,7 @@ function App() {
                     fontWeight: 500,
                   }}
                 >
-                  ✅ Drag & drop reorder
+                  {t.featureTags.dragDrop}
                 </li>
                 <li
                   style={{
@@ -2454,7 +2464,7 @@ function App() {
                     fontWeight: 500,
                   }}
                 >
-                  ✅ Files processed in memory
+                  {t.featureTags.memoryProcessing}
                 </li>
                 <li
                   style={{
@@ -2465,7 +2475,7 @@ function App() {
                     fontWeight: 500,
                   }}
                 >
-                  ✅ No registration required
+                  {t.featureTags.noRegistration}
                 </li>
               </ul>
             </section>
