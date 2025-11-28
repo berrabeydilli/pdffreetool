@@ -19,29 +19,29 @@ const DEFAULT_TOOL = "merge";
 const SUPPORTED_LANGUAGES = ["en", "tr", "de"];
 
 const TOOL_SLUGS = {
-  merge: { en: "pdf-merge", tr: "pdf-birlestir" },
-  compress: { en: "pdf-compress", tr: "pdf-sikistir" },
-  compressImage: { en: "image-compress", tr: "gorsel-sikistir" },
-  jpgToPdf: { en: "jpg-to-pdf", tr: "jpg-pdf" },
-  pdfToJpg: { en: "pdf-to-jpg", tr: "pdf-jpg" },
-  pdfToPng: { en: "pdf-to-png", tr: "pdf-png" },
-  split: { en: "pdf-split", tr: "pdf-bol" },
-  deletePages: { en: "pdf-delete-pages", tr: "pdf-sayfa-sil" },
-  rotatePages: { en: "pdf-rotate", tr: "pdf-dondur" },
-  extractPages: { en: "pdf-extract-pages", tr: "pdf-sayfa-cikar" },
-  pdfReader: { en: "pdf-reader", tr: "pdf-okuyucu" },
-  pdfToWord: { en: "pdf-to-word", tr: "pdf-word" },
-  wordToPdf: { en: "word-to-pdf", tr: "word-pdf" },
+  merge: { en: "pdf-merge", tr: "pdf-birlestir", de: "pdf-zusammenfuehren" },
+  compress: { en: "pdf-compress", tr: "pdf-sikistir", de: "pdf-komprimieren" },
+  compressImage: { en: "image-compress", tr: "gorsel-sikistir", de: "bild-komprimieren" },
+  jpgToPdf: { en: "jpg-to-pdf", tr: "jpg-pdf", de: "jpg-zu-pdf" },
+  pdfToJpg: { en: "pdf-to-jpg", tr: "pdf-jpg", de: "pdf-zu-jpg" },
+  pdfToPng: { en: "pdf-to-png", tr: "pdf-png", de: "pdf-zu-png" },
+  split: { en: "pdf-split", tr: "pdf-bol", de: "pdf-teilen" },
+  deletePages: { en: "pdf-delete-pages", tr: "pdf-sayfa-sil", de: "pdf-seiten-loeschen" },
+  rotatePages: { en: "pdf-rotate", tr: "pdf-dondur", de: "pdf-drehen" },
+  extractPages: { en: "pdf-extract-pages", tr: "pdf-sayfa-cikar", de: "pdf-seiten-extrahieren" },
+  pdfReader: { en: "pdf-reader", tr: "pdf-okuyucu", de: "pdf-reader" },
+  pdfToWord: { en: "pdf-to-word", tr: "pdf-word", de: "pdf-zu-word" },
+  wordToPdf: { en: "word-to-pdf", tr: "word-pdf", de: "word-zu-pdf" },
 };
 
 const PAGE_SLUGS = {
-  home: { en: "", tr: "" },
-  blog: { en: "blog", tr: "blog" },
-  faq: { en: "faq", tr: "sss" },
-  privacy: { en: "privacy-policy", tr: "gizlilik-politikasi" },
-  terms: { en: "terms-of-service", tr: "kullanim-kosullari" },
-  about: { en: "about", tr: "hakkinda" },
-  contact: { en: "contact", tr: "iletisim" },
+  home: { en: "", tr: "", de: "" },
+  blog: { en: "blog", tr: "blog", de: "blog" },
+  faq: { en: "faq", tr: "sss", de: "faq" },
+  privacy: { en: "privacy-policy", tr: "gizlilik-politikasi", de: "datenschutzerklaerung" },
+  terms: { en: "terms-of-service", tr: "kullanim-kosullari", de: "nutzungsbedingungen" },
+  about: { en: "about", tr: "hakkinda", de: "ueber-uns" },
+  contact: { en: "contact", tr: "iletisim", de: "kontakt" },
 };
 
 const DEFAULT_PAGE_SEO = {
@@ -77,6 +77,11 @@ const TOOL_SEO_METADATA = {
       description: "Birden fazla PDF'yi tarayıcıda birleştirip sayfaları yeniden sırala, tek ve düzenli bir dosya indir.",
       h1: "PDF dosyalarını tarayıcıda birleştir",
     },
+    de: {
+      title: "PDF-Dateien online zusammenführen | PDFFreeTool",
+      description: "Mehrere PDFs hochladen, Seiten neu anordnen und in Sekunden als geordnetes Dokument herunterladen.",
+      h1: "PDF-Dateien im Browser zusammenführen",
+    },
   },
   compress: {
     en: {
@@ -88,6 +93,11 @@ const TOOL_SEO_METADATA = {
       title: "PDF Sıkıştırma Aracı | PDFFreeTool",
       description: "PDF boyutunu düşür, metin ve görselleri net tutarak e-posta veya yüklemeleri kolaylaştır.",
       h1: "PDF'leri kalite kaybı olmadan sıkıştır",
+    },
+    de: {
+      title: "PDF-Dateien komprimieren | PDFFreeTool",
+      description: "PDF-Anhänge verkleinern und dabei Text und Bilder klar halten, damit E-Mail und Uploads mühelos sind.",
+      h1: "PDF ohne Qualitätsverlust komprimieren",
     },
   },
   compressImage: {
@@ -101,6 +111,11 @@ const TOOL_SEO_METADATA = {
       description: "JPG veya PNG dosyalarını tarayıcıda sıkıştır, renkleri ve şeffaflığı koruyarak web'e hazırla.",
       h1: "JPG ve PNG görselleri çevrimiçi sıkıştır",
     },
+    de: {
+      title: "Bilder für Web und E-Mail komprimieren | PDFFreeTool",
+      description: "JPG- oder PNG-Dateien im Browser optimieren, Farben und Transparenz erhalten und webfertig machen.",
+      h1: "JPG- oder PNG-Bilder online komprimieren",
+    },
   },
   jpgToPdf: {
     en: {
@@ -112,6 +127,11 @@ const TOOL_SEO_METADATA = {
       title: "JPG'den PDF'ye Dönüştür | PDFFreeTool",
       description: "Birden fazla JPG veya PNG'yi sürükleyip sıralayarak tek ve düzenli bir PDF'e dönüştür.",
       h1: "Görselleri düzenli bir PDF'e çevir",
+    },
+    de: {
+      title: "JPG in PDF umwandeln | PDFFreeTool",
+      description: "Mehrere JPG- oder PNG-Bilder zu einem einzigen, aufgeräumten PDF zusammenstellen.",
+      h1: "Bilder in ein sauberes PDF konvertieren",
     },
   },
   pdfToJpg: {
@@ -125,6 +145,11 @@ const TOOL_SEO_METADATA = {
       description: "PDF sayfalarını sunum, doküman veya sohbetlerde kullanabileceğin net JPG görsellerine dönüştür.",
       h1: "PDF sayfalarını JPG olarak kaydet",
     },
+    de: {
+      title: "PDF in JPG umwandeln | PDFFreeTool",
+      description: "Jede PDF-Seite als scharfes JPG exportieren und für Präsentationen oder Chats verwenden.",
+      h1: "PDF-Seiten als JPG speichern",
+    },
   },
   pdfToPng: {
     en: {
@@ -136,6 +161,11 @@ const TOOL_SEO_METADATA = {
       title: "PDF'den PNG'ye Dönüştür | PDFFreeTool",
       description: "PDF sayfalarını gerekirse şeffaflığı koruyan yüksek kaliteli PNG dosyaları olarak indir.",
       h1: "PDF sayfalarını PNG olarak dışa aktar",
+    },
+    de: {
+      title: "PDF in PNG umwandeln | PDFFreeTool",
+      description: "PDF-Seiten als hochwertige PNG-Dateien herunterladen, bei Bedarf mit erhaltener Transparenz.",
+      h1: "PDF-Seiten als PNG exportieren",
     },
   },
   split: {
@@ -149,6 +179,11 @@ const TOOL_SEO_METADATA = {
       description: "Belirli sayfa veya aralıkları seçerek ek yazılım kurmadan ayrı PDF dosyalarına çıkar.",
       h1: "PDF'yi yeni dosyalara böl",
     },
+    de: {
+      title: "PDF nach Seiten oder Bereichen teilen | PDFFreeTool",
+      description: "Bestimmte Seiten oder Bereiche auswählen und ohne Zusatzsoftware in eigene PDFs speichern.",
+      h1: "PDF in neue Dateien aufteilen",
+    },
   },
   deletePages: {
     en: {
@@ -160,6 +195,11 @@ const TOOL_SEO_METADATA = {
       title: "PDF Sayfa Silme | PDFFreeTool",
       description: "İstenmeyen veya yinelenen PDF sayfalarını hızlıca silip daha temiz bir dosya indir.",
       h1: "PDF'den sayfa sil",
+    },
+    de: {
+      title: "Seiten aus PDF löschen | PDFFreeTool",
+      description: "Unerwünschte oder doppelte PDF-Seiten schnell entfernen und ein aufgeräumtes Dokument herunterladen.",
+      h1: "Seiten aus jedem PDF löschen",
     },
   },
   rotatePages: {
@@ -173,6 +213,11 @@ const TOOL_SEO_METADATA = {
       description: "Yan veya ters duran PDF sayfalarını düzelt, doğru hizalanmış yeni bir kopya indir.",
       h1: "PDF sayfalarını düzelt",
     },
+    de: {
+      title: "PDF-Seiten online drehen | PDFFreeTool",
+      description: "Quer oder auf dem Kopf stehende PDF-Seiten korrigieren und sofort richtig ausgerichtet speichern.",
+      h1: "PDF-Seiten ausrichten",
+    },
   },
   extractPages: {
     en: {
@@ -184,6 +229,11 @@ const TOOL_SEO_METADATA = {
       title: "PDF Sayfa Çıkarma | PDFFreeTool",
       description: "PDF içinden istediğin sayfaları çekip paylaşmaya hazır ayrı bir dosya olarak kaydet.",
       h1: "Belirli PDF sayfalarını çıkar",
+    },
+    de: {
+      title: "Seiten aus PDF extrahieren | PDFFreeTool",
+      description: "Benötigte Seiten aus einem PDF herausziehen und als separate, teilbare Datei speichern.",
+      h1: "Bestimmte PDF-Seiten extrahieren",
     },
   },
   pdfReader: {
@@ -197,6 +247,11 @@ const TOOL_SEO_METADATA = {
       description: "PDF dosyalarını tarayıcıda eklenti veya indirme olmadan açıp önizle.",
       h1: "PDF'leri tarayıcıda oku",
     },
+    de: {
+      title: "Online-PDF-Reader | PDFFreeTool",
+      description: "PDF-Dateien direkt im Browser öffnen und vorab ansehen, ganz ohne Erweiterungen oder Downloads.",
+      h1: "PDFs im Browser lesen",
+    },
   },
   pdfToWord: {
     en: {
@@ -209,6 +264,11 @@ const TOOL_SEO_METADATA = {
       description: "PDF'leri düzenlenebilir Word dosyalarına dönüştürerek metin, tablo veya yerleşimi kolayca güncelle.",
       h1: "PDF'yi düzenlenebilir Word'e çevir",
     },
+    de: {
+      title: "PDF in Word (DOCX) umwandeln | PDFFreeTool",
+      description: "PDFs in bearbeitbare Word-Dokumente verwandeln, um Text, Tabellen oder Layouts schnell zu aktualisieren.",
+      h1: "PDF in editierbares Word konvertieren",
+    },
   },
   wordToPdf: {
     en: {
@@ -220,6 +280,11 @@ const TOOL_SEO_METADATA = {
       title: "Word'den PDF'ye Çevir | PDFFreeTool",
       description: "Yazı tipleri ve yerleşimi koruyarak DOCX dosyalarını her yerde aynı görünen PDF'lere dönüştür.",
       h1: "Word dosyalarını PDF'e dönüştür",
+    },
+    de: {
+      title: "Word in PDF umwandeln | PDFFreeTool",
+      description: "DOCX-Dateien als feste PDFs speichern, die Schriftarten, Abstände und Layout überall beibehalten.",
+      h1: "Word-Dokumente in PDF konvertieren",
     },
   },
 };
@@ -1831,6 +1896,43 @@ const TRANSLATIONS_DE = {
     dragDrop: "✅ Neu anordnen per Drag & Drop",
     memoryProcessing: "✅ Dateien werden im Speicher verarbeitet",
     noRegistration: "✅ Keine Registrierung erforderlich",
+  },
+  seoSection: {
+    title: "Einfache PDF- und Bild-Tools für den Alltag",
+    intro:
+      "PDFFreeTool bündelt beliebte PDF- und Bildaktionen an einem Ort. PDFs zusammenführen oder komprimieren, zwischen JPG und PDF konvertieren und Seiten direkt im Browser verwalten – ohne Downloads, Konten oder Limits.",
+    whatTitle: "Was du tun kannst",
+    whatList: [
+      "PDFs in der gewünschten Reihenfolge zusammenführen und ordnen.",
+      "Dateien verkleinern, damit Teilen oder Hochladen leichter fällt.",
+      "Nahtlos zwischen JPG-Bildern und PDF-Dokumenten wechseln.",
+      "Seiten teilen, drehen oder extrahieren und die Qualität bewahren.",
+    ],
+    whyTitle: "Warum es gewählt wird",
+    whyList: [
+      "Sichere, browserbasierte Verarbeitung hält Dateien privat.",
+      "Schnelle Ergebnisse ohne Anmeldung oder Wasserzeichen.",
+      "Kostenlose Tools, die auf jedem modernen Gerät funktionieren.",
+    ],
+    mergerTitle: "Warum diesen kostenlosen PDF-Merger wählen?",
+    mergerList: [
+      {
+        title: "Schnell und einfach",
+        text: "Keine komplexen Einstellungen oder überladene Werbung. Einfach hochladen, neu anordnen und zusammenführen.",
+      },
+      {
+        title: "Sicher",
+        text: "PDF-Dateien werden direkt im Speicher verarbeitet. Wir speichern deine Dokumente nicht dauerhaft.",
+      },
+      {
+        title: "Browserbasiert",
+        text: "Funktioniert auf Windows, macOS, Linux und mobilen Geräten mit modernem Browser.",
+      },
+      {
+        title: "Kostenlos",
+        text: "Keine Registrierung nötig, um deine PDFs zusammenzuführen.",
+      },
+    ],
   },
   toolMenuTitle: "Werkzeugmenü",
   toolMenuDescription:
