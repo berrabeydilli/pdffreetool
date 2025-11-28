@@ -1124,6 +1124,31 @@ const TOOL_DETAILS = {
         "İleride bazı bölümleri yeniden birleştirip birleştirmeyeceğinize karar verin ve hangi aralıkların nereye gittiğine dair bir not tutun.",
       ],
     },
+    de: {
+      title: "PDF-Teilen Anleitung",
+      intro:
+        "Eine große PDF in kleinere, fokussierte Dateien aufteilen, damit jedes Publikum nur die benötigten Abschnitte sieht, ohne den gesamten Download abzuwarten.",
+      paragraphs: [
+        "Seitenbereiche eingeben oder gezielte Segmente wählen, um sofort neue PDFs zu erstellen – das Layout bleibt vollständig erhalten.",
+        "Teilen hilft, umfangreiche Reports neu zu ordnen, Anhänge zu kürzen oder sensible Passagen vor der externen Weitergabe zu isolieren.",
+        "In Kombination mit Komprimierung entstehen leichte, themenspezifische Pakete.",
+      ],
+      bulletTitle: "Praktisch wenn",
+      bullets: [
+        "Nur bestimmte Kapitel eines Handbuchs mit unterschiedlichen Teams geteilt werden sollen.",
+        "Ein Projekt-Update ohne lange Anhänge oder Rechtspassagen versendet werden soll.",
+        "Protokolle aus langen Mitschriften gezogen werden müssen, um Entscheidungen schnell griffbereit zu haben.",
+        "Für jede Empfängergruppe separate PDFs nötig sind, damit Berechtigungen eindeutig bleiben.",
+      ],
+      checklistTitle: "Vor dem Teilen",
+      checklist: [
+        "Genau notieren, welche Seitenbereiche benötigt werden, damit keine Tabellen oder Abbildungen fehlen.",
+        "Nach dem Aufteilen auf gedrehte oder Querformat-Seiten prüfen, um die Lesbarkeit zu sichern.",
+        "Leere oder doppelte Seiten in der Quelle entfernen, damit jede Ausgabe aufgeräumt bleibt.",
+        "Ausgabedateien klar mit Abschnittsnamen oder Versionsnummern beschriften.",
+        "Überlegen, ob bestimmte Abschnitte später kombiniert werden sollen, und festhalten, welche Bereiche wohin verschoben wurden.",
+      ],
+    },
   },
   deletePages: {
     en: {
@@ -1174,6 +1199,31 @@ const TOOL_DETAILS = {
         "Belgeyi derli toplu tutmak için aynı işlemde yinelenen sayfaları da kaldırın.",
         "Dosyayı e-posta ile gönderecekseniz sayfaları kırptıktan sonra sıkıştırmayı yeniden çalıştırın.",
         "PDF imzalanacaksa, silme sonrası imza alanlarının hizasının korunduğunu doğrulayın.",
+      ],
+    },
+    de: {
+      title: "Seiten löschen Hilfe",
+      intro:
+        "Unerwünschte oder leere Seiten entfernen, um deine PDF schnell zu säubern und nur die Inhalte zu behalten, die für dein Publikum zählen.",
+      paragraphs: [
+        "Zu löschende Seiten auswählen, Änderungen in der Vorschau prüfen und ein aktualisiertes PDF herunterladen, ohne das restliche Layout zu verändern.",
+        "Ideal, um Deckblätter, Werbung oder personenbezogene Daten zu entfernen, bevor du mit Kund:innen oder Teammitgliedern teilst.",
+        "Schlanke PDFs lassen sich leichter prüfen, drucken und durchsuchen – besonders bei langen Reports oder gescannten Sammeldateien.",
+      ],
+      bulletTitle: "Typische Einsätze",
+      bullets: [
+        "Scan-Stapel mit leeren Trennern oder Fehleinzügen aufräumen.",
+        "Persönliche Daten aus Belegen oder Rechnungen löschen, bevor sie eingereicht werden.",
+        "Fremdsprachige Abschnitte entfernen, die für bestimmte Empfänger:innen irrelevant sind.",
+        "Werbe- oder Sponsorenseiten aus heruntergeladenen Guides streichen, bevor sie archiviert werden.",
+      ],
+      checklistTitle: "Schnelle Prüfungen",
+      checklist: [
+        "Seitenzahlen mit der Vorschau abgleichen, damit keine wichtigen Inhalte verschwinden.",
+        "Eine Sicherung der Original-PDF behalten, falls gelöschte Seiten wiederhergestellt werden müssen.",
+        "Duplikate im gleichen Durchgang entfernen, um das Dokument kompakt zu halten.",
+        "Nach dem Kürzen erneut komprimieren, wenn die Datei per E-Mail verschickt wird.",
+        "Bei zu unterzeichnenden PDFs sicherstellen, dass Signaturfelder nach dem Löschen noch korrekt ausgerichtet sind.",
       ],
     },
   },
@@ -1228,6 +1278,31 @@ const TOOL_DETAILS = {
         "İmza gerektiren belgelerde, imza bloklarının doğru yönlendirmede kaldığını doğrulayın.",
       ],
     },
+    de: {
+      title: "Seiten drehen Tipps",
+      intro:
+        "Schief oder kopfüber stehende Seiten korrigieren, damit die gesamte PDF flüssig lesbar bleibt, ohne dass Lesende den Bildschirm drehen müssen.",
+      paragraphs: [
+        "Einzelne Seiten drehen oder eine Rotation auf alle Seiten anwenden – Anmerkungen und Links bleiben ausgerichtet.",
+        "Besonders nützlich bei Scans, Meeting-Notizen oder gemischt ausgerichteten Foliensätzen, die den Lesefluss stören.",
+        "Die richtige Ausrichtung beschleunigt Prüfen, Drucken und Signieren für alle Beteiligten.",
+      ],
+      bulletTitle: "Am besten geeignet",
+      bullets: [
+        "Seitlich eingescannt Verträge oder Belege.",
+        "Querformatige Design-Freigaben oder Tabellen.",
+        "Notizbuchseiten oder Whiteboard-Fotos, die in schrägem Winkel aufgenommen wurden.",
+        "Foliensätze mit gemischter Ausrichtung, bei denen einzelne Seiten unerwartet drehen.",
+      ],
+      checklistTitle: "Rotation merken",
+      checklist: [
+        "Vor dem Download kurz in der Vorschau prüfen, ob jede Seite korrekt ausgerichtet ist.",
+        "90°-Schritte nutzen, damit Text und Formularfelder an den Rändern bleiben.",
+        "Nur die Seiten drehen, die es wirklich brauchen, um unbeabsichtigte Layout-Änderungen zu vermeiden.",
+        "Nach dem Drehen von Scans erneut komprimieren, falls die Dateigröße kritisch ist.",
+        "Bei Dokumenten mit Signaturpflicht kontrollieren, ob die Signaturblöcke noch richtig positioniert sind.",
+      ],
+    },
   },
   extractPages: {
     en: {
@@ -1278,6 +1353,31 @@ const TOOL_DETAILS = {
         "Kırpılmış PDF yalnızca dahili kalacaksa bunun yerine sayfa silme aracını kullanmayı değerlendirin.",
         "Farklı bölümleri daha sonra çıkarmak gerekirse diye orijinal tam PDF'i saklayın.",
         "Dışa açılacaksa, çıkarılan sayfalarda hâlâ yer alabilecek kişisel verileri gözden geçirin.",
+      ],
+    },
+    de: {
+      title: "Seiten extrahieren Hinweise",
+      intro:
+        "Bestimmte Seiten in eine neue PDF ziehen, ohne das Original zu verändern, damit du nur die relevanten Abschnitte teilen kannst.",
+      paragraphs: [
+        "Benötigte Seiten auswählen, sofort herunterladen und dabei Formatierung, Links und Anmerkungen vollständig erhalten.",
+        "Eine schnelle Möglichkeit, Stakeholdern eine Version mit Highlights zu geben, während die Quelldatei unverändert bleibt.",
+        "Extrakte lassen sich später kombinieren oder mit neuem Inhalt mischen, um passgenaue Pakete zu erstellen.",
+      ],
+      bulletTitle: "Dafür nutzen",
+      bullets: [
+        "Nur relevante Folien oder Anhänge mit bestimmten Teams teilen.",
+        "Nachweis- oder Freigabeseiten an Kund:innen senden, ohne das komplette Dokument offenzulegen.",
+        "Belege oder Rechnungen aus einem größeren Scan-Paket für die Buchhaltung herausziehen.",
+        "Eine reine Highlights-Version für schnelle Management-Updates erstellen.",
+      ],
+      checklistTitle: "Darauf achten",
+      checklist: [
+        "Alle referenzierten Grafiken oder Fußnoten aufnehmen, damit der Kontext erhalten bleibt.",
+        "Die neue Datei klar mit Seitenbereichen oder Themen beschriften, um sie leicht wiederzufinden.",
+        "Wenn die gekürzte PDF intern bleibt, ggf. lieber das Seitenlösch-Tool verwenden.",
+        "Das vollständige Original aufbewahren, falls später andere Abschnitte extrahiert werden müssen.",
+        "Vor externer Weitergabe auf personenbezogene Daten achten, die auf den extrahierten Seiten noch sichtbar sein könnten.",
       ],
     },
   },
@@ -1332,6 +1432,31 @@ const TOOL_DETAILS = {
         "Bir şey garip görünüyorsa, dosyanın bozuk olmadığını doğrulamak için kaynağı başka bir görüntüleyicide açın.",
       ],
     },
+    de: {
+      title: "PDF-Reader Leitfaden",
+      intro:
+        "PDFs direkt im Browser ansehen, ohne zusätzliche Software zu installieren, damit du Inhalte vor dem Bearbeiten oder Teilen prüfen kannst.",
+      paragraphs: [
+        "Seiten schnell durchgehen, Details heranzoomen und die Datei herunterladen, sobald du woanders weiterarbeiten möchtest.",
+        "Als schlanken Prüfschritt nutzen, bevor du konvertierst, komprimierst oder Seiten entfernst.",
+        "Da alles im Browser läuft, ist es praktisch auf geteilten oder gesperrten Geräten, auf denen keine Viewer installiert werden können.",
+      ],
+      bulletTitle: "Dafür verwenden",
+      bullets: [
+        "Seitenausrichtung und Layout prüfen, bevor du Änderungen vornimmst.",
+        "Inhalte hochgeladener Dateien bestätigen, ohne sie lokal zu speichern.",
+        "Empfangene PDFs auf Kiosks oder Shared Devices ansehen, wo Viewer eingeschränkt sind.",
+        "Verträge oder Berichte überfliegen, ohne eine Desktop-App zu öffnen.",
+      ],
+      checklistTitle: "Reader-Tipps",
+      checklist: [
+        "Zum Prüfen von Druckqualität oder kleinem Text auf 100 % zoomen.",
+        "Alle Seiten durchblättern, bevor du entscheidest, welches Tool du als Nächstes nutzt.",
+        "Nach der Durchsicht mit dem Download eine lokale Kopie sichern, falls du offline sein musst.",
+        "Zwischen anderen Tools wechseln, ohne erneut hochzuladen, um Zeit bei mehrstufigen Aufgaben zu sparen.",
+        "Wenn etwas merkwürdig aussieht, die Quelle in einem anderen Viewer öffnen, um Dateifehler auszuschließen.",
+      ],
+    },
   },
   pdfToWord: {
     en: {
@@ -1384,6 +1509,31 @@ const TOOL_DETAILS = {
         "Dışa açmayı planlıyorsanız, düzenleme sonrası gizli yorumları veya izlenen değişiklikleri temizleyin.",
       ],
     },
+    de: {
+      title: "PDF zu Word Hinweise",
+      intro:
+        "PDFs in bearbeitbare DOCX-Dateien konvertieren und das Layout so weit wie möglich bewahren, damit du Texte anpassen kannst, ohne Dokumente neu aufzubauen.",
+      paragraphs: [
+        "Ideal, um Berichte, Angebote oder Handbücher mit neuen Formulierungen oder Preisen zu aktualisieren, während die Struktur bestehen bleibt.",
+        "Text wird in Word oder ähnlichen Editoren vollständig editierbar und kann nach den Änderungen schnell wieder als PDF exportiert werden.",
+        "Gescannten PDFs kann danach etwas Feinschliff guttun, doch das Tool übernimmt den Großteil der Extraktion.",
+      ],
+      bulletTitle: "Einsatzgebiete",
+      bullets: [
+        "Angebote mit neuen Preisen oder Leistungen auffrischen und das gleiche Layout behalten.",
+        "Verträge oder Vereinbarungen vor der Unterschrift bearbeiten.",
+        "Facharbeiten, Handbücher oder Kursunterlagen aktualisieren, ohne Kapitel neu zu formatieren.",
+        "Text aus gescannten PDFs zurückholen, um langes Abtippen zu vermeiden.",
+      ],
+      checklistTitle: "Vor dem Konvertieren",
+      checklist: [
+        "Prüfen, ob die PDF auswählbaren Text hat; Scans brauchen eventuell zusätzliche OCR-Nacharbeit.",
+        "Spezielle Schriftarten bereit halten, wenn das Layout davon abhängt.",
+        "Die resultierende DOCX auf kleine Ausrichtungs- oder Abstands-Korrekturen prüfen, bevor du sie teilst.",
+        "Das Original als Referenz behalten – etwa für Bilder, Diagramme oder Branding.",
+        "Vor externer Weitergabe versteckte Kommentare oder Änderungsverfolgung entfernen.",
+      ],
+    },
   },
   wordToPdf: {
     en: {
@@ -1434,6 +1584,31 @@ const TOOL_DETAILS = {
         "İhracatın markanıza uyumlu olması için kenar boşluklarını ve sayfa boyutunu doğrulayın.",
         "Sonradan düzenleme gerekirse diye orijinal DOCX'in bir kopyasını saklayın.",
         "Özel yazı tipleri kullanıyorsanız görünümü tutarlı tutmak için bunları yerleştirin veya kritik metni dış hatlara çevirin.",
+      ],
+    },
+    de: {
+      title: "Word zu PDF Hilfe",
+      intro:
+        "DOCX-Dateien in teilbare PDFs verwandeln, die überall gleich aussehen – egal ob auf Desktop, Mobilgerät oder im Browser geöffnet.",
+      paragraphs: [
+        "Bewahrt Schriftarten, Abstände und Layout, damit Angebote, Lebensläufe und Reports standardmäßig schick und nicht bearbeitbar sind.",
+        "Der schnellste Weg, Dokumente für Kund:innen oder Recruiter fertigzustellen, ohne Versionskonflikte zu riskieren.",
+        "Konvertierte PDFs sind leichtgewichtig und bereit zum Archivieren, Mailen oder Hochladen in Bewerber-Tracking-Systeme.",
+      ],
+      bulletTitle: "Am besten geeignet für",
+      bullets: [
+        "Bewerbungen, bei denen das Layout für alle Prüfer identisch bleiben muss.",
+        "Kundenfertige Angebote, Leistungsbeschreibungen oder Vereinbarungen.",
+        "Berichte mit Grafiken, Tabellen oder speziellen Fonts, die unterwegs nicht verrutschen dürfen.",
+        "Zertifikate, Schreiben oder Richtlinien, die für Empfänger nur lesbar sein sollen.",
+      ],
+      checklistTitle: "Vor dem Konvertieren",
+      checklist: [
+        "DOCX auf Änderungsverfolgung oder Kommentare prüfen, die du nicht teilen möchtest.",
+        "Bildauflösungen kontrollieren, wenn die PDF gedruckt wird, um Unschärfe zu vermeiden.",
+        "Ränder und Seitengröße prüfen, damit die exportierte PDF zu deinem Branding passt.",
+        "Eine Kopie der ursprünglichen DOCX aufbewahren, falls später Anpassungen nötig sind.",
+        "Bei Nutzung spezieller Schriftarten diese einbetten oder kritische Texte vektorisieren, um ein einheitliches Erscheinungsbild zu sichern.",
       ],
     },
   },
@@ -1844,6 +2019,32 @@ const PAGE_CONTENT = {
       rightsBody:
         "Kullanım verilerinizin silinmesini veya anonimleştirilmesini talep etmek istediğinizde bizimle iletişime geçebilirsiniz. Reklam tercihlerinizi tarayıcı ayarları ve çerez yönetim paneli üzerinden güncelleyebilirsiniz.",
     },
+    de: {
+      title: "Datenschutzerklärung",
+      intro:
+        "PDFFreeTool bietet ein Dateimanagement direkt im Browser. Diese Seite erklärt, wie wir Nutzerdaten verarbeiten und welche Maßnahmen wir zum Schutz deiner Privatsphäre ergreifen. Unabhängig vom verwendeten Tool werden deine Dateien nicht serverseitig gespeichert; die Verarbeitung erfolgt, wenn möglich, ausschließlich im Arbeitsspeicher.",
+      dataTitle: "Welche Daten wir sammeln und wofür wir sie nutzen",
+      dataPoints: [
+        "Protokolleinträge: Anonyme Nutzungsmetriken messen das Traffic-Niveau; IP-Adressen oder Dateinamen werden nicht aufgezeichnet.",
+        "Cookies: Erforderliche Sitzungscookies merken sich deine Spracheinstellung oder zuletzt genutzte Tools. Werbecookies werden nur mit deiner Zustimmung aktiviert.",
+        "Drittintegrationen: Werbeanbieter erhalten nur Seitenaufruf-Statistiken und haben keinen Zugriff auf die hochgeladenen Dateien.",
+      ],
+      analytics:
+        "Wir arbeiten mit Drittanbietern wie Google zusammen, die Cookies einsetzen, um Werbung basierend auf deinen vorherigen Besuchen auf dieser und anderen Websites auszuliefern. Diese Partner erhalten anonymisierte Analysen, damit sie relevante Botschaften zeigen können, ohne die hier verarbeiteten Dokumente zu berühren.",
+      optOut:
+        "Du kannst personalisierte Werbung über die Google-Anzeigeneinstellungen oder durch Anpassen deiner Zustimmung im Cookie-Hinweis auf dieser Seite deaktivieren.",
+      securityTitle: "Dateisicherheit und Aufbewahrung",
+      securityBody:
+        "Hochgeladene PDFs oder Bilder werden temporär im Speicher verarbeitet und nach Erstellung des Download-Links automatisch gelöscht. Auf dem Server verbleiben nur Fehlermeldungen zur Missbrauchserkennung; diese enthalten keine Dateiinhalte.",
+      securityList: [
+        "Dateifragmenten werden nach Abschluss der Verarbeitung aus dem Speicher entfernt.",
+        "Für verschlüsselte oder vertrauliche Dokumente empfehlen wir lokale Sicherungskopien.",
+        "Auf gemeinsam genutzten Geräten den Browserverlauf löschen, um die Privatsphäre zu schützen.",
+      ],
+      rightsTitle: "Deine Rechte",
+      rightsBody:
+        "Du kannst uns kontaktieren, wenn du die Löschung oder Anonymisierung deiner Nutzungsdaten wünschst. Werbeeinstellungen lassen sich über die Browser-Optionen und das Cookie-Management anpassen.",
+    },
   },
   terms: {
     en: {
@@ -1871,6 +2072,19 @@ const PAGE_CONTENT = {
       ],
       maintenance:
         "Hizmet bakım sırasında kısa süreliğine kullanılamayabilir. Bu durumlarda mevcut dosyalarınız tarayıcıda kalır ve iş akışınız bozulmaz; kaldığınız yerden devam etmek için sayfayı yenileyin.",
+    },
+    de: {
+      title: "Nutzungsbedingungen",
+      intro:
+        "Mit der Nutzung von PDFFreeTool erklärst du dich einverstanden, deine Dateien im Einklang mit geltenden Gesetzen zu verwalten. Die Tools stehen für private und geschäftliche Zwecke bereit; du trägst die Verantwortung, keine Inhalte hochzuladen, die Urheberrechte verletzen oder gegen Gesetze verstoßen.",
+      points: [
+        "Haftungsbeschränkung: Sichere deine Daten, um Verlust bei browserbasierter Verarbeitung zu vermeiden. Unsere Plattform haftet nicht für direkte oder indirekte Schäden.",
+        "Fair Use: Der Zugriff kann eingeschränkt werden, wenn Bots oder Systeme mit übermäßigen Anfragen erkannt werden.",
+        "Integrität der Inhalte: Das Hochladen urheberrechtsverletzender Dokumente ist verboten. Der Zugang zu gemeldeten Inhalten wird blockiert.",
+        "Updates: Diese Bedingungen werden regelmäßig aktualisiert und über die Links im Footer bekanntgegeben.",
+      ],
+      maintenance:
+        "Während Wartungsarbeiten kann der Dienst kurzzeitig nicht verfügbar sein. In diesen Phasen bleiben deine aktuellen Dateien im Browser, dein Workflow bleibt bestehen; lade die Seite neu, um weiterzumachen.",
     },
   },
   faq: {
@@ -1937,6 +2151,38 @@ const PAGE_CONTENT = {
       ],
       closing:
         "Bu SSS'yi geri bildirimlere göre genişletmeye devam ediyoruz. Henüz yanıtlamadığımız bir soru varsa, kullandığınız aracı, cihaz tipinizi ve ne yapmaya çalıştığınızı belirten kısa bir not gönderin. Bu bilgiyi herkes için yardım sayfasını geliştirmek amacıyla kullanacağız.",
+    },
+    de: {
+      title: "Häufig gestellte Fragen",
+      intro:
+        "Hier findest du einen ausführlichen Überblick über die gängigsten Fragen zu PDFFreeTool. Die Antworten konzentrieren sich auf das Zusammenführungs-Tool, erklären aber auch, wie wir deine Daten verarbeiten und wie die Nutzung geräteübergreifend funktioniert. Für weitere Hilfe besuche die Kontakt-Seite und beschreibe dein Szenario, damit wir diesen Leitfaden erweitern können.",
+      mergeTitle: "Details zum PDF-Zusammenführen",
+      mergeItems: [
+        {
+          question: "Ist dieses PDF-Merge-Tool kostenlos?",
+          answer:
+            "Ja. Du kannst deine PDF-Dateien kostenlos zusammenführen – ganz ohne Konto oder Abo. Es gibt keine Wasserzeichen oder versteckten Limits außer den auf der Startseite gezeigten Upload-Grenzen.",
+        },
+        {
+          question: "Ist es sicher, meine Dokumente hochzuladen?",
+          answer:
+            "Deine Dateien werden im Arbeitsspeicher des Servers verarbeitet und nicht dauerhaft gespeichert. Wir behalten keine Kopie deiner zusammengeführten PDF, temporäre Puffer werden nach Vorbereitung des Downloads automatisch gelöscht.",
+        },
+        {
+          question: "Funktioniert das auf dem Handy?",
+          answer:
+            "Ja. Das Tool läuft in jedem modernen Browser, einschließlich mobiler Browser auf Android und iOS. Auf Touchscreens kannst du per Drag & Drop sortieren, und die Oberfläche passt sich kleinen Displays an, damit du die Dateiliste im Blick behältst.",
+        },
+      ],
+      tipsTitle: "Weitere Tipps und Fehlerbehebung",
+      tips: [
+        "Upload-Hinweise: Halte einzelne Dateien unter dem auf dem Tool angegebenen Limit und vermeide nach Möglichkeit verschlüsselte PDFs; passwortgeschützte Dateien müssen eventuell vor dem Zusammenführen entsperrt werden.",
+        "Seitenreihenfolge: Nutze den Ziehpunkt in jeder Dateizeile, um die gewünschte Reihenfolge vor dem Zusammenführen festzulegen. Bei mehreren Uploads erscheinen neuere Dateien am Ende der Liste.",
+        "Langsame Verbindungen: Auf schwachen Netzen zuerst große PDFs komprimieren, um den Upload zu beschleunigen. Bei Bedarf kannst du danach erneut zusammenführen und komprimieren.",
+        "Ergebnisse teilen: Benenne die heruntergeladene Datei nach dem Zusammenführen mit einer klaren Versionsnummer (z. B. Projekt-Angebot-v2.pdf), damit Teammitglieder wissen, welche Datei sie öffnen sollen.",
+      ],
+      closing:
+        "Wir erweitern diese FAQ kontinuierlich anhand von Feedback. Wenn eine Frage fehlt, schick uns eine kurze Nachricht mit dem genutzten Tool, deinem Gerätetyp und deinem Ziel. Diese Informationen helfen uns, die Hilfeseite für alle zu verbessern.",
     },
   },
   about: {
