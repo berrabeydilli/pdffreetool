@@ -55,6 +55,33 @@ const TEXT = {
       zipFailed: "ZIP dosyası oluşturulamadı.",
     },
   },
+  de: {
+    ariaLabel: "PDF-zu-JPG-Werkzeug",
+    badge: "PDF in JPG konvertieren",
+    title: "Jede PDF-Seite als scharfes JPG exportieren",
+    description:
+      "Lade ein PDF hoch, konvertiere es komplett im Browser und lade alle Seiten als JPGs in einer ZIP herunter.",
+    choosePrompt: "Wähle ein PDF zur JPG-Konvertierung",
+    selectLabel: "PDF auswählen",
+    browserNote: (sizeMb) =>
+      `Dateien bleiben im Browser • Maximal ${(sizeMb || 0).toFixed(2)} MB`,
+    selectedLabel: "Ausgewählt:",
+    sizeLabel: "Größe:",
+    clear: "Leeren",
+    actions: {
+      convert: "PDF konvertieren",
+      converting: "Wird konvertiert...",
+      download: "JPGs herunterladen (ZIP)",
+    },
+    generated: (count) =>
+      `${count} JPG${count === 1 ? "" : "s"} erstellt. Vorschau unten.`,
+    errors: {
+      pdfOnly: "Bitte eine PDF-Datei hochladen.",
+      noneSelected: "Bitte ein PDF zum Konvertieren auswählen.",
+      convertFailed: "PDF konnte nicht in Bilder umgewandelt werden.",
+      zipFailed: "ZIP-Datei konnte nicht erstellt werden.",
+    },
+  },
 };
 
 const pdfjsPromise = import(

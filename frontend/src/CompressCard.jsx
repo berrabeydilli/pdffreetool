@@ -52,6 +52,31 @@ const TEXT = {
       failed: "PDF sıkıştırma başarısız oldu.",
     },
   },
+  de: {
+    ariaLabel: "PDF-Komprimierungswerkzeug",
+    badge: "PDF-Dateigröße verkleinern",
+    title: "PDF-Dateien online komprimieren",
+    description:
+      "Lade ein PDF hoch und erhalte eine kleinere, optimierte Version. Ideal für E-Mail-Anhänge und Uploads.",
+    choosePrompt: "Wähle ein PDF zum Komprimieren",
+    selectLabel: "PDF auswählen",
+    selectedFileLabel: "Ausgewählt",
+    selectedFileNote: "Ausgewählte Datei:",
+    noFile: "Kein PDF ausgewählt",
+    selectedLabel: "Ausgewählte Dateien:",
+    totalSizeLabel: "Gesamtgröße:",
+    sizeLabel: "Größe:",
+    singleFileNote: "Immer nur eine PDF-Datei auf einmal.",
+    clear: "Leeren",
+    compress: "PDF komprimieren",
+    compressing: "Wird komprimiert...",
+    errors: {
+      pdfOnly: "Bitte nur PDF-Dateien auswählen.",
+      noneSelected: "Bitte eine PDF-Datei zum Komprimieren wählen.",
+      generic: "Etwas ist schiefgelaufen.",
+      failed: "PDF konnte nicht komprimiert werden.",
+    },
+  },
 };
 
 export default function CompressCard({ language = "en" }) {

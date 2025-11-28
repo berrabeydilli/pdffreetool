@@ -58,6 +58,35 @@ const TEXT = {
       zipFailed: "ZIP dosyası oluşturulamadı.",
     },
   },
+  de: {
+    ariaLabel: "PDF-zu-PNG-Werkzeug",
+    badge: "PDF in PNG konvertieren",
+    title: "PDF-Seiten als PNG mit Transparenz exportieren",
+    description:
+      "Ein PDF hochladen und jede Seite in einer einzigen ZIP als PNG herunterladen – perfekt für Design und Dokus.",
+    choosePrompt: "Wähle ein PDF für die PNG-Konvertierung",
+    selectLabel: "PDF auswählen",
+    browserNote: (sizeMb) =>
+      `Dateien bleiben im Browser • Maximal ${(sizeMb || 0).toFixed(2)} MB`,
+    selectedLabel: "Ausgewählt:",
+    sizeLabel: "Größe:",
+    clear: "Leeren",
+    offlineLabel: "Offline-Umwandlung",
+    actions: {
+      convert: "PDF konvertieren",
+      converting: "Wird konvertiert...",
+      download: "PNGs herunterladen (ZIP)",
+      downloadSingle: (name) => `${name} herunterladen`,
+    },
+    generated: (count) =>
+      `${count} PNG${count === 1 ? "" : "s"} erstellt. Vorschau unten.`,
+    errors: {
+      pdfOnly: "Bitte eine PDF-Datei hochladen.",
+      noneSelected: "Bitte ein PDF zum Konvertieren auswählen.",
+      convertFailed: "PDF konnte nicht in Bilder umgewandelt werden.",
+      zipFailed: "ZIP-Datei konnte nicht erstellt werden.",
+    },
+  },
 };
 
 const pdfjsPromise = import(

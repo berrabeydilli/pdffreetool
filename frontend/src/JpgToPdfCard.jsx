@@ -59,6 +59,33 @@ const TEXT = {
       failed: "Görseller dönüştürülemedi.",
     },
   },
+  de: {
+    ariaLabel: "JPG-zu-PDF-Werkzeug",
+    badge: "JPG in PDF umwandeln",
+    title: "Wandle deine Bilder in ein einzelnes PDF um",
+    description: "JPG-Fotos hochladen und als sauberes, teilbares PDF herunterladen.",
+    uploadPrompt: "Wähle JPG-Bilder zum Konvertieren",
+    selectCta: "JPGs auswählen",
+    uploadAria: "JPG-Bilder hochladen",
+    selectedHeading: (count) => `Ausgewählte Bilder (${count})`,
+    clear: "Leeren",
+    remove: (name) => `${name} entfernen`,
+    stats: (count, totalMb) =>
+      `${count} Bild${count === 1 ? "" : "er"} | ${totalMb.toFixed(2)} MB gesamt`,
+    actions: {
+      convert: "In PDF umwandeln",
+      converting: "Wird konvertiert...",
+    },
+    errors: {
+      type: "Bitte nur JPG- oder PNG-Bilder auswählen.",
+      maxFiles: (limit) => `Du kannst bis zu ${limit} Bilder hochladen.`,
+      maxSize: (limit) =>
+        `Die Gesamtgröße darf ${limit} MB nicht überschreiten. Bitte weniger oder kleinere Dateien wählen.`,
+      noneSelected: "Bitte mindestens ein Bild hochladen.",
+      generic: "Etwas ist schiefgelaufen.",
+      failed: "Bilder konnten nicht konvertiert werden.",
+    },
+  },
 };
 
 export default function JpgToPdfCard({ language = "en" }) {

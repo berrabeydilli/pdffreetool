@@ -57,6 +57,33 @@ const TEXT = {
       rotating: "Döndürülüyor...",
     },
   },
+  de: {
+    pillLabel: "PDF-Seiten drehen",
+    title: "Bestimmte Seiten oder die ganze Datei drehen",
+    description:
+      "Lade ein PDF hoch, wähle einen Winkel und drehe nur die gewünschten Seiten – oder lass das Feld leer, um das gesamte Dokument auszurichten. Perfekt, um schräg gescannte Seiten zu korrigieren und Quer- sowie Hochformat zu vereinheitlichen.",
+    upload: {
+      change: "PDF ändern",
+      upload: "PDF hochladen",
+      none: "Keine Datei gewählt",
+    },
+    inputs: {
+      pagesLabel: "Zu drehende Seiten (leer lassen für alle)",
+      angleLabel: "Drehung",
+      angleNote: "Grad",
+    },
+    errors: {
+      pdfOnly: "Bitte eine PDF-Datei hochladen.",
+      missingFile: "Bitte eine PDF-Datei auswählen.",
+      generic: "Etwas ist schiefgelaufen.",
+      failed: "Seiten konnten nicht gedreht werden.",
+    },
+    buttons: {
+      clear: "Leeren",
+      rotate: "Seiten drehen",
+      rotating: "Wird gedreht...",
+    },
+  },
 };
 
 export default function RotatePdfPagesCard({ language = "en" }) {

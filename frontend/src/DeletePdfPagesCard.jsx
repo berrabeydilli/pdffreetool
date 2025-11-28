@@ -51,6 +51,30 @@ const TEXT = {
       deleting: "Çalışıyor...",
     },
   },
+  de: {
+    pillLabel: "PDF-Seiten löschen",
+    title: "Unerwünschte Seiten entfernen",
+    description:
+      "Wähle ein PDF, trage die zu entfernenden Seiten ein (z. B. 2,4,6) und lade sofort eine aufgeräumte Datei herunter. Ideal, um Leerseiten, Duplikate oder vertrauliche Abschnitte zu streichen – alles bleibt im Browser.",
+    upload: {
+      change: "PDF ändern",
+      upload: "PDF hochladen",
+      none: "Keine Datei gewählt",
+      placeholder: "Zu löschende Seiten (z. B. 1,3,5)",
+    },
+    errors: {
+      pdfOnly: "Bitte eine PDF-Datei hochladen.",
+      missingFile: "Bitte eine PDF-Datei auswählen.",
+      missingPages: "Gib die zu löschenden Seiten an.",
+      generic: "Etwas ist schiefgelaufen.",
+      failed: "Seiten konnten nicht gelöscht werden.",
+    },
+    buttons: {
+      clear: "Leeren",
+      delete: "Seiten löschen",
+      deleting: "Wird verarbeitet...",
+    },
+  },
 };
 
 export default function DeletePdfPagesCard({ language = "en" }) {

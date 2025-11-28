@@ -34,6 +34,22 @@ const TEXT = {
     previewPlaceholder: "Hemen okumaya başlamak için bir PDF yükleyin.",
     clear: "Temizle",
   },
+  de: {
+    pillLabel: "PDF-Reader",
+    title: "PDFs direkt im Browser lesen und ansehen",
+    description:
+      "Öffne ein PDF sofort, ohne zusätzliche Apps zu laden oder Dateien an einen Server zu schicken. Blättere durch die Seiten, zoome im Browser und behalte alles sicher auf deinem Gerät für offline-freundliches Lesen.",
+    upload: {
+      upload: "PDF hochladen",
+      change: "PDF ändern",
+      noFile: "Keine Datei gewählt",
+    },
+    errors: {
+      pdfOnly: "Bitte eine PDF-Datei hochladen.",
+    },
+    previewPlaceholder: "Lade ein PDF hoch, um sofort zu lesen.",
+    clear: "Leeren",
+  },
 };
 
 export default function PdfReaderCard({ language = "en" }) {

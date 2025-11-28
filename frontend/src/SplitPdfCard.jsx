@@ -51,6 +51,27 @@ const TEXT = {
       zipFailed: "ZIP oluşturulamadı.",
     },
   },
+  de: {
+    ariaLabel: "PDF-Teiler",
+    badge: "In Einzelseiten-PDFs aufteilen",
+    title: "PDF-Seiten sofort aufteilen",
+    description: "Die Aufteilung erfolgt im Browser und verlässt dein Gerät nicht.",
+    choosePrompt: "Wähle ein PDF zum Aufteilen",
+    selectLabel: "PDF auswählen",
+    selectedLabel: "Ausgewählt:",
+    clear: "Leeren",
+    split: "PDF aufteilen",
+    splitting: "Wird aufgeteilt...",
+    pageCount: (count) => `${count} Seiten bereit`,
+    downloadSingle: "Herunterladen",
+    downloadZip: "Als ZIP herunterladen",
+    errors: {
+      pdfOnly: "Bitte eine PDF-Datei auswählen.",
+      noneSelected: "Bitte ein PDF zum Aufteilen wählen.",
+      splitFailed: "PDF konnte nicht aufgeteilt werden.",
+      zipFailed: "ZIP konnte nicht erstellt werden.",
+    },
+  },
 };
 
 export default function SplitPdfCard({ language = "en" }) {
