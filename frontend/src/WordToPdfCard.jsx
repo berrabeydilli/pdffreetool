@@ -4,6 +4,47 @@ const pdfLibPromise = import(
   "https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/+esm"
 );
 
+const TEXT = {
+  en: {
+    ariaLabel: "Word to PDF tool",
+    badge: "Convert .docx to PDF",
+    title: "Turn Word into a PDF",
+    description: "Text is extracted locally and written into a fresh PDF document.",
+    choosePrompt: "Choose a Word document",
+    selectLabel: "Select Word file",
+    selectedLabel: "Selected:",
+    clear: "Clear",
+    convert: "Convert to PDF",
+    converting: "Converting...",
+    noTextFound: "(No extractable text found)",
+    errors: {
+      docOnly: "Please select a .docx or .doc file.",
+      noneSelected: "Please select a Word file to convert.",
+      generic: "Something went wrong.",
+      convertFailed: "Failed to convert Word to PDF.",
+    },
+  },
+  tr: {
+    ariaLabel: "Word'den PDF'ye aracı",
+    badge: "DOCX'i PDF'e dönüştür",
+    title: "Word dosyasını PDF'e çevir",
+    description: "Metin cihazınızda çıkarılır ve yeni bir PDF'e yazılır.",
+    choosePrompt: "Bir Word dosyası seçin",
+    selectLabel: "Word dosyası seç",
+    selectedLabel: "Seçilen:",
+    clear: "Temizle",
+    convert: "PDF'e dönüştür",
+    converting: "Dönüştürülüyor...",
+    noTextFound: "(Aktarılabilir metin bulunamadı)",
+    errors: {
+      docOnly: "Lütfen .docx veya .doc dosyası seçin.",
+      noneSelected: "Lütfen PDF'e dönüştürülecek bir Word dosyası seçin.",
+      generic: "Bir şeyler yanlış gitti.",
+      convertFailed: "Word'den PDF'e dönüştürme başarısız oldu.",
+    },
+  },
+};
+
 const loadMammoth = () =>
   new Promise((resolve, reject) => {
     if (window.mammoth) return resolve(window.mammoth);
@@ -14,7 +55,8 @@ const loadMammoth = () =>
     document.body.appendChild(script);
   });
 
-export default function WordToPdfCard() {
+export default function WordToPdfCard({ language = "en" }) {
+  const t = TEXT[language] || TEXT.en;
   const [file, setFile] = useState(null);
   const [error, setError] = useState("");
   const [isProcessing, setIsProcessing] = useState(false);
@@ -34,7 +76,7 @@ export default function WordToPdfCard() {
         "application/vnd.openxmlformats-officedocument.wordprocessingml.document" &&
       selected.type !== "application/msword"
     ) {
-      setError("Please select a .docx or .doc file.");
+      setError(t.errors.docOnly);
       setFile(null);
       return;
     }
@@ -71,7 +113,7 @@ export default function WordToPdfCard() {
   const handleConvert = async () => {
     setError("");
     if (!file) {
-      setError("Please select a Word file to convert.");
+      setError(t.errors.noneSelected);
       return;
     }
 
@@ -82,7 +124,7 @@ export default function WordToPdfCard() {
 
       const arrayBuffer = await file.arrayBuffer();
       const result = await mammoth.extractRawText({ arrayBuffer });
-      const text = (result.value || "").trim() || "(No extractable text found)";
+      const text = (result.value || "").trim() || t.noTextFound;
 
       const pdfDoc = await PDFDocument.create();
       const font = await pdfDoc.embedFont(StandardFonts.Helvetica);
@@ -119,14 +161,17 @@ export default function WordToPdfCard() {
       URL.revokeObjectURL(url);
     } catch (err) {
       console.error(err);
-      setError(err.message || "Failed to convert Word to PDF.");
+      setError(err.message || t.errors.convertFailed);
     } finally {
       setIsProcessing(false);
     }
   };
 
   return (
-    <section aria-label="Word to PDF tool" style={{ marginBottom: "28px", marginTop: "24px" }}>
+    <section
+      aria-label={t.ariaLabel}
+      style={{ marginBottom: "28px", marginTop: "24px" }}
+    >
       <div style={{ display: "flex", justifyContent: "center" }}>
         <div
           style={{
@@ -148,29 +193,29 @@ export default function WordToPdfCard() {
                 gap: "6px",
                 padding: "2px 8px",
                 borderRadius: "999px",
-                background: "#ecfdf3",
-                fontSize: "11px",
-                color: "#166534",
-                marginBottom: "6px",
-                fontWeight: 500,
+              background: "#ecfdf3",
+              fontSize: "11px",
+              color: "#166534",
+              marginBottom: "6px",
+              fontWeight: 500,
+            }}
+          >
+            <span
+              style={{
+                display: "inline-block",
+                width: "6px",
+                height: "6px",
+                borderRadius: "999px",
+                background: "#22c55e",
               }}
-            >
-              <span
-                style={{
-                  display: "inline-block",
-                  width: "6px",
-                  height: "6px",
-                  borderRadius: "999px",
-                  background: "#22c55e",
-                }}
-              ></span>
-              Convert .docx to PDF
-            </div>
+            ></span>
+            {t.badge}
+          </div>
             <h2 style={{ fontSize: "18px", margin: 0, marginBottom: "4px", color: "#0f172a" }}>
-              Turn Word into a PDF
+              {t.title}
             </h2>
             <p style={{ color: "#6b7280", margin: 0, fontSize: "13px" }}>
-              Text is extracted locally and written into a fresh PDF document.
+              {t.description}
             </p>
           </div>
 
@@ -186,7 +231,7 @@ export default function WordToPdfCard() {
             }}
           >
             <div style={{ fontSize: "13px", marginBottom: "8px", color: "#111827", fontWeight: 500 }}>
-              Choose a Word document
+              {t.choosePrompt}
             </div>
             <label
               style={{
@@ -203,7 +248,7 @@ export default function WordToPdfCard() {
               }}
             >
               <span style={{ fontSize: "14px" }}>📝</span>
-              <span>Select Word file</span>
+              <span>{t.selectLabel}</span>
               <input
                 ref={fileInputRef}
                 type="file"
@@ -214,7 +259,7 @@ export default function WordToPdfCard() {
             </label>
             {file && (
               <div style={{ fontSize: "12px", color: "#4b5563", marginTop: "10px" }}>
-                Selected: {file.name}
+                {t.selectedLabel} {file.name}
               </div>
             )}
           </div>
@@ -244,17 +289,17 @@ export default function WordToPdfCard() {
                 borderRadius: "10px",
                 border: "1px solid #e5e7eb",
                 background: "white",
-                cursor: "pointer",
-                fontWeight: 600,
-                color: "#111827",
-              }}
-            >
-              Clear
-            </button>
-            <button
-              type="button"
-              onClick={handleConvert}
-              disabled={isProcessing}
+              cursor: "pointer",
+              fontWeight: 600,
+              color: "#111827",
+            }}
+          >
+            {t.clear}
+          </button>
+          <button
+            type="button"
+            onClick={handleConvert}
+            disabled={isProcessing}
               style={{
                 padding: "10px 16px",
                 borderRadius: "10px",
@@ -267,7 +312,7 @@ export default function WordToPdfCard() {
                 opacity: isProcessing ? 0.7 : 1,
               }}
             >
-              {isProcessing ? "Converting..." : "Convert to PDF"}
+              {isProcessing ? t.converting : t.convert}
             </button>
           </div>
         </div>
