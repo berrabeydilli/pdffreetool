@@ -1,5 +1,65 @@
 import React, { useEffect, useRef, useState } from "react";
 
+const TEXT = {
+  en: {
+    ariaLabel: "PDF to PNG tool",
+    badge: "Convert PDF to PNG",
+    title: "Export PDF pages as transparent-friendly PNGs",
+    description:
+      "Upload a PDF and download every page as a PNG inside a single ZIP—perfect for design and documentation.",
+    choosePrompt: "Choose a PDF to convert to PNG",
+    selectLabel: "Select PDF",
+    browserNote: (sizeMb) =>
+      `Files stay in your browser • Max size ${(sizeMb || 0).toFixed(2)} MB`,
+    selectedLabel: "Selected:",
+    sizeLabel: "Size:",
+    clear: "Clear",
+    offlineLabel: "Offline conversion",
+    actions: {
+      convert: "Convert PDF",
+      converting: "Converting...",
+      download: "Download PNGs (ZIP)",
+      downloadSingle: (name) => `Download ${name}`,
+    },
+    generated: (count) =>
+      `Generated ${count} PNG${count === 1 ? "" : "s"}. Preview below.`,
+    errors: {
+      pdfOnly: "Please upload a PDF file.",
+      noneSelected: "Please select a PDF to convert.",
+      convertFailed: "Failed to convert PDF to images.",
+      zipFailed: "Failed to create ZIP file.",
+    },
+  },
+  tr: {
+    ariaLabel: "PDF'den PNG'ye araç",
+    badge: "PDF'yi PNG'ye dönüştür",
+    title: "PDF sayfalarını şeffaflık dostu PNG olarak dışa aktarın",
+    description:
+      "Bir PDF yükleyin ve her sayfayı tek bir ZIP içinde PNG olarak indirin—tasarım ve dokümantasyon için ideal.",
+    choosePrompt: "PNG'ye dönüştürülecek PDF'i seçin",
+    selectLabel: "PDF seç",
+    browserNote: (sizeMb) =>
+      `Dosyalar tarayıcıda kalır • Maksimum boyut ${(sizeMb || 0).toFixed(2)} MB`,
+    selectedLabel: "Seçilen:",
+    sizeLabel: "Boyut:",
+    clear: "Temizle",
+    offlineLabel: "Çevrimdışı dönüşüm",
+    actions: {
+      convert: "PDF'i dönüştür",
+      converting: "Dönüştürülüyor...",
+      download: "PNG'leri indir (ZIP)",
+      downloadSingle: (name) => `${name} indir`,
+    },
+    generated: (count) => `${count} PNG oluşturuldu. Önizleme aşağıda.`,
+    errors: {
+      pdfOnly: "Lütfen bir PDF dosyası yükleyin.",
+      noneSelected: "Lütfen dönüştürmek için bir PDF seçin.",
+      convertFailed: "PDF görsellere dönüştürülemedi.",
+      zipFailed: "ZIP dosyası oluşturulamadı.",
+    },
+  },
+};
+
 const pdfjsPromise = import(
   "https://cdn.jsdelivr.net/npm/pdfjs-dist@4.7.76/+esm"
 ).then((mod) => {
@@ -12,7 +72,8 @@ const jszipPromise = import(
   "https://cdn.jsdelivr.net/npm/jszip@3.10.1/+esm"
 );
 
-export default function PdfToPngCard() {
+export default function PdfToPngCard({ language = "en" }) {
+  const t = TEXT[language] || TEXT.en;
   const [file, setFile] = useState(null);
   const [error, setError] = useState("");
   const [isConverting, setIsConverting] = useState(false);
@@ -36,7 +97,7 @@ export default function PdfToPngCard() {
     }
 
     if (selected.type !== "application/pdf") {
-      setError("Please upload a PDF file.");
+      setError(t.errors.pdfOnly);
       setFile(null);
       setImages([]);
       return;
@@ -59,7 +120,7 @@ export default function PdfToPngCard() {
   const handleConvert = async () => {
     setError("");
     if (!file) {
-      setError("Please select a PDF to convert.");
+      setError(t.errors.noneSelected);
       return;
     }
 
@@ -101,7 +162,7 @@ export default function PdfToPngCard() {
       setImages(newImages);
     } catch (err) {
       console.error(err);
-      setError(err.message || "Failed to convert PDF to images.");
+      setError(err.message || t.errors.convertFailed);
     } finally {
       setIsConverting(false);
     }
@@ -127,7 +188,7 @@ export default function PdfToPngCard() {
       URL.revokeObjectURL(url);
     } catch (err) {
       console.error(err);
-      setError(err.message || "Failed to create ZIP file.");
+      setError(err.message || t.errors.zipFailed);
     }
   };
 
@@ -135,7 +196,7 @@ export default function PdfToPngCard() {
 
   return (
     <section
-      aria-label="PDF to PNG tool"
+      aria-label={t.ariaLabel}
       style={{
         marginBottom: "28px",
         marginTop: "24px",
@@ -193,7 +254,7 @@ export default function PdfToPngCard() {
                     background: "#2563eb",
                   }}
                 ></span>
-                Export pages as PNG
+                {t.badge}
               </div>
               <h2
                 style={{
@@ -203,7 +264,7 @@ export default function PdfToPngCard() {
                   color: "#0f172a",
                 }}
               >
-                Convert PDF pages to PNG
+                {t.title}
               </h2>
               <p
                 style={{
@@ -212,7 +273,7 @@ export default function PdfToPngCard() {
                   fontSize: "13px",
                 }}
               >
-                Pages render in your browser. Download images individually or as a ZIP.
+                {t.description}
               </p>
             </div>
             <div
@@ -234,7 +295,7 @@ export default function PdfToPngCard() {
                   gap: "4px",
                 }}
               >
-                <span style={{ fontSize: "14px" }}>🖼️</span> Offline conversion
+                <span style={{ fontSize: "14px" }}>🖼️</span> {t.offlineLabel}
               </div>
             </div>
           </div>
@@ -258,7 +319,7 @@ export default function PdfToPngCard() {
                 fontWeight: 500,
               }}
             >
-              Choose a PDF to convert
+              {t.choosePrompt}
             </div>
             <label
               style={{
@@ -275,7 +336,7 @@ export default function PdfToPngCard() {
               }}
             >
               <span style={{ fontSize: "14px" }}>📄</span>
-              <span>Select PDF</span>
+              <span>{t.selectLabel}</span>
               <input
                 ref={fileInputRef}
                 type="file"
@@ -295,8 +356,12 @@ export default function PdfToPngCard() {
                   gap: "2px",
                 }}
               >
-                <span>Selected: {file.name}</span>
-                <span>Total size: {totalMB.toFixed(2)} MB</span>
+                <span>
+                  {t.selectedLabel} {file.name}
+                </span>
+                <span>
+                  {t.sizeLabel} {totalMB.toFixed(2)} MB
+                </span>
               </div>
             )}
           </div>
@@ -338,7 +403,7 @@ export default function PdfToPngCard() {
                 color: "#111827",
               }}
             >
-              Clear
+              {t.clear}
             </button>
             <button
               type="button"
@@ -356,7 +421,7 @@ export default function PdfToPngCard() {
                 opacity: isConverting ? 0.7 : 1,
               }}
             >
-              {isConverting ? "Converting..." : "Convert to PNG"}
+              {isConverting ? t.actions.converting : t.actions.convert}
             </button>
           </div>
 
@@ -377,7 +442,7 @@ export default function PdfToPngCard() {
                     color: "#0f172a",
                   }}
                 >
-                  {images.length} images ready
+                  {t.generated(images.length)}
                 </div>
                 <button
                   onClick={handleDownloadZip}
@@ -393,7 +458,7 @@ export default function PdfToPngCard() {
                     boxShadow: "0 8px 18px rgba(22,163,74,0.25)",
                   }}
                 >
-                  Download ZIP
+                {t.actions.download}
                 </button>
               </div>
               <div
@@ -431,7 +496,7 @@ export default function PdfToPngCard() {
                         textDecoration: "none",
                       }}
                     >
-                      Download {img.name}
+                      {t.actions.downloadSingle(img.name)}
                     </a>
                   </div>
                 ))}

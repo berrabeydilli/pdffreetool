@@ -1,5 +1,48 @@
 import React, { useRef, useState } from "react";
 
+const TEXT = {
+  en: {
+    ariaLabel: "PDF to Word tool",
+    badge: "Convert PDF to DOCX",
+    title: "Turn PDFs into editable Word files",
+    description:
+      "Upload a PDF and download a DOCX you can update in Word or Google Docs.",
+    choosePrompt: "Select a PDF to convert",
+    selectLabel: "Choose PDF",
+    selectedLabel: "Selected:",
+    clear: "Clear",
+    actions: {
+      convert: "Convert to DOCX",
+      converting: "Converting...",
+    },
+    errors: {
+      pdfOnly: "Please choose a PDF file.",
+      noneSelected: "Please select a PDF to convert.",
+      failed: "Failed to convert PDF to Word.",
+    },
+  },
+  tr: {
+    ariaLabel: "PDF'den Word'e araç",
+    badge: "PDF'yi DOCX'e dönüştür",
+    title: "PDF'leri düzenlenebilir Word dosyalarına çevirin",
+    description:
+      "Bir PDF yükleyin ve Word veya Google Docs'ta güncelleyebileceğiniz DOCX olarak indirin.",
+    choosePrompt: "Dönüştürülecek PDF'i seçin",
+    selectLabel: "PDF seç",
+    selectedLabel: "Seçilen:",
+    clear: "Temizle",
+    actions: {
+      convert: "DOCX'e dönüştür",
+      converting: "Dönüştürülüyor...",
+    },
+    errors: {
+      pdfOnly: "Lütfen bir PDF dosyası seçin.",
+      noneSelected: "Lütfen dönüştürmek için bir PDF seçin.",
+      failed: "PDF, Word'e dönüştürülemedi.",
+    },
+  },
+};
+
 const pdfjsPromise = import(
   "https://cdn.jsdelivr.net/npm/pdfjs-dist@4.7.76/+esm"
 ).then((mod) => {
@@ -12,7 +55,8 @@ const docxPromise = import(
   "https://cdn.jsdelivr.net/npm/docx@8.5.0/+esm"
 );
 
-export default function PdfToWordCard() {
+export default function PdfToWordCard({ language = "en" }) {
+  const t = TEXT[language] || TEXT.en;
   const [file, setFile] = useState(null);
   const [error, setError] = useState("");
   const [isProcessing, setIsProcessing] = useState(false);
@@ -27,7 +71,7 @@ export default function PdfToWordCard() {
     }
 
     if (selected.type !== "application/pdf") {
-      setError("Please choose a PDF file.");
+      setError(t.errors.pdfOnly);
       setFile(null);
       return;
     }
@@ -61,7 +105,7 @@ export default function PdfToWordCard() {
   const handleConvert = async () => {
     setError("");
     if (!file) {
-      setError("Please select a PDF to convert.");
+      setError(t.errors.noneSelected);
       return;
     }
 
@@ -92,14 +136,14 @@ export default function PdfToWordCard() {
       URL.revokeObjectURL(url);
     } catch (err) {
       console.error(err);
-      setError(err.message || "Failed to convert PDF to Word.");
+      setError(err.message || t.errors.failed);
     } finally {
       setIsProcessing(false);
     }
   };
 
   return (
-    <section aria-label="PDF to Word tool" style={{ marginBottom: "28px", marginTop: "24px" }}>
+    <section aria-label={t.ariaLabel} style={{ marginBottom: "28px", marginTop: "24px" }}>
       <div style={{ display: "flex", justifyContent: "center" }}>
         <div
           style={{
@@ -137,13 +181,13 @@ export default function PdfToWordCard() {
                   background: "#0ea5e9",
                 }}
               ></span>
-              Extract text to Word
+              {t.badge}
             </div>
             <h2 style={{ fontSize: "18px", margin: 0, marginBottom: "4px", color: "#0f172a" }}>
-              Convert PDF to Word (.docx)
+              {t.title}
             </h2>
             <p style={{ color: "#6b7280", margin: 0, fontSize: "13px" }}>
-              Uses PDF text to build a clean Word document right in your browser.
+              {t.description}
             </p>
           </div>
 
@@ -159,7 +203,7 @@ export default function PdfToWordCard() {
             }}
           >
             <div style={{ fontSize: "13px", marginBottom: "8px", color: "#111827", fontWeight: 500 }}>
-              Choose a PDF file
+              {t.choosePrompt}
             </div>
             <label
               style={{
@@ -176,7 +220,7 @@ export default function PdfToWordCard() {
               }}
             >
               <span style={{ fontSize: "14px" }}>📄</span>
-              <span>Select PDF</span>
+              <span>{t.selectLabel}</span>
               <input
                 ref={fileInputRef}
                 type="file"
@@ -187,7 +231,7 @@ export default function PdfToWordCard() {
             </label>
             {file && (
               <div style={{ fontSize: "12px", color: "#4b5563", marginTop: "10px" }}>
-                Selected: {file.name}
+                {t.selectedLabel} {file.name}
               </div>
             )}
           </div>
@@ -222,7 +266,7 @@ export default function PdfToWordCard() {
                 color: "#111827",
               }}
             >
-              Clear
+              {t.clear}
             </button>
             <button
               type="button"
@@ -240,7 +284,7 @@ export default function PdfToWordCard() {
                 opacity: isProcessing ? 0.7 : 1,
               }}
             >
-              {isProcessing ? "Converting..." : "Convert to Word"}
+              {isProcessing ? t.actions.converting : t.actions.convert}
             </button>
           </div>
         </div>

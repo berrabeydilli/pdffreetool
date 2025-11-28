@@ -2789,8 +2789,8 @@ function App() {
           <CompressImageCard language={language} />
         )}
         {activeTab === "jpgToPdf" && <JpgToPdfCard language={language} />}
-        {activeTab === "pdfToJpg" && <PdfToJpgCard />}
-        {activeTab === "pdfToPng" && <PdfToPngCard />}
+        {activeTab === "pdfToJpg" && <PdfToJpgCard language={language} />}
+        {activeTab === "pdfToPng" && <PdfToPngCard language={language} />}
         {activeTab === "split" && <SplitPdfCard />}
         {activeTab === "deletePages" && (
           <DeletePdfPagesCard language={language} />
@@ -2802,7 +2802,7 @@ function App() {
           <ExtractPdfPagesCard language={language} />
         )}
         {activeTab === "pdfReader" && <PdfReaderCard language={language} />}
-        {activeTab === "pdfToWord" && <PdfToWordCard />}
+        {activeTab === "pdfToWord" && <PdfToWordCard language={language} />}
         {activeTab === "wordToPdf" && <WordToPdfCard />}
 
         {renderToolDetails()}
