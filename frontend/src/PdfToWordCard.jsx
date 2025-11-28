@@ -41,6 +41,26 @@ const TEXT = {
       failed: "PDF, Word'e dönüştürülemedi.",
     },
   },
+  de: {
+    ariaLabel: "PDF-zu-Word-Werkzeug",
+    badge: "PDF in DOCX umwandeln",
+    title: "PDFs in bearbeitbare Word-Dateien verwandeln",
+    description:
+      "Ein PDF hochladen und als DOCX herunterladen, das in Word oder Google Docs bearbeitet werden kann.",
+    choosePrompt: "Wähle ein PDF zum Konvertieren",
+    selectLabel: "PDF auswählen",
+    selectedLabel: "Ausgewählt:",
+    clear: "Leeren",
+    actions: {
+      convert: "In DOCX umwandeln",
+      converting: "Wird konvertiert...",
+    },
+    errors: {
+      pdfOnly: "Bitte eine PDF-Datei auswählen.",
+      noneSelected: "Bitte ein PDF zum Konvertieren wählen.",
+      failed: "PDF konnte nicht in Word umgewandelt werden.",
+    },
+  },
 };
 
 const pdfjsPromise = import(

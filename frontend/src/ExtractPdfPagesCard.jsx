@@ -55,6 +55,32 @@ const TEXT = {
       extracting: "Çalışıyor...",
     },
   },
+  de: {
+    pillLabel: "Seiten extrahieren",
+    title: "Bestimmte Seiten als neues PDF speichern",
+    description:
+      "Gib die benötigten Seiten ein (z. B. 1,2,7), um ein kleineres, fokussiertes PDF zu erstellen. Ideal, um nur wichtige Kapitel oder Belege zu teilen – alles bleibt im Browser und der Download ist in Sekunden fertig.",
+    upload: {
+      change: "PDF ändern",
+      upload: "PDF hochladen",
+      none: "Keine Datei gewählt",
+    },
+    inputs: {
+      placeholder: "Zu extrahierende Seiten (z. B. 1-3,5)",
+    },
+    errors: {
+      pdfOnly: "Bitte eine PDF-Datei hochladen.",
+      missingFile: "Bitte eine PDF-Datei auswählen.",
+      missingPages: "Gib die zu extrahierenden Seiten ein.",
+      generic: "Etwas ist schiefgelaufen.",
+      failed: "Seiten konnten nicht extrahiert werden.",
+    },
+    buttons: {
+      clear: "Leeren",
+      extract: "Seiten extrahieren",
+      extracting: "Wird verarbeitet...",
+    },
+  },
 };
 
 export default function ExtractPdfPagesCard({ language = "en" }) {

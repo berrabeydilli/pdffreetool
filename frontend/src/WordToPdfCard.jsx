@@ -43,6 +43,25 @@ const TEXT = {
       convertFailed: "Word'den PDF'e dönüştürme başarısız oldu.",
     },
   },
+  de: {
+    ariaLabel: "Word-zu-PDF-Werkzeug",
+    badge: ".docx in PDF umwandeln",
+    title: "Word-Dokument in PDF konvertieren",
+    description: "Text wird lokal extrahiert und in ein neues PDF geschrieben.",
+    choosePrompt: "Ein Word-Dokument wählen",
+    selectLabel: "Word-Datei auswählen",
+    selectedLabel: "Ausgewählt:",
+    clear: "Leeren",
+    convert: "In PDF umwandeln",
+    converting: "Wird konvertiert...",
+    noTextFound: "(Kein extrahierbarer Text gefunden)",
+    errors: {
+      docOnly: "Bitte eine .docx- oder .doc-Datei auswählen.",
+      noneSelected: "Bitte eine Word-Datei zur Konvertierung wählen.",
+      generic: "Etwas ist schiefgelaufen.",
+      convertFailed: "Word konnte nicht in PDF umgewandelt werden.",
+    },
+  },
 };
 
 const loadMammoth = () =>

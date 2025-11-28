@@ -43,6 +43,26 @@ const TEXT = {
       generic: "Görsel sıkıştırma başarısız oldu.",
     },
   },
+  de: {
+    ariaLabel: "Bildkomprimierungswerkzeug",
+    badge: "JPG oder PNG komprimieren",
+    title: "Bilddateigröße reduzieren",
+    description: "Bilder werden direkt im Browser komprimiert. Nichts verlässt dein Gerät.",
+    choosePrompt: "Wähle ein Bild zum Komprimieren",
+    selectLabel: "Bild auswählen",
+    selected: "Ausgewählt",
+    sizeLabel: "Größe",
+    qualityLabel: (quality) => `Qualität (${quality}%)`,
+    clear: "Leeren",
+    compress: "Komprimieren & Herunterladen",
+    compressing: "Wird komprimiert...",
+    errors: {
+      type: "Bitte ein JPG- oder PNG-Bild auswählen.",
+      size: (limit) => `Bilder bis ${limit} MB werden unterstützt.`,
+      noneSelected: "Bitte ein Bild zum Komprimieren hochladen.",
+      generic: "Bild konnte nicht komprimiert werden.",
+    },
+  },
 };
 
 export default function CompressImageCard({ language = "en" }) {
