@@ -43,6 +43,180 @@ const PAGE_SLUGS = {
   contact: { en: "contact", tr: "iletisim" },
 };
 
+const DEFAULT_PAGE_SEO = {
+  en: {
+    title: "PDFFreeTool | Merge, compress, and convert PDFs online",
+    description:
+      "Use free browser-based tools to merge, compress, split, rotate, and convert PDF or image files without sign-ups.",
+    h1: "Flexible PDF & Image studio",
+  },
+  tr: {
+    title: "PDFFreeTool | PDF birleştir, sıkıştır ve dönüştür",
+    description:
+      "Kaydolmadan PDF ve görselleri tarayıcıda birleştirin, sıkıştırın, bölün, döndürün veya dönüştürün.",
+    h1: "Esnek PDF ve Görsel stüdyosu",
+  },
+};
+
+const TOOL_SEO_METADATA = {
+  merge: {
+    en: {
+      title: "Merge PDF Files Online | PDFFreeTool",
+      description: "Combine multiple PDF files, reorder pages, and download a single organized document in seconds.",
+      h1: "Merge PDF files in your browser",
+    },
+    tr: {
+      title: "PDF Birleştirici | PDFFreeTool",
+      description: "Birden fazla PDF'yi tarayıcıda birleştirip sayfaları yeniden sırala, tek ve düzenli bir dosya indir.",
+      h1: "PDF dosyalarını tarayıcıda birleştir",
+    },
+  },
+  compress: {
+    en: {
+      title: "Compress PDF to Reduce File Size | PDFFreeTool",
+      description: "Shrink PDF attachments while keeping text and images clear so they are easy to email or upload.",
+      h1: "Compress PDF without losing clarity",
+    },
+    tr: {
+      title: "PDF Sıkıştırma Aracı | PDFFreeTool",
+      description: "PDF boyutunu düşür, metin ve görselleri net tutarak e-posta veya yüklemeleri kolaylaştır.",
+      h1: "PDF'leri kalite kaybı olmadan sıkıştır",
+    },
+  },
+  compressImage: {
+    en: {
+      title: "Compress Images for Web and Email | PDFFreeTool",
+      description: "Optimize JPG or PNG files with in-browser compression that preserves color and transparency.",
+      h1: "Compress JPG or PNG images online",
+    },
+    tr: {
+      title: "Görsel Sıkıştırma | PDFFreeTool",
+      description: "JPG veya PNG dosyalarını tarayıcıda sıkıştır, renkleri ve şeffaflığı koruyarak web'e hazırla.",
+      h1: "JPG ve PNG görselleri çevrimiçi sıkıştır",
+    },
+  },
+  jpgToPdf: {
+    en: {
+      title: "Convert JPG to PDF | PDFFreeTool",
+      description: "Turn multiple JPG or PNG images into a single, neat PDF with drag-and-drop ordering.",
+      h1: "Convert images to a clean PDF",
+    },
+    tr: {
+      title: "JPG'den PDF'ye Dönüştür | PDFFreeTool",
+      description: "Birden fazla JPG veya PNG'yi sürükleyip sıralayarak tek ve düzenli bir PDF'e dönüştür.",
+      h1: "Görselleri düzenli bir PDF'e çevir",
+    },
+  },
+  pdfToJpg: {
+    en: {
+      title: "PDF to JPG Converter | PDFFreeTool",
+      description: "Export every PDF page as a crisp JPG image you can reuse in slides, docs, or chat.",
+      h1: "Save PDF pages as JPG",
+    },
+    tr: {
+      title: "PDF'den JPG'ye Çevirici | PDFFreeTool",
+      description: "PDF sayfalarını sunum, doküman veya sohbetlerde kullanabileceğin net JPG görsellerine dönüştür.",
+      h1: "PDF sayfalarını JPG olarak kaydet",
+    },
+  },
+  pdfToPng: {
+    en: {
+      title: "PDF to PNG Converter | PDFFreeTool",
+      description: "Download PDF pages as high-quality PNG files that keep transparency where needed.",
+      h1: "Export PDF pages to PNG",
+    },
+    tr: {
+      title: "PDF'den PNG'ye Dönüştür | PDFFreeTool",
+      description: "PDF sayfalarını gerekirse şeffaflığı koruyan yüksek kaliteli PNG dosyaları olarak indir.",
+      h1: "PDF sayfalarını PNG olarak dışa aktar",
+    },
+  },
+  split: {
+    en: {
+      title: "Split PDF by Pages or Ranges | PDFFreeTool",
+      description: "Select specific pages or ranges to extract into their own PDF files without extra installs.",
+      h1: "Split a PDF into new files",
+    },
+    tr: {
+      title: "PDF Bölme Aracı | PDFFreeTool",
+      description: "Belirli sayfa veya aralıkları seçerek ek yazılım kurmadan ayrı PDF dosyalarına çıkar.",
+      h1: "PDF'yi yeni dosyalara böl",
+    },
+  },
+  deletePages: {
+    en: {
+      title: "Delete Pages from PDF | PDFFreeTool",
+      description: "Remove unwanted or duplicate PDF pages quickly and download a cleaner document.",
+      h1: "Delete pages from any PDF",
+    },
+    tr: {
+      title: "PDF Sayfa Silme | PDFFreeTool",
+      description: "İstenmeyen veya yinelenen PDF sayfalarını hızlıca silip daha temiz bir dosya indir.",
+      h1: "PDF'den sayfa sil",
+    },
+  },
+  rotatePages: {
+    en: {
+      title: "Rotate PDF Pages Online | PDFFreeTool",
+      description: "Fix sideways or upside-down PDF pages and save a correctly oriented copy instantly.",
+      h1: "Rotate PDF pages upright",
+    },
+    tr: {
+      title: "PDF Sayfa Döndürme | PDFFreeTool",
+      description: "Yan veya ters duran PDF sayfalarını düzelt, doğru hizalanmış yeni bir kopya indir.",
+      h1: "PDF sayfalarını düzelt",
+    },
+  },
+  extractPages: {
+    en: {
+      title: "Extract Pages from PDF | PDFFreeTool",
+      description: "Pull the pages you need from a PDF and save them into a separate, share-ready file.",
+      h1: "Extract specific PDF pages",
+    },
+    tr: {
+      title: "PDF Sayfa Çıkarma | PDFFreeTool",
+      description: "PDF içinden istediğin sayfaları çekip paylaşmaya hazır ayrı bir dosya olarak kaydet.",
+      h1: "Belirli PDF sayfalarını çıkar",
+    },
+  },
+  pdfReader: {
+    en: {
+      title: "Online PDF Reader | PDFFreeTool",
+      description: "Open and preview PDF files directly in your browser without extra extensions or downloads.",
+      h1: "Read PDFs in the browser",
+    },
+    tr: {
+      title: "Çevrimiçi PDF Okuyucu | PDFFreeTool",
+      description: "PDF dosyalarını tarayıcıda eklenti veya indirme olmadan açıp önizle.",
+      h1: "PDF'leri tarayıcıda oku",
+    },
+  },
+  pdfToWord: {
+    en: {
+      title: "Convert PDF to Word (DOCX) | PDFFreeTool",
+      description: "Turn PDFs into editable Word documents so you can update text, tables, or layouts easily.",
+      h1: "Convert PDF to editable Word",
+    },
+    tr: {
+      title: "PDF'den Word'e Çevir | PDFFreeTool",
+      description: "PDF'leri düzenlenebilir Word dosyalarına dönüştürerek metin, tablo veya yerleşimi kolayca güncelle.",
+      h1: "PDF'yi düzenlenebilir Word'e çevir",
+    },
+  },
+  wordToPdf: {
+    en: {
+      title: "Convert Word to PDF | PDFFreeTool",
+      description: "Save DOCX files as fixed PDFs that keep fonts, spacing, and layout consistent everywhere.",
+      h1: "Convert Word documents to PDF",
+    },
+    tr: {
+      title: "Word'den PDF'ye Çevir | PDFFreeTool",
+      description: "Yazı tipleri ve yerleşimi koruyarak DOCX dosyalarını her yerde aynı görünen PDF'lere dönüştür.",
+      h1: "Word dosyalarını PDF'e dönüştür",
+    },
+  },
+};
+
 const getSlugForEntry = (mapping, key, language) => {
   if (!mapping?.[key]) return "";
   return mapping[key][language] || mapping[key][DEFAULT_LANGUAGE] || "";
@@ -52,6 +226,21 @@ const getKeyBySlug = (mapping, language, slug) => {
   return (
     Object.entries(mapping).find(([, slugs]) => slugs[language] === slug || slugs[DEFAULT_LANGUAGE] === slug)?.[0] || null
   );
+};
+
+const getToolSeoMeta = (toolId, language) => {
+  const entry = TOOL_SEO_METADATA[toolId];
+  if (!entry) return null;
+  return entry[language] || entry[DEFAULT_LANGUAGE];
+};
+
+const getSeoForView = (language, activePage, activeTab) => {
+  if (activePage === "home") {
+    const toolMeta = getToolSeoMeta(activeTab, language);
+    if (toolMeta) return toolMeta;
+  }
+
+  return DEFAULT_PAGE_SEO[language] || DEFAULT_PAGE_SEO[DEFAULT_LANGUAGE];
 };
 
 const buildPathFromState = (language, activePage, activeTab) => {
@@ -1597,6 +1786,8 @@ function App() {
   const errors = t.errors || TRANSLATIONS.en.errors;
   const seoText = t.seoSection || TRANSLATIONS.en.seoSection;
   const pageLabels = PAGE_LABELS[language] || PAGE_LABELS.en;
+  const viewSeo = getSeoForView(language, activePage, activeTab);
+  const heroHeading = viewSeo.h1 || t.heroTitle;
 
   useEffect(() => {
     if (!hasMountedRef.current) {
@@ -1634,6 +1825,24 @@ function App() {
   useEffect(() => {
     if (typeof window === "undefined") return;
 
+    const seo = getSeoForView(language, activePage, activeTab);
+
+    document.title = seo.title;
+
+    const ensureMetaTag = (name, content) => {
+      let tag = document.querySelector(`meta[name="${name}"]`);
+
+      if (!tag) {
+        tag = document.createElement("meta");
+        tag.setAttribute("name", name);
+        document.head.appendChild(tag);
+      }
+
+      tag.setAttribute("content", content);
+    };
+
+    ensureMetaTag("description", seo.description);
+
     const newPath = buildPathFromState(language, activePage, activeTab);
     if (window.location.pathname !== newPath) {
       window.history.replaceState({}, "", newPath);
@@ -1642,7 +1851,7 @@ function App() {
     const head = document.head;
     head.querySelectorAll('link[data-generated="alternate-lang"]').forEach((link) => link.remove());
 
-    const origin = window.location.origin || "https://www.pdffreetool.com";
+    const origin = window.location.origin || "https://pdffreetool.com";
 
     SUPPORTED_LANGUAGES.forEach((langCode) => {
       const linkEl = document.createElement("link");
@@ -1652,6 +1861,13 @@ function App() {
       linkEl.dataset.generated = "alternate-lang";
       head.appendChild(linkEl);
     });
+
+    const xDefault = document.createElement("link");
+    xDefault.rel = "alternate";
+    xDefault.hreflang = "x-default";
+    xDefault.href = `${origin}${buildPathFromState(DEFAULT_LANGUAGE, activePage, activeTab)}`;
+    xDefault.dataset.generated = "alternate-lang";
+    head.appendChild(xDefault);
   }, [language, activePage, activeTab]);
 
   useEffect(() => {
@@ -2496,7 +2712,7 @@ function App() {
                 color: "#0f172a",
               }}
             >
-              {t.heroTitle}
+              {heroHeading}
             </h1>
             <p
               style={{
