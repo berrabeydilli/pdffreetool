@@ -1,5 +1,62 @@
 import React, { useEffect, useRef, useState } from "react";
 
+const TEXT = {
+  en: {
+    ariaLabel: "PDF to JPG tool",
+    badge: "Convert PDF to JPG",
+    title: "Export every PDF page as a crisp JPG",
+    description:
+      "Upload a PDF, convert it fully in your browser, and download all pages as JPG files in a single ZIP.",
+    choosePrompt: "Choose a PDF to convert to JPG",
+    selectLabel: "Select PDF",
+    browserNote: (sizeMb) =>
+      `Files stay in your browser • Max size ${(sizeMb || 0).toFixed(2)} MB`,
+    selectedLabel: "Selected:",
+    sizeLabel: "Size:",
+    clear: "Clear",
+    actions: {
+      convert: "Convert PDF",
+      converting: "Converting...",
+      download: "Download JPGs (ZIP)",
+    },
+    generated: (count) =>
+      `Generated ${count} JPG${count === 1 ? "" : "s"}. Preview below.`,
+    errors: {
+      pdfOnly: "Please upload a PDF file.",
+      noneSelected: "Please select a PDF to convert.",
+      convertFailed: "Failed to convert PDF to images.",
+      zipFailed: "Failed to create ZIP file.",
+    },
+  },
+  tr: {
+    ariaLabel: "PDF'den JPG'e araç",
+    badge: "PDF'yi JPG'e dönüştür",
+    title: "PDF sayfalarını net JPG olarak dışa aktarın",
+    description:
+      "Bir PDF yükleyin, tamamen tarayıcıda dönüştürün ve tüm sayfaları tek bir ZIP içinde JPG olarak indirin.",
+    choosePrompt: "JPG'e dönüştürülecek PDF'i seçin",
+    selectLabel: "PDF seç",
+    browserNote: (sizeMb) =>
+      `Dosyalar tarayıcıda kalır • Maksimum boyut ${(sizeMb || 0).toFixed(2)} MB`,
+    selectedLabel: "Seçilen:",
+    sizeLabel: "Boyut:",
+    clear: "Temizle",
+    actions: {
+      convert: "PDF'i dönüştür",
+      converting: "Dönüştürülüyor...",
+      download: "JPG'leri indir (ZIP)",
+    },
+    generated: (count) =>
+      `${count} JPG oluşturuldu. Önizleme aşağıda.`,
+    errors: {
+      pdfOnly: "Lütfen bir PDF dosyası yükleyin.",
+      noneSelected: "Lütfen dönüştürmek için bir PDF seçin.",
+      convertFailed: "PDF, görsellere dönüştürülemedi.",
+      zipFailed: "ZIP dosyası oluşturulamadı.",
+    },
+  },
+};
+
 const pdfjsPromise = import(
   "https://cdn.jsdelivr.net/npm/pdfjs-dist@4.7.76/+esm"
 ).then((mod) => {
@@ -12,7 +69,8 @@ const jszipPromise = import(
   "https://cdn.jsdelivr.net/npm/jszip@3.10.1/+esm"
 );
 
-export default function PdfToJpgCard() {
+export default function PdfToJpgCard({ language = "en" }) {
+  const t = TEXT[language] || TEXT.en;
   const [file, setFile] = useState(null);
   const [error, setError] = useState("");
   const [isConverting, setIsConverting] = useState(false);
@@ -36,7 +94,7 @@ export default function PdfToJpgCard() {
     }
 
     if (selected.type !== "application/pdf") {
-      setError("Please upload a PDF file.");
+      setError(t.errors.pdfOnly);
       setFile(null);
       setImages([]);
       return;
@@ -59,7 +117,7 @@ export default function PdfToJpgCard() {
   const handleConvert = async () => {
     setError("");
     if (!file) {
-      setError("Please select a PDF to convert.");
+      setError(t.errors.noneSelected);
       return;
     }
 
@@ -101,7 +159,7 @@ export default function PdfToJpgCard() {
       setImages(newImages);
     } catch (err) {
       console.error(err);
-      setError(err.message || "Failed to convert PDF to images.");
+      setError(err.message || t.errors.convertFailed);
     } finally {
       setIsConverting(false);
     }
@@ -127,7 +185,7 @@ export default function PdfToJpgCard() {
       URL.revokeObjectURL(url);
     } catch (err) {
       console.error(err);
-      setError(err.message || "Failed to create ZIP file.");
+      setError(err.message || t.errors.zipFailed);
     }
   };
 
@@ -135,7 +193,7 @@ export default function PdfToJpgCard() {
 
   return (
     <section
-      aria-label="PDF to JPG tool"
+      aria-label={t.ariaLabel}
       style={{
         marginBottom: "28px",
         marginTop: "24px",
@@ -193,7 +251,7 @@ export default function PdfToJpgCard() {
                     background: "#06b6d4",
                   }}
                 ></span>
-                Convert PDF to JPG
+                {t.badge}
               </div>
               <h2
                 style={{
@@ -203,7 +261,7 @@ export default function PdfToJpgCard() {
                   color: "#0f172a",
                 }}
               >
-                Export every PDF page as a crisp JPG
+                {t.title}
               </h2>
               <p
                 style={{
@@ -212,8 +270,7 @@ export default function PdfToJpgCard() {
                   fontSize: "13px",
                 }}
               >
-                Upload a PDF, convert it fully in your browser, and download
-                all pages as JPG files in a single ZIP.
+                {t.description}
               </p>
             </div>
           </div>
@@ -237,7 +294,7 @@ export default function PdfToJpgCard() {
                 fontWeight: 500,
               }}
             >
-              Choose a PDF to convert to JPG
+              {t.choosePrompt}
             </div>
             <label
               style={{
@@ -254,7 +311,7 @@ export default function PdfToJpgCard() {
               }}
             >
               <span style={{ fontSize: "14px" }}>📑</span>
-              <span>Select PDF</span>
+              <span>{t.selectLabel}</span>
               <input
                 ref={fileInputRef}
                 type="file"
@@ -271,7 +328,7 @@ export default function PdfToJpgCard() {
                 marginBottom: 0,
               }}
             >
-              Files stay in your browser • Max size {(totalMB || 0).toFixed(2)} MB
+              {t.browserNote(totalMB)}
             </p>
           </div>
 
@@ -287,10 +344,10 @@ export default function PdfToJpgCard() {
               }}
             >
               <div>
-                Selected: <strong style={{ color: "#111827" }}>{file.name}</strong>
+                {t.selectedLabel} <strong style={{ color: "#111827" }}>{file.name}</strong>
               </div>
               <div>
-                Size: <strong style={{ color: "#111827" }}>{totalMB.toFixed(2)} MB</strong>
+                {t.sizeLabel} <strong style={{ color: "#111827" }}>{totalMB.toFixed(2)} MB</strong>
               </div>
             </div>
           )}
@@ -335,7 +392,7 @@ export default function PdfToJpgCard() {
                 minWidth: "80px",
               }}
             >
-              Clear
+              {t.clear}
             </button>
             <button
               onClick={handleConvert}
@@ -356,7 +413,7 @@ export default function PdfToJpgCard() {
                     : "0 10px 25px rgba(14,165,233,0.35)",
               }}
             >
-              {isConverting ? "Converting..." : "Convert PDF"}
+              {isConverting ? t.actions.converting : t.actions.convert}
             </button>
             <button
               onClick={handleDownloadZip}
@@ -377,7 +434,7 @@ export default function PdfToJpgCard() {
                     : "0 10px 25px rgba(34,197,94,0.35)",
               }}
             >
-              Download JPGs (ZIP)
+              {t.actions.download}
             </button>
           </div>
 
@@ -398,10 +455,7 @@ export default function PdfToJpgCard() {
                 flexWrap: "wrap",
               }}
             >
-              <div>
-                Generated {images.length} JPG
-                {images.length === 1 ? "" : "s"}. Preview below.
-              </div>
+              <div>{t.generated(images.length)}</div>
               <div
                 style={{
                   display: "flex",
