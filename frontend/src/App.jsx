@@ -230,129 +230,264 @@ const TOOL_DETAILS = {
     },
   },
   compress: {
-    title: "Compress PDF tips",
-    intro:
-      "Reduce PDF size without losing clarity so files stay email-friendly and fast to upload, even on slower connections.",
-    paragraphs: [
-      "Presentations, catalogs, and scan-heavy reports often balloon in size. Compression trims unused metadata and optimizes images while keeping text sharp.",
-      "The smaller output saves cloud storage space and helps teammates on mobile avoid large downloads.",
-      "You can re-run compression after edits to keep file sizes predictable across versions.",
-    ],
-    bulletTitle: "Use it when",
-    bullets: [
-      "Submitting tenders or grant applications that enforce strict attachment limits.",
-      "Sharing brochures, lookbooks, or portfolios that must stay visually crisp but lightweight.",
-      "Archiving batches of PDFs into limited shared drives without sacrificing readability.",
-      "Uploading assignments to LMS platforms where oversized files often fail silently.",
-    ],
-    checklistTitle: "Quality checklist",
-    checklist: [
-      "Remove duplicates or blank pages before compressing to avoid wasting space.",
-      "Switch to grayscale if most content is text or scans without color requirements.",
-      "Note the final size so you know whether email or chat platforms will accept it.",
-      "Spot-check a few pages, especially image-heavy ones, to confirm charts and photos remain clear.",
-      "If the document is for print, do a small test print to confirm the quality still meets expectations.",
-    ],
+    en: {
+      title: "Compress PDF tips",
+      intro:
+        "Reduce PDF size without losing clarity so files stay email-friendly and fast to upload, even on slower connections.",
+      paragraphs: [
+        "Presentations, catalogs, and scan-heavy reports often balloon in size. Compression trims unused metadata and optimizes images while keeping text sharp.",
+        "The smaller output saves cloud storage space and helps teammates on mobile avoid large downloads.",
+        "You can re-run compression after edits to keep file sizes predictable across versions.",
+      ],
+      bulletTitle: "Use it when",
+      bullets: [
+        "Submitting tenders or grant applications that enforce strict attachment limits.",
+        "Sharing brochures, lookbooks, or portfolios that must stay visually crisp but lightweight.",
+        "Archiving batches of PDFs into limited shared drives without sacrificing readability.",
+        "Uploading assignments to LMS platforms where oversized files often fail silently.",
+      ],
+      checklistTitle: "Quality checklist",
+      checklist: [
+        "Remove duplicates or blank pages before compressing to avoid wasting space.",
+        "Switch to grayscale if most content is text or scans without color requirements.",
+        "Note the final size so you know whether email or chat platforms will accept it.",
+        "Spot-check a few pages, especially image-heavy ones, to confirm charts and photos remain clear.",
+        "If the document is for print, do a small test print to confirm the quality still meets expectations.",
+      ],
+    },
+    tr: {
+      title: "PDF sıkıştırma ipuçları",
+      intro:
+        "PDF boyutunu netliği koruyarak küçültün; dosyalar e-postaya uygun kalsın ve yavaş bağlantılarda bile hızlı yüklensin.",
+      paragraphs: [
+        "Sunumlar, kataloglar ve çok taramalı raporlar hızla şişebilir. Sıkıştırma, gereksiz meta verileri temizler ve metni keskin bırakırken görselleri optimize eder.",
+        "Daha küçük çıktı hem bulut depolamada yer kazandırır hem de mobildeki ekip arkadaşlarının büyük indirmelerle uğraşmasını önler.",
+        "Düzenleme sonrası yeniden sıkıştırarak sürümler arasında dosya boyutunu öngörülebilir tutabilirsiniz.",
+      ],
+      bulletTitle: "Şu durumlarda kullanın",
+      bullets: [
+        "Ek limitlerinin katı olduğu ihale veya hibe başvurularını gönderirken.",
+        "Görsel kalitesi yüksek ama hafif kalması gereken broşür, lookbook veya portföyleri paylaşırken.",
+        "Okunabilirlikten ödün vermeden sınırlı paylaşımlı sürücülere PDF arşivleri aktarırken.",
+        "Boyutu büyük dosyaların sessizce başarısız olabildiği LMS platformlarına ödev yüklerken.",
+      ],
+      checklistTitle: "Kalite kontrol listesi",
+      checklist: [
+        "Gereksiz yer kaplamamak için sıkıştırmadan önce kopya veya boş sayfaları kaldırın.",
+        "İçeriğin çoğu metin veya renksiz taramaysa gri tonlamaya geçin.",
+        "Son boyutu not alın ki e-posta veya sohbet araçlarının kabul edip etmeyeceğini bilin.",
+        "Özellikle görsel ağırlıklı birkaç sayfayı kontrol ederek grafik ve fotoğrafların net kaldığını doğrulayın.",
+        "Belge baskıya gidecekse küçük bir deneme baskısı yaparak kalitenin beklentiyi karşılayıp karşılamadığını görün.",
+      ],
+    },
   },
   compressImage: {
-    title: "Image compression overview",
-    intro:
-      "Resize large photos to web-friendly sizes while preserving the contrast and color balance you expect in the final image.",
-    paragraphs: [
-      "The tool strips bulky metadata, fine-tunes compression automatically for JPG and PNG files, and keeps transparency when needed.",
-      "It is perfect for marketing teams, bloggers, or support staff who need fast, consistent assets without opening design software.",
-      "Outputs are ready for the web but still high quality enough for most presentations or lightweight printouts.",
-    ],
-    bulletTitle: "Best suited for",
-    bullets: [
-      "E-commerce galleries where product thumbnails must load instantly across devices.",
-      "Portfolio or blog visuals that should look crisp without draining visitors' bandwidth.",
-      "Email attachments or help articles that risk hitting provider size caps.",
-      "Social media graphics that need predictable dimensions and color fidelity.",
-    ],
-    checklistTitle: "Quick prep list",
-    checklist: [
-      "Keep an original copy untouched so you can return to it if you need a higher-resolution version later.",
-      "Choose PNG output for assets that rely on transparency such as logos or UI elements.",
-      "Rename files with descriptive slugs before uploading to keep marketing libraries organized.",
-      "For hero images, a width around 1200–1600px is usually enough for modern screens without excess weight.",
-      "Check the resulting file size and dimensions to make sure they match platform recommendations.",
-    ],
+    en: {
+      title: "Image compression overview",
+      intro:
+        "Resize large photos to web-friendly sizes while preserving the contrast and color balance you expect in the final image.",
+      paragraphs: [
+        "The tool strips bulky metadata, fine-tunes compression automatically for JPG and PNG files, and keeps transparency when needed.",
+        "It is perfect for marketing teams, bloggers, or support staff who need fast, consistent assets without opening design software.",
+        "Outputs are ready for the web but still high quality enough for most presentations or lightweight printouts.",
+      ],
+      bulletTitle: "Best suited for",
+      bullets: [
+        "E-commerce galleries where product thumbnails must load instantly across devices.",
+        "Portfolio or blog visuals that should look crisp without draining visitors' bandwidth.",
+        "Email attachments or help articles that risk hitting provider size caps.",
+        "Social media graphics that need predictable dimensions and color fidelity.",
+      ],
+      checklistTitle: "Quick prep list",
+      checklist: [
+        "Keep an original copy untouched so you can return to it if you need a higher-resolution version later.",
+        "Choose PNG output for assets that rely on transparency such as logos or UI elements.",
+        "Rename files with descriptive slugs before uploading to keep marketing libraries organized.",
+        "For hero images, a width around 1200–1600px is usually enough for modern screens without excess weight.",
+        "Check the resulting file size and dimensions to make sure they match platform recommendations.",
+      ],
+    },
+    tr: {
+      title: "Görsel sıkıştırma özeti",
+      intro:
+        "Büyük fotoğrafları web dostu boyutlara getirirken son görüntüde beklediğiniz kontrast ve renk dengesini koruyun.",
+      paragraphs: [
+        "Araç, ağır meta verileri temizler, JPG ve PNG dosyaları için sıkıştırmayı otomatik ince ayarlar ve gerektiğinde şeffaflığı korur.",
+        "Tasarım yazılımı açmadan hızlı ve tutarlı görsellere ihtiyaç duyan pazarlama ekipleri, blog yazarları veya destek ekipleri için idealdir.",
+        "Çıktılar web için hazırdır ve çoğu sunum veya hafif baskı için yeterince yüksek kalitededir.",
+      ],
+      bulletTitle: "En uygun senaryolar",
+      bullets: [
+        "Ürün küçük görsellerinin cihazlar arasında anında yüklenmesi gereken e-ticaret galerileri.",
+        "Ziyaretçilerin internetini tüketmeden net görünmesi gereken portföy veya blog görselleri.",
+        "Sağlayıcı boyut sınırına takılma riski olan e-posta ekleri veya yardım makaleleri.",
+        "Boyutları ve renk doğruluğu öngörülebilir olmalı sosyal medya görselleri.",
+      ],
+      checklistTitle: "Hızlı hazırlık listesi",
+      checklist: [
+        "Daha yüksek çözünürlüklü bir sürüme ihtiyaç duyabileceğiniz durumlar için orijinal kopyayı dokunmadan saklayın.",
+        "Logo veya arayüz öğeleri gibi şeffaflığa ihtiyaç duyan varlıklar için PNG çıktısını seçin.",
+        "Pazarlama kütüphaneleri düzenli kalsın diye yüklemeden önce dosyalara açıklayıcı isimler verin.",
+        "Afiş görselleri için 1200–1600px civarı genişlik modern ekranlar için ağırlık oluşturmadan yeterlidir.",
+        "Oluşan dosya boyutu ve ölçülerin platform tavsiyeleriyle uyumlu olduğundan emin olun.",
+      ],
+    },
   },
   jpgToPdf: {
-    title: "Images to PDF guide",
-    intro:
-      "Turn photos, scans, or screenshots into a polished document that keeps pages aligned and ready to share or print.",
-    paragraphs: [
-      "Images are added in the order you upload them, and you can drag to rearrange before exporting.",
-      "Different dimensions are centered automatically so each page looks tidy without manual resizing.",
-      "Use it to bundle receipts, visual concepts, or progress photos into a format anyone can open.",
-    ],
-    bulletTitle: "Ideal for",
-    bullets: [
-      "Freelancers compiling receipts, invoices, and approvals for bookkeeping.",
-      "Students organizing lecture snapshots or whiteboard photos into one study pack.",
-      "Designers presenting sketches or iterations to clients with a clear sequence.",
-      "Field teams reporting site conditions with annotated photos and quick notes.",
-    ],
-    checklistTitle: "Better PDFs, faster",
-    checklist: [
-      "Rotate any sideways images before uploading to keep the final PDF consistent.",
-      "Adjust brightness or crop edges to remove scanning artifacts and shadows.",
-      "Preview the sequence to avoid duplicate or missing images before exporting.",
-      "Use consistent file names when creating multiple PDFs for the same project so you can track versions easily.",
-      "If printing, leave a small margin in the source images to prevent clipping.",
-    ],
+    en: {
+      title: "Images to PDF guide",
+      intro:
+        "Turn photos, scans, or screenshots into a polished document that keeps pages aligned and ready to share or print.",
+      paragraphs: [
+        "Images are added in the order you upload them, and you can drag to rearrange before exporting.",
+        "Different dimensions are centered automatically so each page looks tidy without manual resizing.",
+        "Use it to bundle receipts, visual concepts, or progress photos into a format anyone can open.",
+      ],
+      bulletTitle: "Ideal for",
+      bullets: [
+        "Freelancers compiling receipts, invoices, and approvals for bookkeeping.",
+        "Students organizing lecture snapshots or whiteboard photos into one study pack.",
+        "Designers presenting sketches or iterations to clients with a clear sequence.",
+        "Field teams reporting site conditions with annotated photos and quick notes.",
+      ],
+      checklistTitle: "Better PDFs, faster",
+      checklist: [
+        "Rotate any sideways images before uploading to keep the final PDF consistent.",
+        "Adjust brightness or crop edges to remove scanning artifacts and shadows.",
+        "Preview the sequence to avoid duplicate or missing images before exporting.",
+        "Use consistent file names when creating multiple PDFs for the same project so you can track versions easily.",
+        "If printing, leave a small margin in the source images to prevent clipping.",
+      ],
+    },
+    tr: {
+      title: "Görsellerden PDF rehberi",
+      intro:
+        "Fotoğraf, tarama veya ekran görüntülerini hizalı ve paylaşmaya ya da baskıya hazır şık bir PDF'e dönüştürün.",
+      paragraphs: [
+        "Görseller yüklediğiniz sırayla eklenir, dışa aktarmadan önce sürükleyip yeniden sıralayabilirsiniz.",
+        "Farklı boyutlar otomatik ortalanır, böylece her sayfa elle ayarlamaya gerek kalmadan düzenli görünür.",
+        "Fişleri, tasarım fikirlerini veya ilerleme fotoğraflarını herkesin açabileceği bir formatta toparlamak için kullanın.",
+      ],
+      bulletTitle: "Şunlar için ideal",
+      bullets: [
+        "Muhasebe için fiş, fatura ve onayları toplayan serbest çalışanlar.",
+        "Ders karelerini veya beyaz tahta fotoğraflarını tek bir çalışma paketinde düzenleyen öğrenciler.",
+        "Net bir sıra ile eskiz veya iterasyon sunan tasarımcılar.",
+        "Açıklamalı fotoğraflar ve kısa notlarla saha durumu raporlayan ekipler.",
+      ],
+      checklistTitle: "Daha iyi PDF'ler, daha hızlı",
+      checklist: [
+        "Son PDF tutarlı olsun diye yan duran görselleri yüklemeden önce döndürün.",
+        "Tarama lekelerini ve gölgeleri gidermek için parlaklığı ayarlayın veya kenarları kırpın.",
+        "Dışa aktarmadan önce sıralamayı önizleyin; yinelenen veya eksik görsel kalmasın.",
+        "Aynı proje için birden fazla PDF oluştururken sürümleri kolayca takip etmek adına dosya adlarını tutarlı kullanın.",
+        "Baskı alacaksanız kaynak görsellerde küçük bir boşluk bırakın ki kırpılma olmasın.",
+      ],
+    },
   },
   pdfToJpg: {
-    title: "PDF to JPG details",
-    intro:
-      "Convert slide decks or reports into high-resolution JPGs with one click so every page becomes a shareable image.",
-    paragraphs: [
-      "Each page is exported as its own JPG and packaged inside a ZIP file, making it simple to distribute or schedule across platforms.",
-      "Use the output for slideshows, infographics, or any workflow where you need fast-loading visuals instead of a full PDF.",
-      "Images are optimized to stay sharp while keeping the file size manageable for web and mobile sharing.",
-    ],
-    bulletTitle: "Practical uses",
-    bullets: [
-      "Sharing presentation pages on LinkedIn, Medium, or company blogs without embedding PDFs.",
-      "Posting charts, tables, or checklists as standalone images in knowledge bases.",
-      "Sending review drafts to teammates who prefer quick previews.",
-      "Embedding visuals in newsletter tools or slide builders that do not handle PDFs reliably.",
-    ],
-    checklistTitle: "Before exporting",
-    checklist: [
-      "Confirm page orientation so exported images do not appear rotated or cropped.",
-      "Remove any confidential slides or hidden layers before converting.",
-      "Decide whether you need the whole PDF or just a few key pages to keep the ZIP lighter.",
-      "Run compression after export if you plan to attach the images to chat or ticketing tools with strict limits.",
-      "Label the ZIP with a version or date so you can track which export your team is using.",
-    ],
+    en: {
+      title: "PDF to JPG details",
+      intro:
+        "Convert slide decks or reports into high-resolution JPGs with one click so every page becomes a shareable image.",
+      paragraphs: [
+        "Each page is exported as its own JPG and packaged inside a ZIP file, making it simple to distribute or schedule across platforms.",
+        "Use the output for slideshows, infographics, or any workflow where you need fast-loading visuals instead of a full PDF.",
+        "Images are optimized to stay sharp while keeping the file size manageable for web and mobile sharing.",
+      ],
+      bulletTitle: "Practical uses",
+      bullets: [
+        "Sharing presentation pages on LinkedIn, Medium, or company blogs without embedding PDFs.",
+        "Posting charts, tables, or checklists as standalone images in knowledge bases.",
+        "Sending review drafts to teammates who prefer quick previews.",
+        "Embedding visuals in newsletter tools or slide builders that do not handle PDFs reliably.",
+      ],
+      checklistTitle: "Before exporting",
+      checklist: [
+        "Confirm page orientation so exported images do not appear rotated or cropped.",
+        "Remove any confidential slides or hidden layers before converting.",
+        "Decide whether you need the whole PDF or just a few key pages to keep the ZIP lighter.",
+        "Run compression after export if you plan to attach the images to chat or ticketing tools with strict limits.",
+        "Label the ZIP with a version or date so you can track which export your team is using.",
+      ],
+    },
+    tr: {
+      title: "PDF'den JPG'ye detaylar",
+      intro:
+        "Slayt setlerini veya raporları tek tıkla yüksek çözünürlüklü JPG'lere çevirin; her sayfa paylaşılabilir bir görsele dönüşsün.",
+      paragraphs: [
+        "Her sayfa kendi JPG'i olarak dışa aktarılır ve bir ZIP dosyasında paketlenir; böylece dağıtmak veya platformlara zamanlamak kolaylaşır.",
+        "Tam PDF yerine hızlı yüklenen görsellere ihtiyaç duyduğunuz slayt gösterileri, infografikler veya benzer iş akışlarında çıktıyı kullanın.",
+        "Görseller web ve mobil paylaşım için dosya boyutunu makul tutarken keskin kalacak şekilde optimize edilir.",
+      ],
+      bulletTitle: "Pratik kullanım alanları",
+      bullets: [
+        "PDF gömmeye gerek kalmadan LinkedIn, Medium veya şirket bloglarında sunum sayfalarını paylaşmak.",
+        "Grafik, tablo veya kontrol listelerini bilgi tabanlarında bağımsız görseller olarak yayınlamak.",
+        "Hızlı önizleme tercih eden ekip arkadaşlarına inceleme taslakları göndermek.",
+        "PDF'leri tutarlı işlemediği bilinen bülten araçlarına veya slayt oluşturuculara görsel eklemek.",
+      ],
+      checklistTitle: "Dışa aktarmadan önce",
+      checklist: [
+        "Dışa aktarılan görsellerin dönük veya kırpık görünmemesi için sayfa yönünü doğrulayın.",
+        "Dönüştürmeden önce gizli katmanları veya hassas slaytları kaldırın.",
+        "ZIP'in hafif kalması için tüm PDF'e mi yoksa birkaç önemli sayfaya mı ihtiyacınız olduğuna karar verin.",
+        "Görselleri sıkı limitli sohbet veya ticket araçlarına ekleyecekseniz dışa aktarma sonrası sıkıştırma çalıştırın.",
+        "Ekibinizin hangi dışa aktarımı kullandığını takip etmek için ZIP'i bir sürüm veya tarih etiketiyle adlandırın.",
+      ],
+    },
   },
   pdfToPng: {
-    title: "PDF to PNG overview",
-    intro:
-      "Save PDF pages as clean PNGs that preserve sharp edges, icons, and transparency for design-friendly workflows.",
-    paragraphs: [
-      "PNG exports are ideal when you need crisp text or vector-style graphics that should not blur after conversion.",
-      "Each page is bundled inside a ZIP, making it easy to attach to tickets, wikis, or design tools.",
-      "Use this when JPG compression artifacts would make diagrams or UI mocks harder to read.",
-    ],
-    bulletTitle: "Perfect for",
-    bullets: [
-      "UI mockups, diagrams, or technical drawings with fine lines.",
-      "Stickers, badges, or labels that rely on transparent backgrounds.",
-      "Knowledge-base articles or release notes that embed precise visuals.",
-      "Slide previews inside project trackers or design review documents.",
-    ],
-    checklistTitle: "Export checklist",
-    checklist: [
-      "Remove colored backgrounds you do not want preserved, since PNG will keep them intact.",
-      "Check small text or dense diagrams in the preview to confirm readability.",
-      "Split very large PDFs first so individual ZIP files stay manageable for sharing.",
-      "Consider JPG export instead if you do not need transparency and want slightly smaller images.",
-      "Name the ZIP by project or version to avoid mixing exports later.",
-    ],
+    en: {
+      title: "PDF to PNG overview",
+      intro:
+        "Save PDF pages as clean PNGs that preserve sharp edges, icons, and transparency for design-friendly workflows.",
+      paragraphs: [
+        "PNG exports are ideal when you need crisp text or vector-style graphics that should not blur after conversion.",
+        "Each page is bundled inside a ZIP, making it easy to attach to tickets, wikis, or design tools.",
+        "Use this when JPG compression artifacts would make diagrams or UI mocks harder to read.",
+      ],
+      bulletTitle: "Perfect for",
+      bullets: [
+        "UI mockups, diagrams, or technical drawings with fine lines.",
+        "Stickers, badges, or labels that rely on transparent backgrounds.",
+        "Knowledge-base articles or release notes that embed precise visuals.",
+        "Slide previews inside project trackers or design review documents.",
+      ],
+      checklistTitle: "Export checklist",
+      checklist: [
+        "Remove colored backgrounds you do not want preserved, since PNG will keep them intact.",
+        "Check small text or dense diagrams in the preview to confirm readability.",
+        "Split very large PDFs first so individual ZIP files stay manageable for sharing.",
+        "Consider JPG export instead if you do not need transparency and want slightly smaller images.",
+        "Name the ZIP by project or version to avoid mixing exports later.",
+      ],
+    },
+    tr: {
+      title: "PDF'den PNG'ye genel bakış",
+      intro:
+        "PDF sayfalarını keskin kenarları, simgeleri ve şeffaflığı koruyan temiz PNG'ler olarak kaydedin; tasarım dostu iş akışlarına uyum sağlayın.",
+      paragraphs: [
+        "Dönüşüm sonrası bulanıklaşmaması gereken net metinler veya vektör tarzı grafikler için PNG çıktıları idealdir.",
+        "Her sayfa bir ZIP içinde toplanır; bilet, wiki veya tasarım araçlarına eklemek kolaylaşır.",
+        "Diyagram veya arayüz taslaklarını JPG sıkıştırma artefaktlarının okunaklığı bozacağı durumlarda bu çıktıyı seçin.",
+      ],
+      bulletTitle: "Şunlar için mükemmel",
+      bullets: [
+        "İnce çizgili UI taslakları, diyagramlar veya teknik çizimler.",
+        "Şeffaf arka plana ihtiyaç duyan çıkartmalar, rozetler veya etiketler.",
+        "Keskin görseller yerleştirilmiş bilgi bankası makaleleri veya sürüm notları.",
+        "Proje takipçileri veya tasarım inceleme dokümanlarındaki slayt önizlemeleri.",
+      ],
+      checklistTitle: "Dışa aktarma kontrolü",
+      checklist: [
+        "PNG korunacağı için istemediğiniz renkli arka planları önceden kaldırın.",
+        "Okunabilirliği doğrulamak için önizlemede küçük metinleri veya yoğun diyagramları kontrol edin.",
+        "Paylaşımı kolaylaştırmak için çok büyük PDF'leri önce bölerek her ZIP'in yönetilebilir kalmasını sağlayın.",
+        "Şeffaflık gerekmiyorsa ve biraz daha küçük görseller istiyorsanız JPG dışa aktarmayı düşünün.",
+        "Dışa aktarmaları karıştırmamak için ZIP'i proje veya sürüm adıyla etiketleyin.",
+      ],
+    },
   },
   split: {
     title: "Split PDF guidance",
