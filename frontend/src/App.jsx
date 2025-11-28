@@ -1072,6 +1072,31 @@ const TOOL_DETAILS = {
         "Dışa aktarmaları karıştırmamak için ZIP'i proje veya sürüm adıyla etiketleyin.",
       ],
     },
+    de: {
+      title: "PDF-zu-PNG-Übersicht",
+      intro:
+        "PDF-Seiten als saubere PNGs speichern, die scharfe Kanten, Icons und Transparenz erhalten – passend für designfreundliche Workflows.",
+      paragraphs: [
+        "PNG-Exporte sind ideal, wenn scharfer Text oder vektorartige Grafiken nach der Umwandlung nicht verschwimmen sollen.",
+        "Jede Seite wird in einer ZIP gebündelt, damit du sie leicht an Tickets, Wikis oder Designtools anhängen kannst.",
+        "Nutze dieses Format, wenn JPG-Kompressionsartefakte Diagramme oder UI-Mockups schlechter lesbar machen würden.",
+      ],
+      bulletTitle: "Perfekt für",
+      bullets: [
+        "UI-Mockups, Diagramme oder technische Zeichnungen mit feinen Linien.",
+        "Sticker, Badges oder Etiketten, die transparente Hintergründe benötigen.",
+        "Knowledge-Base-Artikel oder Release Notes mit eingebetteten, präzisen Visuals.",
+        "Folienvorschauen in Projekttickets oder Unterlagen für Design-Reviews.",
+      ],
+      checklistTitle: "Export-Checkliste",
+      checklist: [
+        "Farbige Hintergründe entfernen, die nicht erhalten bleiben sollen – PNG bewahrt sie unverändert.",
+        "Kleine Texte oder dichte Diagramme in der Vorschau prüfen, um die Lesbarkeit zu bestätigen.",
+        "Sehr große PDFs zuerst aufteilen, damit einzelne ZIPs beim Teilen handlich bleiben.",
+        "JPG-Export erwägen, wenn du keine Transparenz brauchst und etwas kleinere Dateien möchtest.",
+        "Die ZIP nach Projekt oder Version benennen, damit Exporte später nicht verwechselt werden.",
+      ],
+    },
   },
   split: {
     en: {
