@@ -1,7 +1,6 @@
 import React, { useRef, useState } from "react";
 import ToolCardShell from "./components/ToolCardShell";
-
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:4000";
+import { API_URL } from "./apiConfig";
 
 const TEXT = {
   en: {

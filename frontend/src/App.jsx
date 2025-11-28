@@ -12,6 +12,7 @@ import DeletePdfPagesCard from "./DeletePdfPagesCard";
 import RotatePdfPagesCard from "./RotatePdfPagesCard";
 import PdfReaderCard from "./PdfReaderCard";
 import ExtractPdfPagesCard from "./ExtractPdfPagesCard";
+import { API_URL } from "./apiConfig";
 
 const DEFAULT_LANGUAGE = "en";
 const DEFAULT_TOOL = "merge";
@@ -1954,8 +1955,6 @@ function App() {
       files.forEach((file) => {
         formData.append("files", file);
       });
-
-      const API_URL = import.meta.env.VITE_API_URL || "http://localhost:4000";
 
       const res = await fetch(`${API_URL}/merge`, {
         method: "POST",
