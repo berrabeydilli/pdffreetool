@@ -7,7 +7,54 @@ const jszipPromise = import(
   "https://cdn.jsdelivr.net/npm/jszip@3.10.1/+esm"
 );
 
-export default function SplitPdfCard() {
+const TEXT = {
+  en: {
+    ariaLabel: "Split PDF tool",
+    badge: "Split into single-page PDFs",
+    title: "Split PDF pages instantly",
+    description: "Split happens in your browser and never leaves your device.",
+    choosePrompt: "Choose a PDF to split",
+    selectLabel: "Select PDF",
+    selectedLabel: "Selected:",
+    clear: "Clear",
+    split: "Split PDF",
+    splitting: "Splitting...",
+    pageCount: (count) => `${count} pages ready`,
+    downloadSingle: "Download",
+    downloadZip: "Download as ZIP",
+    errors: {
+      pdfOnly: "Please select a PDF file.",
+      noneSelected: "Please choose a PDF to split.",
+      splitFailed: "Failed to split PDF.",
+      zipFailed: "Failed to create ZIP.",
+    },
+  },
+  tr: {
+    ariaLabel: "PDF bölme aracı",
+    badge: "Tek sayfalık PDF'lere böl",
+    title: "PDF sayfalarını anında böl",
+    description:
+      "Bölme işlemi tarayıcınızda yapılır, dosyanız cihazınızdan ayrılmaz.",
+    choosePrompt: "Bölmek için bir PDF seçin",
+    selectLabel: "PDF seç",
+    selectedLabel: "Seçilen:",
+    clear: "Temizle",
+    split: "PDF'yi böl",
+    splitting: "Bölünüyor...",
+    pageCount: (count) => `${count} sayfa hazır`,
+    downloadSingle: "İndir",
+    downloadZip: "ZIP olarak indir",
+    errors: {
+      pdfOnly: "Lütfen bir PDF dosyası seçin.",
+      noneSelected: "Lütfen bölmek için bir PDF seçin.",
+      splitFailed: "PDF bölme işlemi başarısız oldu.",
+      zipFailed: "ZIP oluşturulamadı.",
+    },
+  },
+};
+
+export default function SplitPdfCard({ language = "en" }) {
+  const t = TEXT[language] || TEXT.en;
   const [file, setFile] = useState(null);
   const [error, setError] = useState("");
   const [isProcessing, setIsProcessing] = useState(false);
@@ -31,7 +78,7 @@ export default function SplitPdfCard() {
     }
 
     if (selected.type !== "application/pdf") {
-      setError("Please select a PDF file.");
+      setError(t.errors.pdfOnly);
       setFile(null);
       setPages([]);
       return;
@@ -54,7 +101,7 @@ export default function SplitPdfCard() {
   const handleSplit = async () => {
     setError("");
     if (!file) {
-      setError("Please choose a PDF to split.");
+      setError(t.errors.noneSelected);
       return;
     }
 
@@ -78,7 +125,7 @@ export default function SplitPdfCard() {
       setPages(newPages);
     } catch (err) {
       console.error(err);
-      setError(err.message || "Failed to split PDF.");
+      setError(err.message || t.errors.splitFailed);
     } finally {
       setIsProcessing(false);
     }
@@ -100,12 +147,15 @@ export default function SplitPdfCard() {
       URL.revokeObjectURL(url);
     } catch (err) {
       console.error(err);
-      setError(err.message || "Failed to create ZIP.");
+      setError(err.message || t.errors.zipFailed);
     }
   };
 
   return (
-    <section aria-label="Split PDF tool" style={{ marginBottom: "28px", marginTop: "24px" }}>
+    <section
+      aria-label={t.ariaLabel}
+      style={{ marginBottom: "28px", marginTop: "24px" }}
+    >
       <div style={{ display: "flex", justifyContent: "center" }}>
         <div
           style={{
@@ -143,13 +193,13 @@ export default function SplitPdfCard() {
                   background: "#0ea5e9",
                 }}
               ></span>
-              Split into single-page PDFs
+              {t.badge}
             </div>
             <h2 style={{ fontSize: "18px", margin: 0, marginBottom: "4px", color: "#0f172a" }}>
-              Split PDF pages instantly
+              {t.title}
             </h2>
             <p style={{ color: "#6b7280", margin: 0, fontSize: "13px" }}>
-              Split happens in your browser and never leaves your device.
+              {t.description}
             </p>
           </div>
 
@@ -165,7 +215,7 @@ export default function SplitPdfCard() {
             }}
           >
             <div style={{ fontSize: "13px", marginBottom: "8px", color: "#111827", fontWeight: 500 }}>
-              Choose a PDF to split
+              {t.choosePrompt}
             </div>
             <label
               style={{
@@ -182,7 +232,7 @@ export default function SplitPdfCard() {
               }}
             >
               <span style={{ fontSize: "14px" }}>📄</span>
-              <span>Select PDF</span>
+              <span>{t.selectLabel}</span>
               <input
                 ref={fileInputRef}
                 type="file"
@@ -193,7 +243,7 @@ export default function SplitPdfCard() {
             </label>
             {file && (
               <div style={{ fontSize: "12px", color: "#4b5563", marginTop: "10px" }}>
-                Selected: {file.name}
+                {t.selectedLabel} {file.name}
               </div>
             )}
           </div>
@@ -223,17 +273,17 @@ export default function SplitPdfCard() {
                 borderRadius: "10px",
                 border: "1px solid #e5e7eb",
                 background: "white",
-                cursor: "pointer",
-                fontWeight: 600,
-                color: "#111827",
-              }}
-            >
-              Clear
-            </button>
-            <button
-              type="button"
-              onClick={handleSplit}
-              disabled={isProcessing}
+              cursor: "pointer",
+              fontWeight: 600,
+              color: "#111827",
+            }}
+          >
+            {t.clear}
+          </button>
+          <button
+            type="button"
+            onClick={handleSplit}
+            disabled={isProcessing}
               style={{
                 padding: "10px 16px",
                 borderRadius: "10px",
@@ -246,14 +296,14 @@ export default function SplitPdfCard() {
                 opacity: isProcessing ? 0.7 : 1,
               }}
             >
-              {isProcessing ? "Splitting..." : "Split PDF"}
+              {isProcessing ? t.splitting : t.split}
             </button>
           </div>
 
           {pages.length > 0 && (
             <div>
               <div style={{ fontSize: "13px", fontWeight: 700, color: "#0f172a", marginBottom: "6px" }}>
-                {pages.length} pages ready
+                {t.pageCount(pages.length)}
               </div>
               <div style={{ display: "flex", flexDirection: "column", gap: "6px", marginBottom: "10px" }}>
                 {pages.map((p) => (
@@ -277,7 +327,7 @@ export default function SplitPdfCard() {
                       download={p.name}
                       style={{ color: "#2563eb", fontWeight: 600, textDecoration: "none" }}
                     >
-                      Download
+                      {t.downloadSingle}
                     </a>
                   </div>
                 ))}
@@ -296,7 +346,7 @@ export default function SplitPdfCard() {
                   boxShadow: "0 10px 22px rgba(22,163,74,0.25)",
                 }}
               >
-                Download as ZIP
+                {t.downloadZip}
               </button>
             </div>
           )}

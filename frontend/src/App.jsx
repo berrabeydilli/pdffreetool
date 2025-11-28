@@ -2791,7 +2791,7 @@ function App() {
         {activeTab === "jpgToPdf" && <JpgToPdfCard language={language} />}
         {activeTab === "pdfToJpg" && <PdfToJpgCard language={language} />}
         {activeTab === "pdfToPng" && <PdfToPngCard language={language} />}
-        {activeTab === "split" && <SplitPdfCard />}
+        {activeTab === "split" && <SplitPdfCard language={language} />}
         {activeTab === "deletePages" && (
           <DeletePdfPagesCard language={language} />
         )}
@@ -2803,7 +2803,7 @@ function App() {
         )}
         {activeTab === "pdfReader" && <PdfReaderCard language={language} />}
         {activeTab === "pdfToWord" && <PdfToWordCard language={language} />}
-        {activeTab === "wordToPdf" && <WordToPdfCard />}
+        {activeTab === "wordToPdf" && <WordToPdfCard language={language} />}
 
         {renderToolDetails()}
 
