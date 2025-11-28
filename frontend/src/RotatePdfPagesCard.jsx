@@ -15,6 +15,7 @@ const TEXT = {
     },
     inputs: {
       pagesLabel: "Pages to rotate (leave empty for all)",
+      pagesPlaceholder: "(e.g., 1,2,5)",
       angleLabel: "Rotation",
       angleNote: "degrees",
     },
@@ -42,6 +43,7 @@ const TEXT = {
     },
     inputs: {
       pagesLabel: "Döndürülecek sayfalar (tamamı için boş bırakın)",
+      pagesPlaceholder: "(örn. 1,2,5)",
       angleLabel: "Döndürme",
       angleNote: "derece",
     },
@@ -69,6 +71,7 @@ const TEXT = {
     },
     inputs: {
       pagesLabel: "Zu drehende Seiten (leer lassen für alle)",
+      pagesPlaceholder: "(z.B. 1,2,5)",
       angleLabel: "Drehung",
       angleNote: "Grad",
     },
@@ -247,7 +250,7 @@ export default function RotatePdfPagesCard({ language = "en" }) {
         </select>
         <input
           type="text"
-          placeholder={`${t.inputs.pagesLabel} ${language === "tr" ? "(örn. 1,2,5)" : "(e.g., 1,2,5)"}`}
+          placeholder={`${t.inputs.pagesLabel} ${t.inputs.pagesPlaceholder || "(e.g., 1,2,5)"}`}
           value={pages}
           onChange={(e) => setPages(e.target.value)}
           style={{
