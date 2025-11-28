@@ -16,7 +16,7 @@ import { API_URL } from "./apiConfig";
 
 const DEFAULT_LANGUAGE = "en";
 const DEFAULT_TOOL = "merge";
-const SUPPORTED_LANGUAGES = ["en", "tr"];
+const SUPPORTED_LANGUAGES = ["en", "tr", "de"];
 
 const TOOL_SLUGS = {
   merge: { en: "pdf-merge", tr: "pdf-birlestir" },
@@ -56,6 +56,12 @@ const DEFAULT_PAGE_SEO = {
     description:
       "Kaydolmadan PDF ve görselleri tarayıcıda birleştirin, sıkıştırın, bölün, döndürün veya dönüştürün.",
     h1: "Esnek PDF ve Görsel stüdyosu",
+  },
+  de: {
+    title: "PDFFreeTool | PDFs online zusammenführen, komprimieren und konvertieren",
+    description:
+      "Kostenlose Browser-Tools nutzen, um PDF- oder Bilddateien ohne Anmeldung zusammenzuführen, zu komprimieren, aufzuteilen, zu drehen oder zu konvertieren.",
+    h1: "Flexibles PDF- und Bildstudio",
   },
 };
 
@@ -267,13 +273,16 @@ const detectPreferredLanguage = () => {
     .map((lang) => lang.toLowerCase());
 
   if (allLanguages.some((lang) => lang.startsWith("tr"))) return "tr";
+  if (allLanguages.some((lang) => lang.startsWith("de"))) return "de";
 
   const timeZone =
     typeof Intl !== "undefined"
       ? Intl.DateTimeFormat().resolvedOptions().timeZone || ""
       : "";
 
-  if (timeZone.toLowerCase() === "europe/istanbul") return "tr";
+  const normalizedTimeZone = timeZone.toLowerCase();
+  if (normalizedTimeZone === "europe/istanbul") return "tr";
+  if (["europe/berlin", "europe/vienna", "europe/zurich"].includes(normalizedTimeZone)) return "de";
 
   return DEFAULT_LANGUAGE;
 };
@@ -476,6 +485,86 @@ const TOOL_MENU = {
       id: "wordToPdf",
       title: "Word'den PDF'ye",
       summary: "DOCX dosyalarını sabit, paylaşılabilir PDF'lere dönüştürün.",
+      accent: "#22c55e",
+    },
+  ],
+  de: [
+    {
+      id: "merge",
+      title: "PDF zusammenführen",
+      summary: "Mehrere PDFs zu einem geordneten Dokument kombinieren.",
+      accent: "#4f46e5",
+    },
+    {
+      id: "compress",
+      title: "PDF komprimieren",
+      summary: "Große PDFs verkleinern und lesbar halten.",
+      accent: "#0ea5e9",
+    },
+    {
+      id: "compressImage",
+      title: "Bild komprimieren",
+      summary: "JPG- und PNG-Dateien webfertig optimieren.",
+      accent: "#10b981",
+    },
+    {
+      id: "jpgToPdf",
+      title: "Bilder zu PDF",
+      summary: "Fotos oder Scans in einem sauberen PDF anordnen.",
+      accent: "#f59e0b",
+    },
+    {
+      id: "pdfToJpg",
+      title: "PDF zu JPG",
+      summary: "Jede Seite als hochwertiges JPG exportieren.",
+      accent: "#f97316",
+    },
+    {
+      id: "pdfToPng",
+      title: "PDF zu PNG",
+      summary: "Seiten als scharfe, transparenzfreundliche PNGs speichern.",
+      accent: "#7c3aed",
+    },
+    {
+      id: "split",
+      title: "PDF teilen",
+      summary: "Seitenbereiche in separate Dateien aufteilen.",
+      accent: "#ef4444",
+    },
+    {
+      id: "deletePages",
+      title: "Seiten löschen",
+      summary: "Unnötige Seiten entfernen und aufräumen.",
+      accent: "#14b8a6",
+    },
+    {
+      id: "rotatePages",
+      title: "Seiten drehen",
+      summary: "Querformatige Seiten mit einem Klick ausrichten.",
+      accent: "#a855f7",
+    },
+    {
+      id: "extractPages",
+      title: "Seiten extrahieren",
+      summary: "Bestimmte Seiten in ein neues PDF ziehen.",
+      accent: "#0ea5e9",
+    },
+    {
+      id: "pdfReader",
+      title: "PDF-Reader",
+      summary: "PDFs direkt im Browser ansehen.",
+      accent: "#2563eb",
+    },
+    {
+      id: "pdfToWord",
+      title: "PDF zu Word",
+      summary: "Aus PDFs bearbeitbare DOCX-Dateien erstellen.",
+      accent: "#c026d3",
+    },
+    {
+      id: "wordToPdf",
+      title: "Word zu PDF",
+      summary: "DOCX-Dateien in feste, teilbare PDFs umwandeln.",
       accent: "#22c55e",
     },
   ],
@@ -1165,6 +1254,7 @@ const MAX_TOTAL_MB = 50; // Max total size (MB)
 const LANGUAGE_OPTIONS = [
   { value: "en", label: "English", flag: "🇺🇸" },
   { value: "tr", label: "Türkçe", flag: "🇹🇷" },
+  { value: "de", label: "Deutsch", flag: "🇩🇪" },
 ];
 
 const TRANSLATIONS = {
@@ -1717,6 +1807,73 @@ const PAGE_CONTENT = {
   },
 };
 
+const TRANSLATIONS_DE = {
+  ...TRANSLATIONS.en,
+  studioLabel: "PDFFreeTool Studio",
+  heroTitle: "Flexibles PDF- und Bildstudio",
+  heroSubtitle:
+    "Wähle jedes PDF- oder Bild-Tool aus einem Menü – zusammenführen, teilen, konvertieren oder optimieren. Jedes Tool hat eine klare Beschreibung und praktische Tipps, damit du schneller fertig wirst.",
+  nav: {
+    home: "Startseite",
+    blog: "Anleitungen & Tipps",
+    faq: "FAQ",
+    privacy: "Datenschutz",
+    terms: "Nutzungsbedingungen",
+    about: "Über uns",
+    contact: "Kontakt",
+  },
+  footerCopyright: "© 2025 PDFFreeTool. Alle Rechte vorbehalten.",
+  onlineToolsHeading: "Online-PDF- und Bild-Tools",
+  adFriendly: "Anzeigenfreundliche Inhalte",
+  onlineToolsDescription:
+    "PDFs an einem Ort zusammenführen, komprimieren, drehen, konvertieren und lesen. Unser Menü hält jedes Tool informativ, nutzerfreundlich und AdSense-konform, damit Besucher hilfreiche Inhalte sehen.",
+  featureTags: {
+    dragDrop: "✅ Neu anordnen per Drag & Drop",
+    memoryProcessing: "✅ Dateien werden im Speicher verarbeitet",
+    noRegistration: "✅ Keine Registrierung erforderlich",
+  },
+  toolMenuTitle: "Werkzeugmenü",
+  toolMenuDescription:
+    "Klicke auf eine Karte, um zum Tool zu springen, die Übersicht zu lesen und es direkt zu nutzen.",
+  languageLabel: "Sprache",
+  themeLabel: "Thema",
+  themeLight: "Hell",
+  themeDark: "Dunkel",
+  selectToolLabel: "Werkzeug wählen",
+  merge: {
+    ...TRANSLATIONS.en.merge,
+    pill: "PDFs im Browser zusammenführen",
+    title: "PDF-Dateien in Sekunden zusammenführen",
+    description:
+      "Hochladen, neu anordnen und eine einzige zusammengeführte PDF herunterladen. Nichts wird auf unseren Servern gespeichert.",
+    badge: "Einfach & sicher",
+    chooseFiles: "PDF-Dateien auswählen",
+    selectPdfs: "PDFs wählen",
+    fileLimit: (maxFiles, maxTotalMb) => `Bis zu ${maxFiles} Dateien • Gesamtgröße ≤ ${maxTotalMb} MB`,
+    filesSelected: "Ausgewählte Dateien:",
+    totalSize: "Gesamtgröße:",
+    reorderTitle: "Dateien neu anordnen",
+    reorderHint: "Zum Ändern der Reihenfolge ziehen",
+    dragHandle: "Zum Neuordnen ziehen",
+    usageLabel: "Zusammenführungen in dieser Sitzung:",
+    clear: "Leeren",
+    merge: "PDFs zusammenführen",
+    merging: "Wird zusammengeführt...",
+    removeFile: "Diese Datei entfernen",
+  },
+  errors: {
+    ...TRANSLATIONS.en.errors,
+    pdfOnly: "Bitte nur PDF-Dateien auswählen.",
+    maxFiles: (limit) => `Sie können bis zu ${limit} PDF-Dateien hochladen. Zusätzliche Dateien wurden ignoriert.`,
+    maxSize: (limit) => "Die Gesamtgröße darf " + limit + " MB nicht überschreiten. Bitte weniger oder kleinere Dateien wählen.",
+    noneSelected: "Bitte mindestens eine PDF-Datei auswählen.",
+    generic: "Etwas ist schiefgelaufen.",
+    mergeFailed: "PDFs konnten nicht zusammengeführt werden.",
+  },
+};
+
+TRANSLATIONS.de = TRANSLATIONS_DE;
+
 const PAGE_LABELS = {
   en: {
     blog: "Guide and tips page",
@@ -1733,6 +1890,14 @@ const PAGE_LABELS = {
     terms: "Hizmet şartları sayfası",
     about: "Hakkında sayfası",
     contact: "İletişim sayfası",
+  },
+  de: {
+    blog: "Ratgeber- und Tippseite",
+    faq: "Häufig gestellte Fragen Seite",
+    privacy: "Datenschutzerklärung Seite",
+    terms: "Nutzungsbedingungen Seite",
+    about: "Über uns Seite",
+    contact: "Kontaktseite",
   },
 };
 
@@ -1783,6 +1948,20 @@ const FLAG_ICONS = {
         d="M39.5 24.0002L33.5 28.9384L35.8 21.1763L29.5 16.9993H37.2L39.5 9.23706L41.8 16.9993H49.5L43.2 21.1763L45.5 28.9384L39.5 24.0002Z"
         fill="#fff"
       />
+    </svg>
+  ),
+  de: (
+    <svg
+      aria-hidden
+      width="18"
+      height="12"
+      viewBox="0 0 3 2"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+    >
+      <rect width="3" height="2" fill="#DD0000" rx="0.3" />
+      <rect width="3" height="0.666" y="0" fill="#000" rx="0.2" />
+      <rect width="3" height="0.666" y="1.334" fill="#FFCE00" rx="0.2" />
     </svg>
   ),
 };
