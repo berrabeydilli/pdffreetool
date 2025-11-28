@@ -13,6 +13,96 @@ import RotatePdfPagesCard from "./RotatePdfPagesCard";
 import PdfReaderCard from "./PdfReaderCard";
 import ExtractPdfPagesCard from "./ExtractPdfPagesCard";
 
+const DEFAULT_LANGUAGE = "en";
+const DEFAULT_TOOL = "merge";
+const SUPPORTED_LANGUAGES = ["en", "tr"];
+
+const TOOL_SLUGS = {
+  merge: { en: "pdf-merge", tr: "pdf-birlestir" },
+  compress: { en: "pdf-compress", tr: "pdf-sikistir" },
+  compressImage: { en: "image-compress", tr: "gorsel-sikistir" },
+  jpgToPdf: { en: "jpg-to-pdf", tr: "jpg-pdf" },
+  pdfToJpg: { en: "pdf-to-jpg", tr: "pdf-jpg" },
+  pdfToPng: { en: "pdf-to-png", tr: "pdf-png" },
+  split: { en: "pdf-split", tr: "pdf-bol" },
+  deletePages: { en: "pdf-delete-pages", tr: "pdf-sayfa-sil" },
+  rotatePages: { en: "pdf-rotate", tr: "pdf-dondur" },
+  extractPages: { en: "pdf-extract-pages", tr: "pdf-sayfa-cikar" },
+  pdfReader: { en: "pdf-reader", tr: "pdf-okuyucu" },
+  pdfToWord: { en: "pdf-to-word", tr: "pdf-word" },
+  wordToPdf: { en: "word-to-pdf", tr: "word-pdf" },
+};
+
+const PAGE_SLUGS = {
+  home: { en: "", tr: "" },
+  blog: { en: "blog", tr: "blog" },
+  faq: { en: "faq", tr: "sss" },
+  privacy: { en: "privacy-policy", tr: "gizlilik-politikasi" },
+  terms: { en: "terms-of-service", tr: "kullanim-kosullari" },
+  about: { en: "about", tr: "hakkinda" },
+  contact: { en: "contact", tr: "iletisim" },
+};
+
+const getSlugForEntry = (mapping, key, language) => {
+  if (!mapping?.[key]) return "";
+  return mapping[key][language] || mapping[key][DEFAULT_LANGUAGE] || "";
+};
+
+const getKeyBySlug = (mapping, language, slug) => {
+  return (
+    Object.entries(mapping).find(([, slugs]) => slugs[language] === slug || slugs[DEFAULT_LANGUAGE] === slug)?.[0] || null
+  );
+};
+
+const buildPathFromState = (language, activePage, activeTab) => {
+  const lang = SUPPORTED_LANGUAGES.includes(language) ? language : DEFAULT_LANGUAGE;
+  const slug =
+    activePage !== "home"
+      ? getSlugForEntry(PAGE_SLUGS, activePage, lang)
+      : getSlugForEntry(TOOL_SLUGS, activeTab, lang);
+
+  const slugPart = slug ? `/${slug}` : "";
+  return `/${lang}${slugPart}`;
+};
+
+const parsePathToState = (pathname, fallbackLanguage = DEFAULT_LANGUAGE) => {
+  const segments = pathname.split("/").filter(Boolean);
+  const potentialLanguage = segments[0];
+  const language = SUPPORTED_LANGUAGES.includes(potentialLanguage) ? potentialLanguage : fallbackLanguage;
+  const slug = SUPPORTED_LANGUAGES.includes(potentialLanguage) ? segments[1] || "" : segments[0] || "";
+
+  const pageMatch = getKeyBySlug(PAGE_SLUGS, language, slug);
+  const toolMatch = getKeyBySlug(TOOL_SLUGS, language, slug);
+
+  const activePage = pageMatch || "home";
+  const activeTab = activePage === "home" ? toolMatch || DEFAULT_TOOL : DEFAULT_TOOL;
+
+  return {
+    language,
+    activePage,
+    activeTab,
+  };
+};
+
+const getInitialRouteState = () => {
+  if (typeof window === "undefined") {
+    return {
+      language: DEFAULT_LANGUAGE,
+      activePage: "home",
+      activeTab: DEFAULT_TOOL,
+    };
+  }
+
+  const storedLanguage = localStorage.getItem("pdffreetool-language") || DEFAULT_LANGUAGE;
+  const parsed = parsePathToState(window.location.pathname, storedLanguage);
+
+  return {
+    language: parsed.language || storedLanguage,
+    activePage: parsed.activePage || "home",
+    activeTab: parsed.activeTab || DEFAULT_TOOL,
+  };
+};
+
 const TOOL_MENU = {
   en: [
     {
@@ -1483,21 +1573,19 @@ const FLAG_ICONS = {
 };
 
 function App() {
-  const [activeTab, setActiveTab] = useState("merge");
+  const initialRouteRef = useRef(getInitialRouteState());
+  const [activeTab, setActiveTab] = useState(initialRouteRef.current.activeTab);
   const [files, setFiles] = useState([]);
   const [isMerging, setIsMerging] = useState(false);
   const [error, setError] = useState("");
   const [dragIndex, setDragIndex] = useState(null);
   const [usageCount, setUsageCount] = useState(0);
-  const [activePage, setActivePage] = useState("home");
+  const [activePage, setActivePage] = useState(initialRouteRef.current.activePage);
   const [themeMode, setThemeMode] = useState(() => {
     if (typeof window === "undefined") return "light";
     return localStorage.getItem("pdffreetool-theme") || "light";
   });
-  const [language, setLanguage] = useState(() => {
-    if (typeof window === "undefined") return "en";
-    return localStorage.getItem("pdffreetool-language") || "en";
-  });
+  const [language, setLanguage] = useState(initialRouteRef.current.language);
   const [showCookieBanner, setShowCookieBanner] = useState(false);
   const [languageMenuOpen, setLanguageMenuOpen] = useState(false);
   const fileInputRef = useRef(null);
@@ -1544,6 +1632,29 @@ function App() {
   }, [language]);
 
   useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const newPath = buildPathFromState(language, activePage, activeTab);
+    if (window.location.pathname !== newPath) {
+      window.history.replaceState({}, "", newPath);
+    }
+
+    const head = document.head;
+    head.querySelectorAll('link[data-generated="alternate-lang"]').forEach((link) => link.remove());
+
+    const origin = window.location.origin || "https://www.pdffreetool.com";
+
+    SUPPORTED_LANGUAGES.forEach((langCode) => {
+      const linkEl = document.createElement("link");
+      linkEl.rel = "alternate";
+      linkEl.hreflang = langCode;
+      linkEl.href = `${origin}${buildPathFromState(langCode, activePage, activeTab)}`;
+      linkEl.dataset.generated = "alternate-lang";
+      head.appendChild(linkEl);
+    });
+  }, [language, activePage, activeTab]);
+
+  useEffect(() => {
     const handleClickOutside = (event) => {
       if (languageMenuRef.current && !languageMenuRef.current.contains(event.target)) {
         setLanguageMenuOpen(false);
@@ -1554,7 +1665,23 @@ function App() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const handlePopState = () => {
+      const storedLanguage = localStorage.getItem("pdffreetool-language") || DEFAULT_LANGUAGE;
+      const parsedState = parsePathToState(window.location.pathname, storedLanguage);
+      setLanguage(parsedState.language);
+      setActivePage(parsedState.activePage);
+      setActiveTab(parsedState.activeTab);
+    };
+
+    window.addEventListener("popstate", handlePopState);
+    return () => window.removeEventListener("popstate", handlePopState);
+  }, []);
+
   const handleTabChange = (id) => {
+    setActivePage("home");
     setActiveTab(id);
   };
 
