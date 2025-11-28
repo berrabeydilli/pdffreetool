@@ -1965,6 +1965,78 @@ const PAGE_CONTENT = {
       closing:
         "Bu rehberdeki öneriler kullanıcı geri bildirimlerine göre sık sık güncellenir. Yeni bir ipucu görmek isterseniz, İletişim sayfasındaki yönergeleri kullanarak bize mesaj bırakabilirsiniz.",
     },
+    de: {
+      title: "Blog / Ratgeber & Tipps",
+      intro:
+        "Wir haben einen ausführlichen Leitfaden erstellt, damit du unsere PDF- und Bild-Tools so effizient wie möglich nutzt. Ob Vertrag, Präsentation oder Produktkatalog – die Schritte hier beschleunigen deine PDFFreeTool-Erfahrung und helfen, Fehler zu vermeiden. Da alles im Browser läuft, bleiben deine Dateien privat, während du Zeit sparst.",
+      goldenRulesTitle: "Goldene Regeln für einen flüssigen Workflow",
+      goldenRules: [
+        {
+          label: "Vorschau-Routine",
+          text:
+            "Benenne Dateien vor dem Zusammenführen, Teilen oder Löschen mit kurzen Notizen und prüfe die Reihenfolge doppelt. So vermeidest du, falsche Seiten zu entfernen oder Bilder zu wiederholen.",
+        },
+        {
+          label: "Richtiges Format wählen",
+          text:
+            "Nutze PNG-Ausgabe für Präsentationsgrafiken und JPG für Social Posts, um Qualität und Dateigröße auszubalancieren.",
+        },
+        {
+          label: "Leichte Kompressions-Schleife",
+          text:
+            "Führe vor dem Teilen großer Dateien die PDF-Komprimierung aus, prüfe anschließend die Bildqualität und optimiere bei Bedarf erneut.",
+        },
+        {
+          label: "Datenschutz-Hinweis",
+          text:
+            "Die Verarbeitung im Browser verhindert, dass Projekte das Unternehmen verlassen, doch bei wichtigen Verträgen solltest du zusätzlich eine lokale Kopie speichern.",
+        },
+        {
+          label: "Interne Freigabe",
+          text:
+            "Füge beim Benennen zusammengeführter oder geteilter Dokumente eine Versionsnummer hinzu (z. B. \"Proposal-v3.pdf\"), damit nichts durcheinandergerät.",
+        },
+      ],
+      recommendedTitle: "Empfohlene Werkzeug-Kombinationen nach Szenario",
+      recommendedIntro:
+        "Wir zeigen, wie viel Zeit jede Tool-Kombination spart. So weißt du auch dann, wo du startest, wenn du am selben Tag mit verschiedenen Dateitypen arbeitest.",
+      recommended: [
+        {
+          label: "Meeting-Unterlagen",
+          body: (
+            <>
+              Sammle zuerst alle Berichte mit <em>PDF zusammenführen</em>, richte Querformat-Diagramme mit <em>Seiten drehen</em> aus und mach sie mit <em>PDF komprimieren</em> teilbar.
+            </>
+          ),
+        },
+        {
+          label: "Trainings-Kits",
+          body: (
+            <>
+              Ordne Handyfotos in <em>Bilder zu PDF</em>, entferne bei Bedarf leere Seiten mit <em>Seiten löschen</em> und prüfe das finale Dokument schnell im <em>PDF-Reader</em>, bevor du es teilst.
+            </>
+          ),
+        },
+        {
+          label: "Produktkatalog",
+          body: (
+            <>
+              Exportiere Designseiten als PNG, erhalte Assets mit transparentem Hintergrund über <em>PDF zu PNG</em>, optimiere sie mit <em>Bild komprimieren</em> fürs Web und gib sie dem Vertrieb in einem Ordner weiter.
+            </>
+          ),
+        },
+        {
+          label: "Recht & Verträge",
+          body: (
+            <>
+              Wähle relevante Klauseln mit <em>Seiten extrahieren</em>, sichere die neuesten Versionen mit <em>Word zu PDF</em> und bearbeite notwendige Abschnitte über <em>PDF zu Word</em>, bevor du sie zurück nach PDF konvertierst.
+            </>
+          ),
+        },
+      ],
+      closing:
+        "Die Empfehlungen in diesem Guide werden regelmäßig nach Nutzerfeedback aktualisiert. Wenn du einen neuen Tipp sehen möchtest, nutze die Hinweise auf der Kontaktseite und schick uns eine Nachricht.",
+    },
   },
   privacy: {
     en: {
